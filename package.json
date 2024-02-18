@@ -19,6 +19,7 @@
     "esbuild": "~0.20.0",
     "esbuild-plugin-replace": "~1.4.0",
     "plop": "~4.0.1",
+    "tsd": "~0.30.4",
     "typescript": "~5.3.3"
   },
   "repository": "git+https://github.com/tai-kun/suru-ui.git",
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "add": "plop --plopfile config/code/plopfile.js",
-    "tsc": "tsc --noEmit",
+    "tsc": "tsc --noEmit && tsd -f '@types/**/*.d.ts' -f 'src/**/*.{ts,tsx}'",
     "fmt": "dprint fmt",
     "lint": "exit 0",
     "test": "node --enable-source-maps --import cfg-test --test src/**/*.ts",
