@@ -10,3 +10,9 @@ declare module globalThis {
     isArray(arg: readonly any[] | any): arg is readonly any[]
   }
 }
+
+declare var __sui_singleton: Record<string, any> | undefined
+
+interface Window {
+  __sui_singleton?: Record<string, any>
+}

@@ -1,12 +1,18 @@
 {
   "extends": "./config/code/tsconfig.base.json",
   "include": [
-    "@types",
-    "config",
-    "scripts",
-    "src"
+    "@types/**/*",
+    "config/**/*",
+    "scripts/**/*",
+    "src/**/*"
   ],
   "compilerOptions": {
+    "jsx": "preserve",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "noEmit": true,
     "sourceMap": true,
     "module": "ESNext",
