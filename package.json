@@ -1,0 +1,41 @@
+{
+  "name": "suru-ui",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@swc-node/register": "~1.8.0",
+    "@tsconfig/node21": "~21.0.1",
+    "@tsconfig/strictest": "~2.0.3",
+    "@types/node": "~20.11.19",
+    "cfg-test": "~0.4.0",
+    "dprint": "~0.45.0",
+    "esbuild": "~0.20.0",
+    "esbuild-plugin-replace": "~1.4.0",
+    "plop": "~4.0.1",
+    "typescript": "~5.3.3"
+  },
+  "repository": "git+https://github.com/tai-kun/suru-ui.git",
+  "author": {
+    "name": "tai-kun",
+    "url": "https://github.com/tai-kun/"
+  },
+  "scripts": {
+    "add": "plop --plopfile config/code/plopfile.js",
+    "tsc": "tsc --noEmit",
+    "fmt": "dprint fmt",
+    "lint": "exit 0",
+    "test": "node --enable-source-maps --import cfg-test --test src/**/*.ts",
+    "build": "scripts/build.sh",
+    "postinstall": "test ! -f scripts/postinstall.sh || scripts/postinstall.sh"
+  },
+  "volta": {
+    "node": "21.6.2"
+  }
+}

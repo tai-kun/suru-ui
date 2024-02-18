@@ -1,0 +1,15 @@
+{
+  "extends": "./config/code/tsconfig.base.json",
+  "include": [
+    "@types",
+    "config",
+    "scripts",
+    "src"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "sourceMap": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  }
+}
