@@ -4,7 +4,9 @@ import { buildDefine } from "cfg-test/define"
 import { replace } from "esbuild-plugin-replace"
 
 /** @type {string[]} */
-const PURE = []
+const PURE = [
+  "Object.assign",
+]
 
 /** @type {import("esbuild").BuildOptions[]} */
 export default [
