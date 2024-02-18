@@ -10,4 +10,8 @@ function cleanup() {
 
 trap cleanup EXIT
 
+if [ -d dist ]; then
+    rm -rf dist
+fi
+
 node ./scripts/build.js
