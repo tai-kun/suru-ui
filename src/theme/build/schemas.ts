@@ -9,6 +9,7 @@ import {
   nullish,
   number,
   object,
+  optional,
   type Output,
   record,
   string,
@@ -38,41 +39,41 @@ export const PatchOperationAddSchema = object({
   mode: literal(PatchOperationMode.Add),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationMergeSchema = object({
   mode: literal(PatchOperationMode.Merge),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationReplaceSchema = object({
   mode: literal(PatchOperationMode.Replace),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationCopySchema = object({
   mode: literal(PatchOperationMode.Copy),
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationMoveSchema = object({
   mode: literal(PatchOperationMode.Move),
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationRemoveSchema = object({
   mode: literal(PatchOperationMode.Remove),
   path: PatchPathLikeSchema,
-  strict: nullish(boolean()),
+  strict: optional(nullish(boolean())),
 })
 
 export const PatchOperationSchema = union([
@@ -87,12 +88,17 @@ export const PatchOperationSchema = union([
 export const PatchMatrixSchema = record(union([string(), number()]))
 
 export const PatchSchema = object({
-  strict: nullish(boolean()),
-  matrix: nullish(PatchMatrixSchema),
+  strict: optional(nullish(boolean())),
+  matrix: optional(nullish(PatchMatrixSchema)),
   operations: array(PatchOperationSchema),
 })
 
-export const ImportsSchema = record(string())
+export const ImportWithOptions = object({
+  from: string(),
+  build: optional(nullish(boolean())),
+})
+
+export const ImportsSchema = record(union([string(), ImportWithOptions]))
 
 export const PatchesSchema = array(PatchSchema)
 
@@ -102,9 +108,9 @@ export const ExportsSchema = object({
 })
 
 export const BuildSchema = object({
-  imports: nullish(ImportsSchema),
-  patches: nullish(PatchesSchema),
-  exports: nullish(ExportsSchema),
+  imports: optional(nullish(ImportsSchema)),
+  patches: optional(nullish(PatchesSchema)),
+  exports: optional(nullish(ExportsSchema)),
 })
 
 if (cfgTest && cfgTest.url === import.meta.url) {
