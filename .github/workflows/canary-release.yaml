@@ -2,11 +2,16 @@ name: Canary Release on NPM
 
 on:
   push:
-    # TODO: カナリアリリースを有効化
-    branches-ignore:
-      - "**"
-    # branches:
-    #   - main
+    branches:
+      - main
+    paths:
+      - ".github/workflows/canary-release.yaml"
+      - "@types/**"
+      - "config/code/esbuild.config.js"
+      - "scripts/build.js"
+      - "scripts/build.sh"
+      - "src/**"
+      - "package.json"
 
 jobs:
   build-and-publish:
