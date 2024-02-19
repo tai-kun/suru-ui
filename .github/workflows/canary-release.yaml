@@ -9,7 +9,7 @@ on:
     #   - main
 
 jobs:
-  build_and_publish:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,7 +45,7 @@ jobs:
 
   action-timeline:
     needs:
-      - build_and_publish
+      - build-and-publish
     permissions:
       actions: read
     runs-on: ubuntu-latest
