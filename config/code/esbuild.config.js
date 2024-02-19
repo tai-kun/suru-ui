@@ -34,6 +34,7 @@ export default [
 
     // Optimization
 
+    define: buildDefine,
     minifySyntax: true,
     pure: [
       ...PURE,
@@ -43,7 +44,6 @@ export default [
 
     plugins: [
       replace({
-        ...buildDefine,
         __DEV__: "process.env.NODE_ENV !== \"production\"",
       }),
     ],
@@ -79,6 +79,7 @@ export default [
 
     // Optimization
 
+    define: buildDefine,
     minifySyntax: true,
     pure: [
       ...PURE,
@@ -88,7 +89,6 @@ export default [
 
     plugins: [
       replace({
-        ...buildDefine,
         __DEV__: "process.env.NODE_ENV !== \"production\"",
       }),
     ],
