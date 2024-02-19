@@ -20,7 +20,9 @@
     "esbuild-plugin-replace": "~1.4.0",
     "plop": "~4.0.1",
     "tsd": "~0.30.4",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "valibot": "~0.28.1",
+    "visit-json": "~0.1.3"
   },
   "repository": "git+https://github.com/tai-kun/suru-ui.git",
   "author": {
