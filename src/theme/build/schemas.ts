@@ -87,7 +87,7 @@ export const PatchOperationSchema = union([
   PatchOperationRemoveSchema,
 ])
 
-export const PatchMatrixSchema = record(union([string(), number()]))
+export const PatchMatrixSchema = record(array(union([string(), number()])))
 
 export const PatchSchema = object({
   strict: optional(nullish(boolean())),
@@ -106,7 +106,7 @@ export const PatchesSchema = array(PatchSchema)
 
 export const ExportsSchema = object({
   include: array(string()),
-  exclude: array(string()),
+  exclude: optional(nullish(array(string()))),
 })
 
 export const BuildSchema = object({
