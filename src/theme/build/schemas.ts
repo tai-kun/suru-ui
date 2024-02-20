@@ -29,7 +29,9 @@ export enum PatchOperationMode {
 
 export const PatchOperationModeSchema = enum_(PatchOperationMode)
 
-export const PatchPathLikeSchema = union([string(), array(string())])
+export const PointerLikeSchema = array(union([string(), number()]))
+
+export const PatchPathLikeSchema = union([string(), PointerLikeSchema])
 
 export const PatchOperationValueSchema: AnySchema<JsonValue> = any([
   custom(value => isJsonValue(value)),
