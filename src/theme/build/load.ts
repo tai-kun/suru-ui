@@ -46,7 +46,7 @@ export interface Source extends SourceLocation {
   /**
    * ソースファイルがエクスポートした結果。
    */
-  exports?: JsonObject
+  exports?: JsonObject | null
 }
 
 /**
@@ -56,7 +56,7 @@ export interface ImportOptions {
   /**
    * インポートするときにビルドするかどうか。true ならビルドする。
    *
-   * @default false
+   * @default true
    */
   readonly build?: boolean | null | undefined
 }
@@ -125,14 +125,19 @@ interface Context extends Omit<LoadParams, "entryPoints"> {
    */
   readonly cache: Map<string, Source>
   /**
-   * ロードしたファイルのパスのセット。
-   */
-  readonly paths: Set<string>
-  /**
    * 親のコンテキスト。ルートのコンテキストの場合は `null`。
    */
   readonly parent: Context | null
 }
+
+/**
+ * ロードのためのコンテキストを作成する。
+ *
+ * @param ctx コンテキスト。
+ * @param file エントリーポイントのファイルパス。
+ * @returns コンテキスト。
+ */
+function createContext(ctx: Context, file: string): Context
 
 /**
  * ロードのためのコンテキストを作成する。
@@ -146,7 +151,24 @@ function createContext(
   params: LoadParams,
   cache: Map<string, Source>,
   file: string,
+): Context
+
+function createContext(
+  ...args:
+    | [Context, string]
+    | [LoadParams, Map<string, Source>, string]
 ): Context {
+  if (args.length === 2) {
+    const [parent, file] = args
+
+    return {
+      ...parent,
+      file,
+      parent,
+    }
+  }
+
+  const [params, cache, file] = args
   const sourceRoot = path.normalize(path.resolve(params.sourceRoot))
 
   return {
@@ -154,7 +176,6 @@ function createContext(
     sourceRoot,
     file,
     cache,
-    paths: new Set(),
     parent: null,
   }
 }
@@ -221,6 +242,21 @@ const ContentsSchema = object(
 )
 
 /**
+ * 循環参照を検出する。
+ *
+ * @param ctx コンテキスト。
+ * @param path ファイルパス。
+ * @returns 循環参照がある場合は `true`。そうでない場合は `false`。
+ */
+function detectCircularReference(ctx: Context, path: string) {
+  if (ctx.parent) {
+    return detectCircularReference(ctx.parent, path)
+  }
+
+  return false
+}
+
+/**
  * ソースファイルを再帰的にロードする。
  *
  * @param ctx コンテキスト。
@@ -239,7 +275,7 @@ async function inner(ctx: Context): Promise<Source> {
     )
   }
 
-  if (ctx.paths.has(location.path)) {
+  if (detectCircularReference(ctx, location.path)) {
     throw new Error(
       [
         `ソースファイル "${ctx.file}" を循環参照しようとしました。`,
@@ -248,7 +284,6 @@ async function inner(ctx: Context): Promise<Source> {
     )
   }
 
-  ctx.paths.add(location.path)
   const cache = ctx.cache.get(location.path)
 
   if (cache) {
@@ -268,13 +303,8 @@ async function inner(ctx: Context): Promise<Source> {
           from: info,
           build: undefined,
         }
-      const source = await inner({
-        ...ctx,
-        file: imp.from,
-        parent: ctx,
-      })
       imports.set(name, {
-        source,
+        source: await inner(createContext(ctx, imp.from)),
         build: imp.build,
       })
     }
