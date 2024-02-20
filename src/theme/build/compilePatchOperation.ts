@@ -9,6 +9,7 @@ import { PatchOperationMode, type PatchOperationSchema } from "./schemas"
  * コンパイルされたパッチ操作。
  */
 export type CompiledPatchOperation = {
+  name: string | undefined
   mode:
     | PatchOperationMode.Add
     | PatchOperationMode.Merge
@@ -17,11 +18,13 @@ export type CompiledPatchOperation = {
   value: JsonValue
   strict: boolean | undefined
 } | {
+  name: string | undefined
   mode: PatchOperationMode.Copy | PatchOperationMode.Move
   path: string
   from: string
   strict: boolean | undefined
 } | {
+  name: string | undefined
   mode: PatchOperationMode.Remove
   path: string
   strict: boolean | undefined
@@ -81,6 +84,7 @@ export default function compilePatchOperation(
       })
 
       return paths.map(path => ({
+        name: op.name ?? undefined,
         mode: op.mode,
         path,
         value,
@@ -98,6 +102,7 @@ export default function compilePatchOperation(
 
       if (from_.length === 1) {
         return paths.map(path => ({
+          name: op.name ?? undefined,
           mode: op.mode,
           from: from_[0]!,
           path,
@@ -107,6 +112,7 @@ export default function compilePatchOperation(
 
       if (from_.length === paths.length) {
         return paths.map((path, i) => ({
+          name: op.name ?? undefined,
           mode: op.mode,
           from: from_[i]!,
           path,
@@ -116,15 +122,20 @@ export default function compilePatchOperation(
 
       throw new Error(
         [
-          `from の要素数が path の要素数と一致しません: ${from_.length} !== ${paths.length}`,
-          ...from_.map((f, i) => `  from[${i}]: ${f}`),
-          ...paths.map((p, i) => `  path[${i}]: ${p}`),
+          "パッチ操作の検証に失敗しました。",
+          `  名前: ${op.name ?? "(無名)"}`,
+          "",
+          `from の要素数が path の要素数と一致しません (${from_.length} !== ${paths.length})`,
+          ...from_.map((f, i) => `  from[${i}]: ${JSON.stringify(f)}`),
+          ...paths.map((p, i) => `  path[${i}]: ${JSON.stringify(p)}`),
+          "",
         ].join("\n"),
       )
     }
 
     case PatchOperationMode.Remove:
       return paths.map(path => ({
+        name: op.name ?? undefined,
         mode: op.mode,
         path,
         strict: op.strict ?? undefined,

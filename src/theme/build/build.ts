@@ -98,7 +98,19 @@ function buildSource(source: Source): void {
 
     for (const [key, imp] of source.imports) {
       if (imp.build ?? true) {
-        buildSource(imp.source)
+        try {
+          buildSource(imp.source)
+        } catch (cause) {
+          throw new Error(
+            [
+              "テーマのビルドに失敗しました:",
+              `  ファイル: ${imp.source.file} (${imp.source.path})`,
+              "",
+            ].join("\n"),
+            { cause },
+          )
+        }
+
         data[key] = imp.source.exports!
       } else {
         data[key] = imp.source.data
@@ -107,14 +119,29 @@ function buildSource(source: Source): void {
 
     data = structuredClone(data)
 
-    for (const patch of patches) {
+    for (let i = 0; i < patches.length; i++) {
+      const patch = patches[i]!
+
       if (
         !patch.matrix
         || Object.values(patch.matrix).every(vars => !vars.length)
       ) {
-        data = applyPatch(data, patch.operations, {
-          strict: patch.strict,
-        })
+        try {
+          data = applyPatch(data, patch.operations, {
+            strict: patch.strict,
+          })
+        } catch (cause) {
+          throw new Error(
+            [
+              "パッチの適用に失敗しました:",
+              `  名前: ${patch.name ?? "(無名)"}`,
+              `  場所: ${i + 1} 番目のパッチ`,
+              "  変数: なし",
+              "",
+            ].join("\n"),
+            { cause },
+          )
+        }
       } else {
         const matrix = Object.fromEntries(
           Object.entries(patch.matrix).map(([key, vars]) => [
@@ -135,9 +162,24 @@ function buildSource(source: Source): void {
                 : PASS
             },
           })
-          data = applyPatch(data, operations as typeof patch.operations, {
-            strict: patch.strict,
-          })
+          try {
+            data = applyPatch(data, operations as typeof patch.operations, {
+              strict: patch.strict,
+            })
+          } catch (cause) {
+            throw new Error(
+              [
+                "パッチの適用に失敗しました:",
+                `  名前: ${patch.name ?? "(無名)"}`,
+                `  場所: ${i + 1} 番目のパッチ`,
+                "  変数:",
+                ...Object.entries(vars)
+                  .map(([key, val]) => `    ${key}: ${JSON.stringify(val)}`),
+                "",
+              ].join("\n"),
+              { cause },
+            )
+          }
         }
       }
     }
@@ -163,7 +205,18 @@ function buildSource(source: Source): void {
  */
 export default function build(loadResult: Pick<LoadResult, "sources">): void {
   for (const source of loadResult.sources) {
-    buildSource(source)
+    try {
+      buildSource(source)
+    } catch (cause) {
+      throw new Error(
+        [
+          "テーマのビルドに失敗しました:",
+          `  ファイル: ${source.file} (${source.path})`,
+          "",
+        ].join("\n"),
+        { cause },
+      )
+    }
   }
 }
 

@@ -56,9 +56,27 @@ export default function applyPatch(
         })
       },
     }
+    const ops = compilePatchOperation(operation, vars)
 
-    for (const op of compilePatchOperation(operation, vars)) {
-      target = operate(target, op, options)
+    for (let i = 0; i < ops.length; i++) {
+      const op = ops[i]!
+
+      try {
+        target = operate(target, op, options)
+      } catch (cause) {
+        throw new Error(
+          [
+            "パッチ操作に失敗しました:",
+            `  名前: ${operation.name ?? "(無名)"}`,
+            `  場所: ${i + 1} 番目のパッチ操作`,
+            `  mode: ${JSON.stringify(op.mode)}`,
+            `  path: ${JSON.stringify(op.path)}`,
+            `  strict: ${op.strict}`,
+            "",
+          ].join("\n"),
+          { cause },
+        )
+      }
     }
   }
 

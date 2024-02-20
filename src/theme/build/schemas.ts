@@ -38,6 +38,7 @@ export const PatchOperationValueSchema: AnySchema<JsonValue> = any([
 ])
 
 export const PatchOperationAddSchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Add),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
@@ -45,6 +46,7 @@ export const PatchOperationAddSchema = object({
 })
 
 export const PatchOperationMergeSchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Merge),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
@@ -52,6 +54,7 @@ export const PatchOperationMergeSchema = object({
 })
 
 export const PatchOperationReplaceSchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Replace),
   path: PatchPathLikeSchema,
   value: PatchOperationValueSchema,
@@ -59,6 +62,7 @@ export const PatchOperationReplaceSchema = object({
 })
 
 export const PatchOperationCopySchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Copy),
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
@@ -66,6 +70,7 @@ export const PatchOperationCopySchema = object({
 })
 
 export const PatchOperationMoveSchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Move),
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
@@ -73,6 +78,7 @@ export const PatchOperationMoveSchema = object({
 })
 
 export const PatchOperationRemoveSchema = object({
+  name: optional(nullish(string())),
   mode: literal(PatchOperationMode.Remove),
   path: PatchPathLikeSchema,
   strict: optional(nullish(boolean())),
@@ -90,6 +96,7 @@ export const PatchOperationSchema = union([
 export const PatchMatrixSchema = record(array(union([string(), number()])))
 
 export const PatchSchema = object({
+  name: optional(nullish(string())),
   strict: optional(nullish(boolean())),
   matrix: optional(nullish(PatchMatrixSchema)),
   operations: array(PatchOperationSchema),

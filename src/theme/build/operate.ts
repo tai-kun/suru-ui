@@ -70,24 +70,6 @@ export default function operate(
   const pointer = toPointer(op.path)
   let newObject
 
-  function toError(message: string, ...detail: string[]) {
-    return Object.assign(
-      new Error(
-        [
-          message,
-          `  strict: ${strict}`,
-          `  operation: ${JSON.stringify(op.mode)}`,
-          `  path: ${JSON.stringify(op.path)}`,
-          ...detail,
-        ].join("\n"),
-      ),
-      {
-        // TODO: デバッグ用に追加するか検討。
-        // tree: Object.fromEntries(flattenJsonObject(target)),
-      },
-    )
-  }
-
   if (op.mode === "add" || op.mode === "replace") {
     const point = createObjectRecursively(
       newObject = clone(target),
@@ -98,10 +80,13 @@ export default function operate(
       if (strict) {
         if (op.mode === "add") {
           if (point.new) {
-            throw toError(
-              "パスまでのオブジェクトが存在しないため、追加できません。"
+            throw new Error(
+              [
+                "パスまでのオブジェクトが存在しないため、追加できません。"
                 + "strict を false にしてください。",
-              `  value: ${format(op.value)}`,
+                `  value: ${format(op.value)}`,
+                "",
+              ].join("\n"),
             )
           }
 
@@ -110,18 +95,24 @@ export default function operate(
               ? point.key in point.ref
               : point.idx in point.ref
           ) {
-            throw toError(
-              "パスが存在するため、追加できません。"
+            throw new Error(
+              [
+                "パスが存在するため、追加できません。"
                 + "strict を false にするか、代わりに replace モードを使ってください。",
-              `  value: ${format(op.value)}`,
+                `  value: ${format(op.value)}`,
+                "",
+              ].join("\n"),
             )
           }
         } else if (op.mode === "replace") {
           if (!point.new) {
-            throw toError(
-              "パスが存在しないため、置換できません。"
+            throw new Error(
+              [
+                "パスが存在しないため、置換できません。"
                 + "strict を false にしてください。",
-              `  value: ${format(op.value)}`,
+                `  value: ${format(op.value)}`,
+                "",
+              ].join("\n"),
             )
           }
 
@@ -130,14 +121,17 @@ export default function operate(
               ? !(point.key in point.ref)
               : !(point.idx in point.ref)
           ) {
-            throw toError(
-              "パスが存在しないため、置換できません。"
+            throw new Error(
+              [
+                "パスが存在しないため、置換できません。"
                 + "strict を false にするか、代わりに add モードを使ってください。",
-              `  value: ${format(op.value)}`,
+                `  value: ${format(op.value)}`,
+                "",
+              ].join("\n"),
             )
           }
         } else {
-          throw new Error(`不明な操作です。: ${op.mode}`)
+          throw new Error(`不明な操作です: ${op.mode}\n`)
         }
       }
 
@@ -147,15 +141,21 @@ export default function operate(
         point.ref[point.idx] = op.value
       }
     } else if (strict && op.mode === "add") {
-      throw toError(
-        "パスが存在するため、追加できません。"
+      throw new Error(
+        [
+          "パスが存在するため、追加できません。"
           + "strict を false にするか、代わりに replace モードを使ってください。",
-        `  value: ${format(op.value)}`,
+          `  value: ${format(op.value)}`,
+          "",
+        ].join("\n"),
       )
     } else if (!isPlainObject(op.value)) {
-      throw toError(
-        "ルートはオブジェクトでなければなりません。",
-        `  value: ${format(op.value)}`,
+      throw new Error(
+        [
+          "ルートはオブジェクトでなければなりません。",
+          `  value: ${format(op.value)}`,
+          "",
+        ].join("\n"),
       )
     } else {
       newObject = op.value
@@ -168,9 +168,12 @@ export default function operate(
 
     if ("new" in point) {
       if (strict && point.new) {
-        throw toError(
-          "パスが存在しないため、マージできません。",
-          `  value: ${format(op.value)}`,
+        throw new Error(
+          [
+            "パスが存在しないため、マージできません。",
+            `  value: ${format(op.value)}`,
+            "",
+          ].join("\n"),
         )
       }
 
@@ -195,9 +198,12 @@ export default function operate(
         point.ref[point.idx] = deepmerge<{}>(point.ref, op.value)
       }
     } else if (!isPlainObject(op.value)) {
-      throw toError(
-        "ルートはオブジェクトでなければなりません。",
-        `  value: ${format(op.value)}`,
+      throw new Error(
+        [
+          "ルートはオブジェクトでなければなりません。",
+          `  value: ${format(op.value)}`,
+          "",
+        ].join("\n"),
       )
     } else {
       newObject = deepmerge(point.ref, op.value)
@@ -222,9 +228,12 @@ export default function operate(
     }) as JsonObject | null
 
     if (fromValue === undefined) {
-      throw toError(
-        `${name}元のパスが存在しません。`,
-        `  from: ${JSON.stringify(op.from)}`,
+      throw new Error(
+        [
+          `${name}元のパスが存在しません。`,
+          `  from: ${JSON.stringify(op.from)}`,
+          "",
+        ].join("\n"),
       )
     }
 
@@ -236,10 +245,13 @@ export default function operate(
     if ("new" in point) {
       if (strict) {
         if (point.new) {
-          throw toError(
-            `パスまでのオブジェクトが存在しないため、${name}できません。`
+          throw new Error(
+            [
+              `パスまでのオブジェクトが存在しないため、${name}できません。`
               + "strict を false にしてください。",
-            `  from: ${JSON.stringify(op.from)}`,
+              `  from: ${JSON.stringify(op.from)}`,
+              "",
+            ].join("\n"),
           )
         }
 
@@ -248,10 +260,13 @@ export default function operate(
             ? point.key in point.ref
             : point.idx in point.ref
         ) {
-          throw toError(
-            `パスが存在するため、${name}できません。`
+          throw new Error(
+            [
+              `パスが存在するため、${name}できません。`
               + "strict を false にするか、代わりに replace モードを使ってください。",
-            `  from: ${JSON.stringify(op.from)}`,
+              `  from: ${JSON.stringify(op.from)}`,
+              "",
+            ].join("\n"),
           )
         }
       }
@@ -262,9 +277,12 @@ export default function operate(
         point.ref[point.idx] = fromValue
       }
     } else if (!isPlainObject(fromValue)) {
-      throw toError(
-        "ルートはオブジェクトでなければなりません。",
-        `  from: ${JSON.stringify(op.from)}`,
+      throw new Error(
+        [
+          "ルートはオブジェクトでなければなりません。",
+          `  from: ${JSON.stringify(op.from)}`,
+          "",
+        ].join("\n"),
       )
     } else {
       newObject = fromValue
@@ -285,12 +303,12 @@ export default function operate(
     }) as JsonObject | null
 
     if (strict && !removed) {
-      throw toError("パスが存在しないため、削除できません。")
+      throw new Error("パスが存在しないため、削除できません。\n")
     }
 
     newObject ||= {}
   } else {
-    throw new Error(`不明な操作です。: ${op.mode}`)
+    throw new Error(`不明な操作です: ${op.mode}\n`)
   }
 
   return newObject
@@ -308,6 +326,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Add,
               path: "/b/c",
               value: 2,
@@ -332,6 +351,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Add,
               path: "/b/c",
               value: 3,
@@ -356,6 +376,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Add,
               path: "",
               value: {
@@ -381,6 +402,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Add,
                   path: "",
                   value: 3,
@@ -399,6 +421,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Add,
               path: "/b",
               value: 2,
@@ -420,6 +443,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Add,
                   path: "/b/c",
                   value: 2,
@@ -442,6 +466,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Add,
                   path: "/b/c",
                   value: 3,
@@ -464,6 +489,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Add,
                   path: "",
                   value: {
@@ -487,6 +513,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "/b/c",
               value: 2,
@@ -511,6 +538,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "/b/c",
               value: 3,
@@ -535,6 +563,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "",
               value: {
@@ -560,6 +589,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Replace,
                   path: "",
                   value: 3,
@@ -580,6 +610,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Replace,
                   path: "/b/c",
                   value: 2,
@@ -599,6 +630,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Replace,
                   path: "/b/c",
                   value: 2,
@@ -619,6 +651,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "/b/c",
               value: 3,
@@ -643,6 +676,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "",
               value: {
@@ -667,6 +701,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "/b/c",
               value: 2,
@@ -691,6 +726,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "/b",
               value: {
@@ -718,6 +754,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "",
               value: {
@@ -747,6 +784,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Merge,
                   path: "",
                   value: 3,
@@ -767,6 +805,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Merge,
                   path: "/b/c",
                   value: 2,
@@ -786,6 +825,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Merge,
                   path: "/b/c",
                   value: 2,
@@ -806,6 +846,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "/b",
               value: {
@@ -833,6 +874,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "",
               value: {
@@ -863,6 +905,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Copy,
                   path: "/b/c",
                   from: "/x",
@@ -879,6 +922,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Copy,
               path: "/b/c",
               from: "/a",
@@ -903,6 +947,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Copy,
               path: "/b/c",
               from: "/a",
@@ -927,6 +972,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Copy,
               path: "",
               from: "/b",
@@ -950,6 +996,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Copy,
                   path: "",
                   from: "/b/c",
@@ -970,6 +1017,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Copy,
                   path: "/b/c",
                   from: "/x",
@@ -987,6 +1035,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Copy,
               path: "/b",
               from: "/a",
@@ -1009,6 +1058,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Copy,
                   path: "/b/c",
                   from: "/a",
@@ -1031,6 +1081,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Copy,
                   path: "/b/c",
                   from: "/a",
@@ -1054,6 +1105,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Move,
                   path: "/b/c",
                   from: "/x",
@@ -1070,6 +1122,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Move,
               path: "/b/c",
               from: "/a",
@@ -1093,6 +1146,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Move,
               path: "/b/c",
               from: "/a",
@@ -1116,6 +1170,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Move,
               path: "",
               from: "/b",
@@ -1139,6 +1194,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Move,
                   path: "",
                   from: "/b/c",
@@ -1159,6 +1215,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Move,
                   path: "/b/c",
                   from: "/x",
@@ -1176,6 +1233,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Move,
               path: "/b",
               from: "/a",
@@ -1197,6 +1255,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Move,
                   path: "/b/c",
                   from: "/a",
@@ -1219,6 +1278,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   },
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Move,
                   path: "/b/c",
                   from: "/a",
@@ -1240,6 +1300,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               a: 1,
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Remove,
               path: "/b/c",
               strict: undefined,
@@ -1260,6 +1321,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Remove,
               path: "/b/c",
               strict: undefined,
@@ -1282,6 +1344,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   a: 1,
                 },
                 {
+                  name: undefined,
                   mode: PatchOperationMode.Remove,
                   path: "/b/c",
                   strict: undefined,
@@ -1301,6 +1364,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             },
             {
+              name: undefined,
               mode: PatchOperationMode.Remove,
               path: "/b/c",
               strict: undefined,
