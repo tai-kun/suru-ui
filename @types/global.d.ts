@@ -16,3 +16,9 @@ declare var __sui_singleton: Record<string, any> | undefined
 interface Window {
   __sui_singleton?: Record<string, any>
 }
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    NODE_ENV?: "development" | "production" | "test" | (string & {})
+  }
+}
