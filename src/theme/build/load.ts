@@ -245,12 +245,16 @@ const ContentsSchema = object(
  * 循環参照を検出する。
  *
  * @param ctx コンテキスト。
- * @param path ファイルパス。
+ * @param file ファイルパス。
  * @returns 循環参照がある場合は `true`。そうでない場合は `false`。
  */
-function detectCircularReference(ctx: Context, path: string) {
+function detectCircularReference(ctx: Context, file = ctx.file) {
   if (ctx.parent) {
-    return detectCircularReference(ctx.parent, path)
+    if (ctx.parent.file === file) {
+      return true
+    }
+
+    return detectCircularReference(ctx.parent, file)
   }
 
   return false
@@ -275,7 +279,7 @@ async function inner(ctx: Context): Promise<Source> {
     )
   }
 
-  if (detectCircularReference(ctx, location.path)) {
+  if (detectCircularReference(ctx)) {
     throw new Error(
       [
         `ソースファイル "${ctx.file}" を循環参照しようとしました。`,
