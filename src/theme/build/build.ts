@@ -190,10 +190,15 @@ function buildSource(source: Source): void {
   }
 
   const match = createMatchFunction(exports)
-  const result = visitJson(data, (_, path) =>
-    match(toPatchPath(path))
-      ? PASS
-      : REMOVE) as JsonObject | null
+  const result = visitJson(data, {
+    Primitive(_, path) {
+      return match(toPatchPath(path))
+        ? PASS
+        : REMOVE
+    },
+    removeEmptyArray: true,
+    removeEmptyObject: true,
+  }) as JsonObject | null
 
   source.exports = result ?? {}
 }
