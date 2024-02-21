@@ -195,6 +195,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Add,
               path: "/c",
               value: 3,
@@ -214,6 +215,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Merge,
               path: "/c",
               value: 3,
@@ -234,6 +236,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Replace,
               path: "/c",
               value: 3,
@@ -254,6 +257,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Copy,
               path: "/c",
               from: "/a",
@@ -274,6 +278,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Move,
               path: "/c",
               from: "/a",
@@ -292,6 +297,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
           ),
           [
             {
+              name: undefined,
               mode: PatchOperationMode.Remove,
               path: "/c",
               strict: undefined,
@@ -316,7 +322,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               },
             )
           },
-          /from の要素数が path の要素数と一致しません: 2 !== 1/,
+          /from の要素数が path の要素数と一致しません \(2 !== 1\)/,
         )
       })
     })

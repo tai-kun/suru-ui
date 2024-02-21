@@ -138,9 +138,9 @@ if (cfgTest && cfgTest.url === import.meta.url) {
       assert.equal(
         actual,
         [
-          "  --foo:red;",
-          "  --bar-baz:1129;",
-          "  --bar-qux:true;",
+          "  --foo: red;",
+          "  --bar-baz: 1129;",
+          "  --bar-qux: true;",
         ].join("\n"),
       )
     })

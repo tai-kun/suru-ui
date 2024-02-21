@@ -256,6 +256,11 @@ if (cfgTest && cfgTest.url === import.meta.url) {
         }),
         "root/lib/sub.json": JSON.stringify({
           sub: "true",
+          $build: {
+            exports: {
+              include: ["**"],
+            },
+          },
         }),
       })
 
