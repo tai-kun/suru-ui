@@ -70,7 +70,10 @@ export default function operate(
   const pointer = toPointer(op.path)
   let newObject
 
-  if (op.mode === "add" || op.mode === "replace") {
+  if (
+    op.mode === PatchOperationMode.Add
+    || op.mode === PatchOperationMode.Replace
+  ) {
     const point = createObjectRecursively(
       newObject = clone(target),
       pointer,
@@ -78,7 +81,7 @@ export default function operate(
 
     if ("new" in point) {
       if (strict) {
-        if (op.mode === "add") {
+        if (op.mode === PatchOperationMode.Add) {
           if (point.new) {
             throw new Error(
               [
@@ -104,7 +107,7 @@ export default function operate(
               ].join("\n"),
             )
           }
-        } else if (op.mode === "replace") {
+        } else if (op.mode === PatchOperationMode.Replace) {
           if (!point.new) {
             throw new Error(
               [
@@ -140,7 +143,7 @@ export default function operate(
       } else {
         point.ref[point.idx] = op.value
       }
-    } else if (strict && op.mode === "add") {
+    } else if (strict && op.mode === PatchOperationMode.Add) {
       throw new Error(
         [
           "パスが存在するため、追加できません。"
@@ -160,7 +163,7 @@ export default function operate(
     } else {
       newObject = op.value
     }
-  } else if (op.mode === "merge") {
+  } else if (op.mode === PatchOperationMode.Merge) {
     const point = createObjectRecursively(
       newObject = clone(target),
       pointer,
@@ -208,8 +211,11 @@ export default function operate(
     } else {
       newObject = deepmerge(point.ref, op.value)
     }
-  } else if (op.mode === "copy" || op.mode === "move") {
-    const name = op.mode === "copy" ? "コピー" : "移動"
+  } else if (
+    op.mode === PatchOperationMode.Copy
+    || op.mode === PatchOperationMode.Move
+  ) {
+    const name = op.mode === PatchOperationMode.Copy ? "コピー" : "移動"
     const fromPointer = toPointer(op.from)
     let fromValue: JsonValue | undefined
     newObject = visitJson(target, (value, path) => {
@@ -222,7 +228,7 @@ export default function operate(
 
       fromValue = value as JsonValue
 
-      return op.mode === "move"
+      return op.mode === PatchOperationMode.Move
         ? andBreak(REMOVE)
         : BREAK
     }) as JsonObject | null
@@ -287,7 +293,7 @@ export default function operate(
     } else {
       newObject = fromValue
     }
-  } else if (op.mode === "remove") {
+  } else if (op.mode === PatchOperationMode.Remove) {
     let removed = false
     newObject = visitJson(target, (_, path) => {
       if (
