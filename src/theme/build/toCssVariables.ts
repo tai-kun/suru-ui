@@ -1,6 +1,12 @@
 import type { JsonObjectLike, JsonValueLike } from "visit-json"
 import isPlainObject from "../../utils/isPlainObject"
 
+export type Nil = null | undefined
+
+export type CssPrimitive = string | number | boolean
+
+export type ReadonlyArrayable<T> = T | readonly T[]
+
 /**
  * toCssVariables 関数のオプション。
  */
@@ -8,11 +14,40 @@ export interface ToCssVariablesOptions {
   /**
    * カスタムプロパティの接頭辞。
    */
-  prefix?: string | undefined
+  readonly prefix?: string | undefined
   /**
    * インデント文字列。
    */
-  indent?: string | undefined
+  readonly indent?: string | undefined
+  /**
+   * null に対して設定する値。
+   */
+  readonly null?:
+    | Nil
+    | ReadonlyArrayable<CssPrimitive>
+    | (() => ReadonlyArrayable<CssPrimitive> | Nil)
+  /**
+   * undefined に対して設定する値。
+   */
+  readonly undefined?:
+    | Nil
+    | ReadonlyArrayable<CssPrimitive>
+    | (() => ReadonlyArrayable<CssPrimitive> | Nil)
+}
+
+function toLine(
+  indent: string,
+  prefix: string,
+  value: ReadonlyArrayable<CssPrimitive>,
+): string {
+  return indent
+    ? `${indent}--${prefix}: ${value};`
+    : `--${prefix}:${value};`
+}
+
+function toCallable<T>(value: T | (() => T)): () => T {
+  // @ts-expect-error
+  return typeof value === "function" ? value : (() => value)
 }
 
 /**
@@ -27,16 +62,14 @@ function inner(
   options: ToCssVariablesOptions,
 ) {
   let { prefix = "", indent = "" } = options
-  let css = ""
+  let css = "", tmp
 
   switch (true) {
     case typeof value === "string"
       || typeof value === "number"
       || typeof value === "boolean"
       || Array.isArray(value):
-      css += indent
-        ? `${indent}--${prefix}: ${value};`
-        : `--${prefix}:${value};`
+      css += toLine(indent, prefix, value as ReadonlyArrayable<CssPrimitive>)
 
       break
 
@@ -55,6 +88,7 @@ function inner(
 
       for (const key of Object.keys(value)) {
         css += inner(value[key], {
+          ...options,
           prefix: prefix + key,
           indent,
         })
@@ -62,7 +96,18 @@ function inner(
 
       break
 
-    case value == null:
+    case value === null:
+      if ((tmp = toCallable(options.null)()) != null) {
+        css += toLine(indent, prefix, tmp)
+      }
+
+      break
+
+    case value === undefined:
+      if ((tmp = toCallable(options.undefined)()) != null) {
+        css += toLine(indent, prefix, tmp)
+      }
+
       break
 
     default:

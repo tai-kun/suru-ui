@@ -55,22 +55,25 @@ async function writeTheme(
     .replace("{{ scope_from }}", scope.from)
     .replace("{{ scope_to }}", scope.to)
   const indent = "  ".repeat(2)
-  const toCss = (src: {}) =>
-    toCssVariables(src, {
-      prefix: "sui",
-      indent,
-    })
+  const toCssOptions = {
+    prefix: "sui",
+    indent,
+  }
 
   if (theme === base) {
-    const vars = toCss(theme.vars)
+    const vars = toCssVariables(theme.vars, toCssOptions)
     const css = template.replace("{{ css }}", vars)
     await fs.writeFile(filename, css, "utf-8")
   } else {
     const diff = detailedDiff(base.vars, theme.vars)
     const vars = [
-      toCss(diff.added),
-      toCss(diff.updated),
-      toCss(diff.deleted),
+      toCssVariables(diff.added, toCssOptions),
+      toCssVariables(diff.updated, toCssOptions),
+      // TODO: 削除されたプロパティから更に base.vars を元に削除された変数を特定する。
+      toCssVariables(diff.deleted, {
+        ...toCssOptions,
+        undefined: () => "",
+      }),
     ]
       .map((css, i) =>
         !css.trim() ? "" : `\n${indent}/* ${
