@@ -23,6 +23,7 @@ interface Window {
 
 declare namespace NodeJS {
   interface ProcessEnv {
+    CI?: string
     NODE_ENV?: "development" | "production" | "test" | (string & {})
   }
 }

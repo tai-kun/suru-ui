@@ -7,10 +7,10 @@
     "arrowFunction.useParentheses": "preferNone"
   },
   "includes": [
-    ".vscode/**/*.json",
+    ".vscode/**/*",
     "@types/**/*",
-    "config/**/*.js",
-    "scripts/**/*.js",
+    "config/**/*",
+    "scripts/**/*",
     "src/**/*",
     "dprint.json",
     "package.json",
