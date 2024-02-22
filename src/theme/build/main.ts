@@ -5,6 +5,7 @@ import { formatWithOptions as format } from "node:util"
 import type { JsonObject } from "visit-json"
 import { parse as parseYaml } from "yaml"
 import build from "./build"
+import genTypes from "./genTypes"
 import load from "./load"
 import toCssVariables from "./toCssVariables"
 
@@ -105,6 +106,29 @@ async function combineTheme(
   await fs.writeFile(filename, css, "utf-8")
 }
 
+async function writeUtils(vars: JsonObject) {
+  const { flat, dict } = genTypes(vars, { prefix: "sui" })
+  const typesFile = `${BANNER}
+export type Flat = ${["", ...flat].join("\n  | ")}
+
+export type Dict = ${dict}
+`
+  const constantsFile = `${BANNER}
+import type { Flat } from "./_types"
+
+export const VARIABLES: readonly Flat[] = [
+  ${flat.join(",\n  ")}
+]
+
+export const variables = new Set(VARIABLES)
+`
+  const baseDir = path.resolve("src/theme")
+  await Promise.all([
+    fs.writeFile(path.join(baseDir, "_types.ts"), typesFile, "utf-8"),
+    fs.writeFile(path.join(baseDir, "_constants.ts"), constantsFile, "utf-8"),
+  ])
+}
+
 async function main() {
   const result = await load({
     sourceRoot: "src/theme/design-system",
@@ -193,6 +217,7 @@ async function main() {
         { name: "dark" },
       ],
     }),
+    writeUtils(lightDesktop.vars),
   ])
 }
 

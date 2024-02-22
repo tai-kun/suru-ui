@@ -9,6 +9,10 @@ declare module globalThis {
   interface ArrayConstructor {
     isArray(arg: readonly any[] | any): arg is readonly any[]
   }
+
+  interface Set {
+    has(value: unknown): boolean
+  }
 }
 
 declare var __sui_singleton: Record<string, any> | undefined
