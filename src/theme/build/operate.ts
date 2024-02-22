@@ -53,6 +53,16 @@ function format(fmt?: any, ...args: unknown[]): string {
 }
 
 /**
+ * 値が `null` でないオブジェクトかどうかを返す。
+ *
+ * @param value 値。
+ * @returns 値が `null` でないオブジェクトならば `true` 。
+ */
+function isNonNullObject(value: unknown): value is JsonObject {
+  return value !== null && typeof value === "object"
+}
+
+/**
  * JSON Patch の操作を適用する。
  *
  * @param target 操作対象の　JSON オブジェクト。
@@ -278,7 +288,27 @@ export default function operate(
       }
 
       if ("key" in point) {
-        point.ref[point.key] = fromValue
+        if (
+          op.strategy === "merge"
+          && isNonNullObject(point.ref[point.key])
+          && isNonNullObject(fromValue)
+        ) {
+          point.ref[point.key] = deepmerge<{}>(
+            point.ref[point.key] ?? {},
+            fromValue,
+          )
+        } else {
+          point.ref[point.key] = fromValue
+        }
+      } else if (
+        op.strategy === "merge"
+        && isNonNullObject(point.ref[point.idx])
+        && isNonNullObject(fromValue)
+      ) {
+        point.ref[point.idx] = deepmerge<{}>(
+          point.ref[point.idx] ?? {},
+          fromValue,
+        )
       } else {
         point.ref[point.idx] = fromValue
       }
@@ -290,6 +320,8 @@ export default function operate(
           "",
         ].join("\n"),
       )
+    } else if (op.strategy === "merge") {
+      newObject = deepmerge(newObject, fromValue)
     } else {
       newObject = fromValue
     }
@@ -916,6 +948,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/x",
                   strict: undefined,
+                  strategy: undefined,
                 },
               )
             },
@@ -933,6 +966,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b/c",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -958,6 +992,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b/c",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -983,6 +1018,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "",
               from: "/b",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -1007,6 +1043,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "",
                   from: "/b/c",
                   strict: undefined,
+                  strategy: undefined,
                 },
               )
             },
@@ -1028,6 +1065,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/x",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )
@@ -1046,6 +1084,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
             { strict: true },
           )
@@ -1069,6 +1108,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/a",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )
@@ -1092,6 +1132,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/a",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )
@@ -1116,6 +1157,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/x",
                   strict: undefined,
+                  strategy: undefined,
                 },
               )
             },
@@ -1133,6 +1175,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b/c",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -1157,6 +1200,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b/c",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -1181,6 +1225,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "",
               from: "/b",
               strict: undefined,
+              strategy: undefined,
             },
           )
 
@@ -1205,6 +1250,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "",
                   from: "/b/c",
                   strict: undefined,
+                  strategy: undefined,
                 },
               )
             },
@@ -1226,6 +1272,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/x",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )
@@ -1244,6 +1291,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/b",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
             { strict: true },
           )
@@ -1266,6 +1314,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/a",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )
@@ -1289,6 +1338,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
                   path: "/b/c",
                   from: "/a",
                   strict: undefined,
+                  strategy: undefined,
                 },
                 { strict: true },
               )

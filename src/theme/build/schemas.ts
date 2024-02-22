@@ -67,6 +67,10 @@ export const PatchOperationCopySchema = object({
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
   strict: optional(nullish(boolean())),
+  strategy: optional(nullish(union([
+    literal("merge"),
+    literal("replace"),
+  ]))),
 })
 
 export const PatchOperationMoveSchema = object({
@@ -75,6 +79,10 @@ export const PatchOperationMoveSchema = object({
   path: PatchPathLikeSchema,
   from: PatchPathLikeSchema,
   strict: optional(nullish(boolean())),
+  strategy: optional(nullish(union([
+    literal("merge"),
+    literal("replace"),
+  ]))),
 })
 
 export const PatchOperationRemoveSchema = object({

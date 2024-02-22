@@ -23,6 +23,7 @@ export type CompiledPatchOperation = {
   path: string
   from: string
   strict: boolean | undefined
+  strategy: "merge" | "replace" | undefined
 } | {
   name: string | undefined
   mode: PatchOperationMode.Remove
@@ -107,6 +108,7 @@ export default function compilePatchOperation(
           from: from_[0]!,
           path,
           strict: op.strict ?? undefined,
+          strategy: op.strategy ?? undefined,
         }))
       }
 
@@ -117,6 +119,7 @@ export default function compilePatchOperation(
           from: from_[i]!,
           path,
           strict: op.strict ?? undefined,
+          strategy: op.strategy ?? undefined,
         }))
       }
 
@@ -262,6 +265,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/c",
               from: "/a",
               strict: false,
+              strategy: undefined,
             },
           ],
         )
@@ -283,6 +287,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               path: "/c",
               from: "/a",
               strict: undefined,
+              strategy: undefined,
             },
           ],
         )
