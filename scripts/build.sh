@@ -15,3 +15,6 @@ if [ -d dist ]; then
 fi
 
 node ./scripts/build.js
+
+cp config/build/tsconfig.build.json tsconfig.build.json
+npx tsc -p tsconfig.build.json

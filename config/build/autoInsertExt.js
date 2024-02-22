@@ -1,109 +1,5 @@
-// @ts-check
-
-import { buildDefine } from "cfg-test/define"
-import { replace } from "esbuild-plugin-replace"
 import fs from "node:fs"
 import { join } from "node:path"
-
-/** @type {string[]} */
-const PURE = [
-  "Object.assign",
-]
-
-/** @type {import("esbuild").BuildOptions[]} */
-export default [
-  {
-    // General
-
-    bundle: true,
-    platform: "node",
-
-    // Input
-
-    entryPoints: [
-      // "src/base/**/*.ts",
-      // "src/core/**/*.ts",
-      // "src/lab/**/*.ts",
-      // "src/icons/**/*.ts",
-      "src/utils/**/*.ts",
-    ],
-
-    // Output contents
-
-    format: "esm",
-    lineLimit: 80,
-
-    // Output location
-
-    write: true,
-    outdir: "dist",
-    outbase: "src",
-
-    // Optimization
-
-    define: buildDefine,
-    minifySyntax: true,
-    pure: [
-      ...PURE,
-    ],
-
-    // Plugins
-
-    plugins: [
-      replace({
-        __DEV__: "process.env.NODE_ENV !== \"production\"",
-      }),
-      autoInsertExtenstion(),
-    ],
-  },
-  {
-    // General
-
-    bundle: true,
-    platform: "node",
-
-    // Input
-
-    entryPoints: [
-      "src/**/*.tsx",
-    ],
-
-    // Output contents
-
-    format: "esm",
-    lineLimit: 80,
-
-    // Output location
-
-    write: true,
-    outdir: "dist",
-    outbase: "src",
-    outExtension: {
-      ".js": ".jsx",
-    },
-
-    // Transformation
-
-    jsx: "preserve",
-
-    // Optimization
-
-    define: buildDefine,
-    minifySyntax: true,
-    pure: [
-      ...PURE,
-    ],
-
-    // Plugins
-
-    plugins: [
-      replace({
-        __DEV__: "process.env.NODE_ENV !== \"production\"",
-      }),
-      autoInsertExtenstion(),
-    ],
-  },
-]
 
 /** @param {string} path */
 function isLocalFile(path) {
@@ -145,7 +41,7 @@ function getBuiltPath(dir, file) {
 }
 
 /** @returns {import("esbuild").Plugin} */
-function autoInsertExtenstion() {
+export default function autoInsertExt() {
   return {
     name: "auto-insert-extension",
     setup(build) {
