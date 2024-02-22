@@ -3,15 +3,11 @@ import type { JsonObject } from "visit-json"
 import visitJson, { PASS, REMOVE } from "visit-json"
 import applyPatch from "./applyPatch"
 import createMatchFunction from "./createMatchFunction"
-import type { LoadParams, LoadResult, Source } from "./load"
+import type { LoadResult, Source } from "./load"
 import replaceRange from "./replaceRange"
 import replaceVariable, { IGNORE } from "./replaceVariable"
 import { ExportsSchema, PatchesSchema } from "./schemas"
 import toPatchPath from "./toPatchPath"
-
-export interface BuildParams extends LoadParams {}
-
-export interface BuildResult extends LoadResult {}
 
 type Matrix = {
   readonly [key: string]: readonly (string | number)[]
