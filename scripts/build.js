@@ -23,6 +23,9 @@ await writeFile(
       "@types/**/*",
       "src/**/*",
     ],
+    exclude: [
+      "src/theme/**/*",
+    ],
     compilerOptions: tsCompilerOptions,
   }),
 )
