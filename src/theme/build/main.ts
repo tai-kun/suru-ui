@@ -90,7 +90,7 @@ async function writeTheme(
   }
 }
 
-async function compineTheme(
+async function combineTheme(
   params: {
     readonly name: string
     readonly themes: readonly Pick<Theme, "name">[]
@@ -170,23 +170,23 @@ async function main() {
         to: "(.sui-light)",
       },
     }),
-    compineTheme({
+    combineTheme({
       name: "light",
       themes: [lightDesktop, lightMobile],
     }),
-    compineTheme({
+    combineTheme({
       name: "dark",
       themes: [darkDesktop, darkMobile],
     }),
-    compineTheme({
+    combineTheme({
       name: "desktop",
       themes: [lightDesktop, darkDesktop],
     }),
-    compineTheme({
+    combineTheme({
       name: "mobile",
       themes: [lightMobile, darkMobile],
     }),
-    compineTheme({
+    combineTheme({
       name: "all",
       themes: [
         { name: "light" },
