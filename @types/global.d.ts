@@ -10,6 +10,7 @@ declare module globalThis {
     isArray(arg: readonly any[] | any): arg is readonly any[]
   }
 
+  // @ts-ignore
   interface Set {
     has(value: unknown): boolean
   }
