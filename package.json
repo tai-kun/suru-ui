@@ -7,19 +7,45 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
+  "exports": {
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "default": "./dist/theme/index.js"
+    },
+    "./theme/all.css": "./dist/theme/all.css",
+    "./theme/base.css": "./dist/theme/base.css",
+    "./theme/light-desktop.css": "./dist/theme/light-desktop.css",
+    "./theme/light-mobile.css": "./dist/theme/light-mobile.css",
+    "./theme/dark-desktop.css": "./dist/theme/dark-desktop.css",
+    "./theme/dark-mobile.css": "./dist/theme/dark-mobile.css",
+    "./theme/desktop.css": "./dist/theme/desktop.css",
+    "./theme/mobile.css": "./dist/theme/mobile.css",
+    "./theme/light.css": "./dist/theme/light.css",
+    "./theme/dark.css": "./dist/theme/dark.css",
+    "./utils/clsx": {
+      "types": "./dist/utils/clsx.d.ts",
+      "default": "./dist/utils/clsx.js"
+    },
+    "./utils/isPlainObject": {
+      "types": "./dist/utils/isPlainObject.d.ts",
+      "default": "./dist/utils/isPlainObject.js"
+    },
+    "./utils/singleton": {
+      "types": "./dist/utils/singleton.d.ts",
+      "default": "./dist/utils/singleton.js"
+    }
+  },
   "devDependencies": {
     "@playwright/experimental-ct-react": "~1.41.2",
     "@swc-node/register": "~1.8.0",
     "@tsconfig/node21": "~21.0.1",
     "@tsconfig/strictest": "~2.0.3",
     "@types/mock-fs": "~4.13.4",
-    "@types/node": "~20.11.19",
+    "@types/node": "~20.11.20",
     "@types/react": "~18.2.57",
     "@types/react-dom": "~18.2.19",
-    "cfg-test": "~0.4.2",
+    "cfg-test": "~0.4.3",
     "deep-object-diff": "~1.1.9",
     "deepmerge": "~4.3.1",
     "dprint": "~0.45.0",
