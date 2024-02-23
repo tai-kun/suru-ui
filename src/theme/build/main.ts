@@ -14,7 +14,7 @@ const BP = "991px" // TODO: テーマから読み込めるようにする。
 const BANNER = `/**
  * このファイルは自動生成されています。直接編集しないでください。
  * このファイルを生成するには、次のコマンドを実行してください:
- * $ npm run generate
+ * $ npm run build:theme
  */
 `
 
