@@ -78,8 +78,8 @@ if (cfgTest && cfgTest.url === import.meta.url) {
         ),
         {
           flat: [
-            "\"--sui-foo\"\n",
-            "\"--sui-bar\"\n",
+            "\"--sui-foo\"",
+            "\"--sui-bar\"",
             "\"--sui-baz-qux\"",
           ],
           dict: "{\n"
