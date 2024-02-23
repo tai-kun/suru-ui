@@ -1,0 +1,54 @@
+overlay:
+  blur: 4px
+
+round:
+  sm: 4px
+  md: 8px
+  lg: 12px
+  xl: 16px
+  full: calc(infinity * 1px)
+
+border:
+  sm: 1px
+  md: 2px
+  lg: 4px
+  focus:
+    width: lg
+    visible:
+      width: md
+  normal:
+    width: sm
+  disabled:
+    width: sm
+
+$build:
+  imports:
+    spacing:   digital.go.jp/style/Spacing
+    elevation: digital.go.jp/style/Elevation
+
+  patches:
+    - operations:
+        - mode: move
+          path: ""
+          from: /elevation
+          strategy: merge
+
+        - mode: move
+          path: ""
+          from: /spacing
+          strategy: merge
+
+    - matrix:
+        path:
+          - /border/focus/width
+          - /border/focus/visible/width
+          - /border/normal/width
+          - /border/disabled/width
+      operations:
+        - mode: copy
+          path: ${{ matrix.path }}
+          from: /border/${{ ${{ matrix.path }} }}
+
+  exports:
+    include:
+      - "**"

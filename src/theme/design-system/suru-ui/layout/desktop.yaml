@@ -1,0 +1,63 @@
+font:
+  mono:
+    - '"Noto Sans Mono"'
+    - monospace
+  sefif:
+    - '"Noto Serif JP"'
+    - serif
+  _sans:
+    - sans-serif
+  _weight:
+    normal: 400
+    medium: 500
+    bold:   700
+
+size:
+  sm: 28px
+  md: 36px
+  lg: 48px
+  xl: 56px
+
+$build:
+  imports:
+    typography: digital.go.jp/style/Typography
+
+  patches:
+    - operations:
+        - mode: move
+          path: ""
+          from: /typography
+          strategy: merge
+
+        - mode: move
+          path: /font/sans
+          from: /font/_sans
+          strategy: merge
+
+    - operations:
+        - mode: remove
+          path: /h$[[ 1..5 ]]/mobile
+
+        - mode: move
+          path: /h$[[ 1..5 ]]
+          from: /h$[[ 1..5 ]]/desktop
+          strategy: merge
+
+    - matrix:
+        path:
+          - /font/$[[ normal, medium, bold ]]
+          - /$[[ text, label, suppl ]]/$[[ sm, md ]]/weight
+          - /button/weight
+          - /h$[[ 1..5 ]]/weight
+      operations:
+        - mode: copy
+          path: ${{ matrix.path }}
+          from: /font/_weight/${{ ${{ matrix.path }} }}
+
+    - operations:
+        - mode: remove
+          path: /font/_weight
+
+  exports:
+    include:
+      - "**"
