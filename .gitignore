@@ -1,5 +1,10 @@
+.cache/
 .history/
+.temp/
 dist/
 node_modules/
 
 config/code/tsconfig.*.json
+src/theme/_*
+src/theme/*.css
+!src/theme/base.css
