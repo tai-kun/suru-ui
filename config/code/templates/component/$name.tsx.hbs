@@ -35,3 +35,21 @@ export const Root = forwardRef(function Root(
     />
   )
 })
+
+/* -----------------------------------------------------------------------------
+ * Test
+ * ---------------------------------------------------------------------------*/
+
+if (cfgTest && cfgTest.url === import.meta.url) {
+  const { render } = await import("../../utils-dev/react")
+  const { assert, describe, test } = cfgTest
+
+  describe(""src__dirname__{{ name }}/{{ name }}"", () => {
+    test("必要な機能を備えている", () => {
+      using renderResult = render(<Root data-scope="Test">Hello</Root>)
+      const root = renderResult.getByText("Hello")
+
+      assert.equal(root.dataset["scope"], "Test Sui{{ name }}")
+    })
+  })
+}

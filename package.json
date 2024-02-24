@@ -7,7 +7,9 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     "./theme": {
       "types": "./dist/theme/index.d.ts",
@@ -40,23 +42,28 @@
     "@radix-ui/react-slot": "~1.0.2"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "~13.4.1",
     "@ladle/react": "~4.0.2",
     "@playwright/experimental-ct-react": "~1.41.2",
     "@rollup/plugin-replace": "~5.0.5",
     "@swc-node/register": "~1.8.0",
+    "@testing-library/react": "~14.2.1",
     "@tsconfig/node21": "~21.0.1",
     "@tsconfig/strictest": "~2.0.3",
+    "@types/css-tree": "~2.3.6",
     "@types/mock-fs": "~4.13.4",
     "@types/node": "~20.11.20",
     "@types/react": "~18.2.57",
     "@types/react-dom": "~18.2.19",
     "@types/react-is": "~18.2.4",
     "cfg-test": "~0.4.3",
+    "css-tree": "~2.3.1",
     "deep-object-diff": "~1.1.9",
     "deepmerge": "~4.3.1",
     "dprint": "~0.45.0",
     "esbuild": "~0.20.1",
     "esbuild-plugin-replace": "~1.4.0",
+    "glob": "~10.3.10",
     "minimatch": "~9.0.3",
     "mock-fs": "~5.2.0",
     "playwright": "~1.41.2",
@@ -80,7 +87,7 @@
     "tsc": "tsc --noEmit && tsd -f '@types/**/*.d.ts' -f 'src/**/*.{ts,tsx}'",
     "fmt": "dprint fmt",
     "lint": "exit 0",
-    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx'",
+    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx' --test 'src/{base,core,lab}/*/!(*.spec.tsx|*.stories.tsx|*.css)'",
     "test:ct": "playwright test -c config/playwright/ct.config.ts",
     "story": "ladle dev --config config/ladle",
     "build": "scripts/build.sh",
