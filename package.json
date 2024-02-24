@@ -36,8 +36,13 @@
       "default": "./dist/utils/singleton.js"
     }
   },
+  "dependencies": {
+    "@radix-ui/react-slot": "~1.0.2"
+  },
   "devDependencies": {
+    "@ladle/react": "~4.0.2",
     "@playwright/experimental-ct-react": "~1.41.2",
+    "@rollup/plugin-replace": "~5.0.5",
     "@swc-node/register": "~1.8.0",
     "@tsconfig/node21": "~21.0.1",
     "@tsconfig/strictest": "~2.0.3",
@@ -45,6 +50,7 @@
     "@types/node": "~20.11.20",
     "@types/react": "~18.2.57",
     "@types/react-dom": "~18.2.19",
+    "@types/react-is": "~18.2.4",
     "cfg-test": "~0.4.3",
     "deep-object-diff": "~1.1.9",
     "deepmerge": "~4.3.1",
@@ -57,6 +63,7 @@
     "plop": "~4.0.1",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
+    "react-is": "~18.2.0",
     "tsd": "~0.30.5",
     "typescript": "~5.3.3",
     "valibot": "~0.29.0",
@@ -73,8 +80,9 @@
     "tsc": "tsc --noEmit && tsd -f '@types/**/*.d.ts' -f 'src/**/*.{ts,tsx}'",
     "fmt": "dprint fmt",
     "lint": "exit 0",
-    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts'",
+    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx'",
     "test:ct": "playwright test -c config/playwright/ct.config.ts",
+    "story": "ladle dev --config config/ladle",
     "build": "scripts/build.sh",
     "build:theme": "scripts/build-theme.sh",
     "postinstall": "test ! -f scripts/postinstall.sh || scripts/postinstall.sh"

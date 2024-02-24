@@ -1,0 +1,19 @@
+@layer sui.components.{{ kebab name }} {
+  @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
+    :scope {
+      /*
+       * Root
+       * 
+       */
+
+      &:enabled {}
+    }
+  }
+}
+
+@layer sui.disabled {
+  @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
+    :scope:disabled,
+    :scope[disabled] {}
+  }
+}

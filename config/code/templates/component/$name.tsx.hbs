@@ -1,0 +1,37 @@
+import { Slot } from "@radix-ui/react-slot"
+import clsx from "../../utils/clsx"
+import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
+import "suru-ui__group__{{ name }}.css"
+
+/* -----------------------------------------------------------------------------
+ * Root
+ * ---------------------------------------------------------------------------*/
+
+export interface RootProps {
+  /**
+   * 子要素を独自のコンポーネントとしてレンダリングするかどうか。
+   *
+   * @default false
+   */
+  asChild?: boolean | undefined
+}
+
+export const Root = forwardRef(function Root(
+  props: HTMLPropsWithRef<"div", RootProps>,
+) {
+  const {
+    asChild = false,
+    className,
+    "data-scope": scope,
+    ...other
+  } = props
+  const Comp = asChild ? Slot : "div"
+
+  return (
+    <Comp
+      {...other}
+      className={clsx(className, "Sui{{ name }}", {})}
+      data-scope={clsx.lite(scope, "Sui{{ name }}")}
+    />
+  )
+})
