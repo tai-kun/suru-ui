@@ -2,7 +2,7 @@ font:
   mono:
     - '"Noto Sans Mono"'
     - monospace
-  sefif:
+  serif:
     - '"Noto Serif JP"'
     - serif
   _sans:
