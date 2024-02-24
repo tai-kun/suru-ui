@@ -39,7 +39,8 @@
     }
   },
   "dependencies": {
-    "@radix-ui/react-slot": "~1.0.2"
+    "@radix-ui/react-slot": "~1.0.2",
+    "nano-css": "~5.6.1"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "~13.4.1",
