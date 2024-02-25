@@ -29,6 +29,10 @@
       "types": "./dist/utils/clsx.d.ts",
       "default": "./dist/utils/clsx.js"
     },
+    "./utils/forwardRef": {
+      "types": "./dist/utils/forwardRef.d.ts",
+      "default": "./dist/utils/forwardRef.js"
+    },
     "./utils/isPlainObject": {
       "types": "./dist/utils/isPlainObject.d.ts",
       "default": "./dist/utils/isPlainObject.js"
@@ -36,6 +40,10 @@
     "./utils/singleton": {
       "types": "./dist/utils/singleton.d.ts",
       "default": "./dist/utils/singleton.js"
+    },
+    "./utils/useCss": {
+      "types": "./dist/utils/useCss.d.ts",
+      "default": "./dist/utils/useCss.js"
     }
   },
   "dependencies": {
