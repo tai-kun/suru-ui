@@ -300,25 +300,23 @@ color:
       noop:   purple/alpha/100
       hover:  purple/alpha/200
       active: purple/alpha/300
+  neutral:   grey
+  info:      blue
+  success:   green
+  warn:      yellow
+  error:     red
+  primary:   blue
+  secondary: grey
 
 bg:
-  main: white
-  disabled:
-    color: grey
-    scale: 600
+  main:     white
+  disabled: grey/600
 
 text:
-  body: black
-  onfill: white
-  disabled:
-    color: grey
-    scale: 400
-  description:
-    color: grey
-    scale: main
-  placeholder:
-    color: grey
-    scale: subtle
+  body:        black
+  disabled:    grey/400
+  description: grey/main
+  placeholder: grey/subtle
 
 border:
   focus:
@@ -394,28 +392,12 @@ $build:
           path: /color/${{ matrix.color }}/${{ matrix.variant }}/${{ matrix.state }}
           from: /color/${{ /color/${{ matrix.color }}/${{ matrix.variant }}/${{ matrix.state }} }}
 
-    - operations:
+    - matrix:
+        arias: [neutral, info, success, warn, error, primary, secondary]
+      operations:
         - mode: copy
-          from: /color/grey
-          path: /color/neutral
-        - mode: copy
-          from: /color/blue
-          path: /color/info
-        - mode: copy
-          from: /color/green
-          path: /color/success
-        - mode: copy
-          from: /color/yellow
-          path: /color/warn
-        - mode: copy
-          from: /color/red
-          path: /color/error
-        - mode: copy
-          from: /color/blue
-          path: /color/primary
-        - mode: copy
-          from: /color/grey
-          path: /color/secondary
+          path: /color/${{ matrix.arias }}
+          from: /color/${{ /color/${{ matrix.arias }} }}
 
     - name: リンクテキストの色を設定する
       matrix:
@@ -424,37 +406,25 @@ $build:
         - name: "リンクテキストの色情報を色コードに置換して `/link` に追加する"
           mode: replace
           path: /link/${{ matrix.state }}
-          value: ${{ /color/${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }} }}
+          value: ${{ /color/${{ /linktext/${{ matrix.state }} }} }}
 
     - name: 背景色を設定する
+      matrix:
+        style: [ main, disabled ]
       operations:
-        - name: "背景色情報を色コードに置換して `/bg/main` に追加する"
+        - name: "背景色情報を色コードに置換して `/bg` に追加する"
           mode: copy
-          path: /bg/main
-          from: /color/${{ /bg/main }}
-
-        - name: "背景色情報を色コードに置換して `/bg/disabled` に追加する"
-          mode: copy
-          path: /bg/disabled
-          from: /color/${{ /bg/disabled/color }}/${{ /bg/disabled/scale }}
+          path: /bg/${{ matrix.style }}
+          from: /color/${{ /bg/${{ matrix.style }} }}
 
     - name: テキスト色を設定する
       matrix:
-        style: [ body, onfill ]
+        style: [ body, disabled, description, placeholder ]
       operations:
         - name: "テキスト色情報を色コードに置換して `/text` に追加する"
           mode: copy
           path: /text/${{ matrix.style }}
           from: /color/${{ /text/${{ matrix.style }} }}
-
-    - name: テキスト色を設定する
-      matrix:
-        style: [ disabled, description, placeholder ]
-      operations:
-        - name: "テキスト色情報を色コードに置換して `/text` に追加する"
-          mode: copy
-          path: /text/${{ matrix.style }}
-          from: /color/${{ /text/${{ matrix.style }}/color }}/${{ /text/${{ matrix.style }}/scale }}
 
     - name: ボーダー色を設定する
       matrix:
@@ -464,6 +434,20 @@ $build:
           mode: copy
           path: /border/${{ matrix.style }}/color
           from: /color/${{ /border/${{ matrix.style }}/color }}
+
+    - name: 色を追加する
+      operations:
+        - mode: copy
+          path: /text/onfill
+          from: /bg/main
+
+        - mode: copy
+          path: /color/canvas
+          from: /bg/main
+
+        - mode: copy
+          path: /color/canvasText
+          from: /text/body
 
   exports:
     include:

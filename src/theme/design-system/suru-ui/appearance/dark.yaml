@@ -170,6 +170,7 @@ color:
       noop:   grey/alpha/100
       hover:  grey/alpha/200
       active: grey/alpha/300
+    _patch: {}
   blue:
     naked:
       noop:   none
@@ -183,6 +184,9 @@ color:
       noop:   blue/alpha/100
       hover:  blue/alpha/200
       active: blue/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   lightBlue:
     naked:
       noop:   none
@@ -196,6 +200,9 @@ color:
       noop:   lightBlue/alpha/100
       hover:  lightBlue/alpha/200
       active: lightBlue/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   cyan:
     naked:
       noop:   none
@@ -209,6 +216,9 @@ color:
       noop:   cyan/alpha/100
       hover:  cyan/alpha/200
       active: cyan/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   green:
     naked:
       noop:   none
@@ -222,6 +232,9 @@ color:
       noop:   green/alpha/100
       hover:  green/alpha/200
       active: green/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   lime:
     naked:
       noop:   none
@@ -235,6 +248,9 @@ color:
       noop:   lime/alpha/100
       hover:  lime/alpha/200
       active: lime/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   yellow:
     naked:
       noop:   none
@@ -248,6 +264,9 @@ color:
       noop:   yellow/alpha/100
       hover:  yellow/alpha/200
       active: yellow/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   orange:
     naked:
       noop:   none
@@ -261,6 +280,9 @@ color:
       noop:   orange/alpha/100
       hover:  orange/alpha/200
       active: orange/alpha/300
+    _patch:
+      3:1:   500
+      4.5:1: 400
   red:
     naked:
       noop:   none
@@ -274,6 +296,7 @@ color:
       noop:   red/alpha/100
       hover:  red/alpha/200
       active: red/alpha/300
+    _patch: {}
   magenta:
     naked:
       noop:   none
@@ -287,6 +310,7 @@ color:
       noop:   magenta/alpha/100
       hover:  magenta/alpha/200
       active: magenta/alpha/300
+    _patch: {}
   purple:
     naked:
       noop:   none
@@ -300,25 +324,24 @@ color:
       noop:   purple/alpha/100
       hover:  purple/alpha/200
       active: purple/alpha/300
+    _patch: {}
+  neutral:   grey
+  info:      blue
+  success:   green
+  warn:      yellow
+  error:     red
+  primary:   blue
+  secondary: grey
 
 bg:
-  main: "#090909"
-  disabled:
-    color: grey
-    scale: 600
+  main:     "#090909"
+  disabled: grey/600
 
 text:
-  body: white
-  onfill: black
-  disabled:
-    color: grey
-    scale: 400
-  description:
-    color: grey
-    scale: main
-  placeholder:
-    color: grey
-    scale: subtle
+  body:        white
+  disabled:    grey/400
+  description: grey/main
+  placeholder: grey/subtle
 
 border:
   focus:
@@ -345,6 +368,11 @@ $build:
       matrix:
         color: [ grey, blue, lightBlue, cyan, green, lime, yellow, orange, red, magenta, purple ]
       operations:
+        - mode: move
+          path: /color/${{ matrix.color }}/black
+          from: /color/${{ matrix.color }}/_patch
+          strategy: merge
+
         - name: "コントラスト比 `4.5:1` と `3:1` をそれぞれ `main` と `subtle` に名称変更する"
           mode: move
           path: /color/${{ matrix.color }}/$[[ main, subtle ]]
@@ -416,28 +444,12 @@ $build:
           path: /color/${{ matrix.color }}/${{ matrix.variant }}/${{ matrix.state }}
           from: /color/${{ /color/${{ matrix.color }}/${{ matrix.variant }}/${{ matrix.state }} }}
 
-    - operations:
+    - matrix:
+        arias: [neutral, info, success, warn, error, primary, secondary]
+      operations:
         - mode: copy
-          from: /color/grey
-          path: /color/neutral
-        - mode: copy
-          from: /color/blue
-          path: /color/info
-        - mode: copy
-          from: /color/green
-          path: /color/success
-        - mode: copy
-          from: /color/yellow
-          path: /color/warn
-        - mode: copy
-          from: /color/red
-          path: /color/error
-        - mode: copy
-          from: /color/blue
-          path: /color/primary
-        - mode: copy
-          from: /color/grey
-          path: /color/secondary
+          path: /color/${{ matrix.arias }}
+          from: /color/${{ /color/${{ matrix.arias }} }}
 
     - name: リンクテキストの色を設定する
       matrix:
@@ -446,32 +458,25 @@ $build:
         - name: "リンクテキストの色情報を色コードに置換して `/link` に追加する"
           mode: replace
           path: /link/${{ matrix.state }}
-          value: ${{ /color/${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }} }}
+          value: ${{ /color/${{ /linktext/${{ matrix.state }} }} }}
 
     - name: 背景色を設定する
+      matrix:
+        style: [ disabled ]
       operations:
-        - name: "背景色情報を色コードに置換して `/bg/disabled` に追加する"
+        - name: "背景色情報を色コードに置換して `/bg` に追加する"
           mode: copy
-          path: /bg/disabled
-          from: /color/${{ /bg/disabled/color }}/${{ /bg/disabled/scale }}
+          path: /bg/${{ matrix.style }}
+          from: /color/${{ /bg/${{ matrix.style }} }}
 
     - name: テキスト色を設定する
       matrix:
-        style: [ body, onfill ]
+        style: [ body, disabled, description, placeholder ]
       operations:
         - name: "テキスト色情報を色コードに置換して `/text` に追加する"
           mode: copy
           path: /text/${{ matrix.style }}
           from: /color/${{ /text/${{ matrix.style }} }}
-
-    - name: テキスト色を設定する
-      matrix:
-        style: [ disabled, description, placeholder ]
-      operations:
-        - name: "テキスト色情報を色コードに置換して `/text` に追加する"
-          mode: copy
-          path: /text/${{ matrix.style }}
-          from: /color/${{ /text/${{ matrix.style }}/color }}/${{ /text/${{ matrix.style }}/scale }}
 
     - name: ボーダー色を設定する
       matrix:
@@ -481,6 +486,20 @@ $build:
           mode: copy
           path: /border/${{ matrix.style }}/color
           from: /color/${{ /border/${{ matrix.style }}/color }}
+
+    - name: 色を追加する
+      operations:
+        - mode: copy
+          path: /text/onfill
+          from: /bg/main
+
+        - mode: copy
+          path: /color/canvas
+          from: /bg/main
+
+        - mode: copy
+          path: /color/canvasText
+          from: /text/body
 
   exports:
     include:

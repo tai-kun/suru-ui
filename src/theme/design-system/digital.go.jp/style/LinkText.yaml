@@ -1,18 +1,10 @@
 # リンクテキスト
 # 2023年12月26日 アップデート
 
-normal:
-  color: blue
-  scale: 1000
-hover:
-  color: blue
-  scale: 900
-active:
-  color: orange
-  scale: 700
-visited:
-  color: magenta
-  scale: 900
+normal:  blue/1000
+hover:   blue/900
+active:  orange/700
+visited: magenta/900
 
 $build:
   exports:

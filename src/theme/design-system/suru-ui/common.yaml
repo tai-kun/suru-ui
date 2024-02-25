@@ -1,7 +1,7 @@
 overlay:
   blur: 4px
 
-round:
+rad:
   sm: 4px
   md: 8px
   lg: 12px
