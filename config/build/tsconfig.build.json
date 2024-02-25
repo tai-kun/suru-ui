@@ -2,10 +2,13 @@
   "extends": "./tsconfig.json",
   "include": [
     "@types/**/*",
-    "src/**/*"
+    "src/theme/**/*",
+    "src/utils/**/*"
   ],
   "exclude": [
-    "src/theme/build"
+    "src/theme/build",
+    "src/**/*.spec.tsx",
+    "src/**/*.stories.tsx"
   ],
   "compilerOptions": {
     "noEmit": false,

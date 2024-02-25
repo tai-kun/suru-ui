@@ -2,11 +2,14 @@
 
 import { buildDefine } from "cfg-test/define"
 import { replace } from "esbuild-plugin-replace"
+import { glob } from "glob"
 import autoInsertExt from "./autoInsertExt.js"
 
 /** @type {string[]} */
 const PURE = [
   "new Set",
+  "onceCell",
+  "forwardRef(",
   "Object.assign",
   "createRecursiveProxy",
 ]
@@ -64,9 +67,13 @@ export default [
 
     // Input
 
-    entryPoints: [
-      "src/**/*.tsx",
-    ],
+    entryPoints: await glob("src/**/*.tsx", {
+      ignore: [
+        "src/**/*.d.ts",
+        "src/**/*.spec.tsx",
+        "src/**/*.stories.tsx",
+      ],
+    }),
 
     // Output contents
 

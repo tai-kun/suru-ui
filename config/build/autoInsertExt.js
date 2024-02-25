@@ -30,8 +30,14 @@ function readOk(file) {
  */
 function getBuiltPath(dir, file) {
   dir = join(dir, file)
+  const pairs = Object.entries({
+    ".ts": ".js",
+    ".tsx": ".jsx",
+    "/index.ts": "/index.js",
+    "/index.tsx": "/index.jsx",
+  })
 
-  for (const [src, dst] of Object.entries({ ".ts": ".js", ".tsx": ".jsx" })) {
+  for (const [src, dst] of pairs) {
     if (readOk(dir + src)) {
       return file + dst
     }
