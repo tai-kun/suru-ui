@@ -2,7 +2,6 @@
 @layer sui.reset;
 @layer sui.tokens;
 @layer sui.components;
-@layer sui.dynamic;
 @layer sui.disabled;
 
 @layer sui.reset {
