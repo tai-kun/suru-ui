@@ -1,4 +1,4 @@
-@layer sui.components.{{ kebab name }} {
+@layer sui.components.{{ kebab name }}.static {
   @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
     :scope {
       /*
@@ -6,14 +6,15 @@
        * 
        */
 
-      &:enabled {}
+      &:not(:is(:disabled, [disabled], [data-disabled])) {}
     }
   }
 }
 
+@layer sui.components.{{ kebab name }}.dynamic;
+
 @layer sui.disabled {
   @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
-    :scope:disabled,
-    :scope[disabled] {}
+    :scope:is(:disabled, [disabled], [data-disabled]) {}
   }
 }
