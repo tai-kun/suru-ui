@@ -7,9 +7,8 @@ on:
     paths:
       - ".github/workflows/canary-release.yaml"
       - "@types/**"
-      - "config/code/esbuild.config.js"
-      - "scripts/build.js"
-      - "scripts/build.sh"
+      - "config/build/**"
+      - "scripts/**"
       - "src/**"
       - "package.json"
 
@@ -27,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build icons
+        run: npm run build:icons
 
       - name: Build theme
         run: npm run build:theme
