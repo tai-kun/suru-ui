@@ -1,0 +1,48 @@
+@import "../../src/theme/all.css";
+
+.ladle-main {
+  display: flex;
+  padding: 0;
+}
+
+.ladle-aside {
+  display: grid;
+  /* padding: 16px; */
+  grid-template-rows: auto 1fr;
+
+  > ul {
+    overflow-y: auto;
+  }
+
+  /* li {
+    line-height: 24px;
+  } */
+
+  a {
+    width: 100%;
+    overflow-y: visible;
+    border-bottom: 1px solid transparent;
+
+    &:hover {
+      color: inherit;
+      border-color: currentColor;
+    }
+  }
+
+  [title] {
+    align-items: center;
+
+    /* > :nth-child(2) {
+      font-family: var(--sui-font-mono);
+    } */
+  }
+}
+
+.theme-provider {
+  flex: 1 1 auto;
+  color: var(--sui-text-body);
+  padding: var(--ladle-main-padding);
+  overflow: auto;
+  align-self: stretch;
+  background-color: var(--sui-bg-main);
+}
