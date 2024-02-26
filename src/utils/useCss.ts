@@ -1,8 +1,7 @@
-import * as React from "react"
-
 import { create, type CssLikeObject } from "nano-css"
 import { addon as addonCache } from "nano-css/addon/cache.js"
 import { addon as addonRule } from "nano-css/addon/rule.js"
+import * as React from "react"
 import type {
   JsonArrayLike,
   JsonObjectLike,
@@ -96,14 +95,40 @@ export const renderer = onceCell("nano-css", () => {
  * スタイルルールが適用された CSS のクラス名を返す。
  *
  * @template A スタイルルールを生成するための引数の型。
+ * @param name コンポーネント名。
  * @param make スタイルルールを生成する関数。
  * @param args スタイルルールを生成するための引数。
  * @returns CSS のクラス名。
  */
 export default function useCss<A extends readonly unknown[]>(
+  name: string,
   make: (...args: A) => CssLikeObject | null | undefined,
-  ...args: A
+  args: A,
 ): string {
+  if (__DEV__) {
+    if (!/^[a-z][a-z0-9-]*$/.test(name)) {
+      console.error(
+        `SUI(utils/useCss): コンポーネント名はケバブケースで指定してください: ${name}`,
+      )
+    }
+
+    const nameRef = React.useRef<string>()
+
+    React.useEffect(
+      () => {
+        if (nameRef.current !== undefined && nameRef.current !== name) {
+          console.error(
+            "SUI(utils/useCss): コンポーネント名は変更できません: "
+              + `${nameRef.current} -> ${name}`,
+          )
+        }
+
+        nameRef.current = name
+      },
+      [name],
+    )
+  }
+
   return React.useMemo(
     () => {
       const style = make(...args)
@@ -111,7 +136,7 @@ export default function useCss<A extends readonly unknown[]>(
       return style == null
         ? ""
         : renderer
-          .rule!({ "@layer sui.dynamic": style })
+          .rule!({ [`@layer sui.components.${name}.dynamic`]: style })
           .substring(1 /* " ".length */)
     },
     args,
@@ -128,14 +153,14 @@ if (cfgTest && cfgTest.url === import.meta.url) {
       const makeStyle = (color: string) => ({
         color,
       })
-      using renderResult = renderHook(() => useCss(makeStyle, "red"))
+      using renderResult = renderHook(() => useCss("box", makeStyle, ["red"]))
       const { result } = renderResult
 
       assert.match(result.current, /^sui_[0-9a-z]+$/)
       assert.equal(
         normalizeCss(renderer.raw),
         normalizeCss(`
-          @layer sui.dynamic {
+          @layer sui.components.box.dynamic {
             .${result.current} {
               color: red;
             }
