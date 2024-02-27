@@ -1,5 +1,5 @@
 import * as React from "react"
-import isPlainObject from "./isPlainObject"
+import isRefObject from "./isRefObject"
 import useIsMounted from "./useIsMounted"
 
 /**
@@ -29,19 +29,6 @@ export interface EventTargetLike<T> {
 export type RegisterReturn = ReturnType<Parameters<typeof React.useEffect>[0]>
 
 /**
- * オブジェクトが React.RefObject かどうかを判定する。
- *
- * @template T オブジェクトの型。
- * @param target 判定するオブジェクト。
- * @returns target が React.RefObject なら true、そうでなければ false。
- */
-function isRefObject<T>(
-  target: React.RefObject<T> | T | null | undefined,
-): target is React.RefObject<T> {
-  return isPlainObject(target) && Object.hasOwn(target, "current")
-}
-
-/**
  * イベントリスナーを登録する。
  *
  * @template T イベントリスナーを登録する対象の型。
@@ -63,31 +50,27 @@ export default function useEventListener<T extends EventTargetLike<T>>(
       }
 
       let registry: (readonly [any, any, ...any[]])[] = []
-      let proxyCache: any
       const destructor = register(
         new Proxy(etl, {
           get(tgt, prop, receiver) {
-            const value = Reflect.get(tgt, prop, receiver)
-
             if (prop !== "addEventListener") {
-              return value
+              // TODO: ブラウザではエラーが出るので修正する。
+              return Reflect.get(etl, prop, receiver)
             }
 
-            return proxyCache ||= new Proxy<any>(value, {
-              apply(addFn, thisArg, [typ, listener, ...rest]) {
-                const argArray = [
-                  typ,
-                  function(this: T, ...args: any) {
-                    if (isMounted()) {
-                      listener.apply(this, args)
-                    }
-                  },
-                  ...rest,
-                ] as const
-                registry.push(argArray)
-                Reflect.apply(addFn, thisArg, argArray)
-              },
-            })
+            return (typ: any, listener: any, ...rest: any[]) => {
+              const argArray: [any, any, ...any[]] = [
+                typ,
+                function(this: any, ...args: any) {
+                  if (isMounted()) {
+                    listener.apply(this, args)
+                  }
+                },
+                ...rest,
+              ]
+              tgt.addEventListener(...argArray)
+              registry.push(argArray)
+            }
           },
         }),
       )
@@ -143,17 +126,6 @@ if (cfgTest && cfgTest.url === import.meta.url) {
   })
 
   describe("src/utils/useEventListener", () => {
-    describe("isRefObject", () => {
-      test("React.RefObject なら true を返す", () => {
-        assert(isRefObject(React.createRef()))
-      })
-
-      test("null または undefined なら false を返す", () => {
-        assert(!isRefObject(null))
-        assert(!isRefObject(undefined))
-      })
-    })
-
     describe("Client-side", () => {
       test("マウント時にイベントリスナーを登録し、アンマウント時に解除する", () => {
         const div = document.createElement("div")
