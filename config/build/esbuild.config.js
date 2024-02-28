@@ -24,14 +24,13 @@ export default [
 
     // Input
 
-    entryPoints: [
-      // "src/base/**/*.ts",
-      // "src/core/**/*.ts",
-      // "src/lab/**/*.ts",
-      // "src/icons/**/*.ts",
-      "src/theme/*.ts",
-      "src/utils/**/*.ts",
-    ],
+    entryPoints: await glob("src/**/*.ts", {
+      ignore: [
+        "src/icons/build/**",
+        "src/theme/build/**",
+        "src/utils-dev/**",
+      ],
+    }),
 
     // Output contents
 

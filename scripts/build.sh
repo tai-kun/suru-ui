@@ -33,3 +33,9 @@ npx tsc -p tsconfig.build.json
         cp "$file" "../dist/$file"
     done
 ' sh {} +)
+
+# remove dev files
+
+rm -r dist/icons/build
+rm -r dist/theme/build
+rm -r dist/utils-dev

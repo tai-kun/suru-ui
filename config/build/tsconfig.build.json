@@ -2,15 +2,14 @@
   "extends": "./tsconfig.json",
   "include": [
     "@types/**/*",
-    "src/theme/**/*",
-    "src/utils/**/*"
+    "src/**/*"
   ],
   "exclude": [
-    "src/theme/build",
     "src/**/*.spec.tsx",
     "src/**/*.stories.tsx"
   ],
   "compilerOptions": {
+    "rootDir": "src",
     "noEmit": false,
     "declaration": true,
     "declarationDir": "dist",
