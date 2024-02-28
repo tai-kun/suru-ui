@@ -16,6 +16,38 @@
       "default": "./dist/base/DialogBase/DialogBase.jsx"
     },
     "./base/DialogBase.css": "./dist/base/DialogBase/DialogBase.css",
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "default": "./dist/icons/index.js"
+    },
+    "./icons/digital.go.jp/filled": {
+      "types": "./dist/icons/digital.go.jp/filled.d.ts",
+      "default": "./dist/icons/digital.go.jp/filled.jsx"
+    },
+    "./icons/digital.go.jp/outlined": {
+      "types": "./dist/icons/digital.go.jp/outlined.d.ts",
+      "default": "./dist/icons/digital.go.jp/outlined.jsx"
+    },
+    "./icons/m3.material.io/filled": {
+      "types": "./dist/icons/m3.material.io/filled.d.ts",
+      "default": "./dist/icons/m3.material.io/filled.jsx"
+    },
+    "./icons/m3.material.io/outlined": {
+      "types": "./dist/icons/m3.material.io/outlined.d.ts",
+      "default": "./dist/icons/m3.material.io/outlined.jsx"
+    },
+    "./icons/m3.material.io/round": {
+      "types": "./dist/icons/m3.material.io/round.d.ts",
+      "default": "./dist/icons/m3.material.io/round.jsx"
+    },
+    "./icons/m3.material.io/sharp": {
+      "types": "./dist/icons/m3.material.io/sharp.d.ts",
+      "default": "./dist/icons/m3.material.io/sharp.jsx"
+    },
+    "./icons/m3.material.io/two-tone": {
+      "types": "./dist/icons/m3.material.io/two-tone.d.ts",
+      "default": "./dist/icons/m3.material.io/two-tone.jsx"
+    },
     "./theme": {
       "types": "./dist/theme/index.d.ts",
       "default": "./dist/theme/index.js"
