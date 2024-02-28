@@ -23,7 +23,7 @@ const TEMPLATE = `${BANNER}
 
 @layer sui.tokens {
 @media {{ media }} {
-@scope {{ scope_from }} to {{ scope_to }} {
+@scope {{ scope }} {
   :scope,
   :scope::backdrop,
   :scope ::backdrop {
@@ -42,7 +42,7 @@ async function writeTheme(
     readonly base?: Theme
     readonly theme: Theme
     readonly media: string
-    readonly scope: {
+    readonly scope: string | {
       readonly from: string
       readonly to: string
     }
@@ -53,8 +53,12 @@ async function writeTheme(
   const template = TEMPLATE
     .replace("{{ base }}", theme === base ? "./base" : `./${base.name}`)
     .replace("{{ media }}", media)
-    .replace("{{ scope_from }}", scope.from)
-    .replace("{{ scope_to }}", scope.to)
+    .replace(
+      "{{ scope }}",
+      typeof scope === "string"
+        ? scope
+        : `${scope.from} to ${scope.to}`,
+    )
   const indent = "  ".repeat(2)
   const toCssOptions = {
     prefix: "sui",
@@ -162,19 +166,13 @@ async function main() {
     writeTheme({
       theme: lightDesktop,
       media: "screen",
-      scope: {
-        from: "(:root, .sui-light)",
-        to: "(.sui-dark)",
-      },
+      scope: "(:root, .sui-light)",
     }),
     writeTheme({
       base: lightDesktop,
       theme: lightMobile,
       media: `(max-width: ${BP})`,
-      scope: {
-        from: "(:root, .sui-light)",
-        to: "(.sui-dark)",
-      },
+      scope: "(:root, .sui-light)",
     }),
     writeTheme({
       base: lightDesktop,
