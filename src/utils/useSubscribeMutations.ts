@@ -5,17 +5,57 @@ import useAtom from "./useAtom"
 import useConstantValue from "./useConstantValue"
 import useIsMounted from "./useIsMounted"
 
-export type OnMutate<N extends Node, T> = (
-  this: N,
-  mutations: MutationRecord[],
-  observer: MutationObserver,
-) => T
+/**
+ * ノードの変更を監視したときのイベント。
+ *
+ * @template N 監視対象のノードの型。
+ */
+export interface OnChangeEvent<N extends Node> {
+  /**
+   * 監視対象のノード。
+   */
+  currentTarget: N
+  /**
+   * 変更の情報。
+   */
+  mutations: MutationRecord[]
+  /**
+   * オブザーバーインスタンス。
+   */
+  observer: MutationObserver
+}
 
-export interface UseSubscribeMutationsConfig<N extends Node, T>
+/**
+ * ノードの変更を監視したときに呼ばれるコールバック関数。
+ *
+ * @template N 監視対象のノードの型。
+ * @template T 値の型。
+ * @param event 変更イベント。
+ * @returns 新しい値。
+ */
+export type OnChange<N extends Node, T> = (event: OnChangeEvent<N>) => T
+
+/**
+ * ノードの変更を監視するためのカスタムフックの引数。
+ *
+ * @template N 監視対象のノードの型。
+ * @template T 値の型。
+ */
+export interface UseSubscribeMutationsProps<N extends Node, T>
   extends MutationObserverInit
 {
+  /**
+   * 初期値。
+   */
   initialValue: T | (() => T)
-  onMutate: OnMutate<N, T>
+  /**
+   * 変更イベントが発生したときに呼ばれるコールバック関数。
+   */
+  onChange: OnChange<N, T>
+  /**
+   * 監視対象のノード。
+   */
+  target: React.RefObject<N> | N | null
 }
 
 /**
@@ -23,16 +63,15 @@ export interface UseSubscribeMutationsConfig<N extends Node, T>
  *
  * @template N 監視対象のノードの型。
  * @template T 値の型。
- * @param target 監視対象のノード。
- * @param config 監視の設定。
+ * @param props カスタムフックの引数。
  */
 export default function useSubscribeMutations<N extends Node, T>(
-  target: React.RefObject<N> | N | null,
-  config: UseSubscribeMutationsConfig<N, T>,
+  props: UseSubscribeMutationsProps<N, T>,
 ): T {
   const {
+    target,
     subtree,
-    onMutate,
+    onChange,
     childList,
     attributes,
     initialValue,
@@ -40,7 +79,7 @@ export default function useSubscribeMutations<N extends Node, T>(
     attributeFilter,
     attributeOldValue,
     characterDataOldValue,
-  } = config
+  } = props
   const isMounted = useIsMounted()
   const [state, dispatch] = useAtom(React.useMemo(() => atom(initialValue), []))
 
@@ -64,21 +103,21 @@ export default function useSubscribeMutations<N extends Node, T>(
 
   React.useEffect(
     () => {
-      const node = isRefObject(target)
+      const currentTarget = isRefObject(target)
         ? target.current
         : target
 
-      if (node === null) {
+      if (currentTarget === null) {
         return () => {}
       }
 
-      const observer = new MutationObserver(mutations => {
+      const ins = new MutationObserver((mutations, observer) => {
         if (isMounted()) {
-          dispatch(onMutate.call(node, mutations, observer))
+          dispatch(onChange({ currentTarget, mutations, observer }))
         }
       })
 
-      observer.observe(node, {
+      ins.observe(currentTarget, {
         subtree,
         childList,
         attributes,
@@ -89,14 +128,13 @@ export default function useSubscribeMutations<N extends Node, T>(
       } as {})
 
       return () => {
-        observer.disconnect()
+        ins.disconnect()
       }
     },
     [
-      dispatch,
       target,
       subtree,
-      onMutate,
+      onChange,
       childList,
       attributes,
       characterData,
@@ -110,9 +148,33 @@ export default function useSubscribeMutations<N extends Node, T>(
 }
 
 if (cfgTest && cfgTest.url === import.meta.url) {
-  const { describe, test } = cfgTest
+  const { act, renderHook, waitFor } = await import("../utils-dev/react")
+  const { assert, describe, test } = cfgTest
 
   describe("src/utils/useSubscribeMutations", () => {
-    test.todo("テストする")
+    test("変更を検知する", { timeout: 3e3 }, async () => {
+      const target = document.createElement("button")
+      using renderResult = renderHook(() =>
+        useSubscribeMutations({
+          target,
+          onChange(ev) {
+            return ev.currentTarget.disabled
+          },
+          initialValue: false,
+          attributes: true,
+        })
+      )
+      const { result } = renderResult
+
+      assert.equal(result.current, false)
+
+      act(() => {
+        target.disabled = true
+      })
+
+      await waitFor(() => {
+        assert.equal(result.current, true)
+      })
+    })
   })
 }

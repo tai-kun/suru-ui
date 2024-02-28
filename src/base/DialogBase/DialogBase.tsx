@@ -6,7 +6,7 @@ import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
 import useEventListener from "../../utils/useEventListener"
 import useInspectableRef from "../../utils/useInspectableRef.dev"
 import useSubscribeMutations, {
-  type UseSubscribeMutationsConfig,
+  type UseSubscribeMutationsProps,
 } from "../../utils/useSubscribeMutations"
 import "suru-ui/base/DialogBase.css"
 
@@ -125,11 +125,13 @@ export function show(
 
   if (dialogEl) {
     if (dialogEl.open) {
-      // TODO: すでに開いているダイアログに .show(Modal)? を呼び出すとエラーが投げられる
-      //       仕様をどこかで見かけた気がするので調査する。
-      console.error(
-        "SUI(base/DialogBase): すでに開いているダイアログを開こうとしました。",
-      )
+      if (__DEV__) {
+        // TODO: すでに開いているダイアログに .show(Modal)? を呼び出すとエラーが投げられる
+        //       仕様をどこかで見かけた気がするので調査する。
+        console.error(
+          "SUI(base/DialogBase): すでに開いているダイアログを開こうとしました。",
+        )
+      }
 
       return false
     }
@@ -175,9 +177,11 @@ export function hide(target: unknown): boolean | "unknown" {
       return !dialogEl.open
     }
 
-    console.error(
-      "SUI(base/DialogBase): すでに閉じているダイアログを閉じようとしました。",
-    )
+    if (__DEV__) {
+      console.error(
+        "SUI(base/DialogBase): すでに閉じているダイアログを閉じようとしました。",
+      )
+    }
 
     return false
   }
@@ -353,9 +357,12 @@ export type OnInteractOutside = (this: Window, event: PointerEvent) => void
  */
 export type OnOpenChange = (open: boolean, event: Event) => void
 
-const CONFIG: UseSubscribeMutationsConfig<HTMLDialogElement, boolean> = {
-  onMutate(this: HTMLDialogElement): boolean {
-    return this.open
+const USE_OPEN_CHANGE_PROPS: Omit<
+  UseSubscribeMutationsProps<HTMLDialogElement, boolean>,
+  "target"
+> = {
+  onChange({ currentTarget }): boolean {
+    return currentTarget.open
   },
   initialValue: false,
   attributes: true,
@@ -363,8 +370,17 @@ const CONFIG: UseSubscribeMutationsConfig<HTMLDialogElement, boolean> = {
   attributeOldValue: true,
 }
 
-function useOpenChange(rootRef: React.RefObject<HTMLDialogElement>) {
-  return useSubscribeMutations(rootRef, CONFIG)
+/**
+ * ダイアログの開閉状態と同期して真偽値を返す。
+ *
+ * @param target ダイアログ要素の ref オブジェクト。
+ * @returns ダイアログの開閉状態。
+ */
+function useOpenChange(target: React.RefObject<HTMLDialogElement>) {
+  return useSubscribeMutations({
+    ...USE_OPEN_CHANGE_PROPS,
+    target,
+  })
 }
 
 /**
@@ -401,15 +417,22 @@ function useHandleEscapeKeyDown(
   )
 }
 
+/**
+ * ポインタの座標が矩形内にあるかどうかを判定する。
+ *
+ * @param rect 矩形。
+ * @param pointer ポインタの座標。
+ * @returns ポインタが矩形内にあるかどうか。
+ */
 function isInside(
-  box: Record<"top" | "left" | "right" | "bottom", number>,
+  rect: Record<"top" | "left" | "right" | "bottom", number>,
   pointer: Record<"x" | "y", number>,
 ): boolean {
   return (
-    box.left <= pointer.x
-    && pointer.x <= box.right
-    && box.top <= pointer.y
-    && pointer.y <= box.bottom
+    rect.left <= pointer.x
+    && pointer.x <= rect.right
+    && rect.top <= pointer.y
+    && pointer.y <= rect.bottom
   )
 }
 
@@ -507,11 +530,15 @@ function useHandleOpenChange(
               && event.modal !== modal
             ) {
               event.preventDefault()
-              console.error(
-                `SUI(base/DialogBase): ${modal ? "" : "非"}モーダルダイアログを`
-                  + `${event.modal ? "" : "非"}モーダルダイアログ`
-                  + "として開こうとしました。",
-              )
+
+              if (__DEV__) {
+                console.error(
+                  "SUI(base/DialogBase): "
+                    + `${modal ? "" : "非"}モーダルダイアログを`
+                    + `${event.modal ? "" : "非"}モーダルダイアログ`
+                    + "として開こうとしました。",
+                )
+              }
             }
 
             if (!event.cancelable || !event.defaultPrevented) {
