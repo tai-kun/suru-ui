@@ -11,6 +11,11 @@
     "dist"
   ],
   "exports": {
+    "./base/DialogBase": {
+      "types": "./dist/base/DialogBase/DialogBase.d.ts",
+      "default": "./dist/base/DialogBase/DialogBase.jsx"
+    },
+    "./base/DialogBase.css": "./dist/base/DialogBase/DialogBase.css",
     "./theme": {
       "types": "./dist/theme/index.d.ts",
       "default": "./dist/theme/index.js"
@@ -25,6 +30,10 @@
     "./theme/mobile.css": "./dist/theme/mobile.css",
     "./theme/light.css": "./dist/theme/light.css",
     "./theme/dark.css": "./dist/theme/dark.css",
+    "./utils/atom": {
+      "types": "./dist/utils/atom.d.ts",
+      "default": "./dist/utils/atom.js"
+    },
     "./utils/clsx": {
       "types": "./dist/utils/clsx.d.ts",
       "default": "./dist/utils/clsx.js"
@@ -37,13 +46,45 @@
       "types": "./dist/utils/isPlainObject.d.ts",
       "default": "./dist/utils/isPlainObject.js"
     },
+    "./utils/isRefObject": {
+      "types": "./dist/utils/isRefObject.d.ts",
+      "default": "./dist/utils/isRefObject.js"
+    },
     "./utils/singleton": {
       "types": "./dist/utils/singleton.d.ts",
       "default": "./dist/utils/singleton.js"
     },
+    "./utils/useAtom": {
+      "types": "./dist/utils/useAtom.d.ts",
+      "default": "./dist/utils/useAtom.js"
+    },
+    "./utils/useConstantValue": {
+      "types": "./dist/utils/useConstantValue.d.ts",
+      "default": "./dist/utils/useConstantValue.js"
+    },
     "./utils/useCss": {
       "types": "./dist/utils/useCss.d.ts",
       "default": "./dist/utils/useCss.js"
+    },
+    "./utils/useEventListener": {
+      "types": "./dist/useEventListener.d.ts",
+      "default": "./dist/useEventListener.js"
+    },
+    "./utils/useInspectableRef.dev": {
+      "types": "./dist/utils/useInspectableRef.dev.d.ts",
+      "default": "./dist/utils/useInspectableRef.dev.js"
+    },
+    "./utils/useIsMounted": {
+      "types": "./dist/utils/useIsMounted.d.ts",
+      "default": "./dist/utils/useIsMounted.js"
+    },
+    "./utils/useKeyboardEvent": {
+      "types": "./dist/utils/useKeyboardEvent.d.ts",
+      "default": "./dist/utils/useKeyboardEvent.js"
+    },
+    "./utils/useSubscribeMutations": {
+      "types": "./dist/utils/useSubscribeMutations.d.ts",
+      "default": "./dist/utils/useSubscribeMutations.js"
     }
   },
   "dependencies": {
