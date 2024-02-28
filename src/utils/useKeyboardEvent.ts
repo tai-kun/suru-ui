@@ -108,9 +108,9 @@ export default function useKeyboardEvent<T extends EventTargetLike<T> = Window>(
 
         element.addEventListener(
           event,
-          ev => {
+          function(ev) {
             if (predicate(ev)) {
-              handler.call(element, ev)
+              handler.call(this, ev)
             }
           },
           eventOptions,
