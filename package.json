@@ -40,7 +40,7 @@
     },
     "./utils/forwardRef": {
       "types": "./dist/utils/forwardRef.d.ts",
-      "default": "./dist/utils/forwardRef.js"
+      "default": "./dist/utils/forwardRef.jsx"
     },
     "./utils/isPlainObject": {
       "types": "./dist/utils/isPlainObject.d.ts",
