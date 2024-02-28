@@ -52,10 +52,15 @@ export default function useEventListener<T extends EventTargetLike<T>>(
       let registry: (readonly [any, any, ...any[]])[] = []
       const destructor = register(
         new Proxy(etl, {
-          get(tgt, prop, receiver) {
+          get(_, prop) {
             if (prop !== "addEventListener") {
-              // TODO: ブラウザではエラーが出るので修正する。
-              return Reflect.get(etl, prop, receiver)
+              const value = etl[prop as keyof T]
+
+              if (typeof value === "function") {
+                return value.bind(etl)
+              }
+
+              return value
             }
 
             return (typ: any, listener: any, ...rest: any[]) => {
@@ -68,7 +73,7 @@ export default function useEventListener<T extends EventTargetLike<T>>(
                 },
                 ...rest,
               ]
-              tgt.addEventListener(...argArray)
+              etl.addEventListener(...argArray)
               registry.push(argArray)
             }
           },
