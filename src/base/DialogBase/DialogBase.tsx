@@ -85,7 +85,9 @@ function* getTriggerElements(
  * @param target ダイアログの ID またはダイアログ要素。
  * @returns ダイアログ要素。
  */
-function getHTMLDialogElement(target: unknown): HTMLDialogElement | null {
+function getHTMLDialogElement(
+  target: string | EventTarget | null | undefined,
+): HTMLDialogElement | null {
   if (typeof target === "string") {
     target = document.getElementById(target)
   }
@@ -114,50 +116,53 @@ export interface ShowOptions {
  *
  * @param target ダイアログ。
  * @param options オプション。
- * @returns ダイアログが開いたかどうか。
+ * @returns この操作によってダイアログが開いたかどうか。
  */
 export function show(
-  target: unknown,
+  target: string | EventTarget | null | undefined,
   options: ShowOptions | undefined = {},
 ): boolean | "unknown" {
   const { modal } = options
   const dialogEl = getHTMLDialogElement(target)
 
-  if (dialogEl) {
-    if (dialogEl.open) {
-      if (__DEV__) {
-        // TODO: すでに開いているダイアログに .show(Modal)? を呼び出すとエラーが投げられる
-        //       仕様をどこかで見かけた気がするので調査する。
-        console.error(
-          "SUI(base/DialogBase): すでに開いているダイアログを開こうとしました。",
-        )
-      }
-
-      return false
+  if (!dialogEl) {
+    if (__DEV__) {
+      console.error(
+        `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
+        target,
+      )
     }
 
-    dialogEl.dispatchEvent(new SuiBeforeOpenEvent(modal))
-
-    return dialogEl.open
+    return "unknown"
   }
 
-  if (__DEV__) {
-    console.error(
-      `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
-      target,
-    )
+  if (dialogEl.open) {
+    if (__DEV__) {
+      // TODO: すでに開いているダイアログに .show(Modal)? を呼び出すとエラーが投げられる
+      //       仕様をどこかで見かけた気がするので調査する。
+      console.error(
+        "SUI(base/DialogBase): すでに開いているダイアログを開こうとしました。",
+        dialogEl,
+      )
+    }
+
+    return false
   }
 
-  return "unknown"
+  dialogEl.dispatchEvent(new SuiBeforeOpenEvent(modal))
+
+  return dialogEl.open
 }
 
 /**
  * ダイアログをモーダルとして表示する。
  *
  * @param target ダイアログ。
- * @returns ダイアログが開いたかどうか。
+ * @returns この操作によってダイアログが開いたかどうか。
  */
-export function showModal(target: unknown): boolean | "unknown" {
+export function showModal(
+  target: string | EventTarget | null | undefined,
+): boolean | "unknown" {
   return show(target, { modal: true })
 }
 
@@ -165,35 +170,38 @@ export function showModal(target: unknown): boolean | "unknown" {
  * ダイアログを閉じる。
  *
  * @param target ダイアログ。
- * @returns ダイアログが閉じたかどうか。
+ * @returns この操作によってダイアログが閉じたかどうか。
  */
-export function hide(target: unknown): boolean | "unknown" {
+export function hide(
+  target: string | EventTarget | null | undefined,
+): boolean | "unknown" {
   const dialogEl = getHTMLDialogElement(target)
 
-  if (dialogEl) {
-    if (dialogEl.open) {
-      dialogEl.close()
-
-      return !dialogEl.open
+  if (!dialogEl) {
+    if (__DEV__) {
+      console.error(
+        `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
+        target,
+      )
     }
 
+    return "unknown"
+  }
+
+  if (!dialogEl.open) {
     if (__DEV__) {
       console.error(
         "SUI(base/DialogBase): すでに閉じているダイアログを閉じようとしました。",
+        dialogEl,
       )
     }
 
     return false
   }
 
-  if (__DEV__) {
-    console.error(
-      `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
-      target,
-    )
-  }
+  dialogEl.close()
 
-  return "unknown"
+  return !dialogEl.open
 }
 
 /**
@@ -201,38 +209,30 @@ export function hide(target: unknown): boolean | "unknown" {
  *
  * @param target ダイアログ。
  * @param options 表示オプション。
- * @returns ダイアログが開いたかどうか。
+ * @returns この操作によってダイアログが開閉したかどうか。
  */
 export function toggle(
-  target: unknown,
+  target: string | EventTarget | null | undefined,
   options: ShowOptions | undefined = {},
 ): "show" | "hide" | false | "unknown" {
   const dialogEl = getHTMLDialogElement(target)
 
-  if (dialogEl) {
-    if (dialogEl.open) {
-      const result = hide(dialogEl)
-
-      return result === true
-        ? "hide"
-        : result
+  if (!dialogEl) {
+    if (__DEV__) {
+      console.error(
+        `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
+        target,
+      )
     }
 
-    const result = show(dialogEl, options)
-
-    return result === true
-      ? "show"
-      : result
+    return "unknown"
   }
 
-  if (__DEV__) {
-    console.error(
-      `SUI(base/DialogBase): ダイアログが見つかりませんでした。`,
-      target,
-    )
-  }
+  let temp
 
-  return "unknown"
+  return dialogEl.open
+    ? ((temp = hide(dialogEl)) === true ? "hide" : temp)
+    : ((temp = show(dialogEl, options)) === true ? "show" : temp)
 }
 
 /* -----------------------------------------------------------------------------
@@ -384,21 +384,22 @@ function useOpenChange(target: React.RefObject<HTMLDialogElement>) {
 }
 
 /**
- * onInteractOutside を操作する。
+ * onEscapeKeyDown を操作する。
  * dialog 要素の cancel イベントを監視し、イベントを発火する。
  *
- * @param rootRef ルートコンポーネントの ref オブジェクト。
+ * @param open ダイアログが開いているかどうか。
+ * @param targetRef ターゲットコンポーネントの ref オブジェクト。
  * @param handler ハンドラー。
  */
 function useHandleEscapeKeyDown(
   open: boolean,
-  rootRef: React.RefObject<HTMLDialogElement>,
+  targetRef: React.RefObject<HTMLDialogElement>,
   handler: OnEscapeKeyDown | undefined,
 ): void {
   useEventListener(
-    open ? rootRef : null,
+    open ? targetRef : null,
     React.useCallback(
-      rootEl => {
+      targetEl => {
         if (!handler) {
           return
         }
@@ -408,7 +409,7 @@ function useHandleEscapeKeyDown(
         // より、cancelについて、
         // 「ユーザーがエスケープキーで現在開いているダイアログを解除したときに発行されます。」
         // とあるので、cancel イベントを監視する。
-        rootEl.addEventListener("cancel", function(event) {
+        targetEl.addEventListener("cancel", function(event) {
           handler.call(this, event)
         })
       },
@@ -439,12 +440,13 @@ function isInside(
 /**
  * onInteractOutside を操作する。
  *
- * @param rootRef ルートコンポーネントの ref オブジェクト。
+ * @param open ダイアログが開いているかどうか。
+ * @param targetRef ターゲットコンポーネントの ref オブジェクト。
  * @param handler ハンドラー。
  */
 function useHandleInteractOutside(
   open: boolean,
-  rootRef: React.RefObject<HTMLDialogElement>,
+  targetRef: React.RefObject<HTMLDialogElement>,
   handler: OnInteractOutside | undefined,
 ): void {
   useEventListener(
@@ -452,27 +454,27 @@ function useHandleInteractOutside(
     React.useCallback(
       win => {
         win.addEventListener("click", function(event) {
-          const { current: rootEl } = rootRef
+          const { current: targetEl } = targetRef
 
           if (
-            !rootEl
+            !targetEl
             // TODO: PointerEvent でない場合は未対応のブラウザかもしれないので、警告を出す。
             || !(event instanceof PointerEvent)
             || !(event.target instanceof Element)
             // ダイアログのトリガーをクリックした場合は、そのトリガーの動作を優先させる。
-            || event.target.getAttribute("aria-controls") === rootEl.id
+            || event.target.getAttribute("aria-controls") === targetEl.id
             || (
-              rootEl.matches(":modal")
+              targetEl.matches(":modal")
                 // モーダル状態ではダイアログ要素のコンテンツを除く ::backdrop がクリック
                 // されたときに閉じたいが、イベントとしてはダイアログ要素がターゲットになる。
                 // そのため、ダイアログ要素の外側をクリックしたかどうかは座標で判定する。
-                ? isInside(rootEl.getBoundingClientRect(), {
+                ? isInside(targetEl.getBoundingClientRect(), {
                   x: event.clientX,
                   y: event.clientY,
                 })
                 // 非モーダルでは ::backdrop が無いので、クリックされた要素の祖先に
                 // ダイアログ要素が含まれていないかどうかで判定する。
-                : event.target.closest(`#${CSS.escape(rootEl.id)}`)
+                : event.target.closest(`#${CSS.escape(targetEl.id)}`)
             )
           ) {
             return
@@ -481,7 +483,7 @@ function useHandleInteractOutside(
           handler?.call(this, event)
 
           if (!event.defaultPrevented) {
-            hide(rootEl)
+            hide(targetEl)
           }
         })
       },
@@ -493,12 +495,12 @@ function useHandleInteractOutside(
 /**
  * onOpenChange を操作する。
  *
- * @param rootRef ルートコンポーネントの ref オブジェクト。
+ * @param targetRef ターゲットコンポーネントの ref オブジェクト。
  * @param handler ハンドラー。
  * @param options オプション。
  */
 function useHandleOpenChange(
-  rootRef: React.RefObject<HTMLDialogElement>,
+  targetRef: React.RefObject<HTMLDialogElement>,
   handler: OnOpenChange | undefined,
   options: {
     modal: boolean | undefined
@@ -507,9 +509,9 @@ function useHandleOpenChange(
 ): void {
   const { modal, disabled } = options
   useEventListener(
-    rootRef,
+    targetRef,
     React.useCallback(
-      rootEl => {
+      targetEl => {
         const handleOpenChange = (event: Event) => {
           const currentTarget = event.currentTarget as HTMLDialogElement
           const { open } = currentTarget
@@ -520,7 +522,7 @@ function useHandleOpenChange(
 
           handler?.(open, event)
         }
-        rootEl.addEventListener("sui:dialog-base:beforeopen", event => {
+        targetEl.addEventListener("sui:dialog-base:beforeopen", event => {
           if (event instanceof SuiBeforeOpenEvent) {
             if (disabled) {
               event.preventDefault()
@@ -554,7 +556,7 @@ function useHandleOpenChange(
             }
           }
         })
-        rootEl.addEventListener("close", event => {
+        targetEl.addEventListener("close", event => {
           handleOpenChange(event)
         })
       },
@@ -616,18 +618,18 @@ export const Target = forwardRef(function Target(
     ...other
   } = props
   const Comp = asChild ? Slot : "dialog"
-  const [rootRef, inspect] = useInspectableRef<HTMLDialogElement | null>(null)
+  const [targetRef, inspect] = useInspectableRef<HTMLDialogElement | null>(null)
 
   if (__DEV__) {
     inspect(
       "set",
       React.useCallback(
-        rootEl => {
-          if (rootEl !== null && !(rootEl instanceof HTMLDialogElement)) {
+        targetEl => {
+          if (targetEl !== null && !(targetEl instanceof HTMLDialogElement)) {
             console.error(
               "SUI(base/DialogBase): ref に渡された要素が HTMLDialogElement "
                 + "のインスタンスではありません。",
-              rootEl,
+              targetEl,
             )
           }
         },
@@ -636,15 +638,15 @@ export const Target = forwardRef(function Target(
     )
   }
 
-  const open = useOpenChange(rootRef)
-  useHandleOpenChange(rootRef, onOpenChange, { modal, disabled })
-  useHandleEscapeKeyDown(open, rootRef, onEscapeKeyDown)
-  useHandleInteractOutside(open, rootRef, onInteractOutside)
+  const open = useOpenChange(targetRef)
+  useHandleOpenChange(targetRef, onOpenChange, { modal, disabled })
+  useHandleEscapeKeyDown(open, targetRef, onEscapeKeyDown)
+  useHandleInteractOutside(open, targetRef, onInteractOutside)
 
   return (
     <Comp
       {...other}
-      ref={useComposedRefs(refProp, rootRef)}
+      ref={useComposedRefs(refProp, targetRef)}
       className={clsx(className, "SuiDialogBaseTarget")}
       data-scope={clsx.lite(scope, "SuiDialogBase")}
     />
