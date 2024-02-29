@@ -16,6 +16,11 @@
       "default": "./dist/base/DialogBase/DialogBase.jsx"
     },
     "./base/DialogBase.css": "./dist/base/DialogBase/DialogBase.css",
+    "./base/PopoverBase": {
+      "types": "./dist/base/PopoverBase/PopoverBase.d.ts",
+      "default": "./dist/base/PopoverBase/PopoverBase.jsx"
+    },
+    "./base/PopoverBase.css": "./dist/base/PopoverBase/PopoverBase.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "default": "./dist/icons/index.js"
@@ -120,6 +125,7 @@
     }
   },
   "dependencies": {
+    "@floating-ui/dom": "~1.6.3",
     "@radix-ui/react-compose-refs": "~1.0.1",
     "@radix-ui/react-slot": "~1.0.2",
     "nano-css": "~5.6.1"

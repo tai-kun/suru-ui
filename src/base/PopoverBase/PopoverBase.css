@@ -1,0 +1,19 @@
+@layer sui.components.popover-base.static {
+  .SuiPopoverBaseTarget {
+    /*
+     * Target
+     * --x
+     * --y
+     * --position
+     * --visibility
+     */
+
+    top: 0;
+    left: 0;
+    position: var(--position, absolute);
+    transform: translate(var(--x, 0), var(--y, 0));
+    visibility: var(--visibility, hidden);
+  }
+}
+
+@layer sui.components.popover-base.dynamic;
