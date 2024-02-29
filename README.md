@@ -11,7 +11,7 @@
 
 - [ ] `base/ButtonBase`
 - [x] `base/DialogBase`
-- [ ] `base/PopoverBase`
+- [x] `base/PopoverBase`
 
 ### core
 
@@ -32,7 +32,6 @@
 - [ ] `core/Link`
 - [ ] `core/Loader`
 - [ ] `core/Menu`
-- [ ] `core/Menubar`
 - [ ] `core/MenuList`
 - [ ] `core/Pagination`
 - [ ] `core/Popover`
@@ -56,6 +55,7 @@
 - [ ] `lab/DateField`
 - [ ] `lab/InlineBadge`
 - [ ] `lab/Keyboard`
+- [ ] `lab/Menubar`
 - [ ] `lab/Meter`
 - [ ] `lab/NumberField`
 - [ ] `lab/PasswordField`
