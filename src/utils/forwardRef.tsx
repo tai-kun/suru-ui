@@ -15,7 +15,7 @@ export type DataAttributes = {
  * @template Q プロパティの基本。
  */
 export type HTMLProps<
-  E extends keyof JSX.IntrinsicElements,
+  E extends keyof JSX.IntrinsicElements = any,
   P = {},
   Q = 0 extends (1 & E) // E が any なら満たす。
     ? React.AllHTMLAttributes<HTMLElement>
@@ -30,7 +30,7 @@ export type HTMLProps<
  * @template Q プロパティの基本。
  */
 export type HTMLPropsWithRef<
-  E extends keyof JSX.IntrinsicElements,
+  E extends keyof JSX.IntrinsicElements = any,
   P = {},
   Q = 0 extends (1 & E) // E が any なら満たす。
     ? React.AllHTMLAttributes<HTMLElement>
