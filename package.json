@@ -141,8 +141,7 @@
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "~1.6.3",
-    "nano-css": "~5.6.1"
+    "@floating-ui/dom": "~1.6.3"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "~13.4.1",
