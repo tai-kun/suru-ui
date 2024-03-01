@@ -79,6 +79,10 @@
       "types": "./dist/utils/composeRefs.d.ts",
       "default": "./dist/utils/composeRefs.js"
     },
+    "./utils/createCssRenderer": {
+      "types": "./dist/utils/createCssRenderer.d.ts",
+      "default": "./dist/utils/createCssRenderer.js"
+    },
     "./utils/forwardRef": {
       "types": "./dist/utils/forwardRef.d.ts",
       "default": "./dist/utils/forwardRef.jsx"
@@ -102,6 +106,10 @@
     "./utils/Slottable": {
       "types": "./dist/utils/Slottable.d.ts",
       "default": "./dist/utils/Slottable.jsx"
+    },
+    "./utils/toHash": {
+      "types": "./dist/utils/toHash.d.ts",
+      "default": "./dist/utils/toHash.js"
     },
     "./utils/useAtom": {
       "types": "./dist/utils/useAtom.d.ts",
