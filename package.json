@@ -75,6 +75,10 @@
       "types": "./dist/utils/clsx.d.ts",
       "default": "./dist/utils/clsx.js"
     },
+    "./utils/composeRefs": {
+      "types": "./dist/utils/composeRefs.d.ts",
+      "default": "./dist/utils/composeRefs.js"
+    },
     "./utils/forwardRef": {
       "types": "./dist/utils/forwardRef.d.ts",
       "default": "./dist/utils/forwardRef.jsx"
@@ -91,9 +95,21 @@
       "types": "./dist/utils/singleton.d.ts",
       "default": "./dist/utils/singleton.js"
     },
+    "./utils/Slot": {
+      "types": "./dist/utils/Slot.d.ts",
+      "default": "./dist/utils/Slot.jsx"
+    },
+    "./utils/Slottable": {
+      "types": "./dist/utils/Slottable.d.ts",
+      "default": "./dist/utils/Slottable.jsx"
+    },
     "./utils/useAtom": {
       "types": "./dist/utils/useAtom.d.ts",
       "default": "./dist/utils/useAtom.js"
+    },
+    "./utils/useComposedRefs": {
+      "types": "./dist/utils/useComposedRefs.d.ts",
+      "default": "./dist/utils/useComposedRefs.js"
     },
     "./utils/useConstantValue": {
       "types": "./dist/utils/useConstantValue.d.ts",
@@ -126,8 +142,6 @@
   },
   "dependencies": {
     "@floating-ui/dom": "~1.6.3",
-    "@radix-ui/react-compose-refs": "~1.0.1",
-    "@radix-ui/react-slot": "~1.0.2",
     "nano-css": "~5.6.1"
   },
   "devDependencies": {

@@ -1,8 +1,8 @@
-import { useComposedRefs } from "@radix-ui/react-compose-refs"
-import { Slot } from "@radix-ui/react-slot"
 import * as React from "react"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
+import Slot from "../../utils/Slot"
+import useComposedRefs from "../../utils/useComposedRefs"
 import useEventListener from "../../utils/useEventListener"
 import useInspectableRef from "../../utils/useInspectableRef.dev"
 import useSubscribeMutations, {

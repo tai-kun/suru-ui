@@ -6,17 +6,17 @@ import {
   type Placement as FloatingPlacement,
   shift as shiftMiddleware,
 } from "@floating-ui/dom"
-import { useComposedRefs } from "@radix-ui/react-compose-refs"
-import { Slot } from "@radix-ui/react-slot"
 import * as React from "react"
+import atom from "../../utils/atom"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
-import "suru-ui/base/PopoverBase.css"
-import atom from "../../utils/atom"
+import Slot from "../../utils/Slot"
 import useAtom from "../../utils/useAtom"
+import useComposedRefs from "../../utils/useComposedRefs"
 import useEventListener from "../../utils/useEventListener"
 import useIsMounted from "../../utils/useIsMounted"
 import useKeyboardEvent from "../../utils/useKeyboardEvent"
+import "suru-ui/base/PopoverBase.css"
 
 /* -----------------------------------------------------------------------------
  * Event
