@@ -92,7 +92,7 @@ function useCacheMapManager(): CacheMapManager {
 
           return cache
         },
-        [Symbol.dispose]() {
+        [Symbol.dispose || Symbol.for("Symbol.dispose")]() {
           for (const name of Object.keys(memory)) {
             if (!memoized.has(name)) {
               delete memory[name]
