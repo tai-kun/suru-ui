@@ -1,4 +1,4 @@
-@layer sui.components.{{ kebab name }}.static {
+@layer sui.static {
   @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
     :scope {
       /*
@@ -11,7 +11,6 @@
   }
 }
 
-@layer sui.components.{{ kebab name }}.dynamic;
 
 @layer sui.disabled {
   @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {

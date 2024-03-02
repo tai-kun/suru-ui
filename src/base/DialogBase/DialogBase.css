@@ -1,4 +1,4 @@
-@layer sui.components.dialog-base.static {
+@layer sui.static {
   .SuiDialogBaseTarget {
     /*
      * Root
@@ -36,4 +36,3 @@
   }
 }
 
-@layer sui.components.dialog-base.dynamic;

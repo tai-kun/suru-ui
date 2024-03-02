@@ -21,34 +21,9 @@ export const renderer = onceCell("css-renderer", createCssRenderer)
  * @returns CSS のクラス名。
  */
 export default function useCss<A extends readonly unknown[]>(
-  name: string,
   make: (...args: A) => CssObject | null | undefined,
   args: A,
 ): string {
-  if (__DEV__) {
-    if (!/^[a-z][a-z0-9-]*$/.test(name)) {
-      console.error(
-        `SUI(utils/useCss): コンポーネント名はケバブケースで指定してください: ${name}`,
-      )
-    }
-
-    const nameRef = React.useRef<string>()
-
-    React.useEffect(
-      () => {
-        if (nameRef.current !== undefined && nameRef.current !== name) {
-          console.error(
-            "SUI(utils/useCss): コンポーネント名は変更できません: "
-              + `${nameRef.current} -> ${name}`,
-          )
-        }
-
-        nameRef.current = name
-      },
-      [name],
-    )
-  }
-
   return React.useMemo(
     () => {
       const style = make(...args)
@@ -58,7 +33,7 @@ export default function useCss<A extends readonly unknown[]>(
       }
 
       const { hash } = renderer.put(hash => ({
-        [`@layer sui.components.${name}.dynamic`]: {
+        [`@layer sui.dynamic`]: {
           [`.sui-${hash}`]: style,
         },
       }))
@@ -81,7 +56,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
       const makeStyle = (color: string) => ({
         color,
       })
-      using renderResult = renderHook(() => useCss("box", makeStyle, ["red"]))
+      using renderResult = renderHook(() => useCss(makeStyle, ["red"]))
       const { result } = renderResult
 
       assert.match(result.current, /^sui-[0-9a-z]+$/)
@@ -89,7 +64,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
         renderer.raw.map(normalizeCss),
         [
           `
-            @layer sui.components.box.dynamic {
+            @layer sui.dynamic {
               .${result.current} {
                 color: red;
               }

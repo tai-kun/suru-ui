@@ -1,4 +1,4 @@
-@layer sui.components.popover-base.static {
+@layer sui.static {
   .SuiPopoverBaseTarget {
     /*
      * Target
@@ -16,4 +16,3 @@
   }
 }
 
-@layer sui.components.popover-base.dynamic;
