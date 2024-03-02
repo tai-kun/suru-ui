@@ -128,8 +128,8 @@
       "default": "./dist/utils/useCss.js"
     },
     "./utils/useEventListener": {
-      "types": "./dist/useEventListener.d.ts",
-      "default": "./dist/useEventListener.js"
+      "types": "./dist/utils/useEventListener.d.ts",
+      "default": "./dist/utils/useEventListener.js"
     },
     "./utils/useInspectableRef.dev": {
       "types": "./dist/utils/useInspectableRef.dev.d.ts",
