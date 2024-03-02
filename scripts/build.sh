@@ -34,6 +34,15 @@ npx tsc -p tsconfig.build.json
     done
 ' sh {} +)
 
+# copy LICENSE
+
+(cd src && find . -name 'LICENSE' -exec sh -c '
+    for file do
+        mkdir -p "../dist/$(dirname "$file")"
+        cp "$file" "../dist/$file"
+    done
+' sh {} +)
+
 # remove dev files
 
 rm -r dist/icons/build
