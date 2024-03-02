@@ -203,6 +203,7 @@
     "build": "scripts/build.sh",
     "build:theme": "scripts/build-theme.sh",
     "build:icons": "scripts/build-icons.sh",
+    "postbuild": "scripts/check.sh",
     "postinstall": "test ! -f scripts/postinstall.sh || scripts/postinstall.sh"
   },
   "volta": {
