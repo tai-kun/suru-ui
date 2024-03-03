@@ -204,7 +204,8 @@
     "build": "scripts/build.sh",
     "build:theme": "scripts/build-theme.sh",
     "build:icons": "scripts/build-icons.sh",
-    "postbuild": "scripts/check.sh",
+    "check:exports": "node scripts/check-exports.js",
+    "check:external-deps": "node scripts/check-external-deps.js",
     "postinstall": "test ! -f scripts/postinstall.sh || scripts/postinstall.sh"
   },
   "volta": {
