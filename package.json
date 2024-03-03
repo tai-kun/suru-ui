@@ -167,6 +167,7 @@
     "@types/react-dom": "~18.2.19",
     "@types/react-is": "~18.2.4",
     "@types/unzipper": "~0.10.9",
+    "@typescript-eslint/typescript-estree": "~7.1.0",
     "cfg-test": "~0.4.3",
     "css-tree": "~2.3.1",
     "deep-object-diff": "~1.1.9",
