@@ -1,0 +1,82 @@
+@layer sui.static {
+  @scope (.SuiButtonBase) to (:not([data-scope~=SuiButtonBase])) {
+    :scope {
+      /*
+       * Root
+       * --SuiButtonBase-color
+       * --SuiButtonBase-color-noop
+       * --SuiButtonBase-color-hover
+       * --SuiButtonBase-color-active
+       * --SuiButtonBase-border-color
+       */
+
+      display: inline-block;
+      user-select: none;
+
+      &:not(:is(:disabled, [disabled], [data-disabled])) {
+        color: var(--SuiButtonBase-color);
+        cursor: pointer;
+        background: var(--SuiButtonBase-color-noop);
+
+        &:hover,
+        &:focus-visible {
+          background: var(--SuiButtonBase-color-hover);
+        }
+
+        &:active {
+          background: var(--SuiButtonBase-color-active);
+        }
+
+        &:focus-visible {
+          outline:
+            solid
+            var(--sui-border-focus-visible-color)
+            var(--sui-border-focus-visible-width);
+          outline-offset: var(--sui-border-focus-visible-width);
+        }
+
+        &.Sui-outlined {
+          border:
+            solid
+            var(--SuiButtonBase-border-color)
+            var(--sui-border-sm);
+        }
+      }
+
+      &.Sui-loading {
+        color: var(--SuiButtonBase-color);
+        cursor: not-allowed;
+        background: var(--SuiButtonBase-color-noop);
+      }
+    }
+  }
+}
+
+
+@layer sui.disabled {
+  @scope (.SuiButtonBase) to (:not([data-scope~=SuiButtonBase])) {
+    :scope:not(.Sui-loading):is(:disabled, [disabled], [data-disabled]) {
+      cursor: not-allowed;
+      outline: none;
+      outline-offset: 0;
+
+      &.Sui-variant-naked,
+      &.Sui-variant-liquid {
+        color: var(--sui-text-disabled);
+        background: transparent;
+      }
+
+      &.Sui-variant-solid {
+        color: var(--sui-text-onfill);
+        background: var(--sui-bg-disabled);
+      }
+
+      &.Sui-outlined {
+        border:
+          solid
+          var(--sui-border-disabled-color)
+          var(--sui-border-disabled-width);
+      }
+    }
+  }
+}

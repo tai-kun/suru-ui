@@ -11,6 +11,10 @@
     "dist"
   ],
   "exports": {
+    "./base/ButtonBase": {
+      "types": "./dist/base/ButtonBase/ButtonBase.d.ts",
+      "default": "./dist/base/ButtonBase/ButtonBase.jsx"
+    },
     "./base/DialogBase": {
       "types": "./dist/base/DialogBase/DialogBase.d.ts",
       "default": "./dist/base/DialogBase/DialogBase.jsx"
