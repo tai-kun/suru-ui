@@ -151,6 +151,10 @@
   "dependencies": {
     "@floating-ui/dom": "~1.6.3"
   },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
   "devDependencies": {
     "@happy-dom/global-registrator": "~13.4.1",
     "@ladle/react": "~4.0.2",
