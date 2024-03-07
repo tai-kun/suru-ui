@@ -1,9 +1,13 @@
 # suru-ui
 
-[![Canary Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml)
-[![Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml)
 [![Test](https://github.com/tai-kun/suru-ui/actions/workflows/test.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/test.yaml)
-[![npm package](https://badge.fury.io/js/suru-ui.svg)](https://badge.fury.io/js/suru-ui)
+[![Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml)
+[![Canary Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml)
+
+[![npm version](https://img.shields.io/npm/v/suru-ui)](https://www.npmjs.com/package/suru-ui)
+[![npm canary version](https://img.shields.io/npm/v/suru-ui/canary)](https://www.npmjs.com/package/suru-ui?activeTab=versions)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 ## TODO
 
