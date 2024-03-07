@@ -1,5 +1,7 @@
 # suru-ui
 
+Web 標準 API と有限ステートマシン、React を活用した UI コンポーネントライブラリの実験的な実装。
+
 [![Test](https://github.com/tai-kun/suru-ui/actions/workflows/test.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/test.yaml)
 [![Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/release.yaml)
 [![Canary Release on NPM](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml/badge.svg)](https://github.com/tai-kun/suru-ui/actions/workflows/canary-release.yaml)
@@ -8,6 +10,28 @@
 [![npm canary version](https://img.shields.io/npm/v/suru-ui/canary)](https://www.npmjs.com/package/suru-ui?activeTab=versions)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
+
+## 考えていること
+
+### これまでの自分の Web アプリケーション開発における課題の認識
+
+従来、HTML 要素で発生するあらゆるイベントは React のライフサイクルが管理し、API を通じて JavaScript で (ほぼ) 完全に制御されてきた。コードが状態を従い、目の前のコードがすべてであるという設計は、Web アプリケーションをコードで明白に理解できる一方で、不必要に複雑化してしまう問題を抱えている。開発者ツールを使わない限りは意図した動作を (後方互換性も含めて) 保証するための策と解釈することで納得できるが、Web にはすでに標準機能としてフォーム検証が存在し、今後は最上位レイヤーや Popover API、CSS Anchor Positioning など、JavaScript で表現・制御 (開閉やアクセシビリティ、フォーカストラップなど) してきた一部の機能も標準になろうとしている。
+
+### React の鞘に収まる標準 API の使い方
+
+React は極めて捨てがたいフレームワークだが、ちまちま useState したり、Context.Provider でちょっと楽なバケツリレー (宛先のない投げ渡し) をポリポリ書くのは面倒に感じてくることもある。捨てる・捨てないではなく取捨選択したい (が、現状多くの UI コンポーネントライブラリはフレームワークと強く結びつきすぎているし、htmx のように振り切るのも悩ましい)。
+
+このような経緯と個人的なお気持ちから、通常は見捨てられることのない後方互換性とともに広域なプラットフォームのサポートや JavaScript による完全な制御を諦め、ブラウザのイベントにある程度身を任せた UI コンポーネントを検討したい。
+
+### 有限ステートマシンによる制御の可能性
+
+JavaScript による完全な制御を諦めることはすなわち標準 API の利用許可を得たということだが、その場合コンポーネントの props に絶対的な支配権は無く、こうあったらいいな程度の弱い意味しか持たない場面がでてくるため、ブラウザのイベントに身を任せつつ props の要求にも可能な限り対応するコストが重くなってくる。そこで props の変更もある種の cancelable なイベントとみなして標準 API のイベントとともに有限ステートマシンによる状態遷移の定義へ落とし込み、制御できるか実験する。
+
+有限ステートマシンは有名なところだと Chakra UI が提供する Zag で活用されている。Zag の場合は React 以外にも Vue や Solid といった異なるフレームワークの違いを吸収するのが有限ステートマシンを使う動機になっているようだが、論理的に異なる文脈で発生するイベントに従う状態遷移の表現という意味では、今回のケースにもはまってくれるだろうと考えている。
+
+### まとめ
+
+今回の実験を通して、ブラウザのイベントに身を任せた UI コンポーネント開発の可能性を探り、従来の React 開発と比較検討することで、より単純で効率的な開発方法を確立したいと考えている。
 
 ## TODO
 
