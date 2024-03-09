@@ -1,1 +1,24 @@
-{}
+$build:
+  imports:
+    common:     suru-ui/common
+    layout:     suru-ui/layout/desktop
+    appearance: suru-ui/appearance/light
+
+  patches:
+    - operations:
+        - mode: move
+          path: ""
+          from: /common
+          strategy: merge
+        - mode: move
+          path: ""
+          from: /layout
+          strategy: merge
+        - mode: move
+          path: ""
+          from: /appearance
+          strategy: merge
+
+  exports:
+    include:
+      - "**"

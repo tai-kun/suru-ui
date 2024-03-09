@@ -1,0 +1,12 @@
+# リンクテキスト
+# 2023年12月26日 アップデート
+
+normal:  blue/1000
+hover:   blue/900
+active:  orange/700
+visited: magenta/900
+
+$build:
+  exports:
+    include:
+      - "**"

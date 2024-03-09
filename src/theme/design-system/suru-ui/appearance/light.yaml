@@ -1,0 +1,319 @@
+color:
+  grey:
+    1200: var(--sui-color-black)
+    alpha:
+      50:   "hsla(0,0%,15%,0.06)"
+      100:  "hsla(0,0%,2%,0.1)"
+      200:  "hsla(0,0%,0%,0.2)"
+      300:  "hsla(0,0%,1%,0.3)"
+      400:  "hsla(0,0%,0%,0.4)"
+      420:  "hsla(0,0%,1%,0.42)"
+      500:  "hsla(0,0%,2%,0.51)"
+      536:  "hsla(0,0%,0%,0.54)"
+      600:  "hsla(0,0%,0%,0.6)"
+      700:  "hsla(0,0%,0%,0.7)"
+      800:  "hsla(0,0%,0%,0.8)"
+      900:  "hsla(0,0%,0%,0.9)"
+      1200: var(--sui-color-black)
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-grey-alpha-100)
+      active: var(--sui-color-grey-alpha-200)
+    solid:
+      normal: var(--sui-color-grey-1200)
+      hover:  var(--sui-color-grey-1000)
+      active: var(--sui-color-grey-800)
+    liquid:
+      normal: var(--sui-color-grey-alpha-100)
+      hover:  var(--sui-color-grey-alpha-200)
+      active: var(--sui-color-grey-alpha-300)
+    text:
+      lc: var(--sui-color-grey-solid-active)
+      hc: var(--sui-color-grey-solid-normal)
+    ring:
+      lc: var(--sui-color-grey-text-lc)
+      hc: var(--sui-color-grey-text-hc)
+  blue:
+    alpha:
+      50:   "hsla(215,92%,53%,0.1)"
+      100:  "hsla(220,100%,50%,0.15)"
+      200:  "hsla(220,98%,47%,0.23)"
+      300:  "hsla(223,97%,48%,0.39)"
+      400:  "hsla(223,97%,48%,0.57)"
+      500:  "hsla(223,98%,48%,0.72)"
+      600:  "hsla(227,99%,49%,0.8)"
+      700:  "hsla(229,98%,48%,0.86)"
+      800:  "hsla(226,100%,42%,1)"
+      900:  "hsla(233,100%,38%,1)"
+      1000: "hsla(233,100%,28%,1)"
+      1100: "hsla(240,100%,22%,1)"
+      1200: "hsla(240,100%,19%,1)"
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-blue-alpha-100)
+      active: var(--sui-color-blue-alpha-200)
+    solid:
+      normal: var(--sui-color-blue-800)
+      hover:  var(--sui-color-blue-900)
+      active: var(--sui-color-blue-1100)
+    liquid:
+      normal: var(--sui-color-blue-alpha-100)
+      hover:  var(--sui-color-blue-alpha-200)
+      active: var(--sui-color-blue-alpha-300)
+    text:
+      lc: var(--sui-color-blue-solid-normal)
+      hc: var(--sui-color-blue-solid-active)
+    ring:
+      lc: var(--sui-color-blue-text-lc)
+      hc: var(--sui-color-blue-text-hc)
+  lightBlue:
+    alpha:
+      50:   "hsla(204,100%,51%,0.06)"
+      100:  "hsla(206,100%,51%,0.14)"
+      200:  "hsla(206,100%,51%,0.25)"
+      300:  "hsla(205,100%,50%,0.41)"
+      400:  "hsla(205,100%,50%,0.66)"
+      500:  "hsla(206,100%,50%,0.78)"
+      600:  "hsla(206,100%,48%,1)"
+      700:  "hsla(208,100%,42%,0.97)"
+      800:  "hsla(208,100%,37%,1)"
+      900:  "hsla(211,100%,34%,1)"
+      1000: "hsla(212,100%,28%,1)"
+      1100: "hsla(212,100%,21%,1)"
+      1200: "hsla(212,100%,15%,1)"
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-lightBlue-alpha-100)
+      active: var(--sui-color-lightBlue-alpha-200)
+    solid:
+      normal: var(--sui-color-lightBlue-900)
+      hover:  var(--sui-color-lightBlue-1000)
+      active: var(--sui-color-lightBlue-1200)
+    liquid:
+      normal: var(--sui-color-lightBlue-alpha-100)
+      hover:  var(--sui-color-lightBlue-alpha-200)
+      active: var(--sui-color-lightBlue-alpha-300)
+    text:
+      lc: var(--sui-color-lightBlue-solid-normal)
+      hc: var(--sui-color-lightBlue-solid-active)
+    ring:
+      lc: var(--sui-color-lightBlue-text-lc)
+      hc: var(--sui-color-lightBlue-text-hc)
+  green:
+    alpha:
+      50:   "hsla(144,94%,31%,0.1)"
+      100:  "hsla(145,99%,29%,0.24)"
+      200:  "hsla(147,94%,30%,0.4)"
+      300:  "hsla(148,99%,30%,0.56)"
+      400:  "hsla(149,96%,30%,0.69)"
+      500:  "hsla(151,99%,31%,0.83)"
+      600:  "hsla(151,97%,28%,0.86)"
+      700:  "hsla(151,98%,25%,0.89)"
+      800:  "hsla(151,96%,22%,0.91)"
+      900:  "hsla(150,95%,16%,0.94)"
+      1000: "hsla(150,94%,13%,0.96)"
+      1100: "hsla(151,100%,9%,0.97)"
+      1200: "hsla(152,100%,6%,0.99)"
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-green-alpha-100)
+      active: var(--sui-color-green-alpha-200)
+    solid:
+      normal: var(--sui-color-green-900)
+      hover:  var(--sui-color-green-1000)
+      active: var(--sui-color-green-1200)
+    liquid:
+      normal: var(--sui-color-green-alpha-100)
+      hover:  var(--sui-color-green-alpha-200)
+      active: var(--sui-color-green-alpha-300)
+    text:
+      lc: var(--sui-color-green-solid-normal)
+      hc: var(--sui-color-green-solid-active)
+    ring:
+      lc: var(--sui-color-green-text-lc)
+      hc: var(--sui-color-green-text-hc)
+  yellow:
+    alpha:
+      50:   "hsla(47,86%,47%,0.13)"
+      100:  "hsla(48,100%,50%,0.3)"
+      200:  "hsla(47,100%,50%,0.5)"
+      300:  "hsla(47,100%,51%,0.77)"
+      400:  "hsla(47,100%,50%,1)"
+      500:  "hsla(47,100%,46%,1)"
+      600:  "hsla(47,100%,41%,1)"
+      700:  "hsla(47,100%,36%,1)"
+      800:  "hsla(47,100%,32%,1)"
+      900:  "hsla(47,100%,29%,1)"
+      1000: "hsla(46,100%,25%,1)"
+      1100: "hsla(47,100%,22%,1)"
+      1200: "hsla(47,100%,19%,1)"
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-yellow-alpha-100)
+      active: var(--sui-color-yellow-alpha-200)
+    solid:
+      normal: var(--sui-color-yellow-900)
+      hover:  var(--sui-color-yellow-1000)
+      active: var(--sui-color-yellow-1200)
+    liquid:
+      normal: var(--sui-color-yellow-alpha-100)
+      hover:  var(--sui-color-yellow-alpha-200)
+      active: var(--sui-color-yellow-alpha-300)
+    text:
+      lc: var(--sui-color-yellow-solid-normal)
+      hc: var(--sui-color-yellow-solid-active)
+    ring:
+      lc: var(--sui-color-yellow-text-lc)
+      hc: var(--sui-color-yellow-text-hc)
+  red:
+    alpha:
+      50:   "hsla(0,90%,47%,0.07)"
+      100:  "hsla(0,100%,52%,0.15)"
+      200:  "hsla(0,100%,51%,0.27)"
+      300:  "hsla(0,100%,51%,0.42)"
+      400:  "hsla(0,100%,51%,0.42)"
+      500:  "hsla(0,100%,51%,0.68)"
+      600:  "hsla(0,99%,50%,0.78)"
+      700:  "hsla(0,100%,49%,1)"
+      800:  "hsla(0,100%,46%,1)"
+      900:  "hsla(0,100%,40%,1)"
+      1000: "hsla(0,100%,33%,1)"
+      1100: "hsla(0,100%,26%,1)"
+      1200: "hsla(0,100%,19%,1)"
+    naked:
+      normal: transparent
+      hover:  var(--sui-color-red-alpha-100)
+      active: var(--sui-color-red-alpha-200)
+    solid:
+      normal: var(--sui-color-red-900)
+      hover:  var(--sui-color-red-1000)
+      active: var(--sui-color-red-1200)
+    liquid:
+      normal: var(--sui-color-red-alpha-100)
+      hover:  var(--sui-color-red-alpha-200)
+      active: var(--sui-color-red-alpha-300)
+    text:
+      lc: var(--sui-color-red-solid-normal)
+      hc: var(--sui-color-red-solid-active)
+    ring:
+      lc: var(--sui-color-red-text-lc)
+      hc: var(--sui-color-red-text-hc)
+
+  brand:   blue
+  # accent:  <- brand を primary としたときの secondary に相当させるか？
+  neutral: grey
+  info:    lightBlue
+  error:   red
+  warning: yellow
+  success: green
+
+  canvas:
+    main:     var(--sui-color-white)
+    paper:    var(--sui-color-white)
+    disabled: var(--sui-color-grey-600)
+
+  text:
+    body:       var(--sui-color-black)
+    disabled:   var(--sui-color-grey-400)
+    description: var(--sui-color-grey-700)
+    placeholder: var(--sui-color-grey-500)
+
+  # link: <- $build で設定される。
+
+ring:
+  focus:
+    color: var(--sui-color-yellow-700)
+
+$build:
+  imports:
+    color2.0: digital.go.jp/style/Color2.0
+    linktext: digital.go.jp/style/LinkText
+
+  patches:
+    - name: ニュートラルカラーを設定する
+      operations:
+        - name: "ニュートラルカラーを digital.go.jp から /color にコピーする"
+          mode: copy
+          path: /color/$[[ white, black ]]
+          from: /color2.0/$[[ white, black ]]
+          strategy: merge
+
+    - name: 基本的なカラーを設定する
+      matrix:
+        color: [ grey, blue, lightBlue, green, yellow, red ]
+      operations:
+        - name: "色を digital.go.jp から /color にコピーする"
+          mode: copy
+          path: /color/${{ matrix.color }}
+          from: /color2.0/${{ matrix.color }}
+          strategy: merge
+        - name: "コントラスト比の情報を持つ white と black を削除"
+          mode: remove
+          path: /color/${{ matrix.color }}/$[[ white, black ]]
+
+    - name: "grey を 50 から 1200 のスケールに変換する"
+      matrix:
+        path: [ "", "/alpha" ]
+      operations:
+        - name: "420 から 900 のスケールを 500 から 1100 に変換する"
+          mode: move
+          path: /color/grey${{ matrix.path }}/$[[ 1100, 1000, 900, 800, 700, 600, 500 ]]
+          from: /color/grey${{ matrix.path }}/$[[  900,  800, 700, 600, 536, 500, 420 ]]
+
+    - name: "セマンティックカラーの各スケールを CSS 変数に置き換える"
+      matrix:
+        color: [ brand, neutral, info, error, warning, success ]
+        scale: [ 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200 ]
+      operations:
+        - name: "セマンティックカラーの CSS 変数マップを作成する"
+          mode: add
+          path: /color/_${{ matrix.color }}/${{ matrix.scale }}
+          value: "var(--sui-color-${{ /color/${{ matrix.color }} }}-${{ matrix.scale }})"
+        - name: "不透明なセマンティックカラーの CSS 変数マップを作成する"
+          mode: add
+          path: /color/_${{ matrix.color }}/alpha/${{ matrix.scale }}
+          value: "var(--sui-color-${{ /color/${{ matrix.color }} }}-alpha-${{ matrix.scale }})"
+
+    - name: "セマンティックカラーの各バリアントを CSS 変数に置き換える"
+      matrix:
+        color:   [ brand, neutral, info, error, warning, success ]
+        variant: [ naked, solid, liquid ]
+        state:   [ normal, hover, active ]
+      operations:
+        - name: "セマンティックカラーを CSS 変数に置き換える"
+          mode: add
+          path: /color/_${{ matrix.color }}/${{ matrix.variant }}/${{ matrix.state }}
+          value: "var(--sui-color-${{ /color/${{ matrix.color }} }}-${{ matrix.variant }}-${{ matrix.state }})"
+
+    - name: "セマンティックカラーのテキストを CSS 変数に置き換える"
+      matrix:
+        color: [ brand, neutral, info, error, warning, success ]
+        target: [ text, ring ]
+        contrast: [ lc, hc ]
+      operations:
+        - name: "セマンティックカラーを CSS 変数に置き換える"
+          mode: add
+          path: /color/_${{ matrix.color }}/${{ matrix.target }}/${{ matrix.contrast }}
+          value: "var(--sui-color-${{ /color/${{ matrix.color }} }}-${{ matrix.target }}-${{ matrix.contrast }})"
+
+    - name: セマンティックカラーを設定する
+      matrix:
+        color: [ brand, neutral, info, error, warning, success ]
+      operations:
+        - name: "セマンティックカラーを CSS 変数に置き換える"
+          mode: move
+          path: /color/${{ matrix.color }}
+          from: /color/_${{ matrix.color }}
+
+    - name: リンクテキストの色を設定する
+      matrix:
+        state: [ normal, hover, active, visited ]
+      operations:
+        - name: リンクテキストの色をコピーする
+          mode: copy
+          path: /color/link/${{ matrix.state }}
+          from: /color2.0/${{ /linktext/${{ matrix.state }} }}
+
+  exports:
+    include:
+      - "**"

@@ -18,18 +18,26 @@ const BANNER = `/**
  */
 `
 
+// const TEMPLATE = `${BANNER}
+// @import "{{ base }}.css";
+
+// @layer sui.tokens {
+// @media {{ media }} {
+// @scope {{ scope }} {
+//   :scope,
+//   :scope::backdrop,
+//   :scope ::backdrop {
+// {{ css }}
+//   }
+// }}}
+// `
 const TEMPLATE = `${BANNER}
 @import "{{ base }}.css";
 
 @layer sui.tokens {
-@media {{ media }} {
-@scope {{ scope }} {
-  :scope,
-  :scope::backdrop,
-  :scope ::backdrop {
+{{ scope }} {
 {{ css }}
-  }
-}}}
+}}
 `
 
 interface Theme {
@@ -165,32 +173,36 @@ async function main() {
   await Promise.all([
     writeTheme({
       theme: lightDesktop,
-      media: "screen",
-      scope: "(:root, .sui-light)",
+      media: "(screen)",
+      // scope: "(:root, .sui-light)",
+      scope: ":root, .light, .light-theme, [data-theme=light]",
     }),
     writeTheme({
       base: lightDesktop,
       theme: lightMobile,
       media: `(max-width: ${BP})`,
-      scope: "(:root, .sui-light)",
+      // scope: "(:root, .sui-light)",
+      scope: ":root, .light, .light-theme, [data-theme=light]",
     }),
     writeTheme({
       base: lightDesktop,
       theme: darkDesktop,
-      media: "screen",
-      scope: {
-        from: "(.sui-dark)",
-        to: "(.sui-light)",
-      },
+      media: "(screen)",
+      // scope: {
+      //   from: "(.sui-dark)",
+      //   to: "(.sui-light)",
+      // },
+      scope: ".dark, .dark-theme, [data-theme=dark]",
     }),
     writeTheme({
       base: darkDesktop,
       theme: darkMobile,
       media: `(max-width: ${BP})`,
-      scope: {
-        from: "(.sui-dark)",
-        to: "(.sui-light)",
-      },
+      // scope: {
+      //   from: "(.sui-dark)",
+      //   to: "(.sui-light)",
+      // },
+      scope: ".dark, .dark-theme, [data-theme=dark]",
     }),
     combineTheme({
       name: "light",

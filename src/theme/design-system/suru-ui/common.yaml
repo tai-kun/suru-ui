@@ -1,0 +1,51 @@
+overlay:
+  blur: 4px
+
+radius:
+  sm:   4px
+  md:   8px
+  lg:   12px
+  xl:   16px
+  full: calc(infinity * 1px)
+
+ring:
+  sm: 1px
+  md: 2px
+  lg: 4px
+  focus:
+    active:  lg
+    visible: md
+  disabled:  sm
+  component: sm
+
+$build:
+  imports:
+    spacing:   digital.go.jp/style/Spacing
+    elevation: digital.go.jp/style/Elevation
+
+  patches:
+    - name: スペーシングとエレベーションを設定する
+      operations:
+        - mode: move
+          path: ""
+          from: /elevation
+          strategy: merge
+        - mode: move
+          path: ""
+          from: /spacing
+          strategy: merge
+
+    - name: ボーダーの幅を設定する
+      matrix:
+        path:
+          - focus/$[[ active, visible ]]
+          - disabled
+          - component
+      operations:
+        - mode: replace
+          path: /ring/${{ matrix.path }}
+          value: var(--sui-ring-${{ /ring/${{ matrix.path }} }})
+
+  exports:
+    include:
+      - "**"

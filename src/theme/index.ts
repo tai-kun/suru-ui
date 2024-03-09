@@ -15,10 +15,9 @@ type ConditionalKeys<T, U> = NonNullable<
 export type Monochrome = ConditionalKeys<Dict["color"], Primitive>
 
 /**
- * `ColorShade` と `ColorAlias`、 `ColorVariant` を持つ色名。
+ * `ColorShade` と `ColorVariant` を持つ色名。
  *
  * @see {@link ColorShade}
- * @see {@link ColorAlias}
  * @see {@link ColorVariant}
  */
 export type ColorName = ConditionalKeys<Dict["color"], { 50: any }>
@@ -27,20 +26,8 @@ export type ColorName = ConditionalKeys<Dict["color"], { 50: any }>
  * 色の濃さ。
  *
  * @see {@link ColorName}
- * @see {@link ColorAlias}
  */
-export type ColorShade = Extract<keyof Dict["color"]["primary"], `${number}`>
-
-/**
- * 色の濃さのエイリアス。
- *
- * @see {@link ColorName}
- * @see {@link ColorShade}
- */
-export type ColorAlias = Exclude<
-  ConditionalKeys<Dict["color"]["primary"], Primitive>,
-  ColorShade
->
+export type ColorShade = Extract<keyof Dict["color"]["brand"], `${number}`>
 
 /**
  * 主にボタンなどの状態を表す色のバリエーション。
@@ -48,9 +35,19 @@ export type ColorAlias = Exclude<
  * @see {@link ColorName}
  */
 export type ColorVariant = ConditionalKeys<
-  Dict["color"]["primary"],
+  Dict["color"]["brand"],
   { hover: any }
 >
+
+/**
+ * テキストの色。
+ */
+export type TextColor = keyof Dict["color"]["brand"]["text"]
+
+/**
+ * 枠線の色。
+ */
+export type RingColor = keyof Dict["color"]["brand"]["ring"]
 
 /**
  * テキストの大きさ。
@@ -60,7 +57,7 @@ export type TextSize = Extract<keyof Dict["text"], SizeLike>
 /**
  * 枠線の太さ。
  */
-export type BorderSize = Extract<keyof Dict["border"], SizeLike>
+export type RingSize = Extract<keyof Dict["ring"], SizeLike>
 
 /**
  * フォント。
@@ -105,7 +102,7 @@ export type TrackingSize = Extract<keyof Dict["tracking"], SizeLike>
 /**
  * 角丸の大きさ。
  */
-export type RadSize = Extract<keyof Dict["rad"], SizeLike>
+export type RadiusSize = Extract<keyof Dict["radius"], SizeLike>
 
 /**
  * 影の程度。
@@ -123,33 +120,24 @@ export type SpaceSize = Extract<keyof Dict["space"], SizeLike>
 export type Variables = Flat
 
 export const MONOCHROME_LIST = [
-  "none",
   "black",
   "white",
-  "canvas",
-  "canvasText",
 ] as const satisfies Monochrome[]
 
 export const COLOR_NAME_LIST = [
   "grey",
   "blue",
   "lightBlue",
-  "cyan",
   "green",
-  "lime",
   "yellow",
-  "orange",
   "red",
-  "magenta",
-  "purple",
   // alias
+  "brand",
   "neutral",
   "info",
-  "success",
-  "warn",
   "error",
-  "primary",
-  "secondary",
+  "success",
+  "warning",
 ] as const satisfies ColorName[]
 
 export const COLOR_SHADE_LIST = [
@@ -168,29 +156,28 @@ export const COLOR_SHADE_LIST = [
   "1200",
 ] as const satisfies ColorShade[]
 
-export const COLOR_ALIAS_LIST = [
-  "main",
-  "subtle",
-] as const satisfies ColorAlias[]
-
 export const COLOR_VARIANT_LIST = [
-  "naked",
   "solid",
+  "naked",
   "liquid",
 ] as const satisfies ColorVariant[]
 
+export const TEXT_COLOR_LIST = ["lc", "hc"] as const satisfies TextColor[]
+
+export const RING_COLOR_LIST = ["lc", "hc"] as const satisfies RingColor[]
+
 export const TEXT_SIZE_LIST = ["sm", "md"] as const satisfies TextSize[]
 
-export const BORDER_SIZE_LIST = [
+export const RING_SIZE_LIST = [
   "sm",
   "md",
   "lg",
-] as const satisfies BorderSize[]
+] as const satisfies RingSize[]
 
 export const FONT_FAMILY_LIST = [
+  "sans",
   "mono",
   "serif",
-  "sans",
 ] as const satisfies FontFamily[]
 
 export const FONT_WEIGHT_LIST = [
@@ -226,12 +213,12 @@ export const LEADING_SIZE_LIST = [
 
 export const TRACKING_SIZE_LIST = ["sm", "md"] as const satisfies TrackingSize[]
 
-export const RAD_SIZE_LIST = [
+export const RADIUS_SIZE_LIST = [
   "sm",
   "md",
   "lg",
   "xl",
-] as const satisfies RadSize[]
+] as const satisfies RadiusSize[]
 
 export const SHADOW_SIZE_LIST = [
   "xs",
@@ -257,13 +244,15 @@ export const colorNameSet = new Set(COLOR_NAME_LIST)
 
 export const colorShadeSet = new Set(COLOR_SHADE_LIST)
 
-export const colorAliasSet = new Set(COLOR_ALIAS_LIST)
-
 export const colorVariantSet = new Set(COLOR_VARIANT_LIST)
+
+export const textColorSet = new Set(TEXT_COLOR_LIST)
+
+export const ringColorSet = new Set(RING_COLOR_LIST)
 
 export const textSizeSet = new Set(TEXT_SIZE_LIST)
 
-export const borderSizeSet = new Set(BORDER_SIZE_LIST)
+export const ringSizeSet = new Set(RING_SIZE_LIST)
 
 export const fontFamilySet = new Set(FONT_FAMILY_LIST)
 
@@ -281,7 +270,7 @@ export const leadingSizeSet = new Set(LEADING_SIZE_LIST)
 
 export const trackingSizeSet = new Set(TRACKING_SIZE_LIST)
 
-export const radSizeSet = new Set(RAD_SIZE_LIST)
+export const radiusSizeSet = new Set(RADIUS_SIZE_LIST)
 
 export const shadowSizeSet = new Set(SHADOW_SIZE_LIST)
 
@@ -299,22 +288,26 @@ export function isColorShade(colorShade: unknown): colorShade is ColorShade {
   return colorShadeSet.has(colorShade)
 }
 
-export function isColorAlias(colorAlias: unknown): colorAlias is ColorAlias {
-  return colorAliasSet.has(colorAlias)
-}
-
 export function isColorVariant(
   colorVariant: unknown,
 ): colorVariant is ColorVariant {
   return colorVariantSet.has(colorVariant)
 }
 
+export function isTextColor(textColor: unknown): textColor is TextColor {
+  return textColorSet.has(textColor)
+}
+
+export function isRingColor(ringColor: unknown): ringColor is RingColor {
+  return ringColorSet.has(ringColor)
+}
+
 export function isTextSize(textSize: unknown): textSize is TextSize {
   return textSizeSet.has(textSize)
 }
 
-export function isBorderSize(borderSize: unknown): borderSize is BorderSize {
-  return borderSizeSet.has(borderSize)
+export function isRingSize(ringSize: unknown): ringSize is RingSize {
+  return ringSizeSet.has(ringSize)
 }
 
 export function isFontFamily(fontFamily: unknown): fontFamily is FontFamily {
@@ -353,8 +346,8 @@ export function isTrackingSize(
   return trackingSizeSet.has(trackingSize)
 }
 
-export function isRadSize(radSize: unknown): radSize is RadSize {
-  return radSizeSet.has(radSize)
+export function isRadiusSize(radiusSize: unknown): radiusSize is RadiusSize {
+  return radiusSizeSet.has(radiusSize)
 }
 
 export function isShadowSize(shadowSize: unknown): shadowSize is ShadowSize {
@@ -365,32 +358,61 @@ export function isSpaceSize(spaceSize: unknown): spaceSize is SpaceSize {
   return spaceSizeSet.has(spaceSize)
 }
 
-export function parseColor(color: unknown): null | Monochrome | {
-  name: ColorName
-  shade?: ColorShade | ColorAlias
-} {
-  if (isColorName(color)) {
-    return {
-      name: color,
-    }
-  }
+type ParseResults<P> = P extends readonly [infer T, ...infer R]
+  ? T extends (...args: any) => boolean ? [
+      (T extends ((part: any) => part is infer U)
+        ? [Exclude<U, string>] extends [never] ? U : never
+        : never)?,
+      ...ParseResults<R>,
+    ]
+  : [
+    never,
+    ...ParseResults<R>,
+  ]
+  : P
 
-  if (isMonochrome(color)) {
-    return color
-  }
+export function parseColor<T>(
+  color: T,
+): null | Extract<T, Monochrome | ColorName>
 
-  if (typeof color === "string") {
-    const list = color.split(".")
-    const [name, shade] = list
+export function parseColor<
+  T,
+  const P extends readonly ((part: string) => boolean)[],
+>(
+  color: T,
+  parsers: P,
+): null | Extract<T, Monochrome> | [Extract<T, ColorName>, ...ParseResults<P>]
 
-    if (
-      list.length === 2
-      && isColorName(name)
-      && (isColorShade(shade) || isColorAlias(shade))
-    ) {
-      return {
-        name,
-        shade,
+export function parseColor(
+  color: unknown,
+  parsers?: readonly ((part: string) => boolean)[],
+): null | Monochrome | ColorName | [ColorName, ...string[]] {
+  switch (true) {
+    case isMonochrome(color):
+      return color
+
+    case isColorName(color):
+      return parsers ? [color] : color
+
+    case typeof color === "string" && color.indexOf(".") !== -1 && !!parsers: {
+      const list = color.split(".")
+      const [name, ...params] = list
+
+      if (isColorName(name)) {
+        const result: [ColorName, ...string[]] = [name]
+
+        for (let i = 0; i < params.length; i++) {
+          const part = params[i]!
+          const parse = parsers[i]
+
+          if (parse?.(part) !== true) {
+            return null
+          }
+
+          result.push(part)
+        }
+
+        return result
       }
     }
   }
@@ -500,10 +522,9 @@ if (cfgTest && cfgTest.url === import.meta.url) {
       expectType<Monochrome>(getItemType(MONOCHROME_LIST))
       expectType<ColorName>(getItemType(COLOR_NAME_LIST))
       expectType<ColorShade>(getItemType(COLOR_SHADE_LIST))
-      expectType<ColorAlias>(getItemType(COLOR_ALIAS_LIST))
       expectType<ColorVariant>(getItemType(COLOR_VARIANT_LIST))
       expectType<TextSize>(getItemType(TEXT_SIZE_LIST))
-      expectType<BorderSize>(getItemType(BORDER_SIZE_LIST))
+      expectType<RingSize>(getItemType(RING_SIZE_LIST))
       expectType<FontFamily>(getItemType(FONT_FAMILY_LIST))
       expectType<FontWeight>(getItemType(FONT_WEIGHT_LIST))
       expectType<ShapeSize>(getItemType(SHAPE_SIZE_LIST))
@@ -512,7 +533,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
       expectType<SupplSize>(getItemType(SUPPL_SIZE_LIST))
       expectType<LeadingSize>(getItemType(LEADING_SIZE_LIST))
       expectType<TrackingSize>(getItemType(TRACKING_SIZE_LIST))
-      expectType<RadSize>(getItemType(RAD_SIZE_LIST))
+      expectType<RadiusSize>(getItemType(RADIUS_SIZE_LIST))
       expectType<ShadowSize>(getItemType(SHADOW_SIZE_LIST))
       expectType<SpaceSize>(getItemType(SPACE_SIZE_LIST))
     })
