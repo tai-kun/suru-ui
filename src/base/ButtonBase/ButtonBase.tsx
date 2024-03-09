@@ -1,9 +1,8 @@
 import * as React from "react"
-import { $, type ColorName, type ColorVariant } from "../../theme"
+import type { ColorName, ColorVariant } from "../../theme"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
 import Slot from "../../utils/Slot"
-import useCss from "../../utils/useCss"
 import "suru-ui/base/ButtonBase.css"
 
 /* -----------------------------------------------------------------------------
@@ -24,7 +23,7 @@ export interface RootProps {
   /**
    * ボタンの色。
    *
-   * @default "primary"
+   * @default "brand"
    */
   color?: Color | undefined
   /**
@@ -41,27 +40,11 @@ export interface RootProps {
   variant?: Variant | undefined
 }
 
-function makeRootStyle(color: Color, variant: Variant) {
-  const bg = $.color[color][variant]
-
-  return {
-    "--SuiButtonBase-color": `var(${
-      variant === "solid"
-        ? $.text.onfill
-        : $.color[color].solid.noop
-    })`,
-    "--SuiButtonBase-color-noop": `var(${bg.noop})`,
-    "--SuiButtonBase-color-hover": `var(${bg.hover})`,
-    "--SuiButtonBase-color-active": `var(${bg.active})`,
-    "--SuiButtonBase-border-color": `var(${$.color[color].main})`,
-  }
-}
-
 export const Root = forwardRef(function Root(
   props: HTMLPropsWithRef<any, RootProps>,
 ) {
   const {
-    color = "primary",
+    color = "brand",
     asChild = false,
     variant = "solid",
     outlined = false,
@@ -77,8 +60,7 @@ export const Root = forwardRef(function Root(
       className={clsx(
         className,
         "SuiButtonBase",
-        { variant, outlined },
-        useCss(makeRootStyle, [color, variant]),
+        { color, variant, outlined },
       )}
       data-scope={clsx.lite(scope, "SuiButtonBase")}
     />
