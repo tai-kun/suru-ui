@@ -1,25 +1,10 @@
-import { ThemeState } from "@ladle/react"
 import type { GlobalProvider } from "@ladle/react"
 import * as React from "react"
-import clsx from "../../src/utils/clsx"
+import "../../src/theme/all.css"
 import "./components.css"
 
-export const Provider: GlobalProvider = (
-  {
-    children,
-    globalState: {
-      theme,
-    },
-  },
-) => (
+export const Provider: GlobalProvider = ({ children }) => (
   <React.StrictMode>
-    <div
-      className={clsx.lite(
-        "theme-provider",
-        theme === ThemeState.Dark && "sui-dark",
-      )}
-    >
-      {children}
-    </div>
+    {children}
   </React.StrictMode>
 )
