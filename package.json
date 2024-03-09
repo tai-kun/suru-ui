@@ -154,7 +154,8 @@
     }
   },
   "dependencies": {
-    "@floating-ui/dom": "~1.6.3"
+    "@floating-ui/dom": "~1.6.3",
+    "@tai-kun/use-state-machine": "^1.1.0-canary.20240308T040221"
   },
   "peerDependencies": {
     "react": "^18.0.0",

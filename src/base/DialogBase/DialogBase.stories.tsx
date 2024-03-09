@@ -15,7 +15,7 @@ export const Modal: Story = () => {
         </button>
       </DialogBase.Trigger>
 
-      <DialogBase.Target id={id} modal>
+      <DialogBase.Target id={id} modal onOpenChange={console.log}>
         ダイアログの内容
 
         <DialogBase.Trigger target={id} action="hide">
@@ -28,7 +28,7 @@ export const Modal: Story = () => {
   )
 }
 
-export const Modeless: Story = () => {
+export const NonModal: Story = () => {
   const id = React.useId()
 
   return (

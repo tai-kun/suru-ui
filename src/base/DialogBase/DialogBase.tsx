@@ -1,3 +1,4 @@
+import { transfer, useStateMachine } from "@tai-kun/use-state-machine"
 import * as React from "react"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
@@ -5,9 +6,7 @@ import Slot from "../../utils/Slot"
 import useComposedRefs from "../../utils/useComposedRefs"
 import useEventListener from "../../utils/useEventListener"
 import useInspectableRef from "../../utils/useInspectableRef.dev"
-import useSubscribeMutations, {
-  type UseSubscribeMutationsProps,
-} from "../../utils/useSubscribeMutations"
+import machine, { type MachineProps } from "./DialogBase.machine"
 import "suru-ui/base/DialogBase.css"
 
 /* -----------------------------------------------------------------------------
@@ -42,42 +41,6 @@ export class SuiBeforeOpenEvent extends Event {
  * トリガー要素。
  */
 export type TriggerElement = HTMLElement
-
-/**
- * トリガー要素を取得する。
- *
- * @param dialogEl ダイアログ要素。
- * @returns トリガー要素。
- */
-function* getTriggerElements(
-  dialogEl: HTMLDialogElement | null,
-): Generator<TriggerElement> {
-  if (!dialogEl) {
-    return
-  }
-
-  const { id, ownerDocument } = dialogEl
-  const triggerEls = ownerDocument.querySelectorAll<TriggerElement>(
-    // Popover API のポリフィル
-    // https://github.com/oddbird/popover-polyfill/blob/a1ec8dc60bf45fc22d354a41c413ae3ab58c44eb/src/popover.ts#L253-L269
-    // を参考に、button 要素か、type 属性が button|submit|reset|image の input 要素。
-    `[aria-controls=${CSS.escape(id)}]:enabled:is(${[
-      `button`,
-      `input:is(${[
-        "[type=button]",
-        "[type=submit]",
-        "[type=reset]",
-        "[type=image]",
-      ]})`,
-    ]})`,
-  )
-
-  for (const triggerEl of triggerEls) {
-    yield triggerEl
-  }
-
-  return
-}
 
 /**
  * ダイアログ要素を取得する。
@@ -351,70 +314,133 @@ export type OnInteractOutside = (this: Window, event: PointerEvent) => void
 /**
  * ダイアログの開閉状態が変更されたときに呼び出される関数。
  *
- * @param open ダイアログが開いているかどうか。
- * @param event イベント。
+ * @param isOpen ダイアログが開いたかどうか。
  * @returns なし。
  */
-export type OnOpenChange = (open: boolean, event: Event) => void
+export type OnOpenChange = (isOpen: boolean) => void
 
-const USE_OPEN_CHANGE_PROPS: Omit<
-  UseSubscribeMutationsProps<HTMLDialogElement, boolean>,
-  "target"
-> = {
-  onChange({ currentTarget }): boolean {
-    return currentTarget.open
+function useHandleOpenChange(
+  props: {
+    id: string
+    send: {
+      (event: "DIALOG.OPEN"): void
+      (event: "DIALOG.CLOSE"): void
+      (event: { type: "OPEN"; event: SuiBeforeOpenEvent }): void
+    }
+    isOpen: boolean
+    targetRef: React.RefObject<HTMLDialogElement>
+    onOpenChange: OnOpenChange | undefined
   },
-  initialValue: false,
-  attributes: true,
-  attributeFilter: ["open"],
-  attributeOldValue: true,
-}
+) {
+  const { id, targetRef, send, isOpen, onOpenChange } = props
+  React.useEffect(
+    () => {
+      if (!targetRef.current) {
+        return
+      }
 
-/**
- * ダイアログの開閉状態と同期して真偽値を返す。
- *
- * @param target ダイアログ要素の ref オブジェクト。
- * @returns ダイアログの開閉状態。
- */
-function useOpenChange(target: React.RefObject<HTMLDialogElement>) {
-  return useSubscribeMutations({
-    ...USE_OPEN_CHANGE_PROPS,
-    target,
-  })
+      const { current: targetEl } = targetRef
+
+      function handleBeforeOpen(
+        this: HTMLDialogElement,
+        event: SuiBeforeOpenEvent,
+      ) {
+        send({
+          type: "OPEN",
+          event,
+        })
+      }
+
+      targetEl.addEventListener(
+        "sui:dialog-base:beforeopen",
+        handleBeforeOpen as any,
+        { passive: true },
+      )
+      const observer = new MutationObserver(mutations => {
+        const mutation = mutations.at(-1)
+
+        if (mutation?.target instanceof Element) {
+          if (
+            mutation.oldValue === null
+            && mutation.target.hasAttribute("open")
+          ) {
+            send("DIALOG.OPEN")
+          } else if (
+            mutation.oldValue !== null
+            && !mutation.target.hasAttribute("open")
+          ) {
+            send("DIALOG.CLOSE")
+          }
+        }
+      })
+      observer.observe(targetEl, {
+        attributes: true,
+        attributeFilter: ["open"],
+        attributeOldValue: true,
+      })
+
+      return () => {
+        observer.disconnect()
+        targetEl.removeEventListener(
+          "sui:dialog-base:beforeopen",
+          handleBeforeOpen as any,
+        )
+      }
+    },
+    [],
+  )
+  React.useEffect(
+    () => {
+      onOpenChange?.(isOpen)
+    },
+    [isOpen, onOpenChange],
+  )
+  React.useEffect(
+    () => {
+      const triggerEl = document.querySelector(
+        `[aria-controls=${CSS.escape(id)}]`,
+      )
+
+      if (triggerEl instanceof HTMLElement) {
+        triggerEl.setAttribute("aria-expanded", `${isOpen}`)
+      }
+    },
+    [isOpen],
+  )
 }
 
 /**
  * onEscapeKeyDown を操作する。
  * dialog 要素の cancel イベントを監視し、イベントを発火する。
- *
- * @param open ダイアログが開いているかどうか。
- * @param targetRef ターゲットコンポーネントの ref オブジェクト。
- * @param handler ハンドラー。
  */
 function useHandleEscapeKeyDown(
-  open: boolean,
-  targetRef: React.RefObject<HTMLDialogElement>,
-  handler: OnEscapeKeyDown | undefined,
+  props: {
+    isOpen: boolean
+    targetRef: React.RefObject<HTMLDialogElement>
+    onEscapeKeyDown: OnEscapeKeyDown | undefined
+  },
 ): void {
+  const { isOpen, targetRef, onEscapeKeyDown } = props
   useEventListener(
-    open ? targetRef : null,
+    targetRef,
     React.useCallback(
       targetEl => {
-        if (!handler) {
-          return
+        if (onEscapeKeyDown) {
+          // ダイアログの説明
+          // https://developer.mozilla.org/ja/docs/Web/API/HTMLDialogElement#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88
+          // より、cancelについて、
+          // 「ユーザーがエスケープキーで現在開いているダイアログを解除したときに発行されます。」
+          // とあるので、cancel イベントを監視する。
+          targetEl.addEventListener("cancel", function(event) {
+            onEscapeKeyDown.call(this, event)
+          })
         }
-
-        // ダイアログの説明
-        // https://developer.mozilla.org/ja/docs/Web/API/HTMLDialogElement#%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88
-        // より、cancelについて、
-        // 「ユーザーがエスケープキーで現在開いているダイアログを解除したときに発行されます。」
-        // とあるので、cancel イベントを監視する。
-        targetEl.addEventListener("cancel", function(event) {
-          handler.call(this, event)
-        })
       },
-      [handler],
+      [onEscapeKeyDown],
     ),
+    {
+      enabled: isOpen,
+    },
   )
 }
 
@@ -439,27 +465,24 @@ function isInside(
 
 /**
  * onInteractOutside を操作する。
- *
- * @param open ダイアログが開いているかどうか。
- * @param targetRef ターゲットコンポーネントの ref オブジェクト。
- * @param handler ハンドラー。
  */
 function useHandleInteractOutside(
-  open: boolean,
-  targetRef: React.RefObject<HTMLDialogElement>,
-  handler: OnInteractOutside | undefined,
+  props: {
+    isOpen: boolean
+    targetRef: React.RefObject<HTMLDialogElement>
+    onInteractOutside: OnInteractOutside | undefined
+  },
 ): void {
+  const { isOpen, targetRef, onInteractOutside } = props
   useEventListener(
-    open && typeof document !== "undefined" ? window : null,
+    typeof document !== "undefined" && window,
     React.useCallback(
       win => {
-        win.addEventListener("click", function(event) {
+        win.addEventListener("pointerdown", function(event) {
           const { current: targetEl } = targetRef
 
           if (
             !targetEl
-            // TODO: PointerEvent でない場合は未対応のブラウザかもしれないので、警告を出す。
-            || !(event instanceof PointerEvent)
             || !(event.target instanceof Element)
             // ダイアログのトリガーをクリックした場合は、そのトリガーの動作を優先させる。
             || event.target.getAttribute("aria-controls") === targetEl.id
@@ -480,92 +503,22 @@ function useHandleInteractOutside(
             return
           }
 
-          handler?.call(this, event)
+          onInteractOutside?.call(this, event)
 
           if (!event.defaultPrevented) {
             hide(targetEl)
           }
         })
       },
-      [],
+      [onInteractOutside],
     ),
+    {
+      enabled: isOpen,
+    },
   )
 }
 
-/**
- * onOpenChange を操作する。
- *
- * @param targetRef ターゲットコンポーネントの ref オブジェクト。
- * @param handler ハンドラー。
- * @param options オプション。
- */
-function useHandleOpenChange(
-  targetRef: React.RefObject<HTMLDialogElement>,
-  handler: OnOpenChange | undefined,
-  options: {
-    modal: boolean | undefined
-    disabled: boolean
-  },
-): void {
-  const { modal, disabled } = options
-  useEventListener(
-    targetRef,
-    React.useCallback(
-      targetEl => {
-        const handleOpenChange = (event: Event) => {
-          const currentTarget = event.currentTarget as HTMLDialogElement
-          const { open } = currentTarget
-
-          for (const triggerEl of getTriggerElements(currentTarget)) {
-            triggerEl.setAttribute("aria-expanded", `${open}`)
-          }
-
-          handler?.(open, event)
-        }
-        targetEl.addEventListener("sui:dialog-base:beforeopen", event => {
-          if (event instanceof SuiBeforeOpenEvent) {
-            if (disabled) {
-              event.preventDefault()
-            } else if (
-              modal !== undefined
-              && event.modal !== undefined
-              && event.modal !== modal
-            ) {
-              event.preventDefault()
-
-              if (__DEV__) {
-                console.error(
-                  "SUI(base/DialogBase): "
-                    + `${modal ? "" : "非"}モーダルダイアログを`
-                    + `${event.modal ? "" : "非"}モーダルダイアログ`
-                    + "として開こうとしました。",
-                )
-              }
-            }
-
-            if (!event.cancelable || !event.defaultPrevented) {
-              const currentTarget = event.currentTarget as HTMLDialogElement
-
-              if (event.modal ?? modal) {
-                currentTarget.showModal()
-              } else {
-                currentTarget.show()
-              }
-
-              handleOpenChange(event)
-            }
-          }
-        })
-        targetEl.addEventListener("close", event => {
-          handleOpenChange(event)
-        })
-      },
-      [modal, disabled, handler],
-    ),
-  )
-}
-
-export interface TargetProps {
+export interface TargetProps extends MachineProps {
   /**
    * 子要素を独自のコンポーネントとしてレンダリングするかどうか。
    *
@@ -573,21 +526,9 @@ export interface TargetProps {
    */
   asChild?: boolean | undefined
   /**
-   * ダイアログの表示を無効にするかどうか。
-   *
-   * @default false
-   */
-  disabled?: boolean | undefined
-  /**
    * ダイアログの ID。
    */
   id: string
-  /**
-   * モーダルダイアログとして扱うかどうか。未定義の場合はトリガーの指示に従う。
-   *
-   * @default undefined
-   */
-  modal?: boolean | undefined
   /**
    * ダイアログが開いている状態で、ユーザーが esc キーを押したときに呼び出される関数。
    */
@@ -606,6 +547,7 @@ export const Target = forwardRef(function Target(
   props: Omit<HTMLPropsWithRef<"dialog", TargetProps>, "open">,
 ) {
   const {
+    id,
     ref: refProp,
     modal,
     asChild = false,
@@ -626,10 +568,9 @@ export const Target = forwardRef(function Target(
       React.useCallback(
         targetEl => {
           if (targetEl !== null && !(targetEl instanceof HTMLDialogElement)) {
-            console.error(
+            throw new Error(
               "SUI(base/DialogBase): ref に渡された要素が HTMLDialogElement "
                 + "のインスタンスではありません。",
-              targetEl,
             )
           }
         },
@@ -638,14 +579,37 @@ export const Target = forwardRef(function Target(
     )
   }
 
-  const open = useOpenChange(targetRef)
-  useHandleOpenChange(targetRef, onOpenChange, { modal, disabled })
-  useHandleEscapeKeyDown(open, targetRef, onEscapeKeyDown)
-  useHandleInteractOutside(open, targetRef, onInteractOutside)
+  const [state, send] = useStateMachine(machine, [
+    targetRef,
+    transfer({
+      modal,
+      disabled,
+    }),
+  ])
+  const isOpen = state.value === "open"
+
+  useHandleOpenChange({
+    id,
+    send,
+    isOpen,
+    targetRef,
+    onOpenChange,
+  })
+  useHandleEscapeKeyDown({
+    isOpen,
+    targetRef,
+    onEscapeKeyDown,
+  })
+  useHandleInteractOutside({
+    isOpen,
+    targetRef,
+    onInteractOutside,
+  })
 
   return (
     <Comp
       {...other}
+      id={id}
       ref={useComposedRefs(refProp, targetRef)}
       className={clsx(className, "SuiDialogBaseTarget")}
       data-scope={clsx.lite(scope, "SuiDialogBase")}
