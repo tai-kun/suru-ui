@@ -29,20 +29,46 @@ export interface EventTargetLike<T> {
 export type RegisterReturn = ReturnType<Parameters<typeof React.useEffect>[0]>
 
 /**
+ * `useEventListener` フックのオプション。
+ */
+export interface Options {
+  /**
+   * イベントリスナーを有効にするかどうか。
+   *
+   * @default true
+   */
+  enabled?: boolean
+}
+
+/**
  * イベントリスナーを登録する。
  *
  * @template T イベントリスナーを登録する対象の型。
  * @param target イベントリスナーを登録する対象。
  * @param register イベントリスナーを登録する関数。
+ * @param options オプション。
  */
 export default function useEventListener<T extends EventTargetLike<T>>(
-  target: React.RefObject<T | undefined> | T | null | undefined,
+  target:
+    | React.RefObject<T | undefined>
+    | T
+    | null
+    | undefined
+    | false
+    | ""
+    | 0,
   register: (target: T) => RegisterReturn,
+  options: Options | undefined = {},
 ): void {
+  const { enabled = true } = options
   const isMounted = useIsMounted()
 
   React.useEffect(
     () => {
+      if (!enabled) {
+        return
+      }
+
       const etl = isRefObject(target) ? target.current : target
 
       if (!etl) {
@@ -105,7 +131,7 @@ export default function useEventListener<T extends EventTargetLike<T>>(
         }
       }
     },
-    [target, register],
+    [enabled, target, register],
   )
 }
 
