@@ -1,19 +1,12 @@
-@layer sui.static {
-  @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
+@layer sui.enabled {
+  @scope (.Sui{{ name }}) {
     :scope {
-      /*
-       * Root
-       * 
-       */
-
-      &:not(:is(:disabled, [disabled], [data-disabled])) {}
     }
   }
 }
 
-
 @layer sui.disabled {
-  @scope (.Sui{{ name }}) to (:not([data-scope~=Sui{{ name }}])) {
+  @scope (.Sui{{ name }}) {
     :scope:is(:disabled, [disabled], [data-disabled]) {}
   }
 }
