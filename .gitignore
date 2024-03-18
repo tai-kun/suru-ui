@@ -4,7 +4,6 @@
 dist/
 node_modules/
 
-config/code/tsconfig.*.json
 src/icons/*/*.tsx
 src/icons/*/LICENSE
 src/theme/_*

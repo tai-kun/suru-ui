@@ -169,7 +169,6 @@
     "deepmerge": "~4.3.1",
     "dprint": "~0.45.0",
     "esbuild": "~0.20.2",
-    "esbuild-plugin-replace": "~1.4.0",
     "glob": "~10.3.10",
     "minimatch": "~9.0.3",
     "mock-fs": "~5.2.0",
@@ -200,8 +199,7 @@
     "build:theme": "scripts/build-theme.sh",
     "build:icons": "scripts/build-icons.sh",
     "check:exports": "node scripts/check-exports.js",
-    "check:external-deps": "node scripts/check-external-deps.js",
-    "postinstall": "test ! -f scripts/postinstall.sh || scripts/postinstall.sh"
+    "check:external-deps": "node scripts/check-external-deps.js"
   },
   "volta": {
     "node": "21.6.2"

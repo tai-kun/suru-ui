@@ -1,5 +1,8 @@
 {
-  "extends": "./config/code/tsconfig.base.json",
+  "extends": [
+    "./node_modules/@tsconfig/node21/tsconfig.json",
+    "./node_modules/@tsconfig/strictest/tsconfig.json"
+  ],
   "include": [
     "@types/**/*",
     "config/**/*",
@@ -11,11 +14,11 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext"
+      "ES2022"
     ],
     "noEmit": true,
     "sourceMap": true,
-    "module": "ESNext",
+    "module": "ES2022",
     "moduleResolution": "Bundler"
   }
 }

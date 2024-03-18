@@ -47,4 +47,3 @@ npx tsc -p tsconfig.build.json
 
 rm -r dist/icons/build
 rm -r dist/theme/build
-rm -r dist/utils-dev

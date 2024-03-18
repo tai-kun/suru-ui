@@ -8,7 +8,7 @@ export interface IconDefinition {
   children: React.JSX.Element
 }
 
-if (cfgTest && process.env.CFG_TEST_FILE === import.meta.filename) {
+if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest
 
   describe("src/icons/index", () => {
