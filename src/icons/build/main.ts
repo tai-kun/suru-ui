@@ -94,6 +94,7 @@ async function buildMaterialDesignIcons(
       const resp = await fetch(assetsUrl, { redirect: "manual" })
 
       if (resp.status === 302) {
+        await resp.body?.cancel()
         const res = await fetch(resp.headers.get("location")!)
 
         return res.blob()
