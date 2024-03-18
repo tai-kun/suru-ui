@@ -11,21 +11,6 @@
     "dist"
   ],
   "exports": {
-    "./base/ButtonBase": {
-      "types": "./dist/base/ButtonBase/ButtonBase.d.ts",
-      "default": "./dist/base/ButtonBase/ButtonBase.jsx"
-    },
-    "./base/ButtonBase.css": "./dist/base/ButtonBase/ButtonBase.css",
-    "./base/DialogBase": {
-      "types": "./dist/base/DialogBase/DialogBase.d.ts",
-      "default": "./dist/base/DialogBase/DialogBase.jsx"
-    },
-    "./base/DialogBase.css": "./dist/base/DialogBase/DialogBase.css",
-    "./base/PopoverBase": {
-      "types": "./dist/base/PopoverBase/PopoverBase.d.ts",
-      "default": "./dist/base/PopoverBase/PopoverBase.jsx"
-    },
-    "./base/PopoverBase.css": "./dist/base/PopoverBase/PopoverBase.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "default": "./dist/icons/index.js"
@@ -155,49 +140,49 @@
   },
   "dependencies": {
     "@floating-ui/dom": "~1.6.3",
-    "@tai-kun/use-state-machine": "^1.1.0-canary.20240308T040221"
+    "use-machine-ts": "^0.2.0-canary.20240318T072253"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "~13.4.1",
-    "@ladle/react": "~4.0.2",
+    "@happy-dom/global-registrator": "~13.9.0",
+    "@ladle/react": "~4.0.3",
     "@rollup/plugin-replace": "~5.0.5",
     "@svgr/core": "~8.1.0",
-    "@swc-node/register": "~1.8.0",
+    "@swc-node/register": "~1.9.0",
     "@testing-library/react": "~14.2.1",
     "@tsconfig/node21": "~21.0.1",
     "@tsconfig/strictest": "~2.0.3",
-    "@types/css-tree": "~2.3.6",
+    "@types/css-tree": "~2.3.7",
     "@types/mock-fs": "~4.13.4",
-    "@types/node": "~20.11.20",
-    "@types/react": "~18.2.57",
-    "@types/react-dom": "~18.2.19",
-    "@types/react-is": "~18.2.4",
+    "@types/node": "~20.11.28",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@types/react-is": "^18.2.4",
     "@types/unzipper": "~0.10.9",
-    "@typescript-eslint/typescript-estree": "~7.1.0",
-    "cfg-test": "~0.4.3",
+    "@typescript-eslint/typescript-estree": "~7.2.0",
+    "cfg-test": "~0.5.0",
     "css-tree": "~2.3.1",
     "deep-object-diff": "~1.1.9",
     "deepmerge": "~4.3.1",
     "dprint": "~0.45.0",
-    "esbuild": "~0.20.1",
+    "esbuild": "~0.20.2",
     "esbuild-plugin-replace": "~1.4.0",
     "glob": "~10.3.10",
     "minimatch": "~9.0.3",
     "mock-fs": "~5.2.0",
     "plop": "~4.0.1",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "react-is": "~18.2.0",
-    "tsd": "~0.30.5",
-    "typescript": "~5.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "tsd": "~0.30.7",
+    "typescript": "~5.4.2",
     "unzipper": "~0.10.14",
-    "valibot": "~0.29.0",
+    "valibot": "~0.30.0",
     "visit-json": "~0.2.2",
-    "yaml": "~2.3.4"
+    "yaml": "~2.4.1"
   },
   "repository": "git+https://github.com/tai-kun/suru-ui.git",
   "author": {
