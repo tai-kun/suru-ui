@@ -7,6 +7,7 @@ import path from "node:path"
 
 const buildIgnore = [
   "**/build/**",
+  "**/*.stories.tsx",
 ]
 
 const jsEntryPoints = await glob("src/**/*.ts", {

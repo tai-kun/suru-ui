@@ -11,6 +11,16 @@
     "dist"
   ],
   "exports": {
+    "./Text": {
+      "types": "./dist/core/Text/Text.d.ts",
+      "default": "./dist/core/Text/Text.jsx"
+    },
+    "./Text.css": "./dist/core/Text/Text.css",
+    "./Icon": {
+      "types": "./dist/core/Icon/Icon.d.ts",
+      "default": "./dist/core/Icon/Icon.jsx"
+    },
+    "./Icon.css": "./dist/core/Icon/Icon.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "default": "./dist/icons/index.js"
