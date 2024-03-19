@@ -149,7 +149,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "~13.9.0",
     "@ladle/react": "~4.0.3",
-    "@rollup/plugin-replace": "~5.0.5",
+    "@playwright/experimental-ct-react": "~1.42.1",
     "@svgr/core": "~8.1.0",
     "@swc-node/register": "~1.9.0",
     "@testing-library/react": "~14.2.1",
@@ -193,7 +193,8 @@
     "tsc": "tsc --noEmit && tsd -f '@types/**/*.d.ts' -f 'src/**/*.{ts,tsx}'",
     "fmt": "dprint fmt",
     "lint": "exit 0",
-    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx' --test 'src/{base,core,lab}/*/!(*.spec.tsx|*.stories.tsx|*.css)'",
+    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx'",
+    "test:ct": "playwright test -c config/playwright/ct.config.ts",
     "story": "ladle dev --config config/ladle",
     "build": "scripts/build.sh",
     "build:theme": "scripts/build-theme.sh",
