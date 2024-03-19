@@ -182,7 +182,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "~1.6.3",
-    "use-machine-ts": "^0.2.0-canary.20240318T072253"
+    "use-machine-ts": "^0.2.0-canary.20240319T082700"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -236,7 +236,7 @@
     "fmt": "dprint fmt",
     "lint": "exit 0",
     "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx'",
-    "test:ct": "playwright test -c config/playwright/ct.config.ts",
+    "test:ct": "scripts/test-ct.sh",
     "story": "ladle dev --config config/ladle",
     "build": "scripts/build.sh",
     "build:theme": "scripts/build-theme.sh",
