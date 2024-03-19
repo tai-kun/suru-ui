@@ -61,8 +61,8 @@ color:
       hover:  var(--sui-color-blue-alpha-200)
       active: var(--sui-color-blue-alpha-300)
     text:
-      lc: var(--sui-color-blue-solid-normal)
-      hc: var(--sui-color-blue-solid-active)
+      lc: var(--sui-color-blue-solid-active)
+      hc: var(--sui-color-blue-solid-normal)
     ring:
       lc: var(--sui-color-blue-text-lc)
       hc: var(--sui-color-blue-text-hc)
@@ -94,8 +94,8 @@ color:
       hover:  var(--sui-color-lightBlue-alpha-200)
       active: var(--sui-color-lightBlue-alpha-300)
     text:
-      lc: var(--sui-color-lightBlue-solid-normal)
-      hc: var(--sui-color-lightBlue-solid-active)
+      lc: var(--sui-color-lightBlue-solid-active)
+      hc: var(--sui-color-lightBlue-solid-normal)
     ring:
       lc: var(--sui-color-lightBlue-text-lc)
       hc: var(--sui-color-lightBlue-text-hc)
@@ -127,8 +127,8 @@ color:
       hover:  var(--sui-color-green-alpha-200)
       active: var(--sui-color-green-alpha-300)
     text:
-      lc: var(--sui-color-green-solid-normal)
-      hc: var(--sui-color-green-solid-active)
+      lc: var(--sui-color-green-solid-active)
+      hc: var(--sui-color-green-solid-normal)
     ring:
       lc: var(--sui-color-green-text-lc)
       hc: var(--sui-color-green-text-hc)
@@ -160,8 +160,8 @@ color:
       hover:  var(--sui-color-yellow-alpha-200)
       active: var(--sui-color-yellow-alpha-300)
     text:
-      lc: var(--sui-color-yellow-solid-normal)
-      hc: var(--sui-color-yellow-solid-active)
+      lc: var(--sui-color-yellow-solid-active)
+      hc: var(--sui-color-yellow-solid-normal)
     ring:
       lc: var(--sui-color-yellow-text-lc)
       hc: var(--sui-color-yellow-text-hc)
@@ -193,8 +193,8 @@ color:
       hover:  var(--sui-color-red-alpha-200)
       active: var(--sui-color-red-alpha-300)
     text:
-      lc: var(--sui-color-red-solid-normal)
-      hc: var(--sui-color-red-solid-active)
+      lc: var(--sui-color-red-solid-active)
+      hc: var(--sui-color-red-solid-normal)
     ring:
       lc: var(--sui-color-red-text-lc)
       hc: var(--sui-color-red-text-hc)
