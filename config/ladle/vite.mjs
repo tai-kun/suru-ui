@@ -1,22 +1,22 @@
-import replace from "@rollup/plugin-replace"
 import { buildDefine } from "cfg-test/define"
+import path from "node:path"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  resolve: {
-    alias: [{
-      find: /^suru-ui\/([A-Z].+)\.css$/,
-      replacement: process.cwd() + "/src/core/$1/$1.css",
-    }, {
-      find: /^suru-ui\/(base|lab)\/([A-Z].+)\.css$/,
-      replacement: process.cwd() + "/src/$1/$2/$2.css",
-    }],
+  define: {
+    ...buildDefine,
+    __DEV__: "true",
   },
-  plugins: [
-    replace({
-      ...buildDefine,
-      __DEV__: "true",
-      preventAssignment: true,
-    }),
-  ],
+  resolve: {
+    alias: [
+      {
+        find: /^suru-ui\/([A-Z].+)\.css$/,
+        replacement: path.resolve("src/core/$1/$1.css"),
+      },
+      {
+        find: /^suru-ui\/(base|lab)\/([A-Z].+)\.css$/,
+        replacement: path.resolve("src/$1/$2/$2.css"),
+      },
+    ],
+  },
 })
