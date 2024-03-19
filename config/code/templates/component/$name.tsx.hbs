@@ -23,7 +23,6 @@ export const Root = forwardRef(function Root(
   const {
     asChild = false,
     className,
-    "data-scope": scope,
     ...other
   } = props
   const Comp = asChild ? Slot : "div"
@@ -32,7 +31,6 @@ export const Root = forwardRef(function Root(
     <Comp
       {...other}
       className={clsx(className, "Sui{{ name }}", {})}
-      data-scope={clsx.lite(scope, "Sui{{ name }}")}
     />
   )
 })
