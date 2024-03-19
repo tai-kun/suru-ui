@@ -1,0 +1,175 @@
+@layer sui.enabled {
+  @scope (.SuiText) {
+    :scope {
+      /*
+       * Root
+       * --SuiText-size
+       * --SuiText-align
+       * --SuiText-color
+       * --SuiText-family
+       * --SuiText-weight
+       * --SuiText-justify
+       * --SuiText-leading
+       * --SuiText-tracking
+       * --SuiText-lineClamp
+       */
+
+      color: var(--SuiText-color);
+      display: block;
+      position: relative;
+      font-size: var(--SuiText-size);
+      text-align: var(--SuiText-align);
+      font-family: var(--SuiText-family);
+      font-weight: var(--SuiText-weight);
+      line-height: var(--SuiText-leading);
+      letter-spacing: var(--SuiText-tracking);
+      justify-content: var(--SuiText-justify);
+
+      &.Sui-size-sm {
+        --SuiText-size: var(--sui-text-sm-size);
+        --SuiText-weight: var(--sui-text-sm-weight);
+        --SuiText-leading: var(--sui-text-sm-leading);
+        --SuiText-tracking: var(--sui-text-sm-tracking);
+      }
+
+      &.Sui-size-md {
+        --SuiText-size: var(--sui-text-md-size);
+        --SuiText-weight: var(--sui-text-md-weight);
+        --SuiText-leading: var(--sui-text-md-leading);
+        --SuiText-tracking: var(--sui-text-md-tracking);
+      }
+
+      &.Sui-size-inherit {
+        --SuiText-size: inherit;
+        --SuiText-weight: inherit;
+        --SuiText-leading: inherit;
+        --SuiText-tracking: inherit;
+      }
+
+      &.Sui-align-left {
+        --SuiText-align: left;
+        --SuiText-justify: start;
+      }
+
+      &.Sui-align-right {
+        --SuiText-align: right;
+        --SuiText-justify: end;
+      }
+
+      &.Sui-align-center {
+        --SuiText-align: center;
+        --SuiText-justify: center;
+      }
+
+      &.Sui-align-justify {
+        --SuiText-align: justify;
+        --SuiText-justify: justify;
+      }
+
+      &.Sui-align-inherit {
+        --SuiText-align: inherit;
+        --SuiText-justify: inherit;
+      }
+
+      &.Sui-font-sans {
+        --SuiText-family: var(--sui-font-sans);
+      }
+
+      &.Sui-font-mono {
+        --SuiText-family: var(--sui-font-mono);
+      }
+
+      &.Sui-font-serif {
+        --SuiText-family: var(--sui-font-serif);
+      }
+
+      &.Sui-font-inherit {
+        --SuiText-family: inherit;
+      }
+
+      &.Sui-weight-normal {
+        --SuiText-weight: var(--sui-font-normal);
+      }
+
+      &.Sui-weight-medium {
+        --SuiText-weight: var(--sui-font-medium);
+      }
+
+      &.Sui-weight-bold {
+        --SuiText-weight: var(--sui-font-bold);
+      }
+
+      /*
+       * &.Sui-weight-inherit {
+       *   .Sui-size-<...> の設定値に従う。
+       * }
+       */
+
+      &.Sui-inline {
+        display: inline-block;
+      }
+
+      &.Sui-truncate {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      &.Sui-lineClamp {
+        -webkit-line-clamp: var(--SuiText-lineClamp);
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        overflow: hidden;
+        white-space: normal;
+        text-overflow: ellipsis;
+      }
+
+      &.Sui-color-inherit     { --SuiText-color: inherit;                           }
+      &.Sui-color-body        { --SuiText-color: var(--sui-color-text-body);        }
+      &.Sui-color-description { --SuiText-color: var(--sui-color-text-description); }
+      &.Sui-color-canvas      { --SuiText-color: var(--sui-color-canvas-main);      }
+      &.Sui-color-white       { --SuiText-color: var(--sui-color-white);            }
+      &.Sui-color-black       { --SuiText-color: var(--sui-color-black);            }
+
+      &.Sui-contrast-low {
+        &.Sui-color-grey      { --SuiText-color: var(--sui-color-grey-text-lc);      }
+        &.Sui-color-blue      { --SuiText-color: var(--sui-color-blue-text-lc);      }
+        &.Sui-color-lightBlue { --SuiText-color: var(--sui-color-lightBlue-text-lc); }
+        &.Sui-color-green     { --SuiText-color: var(--sui-color-green-text-lc);     }
+        &.Sui-color-yellow    { --SuiText-color: var(--sui-color-yellow-text-lc);    }
+        &.Sui-color-red       { --SuiText-color: var(--sui-color-red-text-lc);       }
+        &.Sui-color-brand     { --SuiText-color: var(--sui-color-brand-text-lc);     }
+        &.Sui-color-neutral   { --SuiText-color: var(--sui-color-neutral-text-lc);   }
+        &.Sui-color-info      { --SuiText-color: var(--sui-color-info-text-lc);      }
+        &.Sui-color-error     { --SuiText-color: var(--sui-color-error-text-lc);     }
+        &.Sui-color-warning   { --SuiText-color: var(--sui-color-warning-text-lc);   }
+        &.Sui-color-success   { --SuiText-color: var(--sui-color-success-text-lc);   }
+      }
+
+      &.Sui-contrast-high {
+        &.Sui-color-grey      { --SuiText-color: var(--sui-color-grey-text-hc);      }
+        &.Sui-color-blue      { --SuiText-color: var(--sui-color-blue-text-hc);      }
+        &.Sui-color-lightBlue { --SuiText-color: var(--sui-color-lightBlue-text-hc); }
+        &.Sui-color-green     { --SuiText-color: var(--sui-color-green-text-hc);     }
+        &.Sui-color-yellow    { --SuiText-color: var(--sui-color-yellow-text-hc);    }
+        &.Sui-color-red       { --SuiText-color: var(--sui-color-red-text-hc);       }
+        &.Sui-color-brand     { --SuiText-color: var(--sui-color-brand-text-hc);     }
+        &.Sui-color-neutral   { --SuiText-color: var(--sui-color-neutral-text-hc);   }
+        &.Sui-color-info      { --SuiText-color: var(--sui-color-info-text-hc);      }
+        &.Sui-color-error     { --SuiText-color: var(--sui-color-error-text-hc);     }
+        &.Sui-color-warning   { --SuiText-color: var(--sui-color-warning-text-hc);   }
+        &.Sui-color-success   { --SuiText-color: var(--sui-color-success-text-hc);   }
+      }
+    }
+  }
+}
+
+@layer sui.disabled {
+  @scope (.SuiText) {
+    :scope {
+      &.Sui-color-disabled {
+        color: var(--sui-color-text-disabled);
+      }
+    }
+  }
+}
