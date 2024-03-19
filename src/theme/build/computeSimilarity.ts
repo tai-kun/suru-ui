@@ -33,8 +33,8 @@ function getValuesSum(ret: { [nGram: string]: number }): number {
 /**
  * 類似度を計算する。
  *
- * @param a 1 つめの文字列。
- * @param b 2 つめの文字列。
+ * @param a - 1 つめの文字列。
+ * @param b - 2 つめの文字列。
  * @returns 類似度。
  * @see https://qiita.com/gomaoaji/items/603904e31f965d759293
  */

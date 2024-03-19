@@ -4,8 +4,8 @@ import replaceVariable, { type Variables } from "./replaceVariable"
 /**
  * パッチのパスをコンパイルする。
  *
- * @param patchPath パッチのパス。
- * @param variables 変数の値を取得する機能。
+ * @param patchPath - パッチのパス。
+ * @param variables - 変数の値を取得する機能。
  * @returns コンパイルされたパッチのパス。
  */
 export default function compilePatchPath(

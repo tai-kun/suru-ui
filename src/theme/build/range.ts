@@ -1,9 +1,9 @@
 /**
  * 範囲を生成する。
  *
- * @param start 開始値。
- * @param end 終了値。
- * @param step ステップ値。
+ * @param start - 開始値。
+ * @param end - 終了値。
+ * @param step - ステップ値。
  * @returns 範囲。
  */
 export default function* range(start: number, end: number, step: number = 1) {

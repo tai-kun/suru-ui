@@ -3,7 +3,7 @@ import { unescapePatchPathComponent } from "./jsonpatch"
 /**
  * JSON Patch のパスをポインタに変換する。
  *
- * @param patchPath JSON Patch のパス。
+ * @param patchPath - JSON Patch のパス。
  * @returns ポインタ。
  */
 export default function toPointer(patchPath: string): string[] {

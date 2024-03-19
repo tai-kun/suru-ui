@@ -14,8 +14,8 @@ export interface GenTypesOptions {
 /**
  * CSS カスタムプロパティの型を生成する。
  *
- * @param vars 変数。
- * @param options オプション。
+ * @param vars - 変数。
+ * @param options - オプション。
  * @returns カスタムプロパティの型。
  */
 export default function genTypes(

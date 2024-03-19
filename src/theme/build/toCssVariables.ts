@@ -53,8 +53,8 @@ function toCallable<T>(value: T | (() => T)): () => T {
 /**
  * JSON 値を CSS カスタムプロパティに変換する。
  *
- * @param value 変換する JSON 値。
- * @param options オプション。
+ * @param value - 変換する JSON 値。
+ * @param options - オプション。
  * @returns 変換された CSS カスタムプロパティ。
  */
 function inner(
@@ -122,8 +122,8 @@ function inner(
 /**
  * JSON オブジェクトを CSS カスタムプロパティに変換する。
  *
- * @param object 変換する JSON オブジェクト。
- * @param options オプション。
+ * @param object - 変換する JSON オブジェクト。
+ * @param options - オプション。
  * @returns 変換された CSS カスタムプロパティ。
  */
 export default function toCssVariables(

@@ -16,9 +16,9 @@ export interface ApplyPatchOptions extends OperateOptions {}
 /**
  * JSON Patch の操作を適用する。
  *
- * @param target 操作対象の　JSON オブジェクト。
- * @param operations 適用する操作。
- * @param options オプション。
+ * @param target - 操作対象の　JSON オブジェクト。
+ * @param operations - 適用する操作。
+ * @param options - オプション。
  * @returns 変更後の JSON オブジェクト。
  */
 export default function applyPatch(

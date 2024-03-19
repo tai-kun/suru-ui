@@ -34,7 +34,7 @@ export type CompiledPatchOperation = {
 /**
  * JSON Patch の path を正規化する。
  *
- * @param pathLike パス文字列またはパスセグメントの配列。
+ * @param pathLike - パス文字列またはパスセグメントの配列。
  * @returns JSON Patch の path。
  */
 function toPatchPath(
@@ -56,8 +56,8 @@ function toPatchPath(
 /**
  * JSON Patch の操作をコンパイルする。
  *
- * @param op パッチ操作。
- * @param vars 変数。
+ * @param op - パッチ操作。
+ * @param vars - 変数。
  * @returns コンパイルされたパッチ操作。
  */
 export default function compilePatchOperation(

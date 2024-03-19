@@ -45,9 +45,9 @@ interface CacheMap {
   /**
    * プロパティ値を取得する。
    *
-   * @param name プロパティ名。
-   * @param make 新しいプロパティ値を作成する関数。
-   * @param deps 依存する値の配列。
+   * @param name - プロパティ名。
+   * @param make - 新しいプロパティ値を作成する関数。
+   * @param deps - 依存する値の配列。
    * @returns プロパティ値。
    */
   get(

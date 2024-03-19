@@ -4,7 +4,7 @@ import type { JsonValue } from "visit-json"
 /**
  * 値が JSON 値かどうかを判定する。
  *
- * @param value 判定する値。
+ * @param value - 判定する値。
  * @returns JSON 値ならば true、そうでなければ false。
  */
 export default function isJsonValue(value: unknown): value is JsonValue {

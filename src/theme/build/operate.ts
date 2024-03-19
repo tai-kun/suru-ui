@@ -37,8 +37,8 @@ export interface OperateOptions {
 /**
  * 書式設定された文字列を返す。
  *
- * @param fmt 書式設定。
- * @param args パラメータ。
+ * @param fmt - 書式設定。
+ * @param args - パラメータ。
  * @returns 書式設定された文字列。
  */
 function format(fmt?: any, ...args: unknown[]): string {
@@ -55,7 +55,7 @@ function format(fmt?: any, ...args: unknown[]): string {
 /**
  * 値が `null` でないオブジェクトかどうかを返す。
  *
- * @param value 値。
+ * @param value - 値。
  * @returns 値が `null` でないオブジェクトならば `true` 。
  */
 function isNonNullObject(value: unknown): value is JsonObject {
@@ -65,9 +65,9 @@ function isNonNullObject(value: unknown): value is JsonObject {
 /**
  * JSON Patch の操作を適用する。
  *
- * @param target 操作対象の　JSON オブジェクト。
- * @param op 適用する操作。
- * @param options オプション。
+ * @param target - 操作対象の　JSON オブジェクト。
+ * @param op - 適用する操作。
+ * @param options - オプション。
  * @returns 変更後の JSON オブジェクト。
  */
 export default function operate(

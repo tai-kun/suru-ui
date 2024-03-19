@@ -54,7 +54,7 @@ function inner(val: ClassValue, ctx: string): string {
  * クラス名を生成する。
  * オブジェクト以下にはすべて `Sui-` が先頭に付与され、キー、インデックス、値がハイフンで連結される。
  *
- * @param inputs クラス名。
+ * @param inputs - クラス名。
  * @returns クラス名。
  * @example
  * ``` ts
@@ -78,7 +78,7 @@ function clsx(...inputs: ClassValue[]): string {
 /**
  * クラス名を生成する。
  *
- * @param inputs クラス名。
+ * @param inputs - クラス名。
  * @returns クラス名。
  * @example
  * ``` ts

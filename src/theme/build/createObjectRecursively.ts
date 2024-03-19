@@ -27,8 +27,8 @@ function toIndexSafe(key: string | number): number {
 /**
  * 再帰的にオブジェクトを作成する。
  *
- * @param root オブジェクトのルート。
- * @param pointer ポインタ。
+ * @param root - オブジェクトのルート。
+ * @param pointer - ポインタ。
  * @returns 作成されたオブジェクトへの参照と、最後のキー。
  */
 export default function createObjectRecursively(

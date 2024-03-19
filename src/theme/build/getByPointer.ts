@@ -26,8 +26,8 @@ function inner(
 /**
  * ポインタから値を取得する。なければ undefined を返す。
  *
- * @param target JSON オブジェクト。
- * @param pointer ポインタ。
+ * @param target - JSON オブジェクト。
+ * @param pointer - ポインタ。
  * @returns 値。
  */
 export default function getByPointer(

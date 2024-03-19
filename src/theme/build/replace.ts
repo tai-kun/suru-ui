@@ -8,18 +8,18 @@ type Node =
 /**
  * 括弧。
  *
- * @template L 左括弧。
- * @template R 右括弧。
+ * @template L - 左括弧。
+ * @template R - 右括弧。
  */
 type Brackets<L extends string, R extends string> = readonly [L, R]
 
 /**
  * 字句解析する。
  *
- * @template L 左括弧。
- * @template R 右括弧。
- * @param text 字句解析する文字列。
- * @param brackets 字句解析する際の括弧。
+ * @template L - 左括弧。
+ * @template R - 右括弧。
+ * @param text - 字句解析する文字列。
+ * @param brackets - 字句解析する際の括弧。
  * @returns 字句解析後のトークン。
  */
 function tokenize<const L extends string, const R extends string>(
@@ -43,7 +43,7 @@ function tokenize<const L extends string, const R extends string>(
 /**
  * 構文解析する。
  *
- * @param tokens 字句解析後のトークン。
+ * @param tokens - 字句解析後のトークン。
  * @returns 構文解析後のノード。
  */
 function parse(
@@ -74,7 +74,7 @@ function parse(
 /**
  * 文字列ノードを文字列に変換する。
  *
- * @param node 文字列ノード。
+ * @param node - 文字列ノード。
  * @returns 文字列ノードを文字列に変換した結果。
  */
 function fromStr(node: Extract<Node, { kind: "Str" }>): {
@@ -88,8 +88,8 @@ function fromStr(node: Extract<Node, { kind: "Str" }>): {
 /**
  * 変数ノードを文字列に変換する。
  *
- * @param node 変数ノード。
- * @param replacer 変数を置換する関数。
+ * @param node - 変数ノード。
+ * @param replacer - 変数を置換する関数。
  * @returns 変数ノードを文字列に変換した結果。
  */
 function fromVar(
@@ -122,11 +122,11 @@ function fromVar(
 /**
  * 指定した文字列で始まり、指定した文字列で終わる部分を置換する。
  *
- * @template L 左括弧。
- * @template R 右括弧。
- * @param text 対象の文字列。
- * @param brackets 置換する部分の文字列。
- * @param replacer 置換する部分を受け取り、置換後の文字列を返す関数。
+ * @template L - 左括弧。
+ * @template R - 右括弧。
+ * @param text - 対象の文字列。
+ * @param brackets - 置換する部分の文字列。
+ * @param replacer - 置換する部分を受け取り、置換後の文字列を返す関数。
  * @returns 置換後の文字列。
  */
 export default function replace<const L extends string, const R extends string>(

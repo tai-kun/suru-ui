@@ -19,7 +19,7 @@ export type Variables = {
   /**
    * 変数の値を取得する。
    *
-   * @param name 変数名。
+   * @param name - 変数名。
    * @returns 変数の値。
    */
   readonly getValue: (name: string) => SetValue
@@ -33,14 +33,14 @@ export type Variables = {
   /**
    * 変数の値を取得する。
    *
-   * @param name 変数名。
+   * @param name - 変数名。
    * @returns 変数の値。
    */
   readonly getValue: (name: string) => SetValue
   /**
    * 変数名のリストを取得する。
    *
-   * @param emit 変数名を通知する関数。
+   * @param emit - 変数名を通知する関数。
    */
   readonly getNames: (emit: (name: string) => void) => void
 } | {
@@ -50,7 +50,7 @@ export type Variables = {
 /**
  * 変数の値を取得する機能を正規化する。
  *
- * @param vars 変数の値を取得する機能。
+ * @param vars - 変数の値を取得する機能。
  * @returns 正規化された変数の値を取得する機能。
  */
 function normalizeVariables(vars: Variables): {
@@ -116,9 +116,9 @@ function normalizeVariables(vars: Variables): {
 /**
  * `${{ 変数名 }}` という文字列を変数の値に置き換える。
  *
- * @param text 置き換える文字列。
- * @param vars 変数の値。
- * @param options オプション。
+ * @param text - 置き換える文字列。
+ * @param vars - 変数の値。
+ * @param options - オプション。
  * @returns 置き換えた文字列。
  */
 export default function replaceVariable(

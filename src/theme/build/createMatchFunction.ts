@@ -22,14 +22,14 @@ function toArray<T>(value: T | readonly T[]): readonly T[] {
 /**
  * ファイルパスがパターンにマッチするかどうかを判定する関数を作成する。
  *
- * @param patterns マッチングパターン。
+ * @param patterns - マッチングパターン。
  * @returns ファイルパスがパターンにマッチするかどうかを判定する関数。
  */
 export default function createMatchFunction(patterns: MatchPatterns): {
   /**
    * ファイルパスがパターンにマッチするかどうかを判定する。
    *
-   * @param file ファイルパス。
+   * @param file - ファイルパス。
    * @returns ファイルパスがパターンにマッチするかどうか。
    */
   (file: string): boolean

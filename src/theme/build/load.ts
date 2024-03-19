@@ -87,16 +87,16 @@ export interface LoadParams {
   /**
    * ファイルパスを解決する。
    *
-   * @param file エントリーポイント。
-   * @param root エントリーポイントのルートディレクトリ。
+   * @param file - エントリーポイント。
+   * @param root - エントリーポイントのルートディレクトリ。
    * @returns ファイルのパス。
    */
   readonly resolvePath: (file: string, root: string) => string | Promise<string>
   /**
    * ファイルのデータを解析する。
    *
-   * @param data ファイルのデータ。
-   * @param location ファイルの場所。
+   * @param data - ファイルのデータ。
+   * @param location - ファイルの場所。
    * @returns ファイルの内容。
    */
   readonly parseFileData: (data: Buffer, location: SourceLocation) => unknown
@@ -133,8 +133,8 @@ interface Context extends Omit<LoadParams, "entryPoints"> {
 /**
  * ロードのためのコンテキストを作成する。
  *
- * @param ctx コンテキスト。
- * @param file エントリーポイントのファイルパス。
+ * @param ctx - コンテキスト。
+ * @param file - エントリーポイントのファイルパス。
  * @returns コンテキスト。
  */
 function createContext(ctx: Context, file: string): Context
@@ -142,9 +142,9 @@ function createContext(ctx: Context, file: string): Context
 /**
  * ロードのためのコンテキストを作成する。
  *
- * @param params ロードのパラメータ。
- * @param cache ソースファイルのキャッシュ。
- * @param file エントリーポイントのファイルパス。
+ * @param params - ロードのパラメータ。
+ * @param cache - ソースファイルのキャッシュ。
+ * @param file - エントリーポイントのファイルパス。
  * @returns コンテキスト。
  */
 function createContext(
@@ -183,8 +183,8 @@ function createContext(
 /**
  * ソースファイルの場所を作成する。
  *
- * @param root ルートディレクトリ。
- * @param file ソースファイルのファイルパス。
+ * @param root - ルートディレクトリ。
+ * @param file - ソースファイルのファイルパス。
  * @returns ソースファイルの場所。
  */
 function createLocation(root: string, file: string): SourceLocation {
@@ -202,7 +202,7 @@ function createLocation(root: string, file: string): SourceLocation {
 /**
  * コンテキストのトレースをフォーマットする。
  *
- * @param ctx コンテキスト。
+ * @param ctx - コンテキスト。
  * @returns フォーマットされたトレース。
  */
 async function fmtContextTrace(ctx: Context): Promise<string> {
@@ -215,7 +215,7 @@ async function fmtContextTrace(ctx: Context): Promise<string> {
 /**
  * コンテキストのトレースを取得する。
  *
- * @param ctx コンテキスト。
+ * @param ctx - コンテキスト。
  * @returns トレース。
  */
 async function getContextTrace(ctx: Context): Promise<string[]> {
@@ -244,8 +244,8 @@ const ContentsSchema = object(
 /**
  * 循環参照を検出する。
  *
- * @param ctx コンテキスト。
- * @param file ファイルパス。
+ * @param ctx - コンテキスト。
+ * @param file - ファイルパス。
  * @returns 循環参照がある場合は `true`。そうでない場合は `false`。
  */
 function detectCircularReference(ctx: Context, file = ctx.file) {
@@ -263,7 +263,7 @@ function detectCircularReference(ctx: Context, file = ctx.file) {
 /**
  * ソースファイルを再帰的にロードする。
  *
- * @param ctx コンテキスト。
+ * @param ctx - コンテキスト。
  * @returns ロードしたソースファイル。
  */
 async function inner(ctx: Context): Promise<Source> {
@@ -328,7 +328,7 @@ async function inner(ctx: Context): Promise<Source> {
 /**
  * ソースファイルをロードする。
  *
- * @param params ロードのパラメータ。
+ * @param params - ロードのパラメータ。
  * @returns ロードの結果。
  */
 export default async function load(params: LoadParams): Promise<LoadResult> {

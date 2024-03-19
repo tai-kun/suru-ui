@@ -1,7 +1,7 @@
 /**
  * 文字列が配列のインデックスとして有効かどうかを判定する。
  *
- * @param str 文字列。
+ * @param str - 文字列。
  * @returns 配列のインデックスとして有効なら true。
  */
 export default function isIndex(str: string): boolean {

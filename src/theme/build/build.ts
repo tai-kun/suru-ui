@@ -20,8 +20,8 @@ type MatrixVariables = {
 /**
  * Matrix 型のオブジェクトから全てのパターンを生成する。
  *
- * @param matrix キーと値のリスト。
- * @param _keys キーのリスト。
+ * @param matrix - キーと値のリスト。
+ * @param _keys - キーのリスト。
  * @returns 全ての組み合わせ。
  */
 function* combinations(
@@ -48,8 +48,8 @@ function* combinations(
 /**
  * `${{ matrix.変数名 }}` という文字列を変数の値に置き換える。
  *
- * @param text 置き換える文字列。
- * @param vars 変数の値。
+ * @param text - 置き換える文字列。
+ * @param vars - 変数の値。
  * @returns 置き換えた文字列。
  */
 function replaceMatrixVariable(text: string, vars: MatrixVariables): string {
@@ -202,7 +202,7 @@ function buildSource(source: Source): void {
 /**
  * ロードしたテーマをビルドする。
  *
- * @param loadResult ロード結果。
+ * @param loadResult - ロード結果。
  */
 export default function build(loadResult: Pick<LoadResult, "sources">): void {
   for (const source of loadResult.sources) {

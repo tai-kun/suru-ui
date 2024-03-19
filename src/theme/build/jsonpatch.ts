@@ -1,7 +1,7 @@
 /**
  * JSON Patch の path を正規化する。
  *
- * @param pathComponent パスセグメント。
+ * @param pathComponent - パスセグメント。
  * @returns JSON Patch の path。
  */
 export function escapePatchPathComponent(
@@ -17,7 +17,7 @@ export function escapePatchPathComponent(
 /**
  * JSON Patch の path を逆正規化する。
  *
- * @param pathComponent パスセグメント。
+ * @param pathComponent - パスセグメント。
  * @returns JSON Patch の path。
  */
 export function unescapePatchPathComponent(

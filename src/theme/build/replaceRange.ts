@@ -4,10 +4,10 @@ import replace from "./replace"
 /**
  * 値の範囲のチェックポイント。
  *
- * @template K 値の種別。
- * @template N 値の名前。
- * @template I 値がとれるインデックス。
- * @template S 値の文字列表現。
+ * @template K - 値の種別。
+ * @template N - 値の名前。
+ * @template I - 値がとれるインデックス。
+ * @template S - 値の文字列表現。
  */
 interface Ckpt<
   K extends string = string,
@@ -30,21 +30,21 @@ interface Ckpt<
   /**
    * 値の範囲をチェックする。
    *
-   * @param index インデックス。
+   * @param index - インデックス。
    * @returns 値の範囲内かどうか。
    */
   inside(index: number): index is I
   /**
    * 値の適用を厳格にする。
    *
-   * @param index インデックス。
+   * @param index - インデックス。
    * @returns 値の適用を厳格にするかどうか。
    */
   strict(index: I): boolean
   /**
    * 値の文字列表現。
    *
-   * @param index インデックス。
+   * @param index - インデックス。
    * @returns 値の文字列。
    */
   toString(index: I): S
@@ -53,11 +53,11 @@ interface Ckpt<
 /**
  * 値の範囲のチェックポイントを作成する。
  *
- * @template K 値の種別。
- * @template N 値の名前。
- * @template I 値がとれるインデックス。
- * @template S 値の文字列表現。
- * @param ckpt 値の範囲のチェックポイント。
+ * @template K - 値の種別。
+ * @template N - 値の名前。
+ * @template I - 値がとれるインデックス。
+ * @template S - 値の文字列表現。
+ * @param ckpt - 値の範囲のチェックポイント。
  * @returns 値の範囲のチェックポイント。
  */
 function createCkpt<
@@ -72,7 +72,7 @@ function createCkpt<
 /**
  * 文字列をチェックポイントに変換する。
  *
- * @param p 文字列。
+ * @param p - 文字列。
  * @returns チェックポイント。
  */
 function toCkpt(p: string) {
@@ -197,7 +197,7 @@ function toCkpt(p: string) {
 /**
  * `$[[<始まり>..<終わり>]]` という文字列を置き換える。
  *
- * @param text 置き換える文字列。
+ * @param text - 置き換える文字列。
  * @returns 置き換えた文字列。
  */
 export default function replaceRange(text: string): string[] {

@@ -3,7 +3,7 @@ type ObjectLike = ArrayLike<any> | ((...args: any) => any)
 /**
  * プレーンオブジェクトを取り出す。
  *
- * @template T プレーンオブジェクトをとり得る型
+ * @template T - プレーンオブジェクトをとり得る型
  */
 export type ExtractPlainObject<T> = T extends ObjectLike ? never
   : T extends Record<keyof any, any> ? T
@@ -12,8 +12,8 @@ export type ExtractPlainObject<T> = T extends ObjectLike ? never
 /**
  * プレーンオブジェクトか判定する。
  *
- * @template T オブジェクトを取りうる値
- * @param x オブジェクトを取りうる値
+ * @template T - オブジェクトを取りうる値
+ * @param x - オブジェクトを取りうる値
  * @returns プレーンオブジェクトの場合は true、それ以外は false
  * @example
  * ```ts
