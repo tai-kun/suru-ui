@@ -50,16 +50,6 @@ export default plop => {
         },
         {
           type: "add",
-          path: `../../src${dirpath}{{name}}/__tests__/{{name}}.spec.tsx`,
-          templateFile: "./templates/component/__tests__/$name.spec.tsx.hbs",
-        },
-        {
-          type: "add",
-          path: `../../src${dirpath}{{name}}/__tests__/{{name}}.tsx`,
-          templateFile: "./templates/component/__tests__/$name.tsx.hbs",
-        },
-        {
-          type: "add",
           path: `../../src${dirpath}{{name}}/{{name}}.stories.tsx`,
           templateFile: "./templates/component/$name.stories.tsx.hbs",
           transform: template =>
@@ -67,6 +57,16 @@ export default plop => {
               "__group__",
               group.replace(/^\//, " ").trimEnd(),
             ),
+        },
+        {
+          type: "add",
+          path: `../../src${dirpath}{{name}}/__tests__/Root.spec.tsx`,
+          templateFile: "./templates/component/__tests__/Root.spec.tsx.hbs",
+        },
+        {
+          type: "add",
+          path: `../../src${dirpath}{{name}}/__tests__/Root.tsx`,
+          templateFile: "./templates/component/__tests__/Root.tsx.hbs",
         },
       ],
     })
