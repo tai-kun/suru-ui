@@ -216,7 +216,6 @@ color:
     body:       var(--sui-color-black)
     disabled:   var(--sui-color-grey-400)
     description: var(--sui-color-grey-700)
-    placeholder: var(--sui-color-grey-500)
 
   # link: <- $build で設定される。
 
