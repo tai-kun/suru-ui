@@ -13,10 +13,10 @@ ring:
   md: 2px
   lg: 4px
   focus:
-    active:  lg
+    active:  md
     visible: md
   disabled:  sm
-  component: sm
+  component: md
 
 $build:
   imports:

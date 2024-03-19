@@ -14,9 +14,9 @@ font:
 
 size:
   sm: 28px
-  md: 36px
-  lg: 48px
-  xl: 56px
+  md: 32px
+  lg: 42px
+  xl: 54px
 
 $build:
   imports:
