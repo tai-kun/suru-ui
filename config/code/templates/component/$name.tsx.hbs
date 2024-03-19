@@ -36,16 +36,3 @@ export const Root = forwardRef(function Root(
     />
   )
 })
-
-/* -----------------------------------------------------------------------------
- * Test
- * ---------------------------------------------------------------------------*/
-
-if (cfgTest && cfgTest.url === import.meta.url) {
-  // const { render } = await import("../../utils-dev/react")
-  const { describe, test } = cfgTest
-
-  describe("src__dirname__{{ name }}/{{ name }}", () => {
-    test.todo("テストを書く")
-  })
-}

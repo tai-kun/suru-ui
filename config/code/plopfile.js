@@ -48,11 +48,16 @@ export default plop => {
           path: `../../src${dirpath}{{name}}/{{name}}.css`,
           templateFile: "./templates/component/$name.css.hbs",
         },
-        // {
-        //   type: "add",
-        //   path: `../../src${dirpath}{{name}}/{{name}}.spec.tsx`,
-        //   templateFile: "./templates/component/$name.spec.tsx.hbs",
-        // },
+        {
+          type: "add",
+          path: `../../src${dirpath}{{name}}/__tests__/{{name}}.spec.tsx`,
+          templateFile: "./templates/component/__tests__/$name.spec.tsx.hbs",
+        },
+        {
+          type: "add",
+          path: `../../src${dirpath}{{name}}/__tests__/{{name}}.tsx`,
+          templateFile: "./templates/component/__tests__/$name.tsx.hbs",
+        },
         {
           type: "add",
           path: `../../src${dirpath}{{name}}/{{name}}.stories.tsx`,
