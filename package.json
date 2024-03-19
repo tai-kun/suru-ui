@@ -5,7 +5,8 @@
   "description": "",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -13,49 +14,60 @@
   "exports": {
     "./Text": {
       "types": "./dist/core/Text/Text.d.ts",
-      "default": "./dist/core/Text/Text.jsx"
+      "import": "./dist/core/Text/Text.jsx",
+      "require": "./dist/core/Text/Text.cjs"
     },
     "./Text.css": "./dist/core/Text/Text.css",
     "./Icon": {
       "types": "./dist/core/Icon/Icon.d.ts",
-      "default": "./dist/core/Icon/Icon.jsx"
+      "import": "./dist/core/Icon/Icon.jsx",
+      "require": "./dist/core/Icon/Icon.cjs"
     },
     "./Icon.css": "./dist/core/Icon/Icon.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
-      "default": "./dist/icons/index.js"
+      "import": "./dist/icons/index.mjs",
+      "require": "./dist/icons/index.cjs"
     },
     "./icons/digital.go.jp/filled": {
       "types": "./dist/icons/digital.go.jp/filled.d.ts",
-      "default": "./dist/icons/digital.go.jp/filled.jsx"
+      "import": "./dist/icons/digital.go.jp/filled.jsx",
+      "require": "./dist/icons/digital.go.jp/filled.cjs"
     },
     "./icons/digital.go.jp/outlined": {
       "types": "./dist/icons/digital.go.jp/outlined.d.ts",
-      "default": "./dist/icons/digital.go.jp/outlined.jsx"
+      "import": "./dist/icons/digital.go.jp/outlined.jsx",
+      "require": "./dist/icons/digital.go.jp/outlined.cjs"
     },
     "./icons/m3.material.io/filled": {
       "types": "./dist/icons/m3.material.io/filled.d.ts",
-      "default": "./dist/icons/m3.material.io/filled.jsx"
+      "import": "./dist/icons/m3.material.io/filled.jsx",
+      "require": "./dist/icons/m3.material.io/filled.cjs"
     },
     "./icons/m3.material.io/outlined": {
       "types": "./dist/icons/m3.material.io/outlined.d.ts",
-      "default": "./dist/icons/m3.material.io/outlined.jsx"
+      "import": "./dist/icons/m3.material.io/outlined.jsx",
+      "require": "./dist/icons/m3.material.io/outlined.cjs"
     },
     "./icons/m3.material.io/round": {
       "types": "./dist/icons/m3.material.io/round.d.ts",
-      "default": "./dist/icons/m3.material.io/round.jsx"
+      "import": "./dist/icons/m3.material.io/round.jsx",
+      "require": "./dist/icons/m3.material.io/round.cjs"
     },
     "./icons/m3.material.io/sharp": {
       "types": "./dist/icons/m3.material.io/sharp.d.ts",
-      "default": "./dist/icons/m3.material.io/sharp.jsx"
+      "import": "./dist/icons/m3.material.io/sharp.jsx",
+      "require": "./dist/icons/m3.material.io/sharp.cjs"
     },
     "./icons/m3.material.io/two-tone": {
       "types": "./dist/icons/m3.material.io/two-tone.d.ts",
-      "default": "./dist/icons/m3.material.io/two-tone.jsx"
+      "import": "./dist/icons/m3.material.io/two-tone.jsx",
+      "require": "./dist/icons/m3.material.io/two-tone.cjs"
     },
     "./theme": {
       "types": "./dist/theme/index.d.ts",
-      "default": "./dist/theme/index.js"
+      "import": "./dist/theme/index.mjs",
+      "require": "./dist/theme/index.cjs"
     },
     "./theme/all.css": "./dist/theme/all.css",
     "./theme/base.css": "./dist/theme/base.css",
@@ -69,83 +81,103 @@
     "./theme/dark.css": "./dist/theme/dark.css",
     "./utils/atom": {
       "types": "./dist/utils/atom.d.ts",
-      "default": "./dist/utils/atom.js"
+      "import": "./dist/utils/atom.mjs",
+      "require": "./dist/utils/atom.cjs"
     },
     "./utils/clsx": {
       "types": "./dist/utils/clsx.d.ts",
-      "default": "./dist/utils/clsx.js"
+      "import": "./dist/utils/clsx.mjs",
+      "require": "./dist/utils/clsx.cjs"
     },
     "./utils/composeRefs": {
       "types": "./dist/utils/composeRefs.d.ts",
-      "default": "./dist/utils/composeRefs.js"
+      "import": "./dist/utils/composeRefs.mjs",
+      "require": "./dist/utils/composeRefs.cjs"
     },
     "./utils/createCssRenderer": {
       "types": "./dist/utils/createCssRenderer.d.ts",
-      "default": "./dist/utils/createCssRenderer.js"
+      "import": "./dist/utils/createCssRenderer.mjs",
+      "require": "./dist/utils/createCssRenderer.cjs"
     },
     "./utils/forwardRef": {
       "types": "./dist/utils/forwardRef.d.ts",
-      "default": "./dist/utils/forwardRef.jsx"
+      "import": "./dist/utils/forwardRef.jsx",
+      "require": "./dist/utils/forwardRef.cjs"
     },
     "./utils/isPlainObject": {
       "types": "./dist/utils/isPlainObject.d.ts",
-      "default": "./dist/utils/isPlainObject.js"
+      "import": "./dist/utils/isPlainObject.mjs",
+      "require": "./dist/utils/isPlainObject.cjs"
     },
     "./utils/isRefObject": {
       "types": "./dist/utils/isRefObject.d.ts",
-      "default": "./dist/utils/isRefObject.js"
+      "import": "./dist/utils/isRefObject.mjs",
+      "require": "./dist/utils/isRefObject.cjs"
     },
     "./utils/singleton": {
       "types": "./dist/utils/singleton.d.ts",
-      "default": "./dist/utils/singleton.js"
+      "import": "./dist/utils/singleton.mjs",
+      "require": "./dist/utils/singleton.cjs"
     },
     "./utils/Slot": {
       "types": "./dist/utils/Slot.d.ts",
-      "default": "./dist/utils/Slot.jsx"
+      "import": "./dist/utils/Slot.jsx",
+      "require": "./dist/utils/Slot.cjs"
     },
     "./utils/Slottable": {
       "types": "./dist/utils/Slottable.d.ts",
-      "default": "./dist/utils/Slottable.jsx"
+      "import": "./dist/utils/Slottable.jsx",
+      "require": "./dist/utils/Slottable.cjs"
     },
     "./utils/toHash": {
       "types": "./dist/utils/toHash.d.ts",
-      "default": "./dist/utils/toHash.js"
+      "import": "./dist/utils/toHash.mjs",
+      "require": "./dist/utils/toHash.cjs"
     },
     "./utils/useAtom": {
       "types": "./dist/utils/useAtom.d.ts",
-      "default": "./dist/utils/useAtom.js"
+      "import": "./dist/utils/useAtom.mjs",
+      "require": "./dist/utils/useAtom.cjs"
     },
     "./utils/useComposedRefs": {
       "types": "./dist/utils/useComposedRefs.d.ts",
-      "default": "./dist/utils/useComposedRefs.js"
+      "import": "./dist/utils/useComposedRefs.mjs",
+      "require": "./dist/utils/useComposedRefs.cjs"
     },
     "./utils/useConstantValue": {
       "types": "./dist/utils/useConstantValue.d.ts",
-      "default": "./dist/utils/useConstantValue.js"
+      "import": "./dist/utils/useConstantValue.mjs",
+      "require": "./dist/utils/useConstantValue.cjs"
     },
     "./utils/useCss": {
       "types": "./dist/utils/useCss.d.ts",
-      "default": "./dist/utils/useCss.js"
+      "import": "./dist/utils/useCss.mjs",
+      "require": "./dist/utils/useCss.cjs"
     },
     "./utils/useEventListener": {
       "types": "./dist/utils/useEventListener.d.ts",
-      "default": "./dist/utils/useEventListener.js"
+      "import": "./dist/utils/useEventListener.mjs",
+      "require": "./dist/utils/useEventListener.cjs"
     },
     "./utils/useInspectableRef.dev": {
       "types": "./dist/utils/useInspectableRef.dev.d.ts",
-      "default": "./dist/utils/useInspectableRef.dev.js"
+      "import": "./dist/utils/useInspectableRef.dev.mjs",
+      "require": "./dist/utils/useInspectableRef.dev.cjs"
     },
     "./utils/useIsMounted": {
       "types": "./dist/utils/useIsMounted.d.ts",
-      "default": "./dist/utils/useIsMounted.js"
+      "import": "./dist/utils/useIsMounted.mjs",
+      "require": "./dist/utils/useIsMounted.cjs"
     },
     "./utils/useKeyboardEvent": {
       "types": "./dist/utils/useKeyboardEvent.d.ts",
-      "default": "./dist/utils/useKeyboardEvent.js"
+      "import": "./dist/utils/useKeyboardEvent.mjs",
+      "require": "./dist/utils/useKeyboardEvent.cjs"
     },
     "./utils/useSubscribeMutations": {
       "types": "./dist/utils/useSubscribeMutations.d.ts",
-      "default": "./dist/utils/useSubscribeMutations.js"
+      "import": "./dist/utils/useSubscribeMutations.mjs",
+      "require": "./dist/utils/useSubscribeMutations.cjs"
     }
   },
   "dependencies": {

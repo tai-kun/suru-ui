@@ -4,11 +4,12 @@ import { glob } from "glob"
 import { readFile } from "node:fs/promises"
 
 const pkg = JSON.parse(await readFile("package.json", "utf-8"))
-/** @type {string | { types: string; default: string }[]} */
+/** @type {string | { types: string; import: string; require: string }[]} */
 const exports = [
   {
     "types": pkg.types,
-    "default": pkg.main,
+    "import": pkg.module,
+    "require": pkg.main,
   },
   ...Object.values(pkg.exports),
 ]
@@ -18,7 +19,17 @@ const exportFiles = exports
       return e
     }
 
-    return [e.types, e.default]
+    if (
+      typeof e !== "object"
+      || e === null
+      || typeof e.types !== "string"
+      || typeof e.import !== "string"
+      || typeof e.require !== "string"
+    ) {
+      throw new TypeError("期待しない exports の形式です。", { cause: e })
+    }
+
+    return [e.types, e.import, e.require]
   })
   .map(e => {
     if (e.startsWith("./")) {
@@ -27,7 +38,7 @@ const exportFiles = exports
 
     return e
   })
-const distFiles = await glob("dist/**/*.{js,jsx,css}", {
+const distFiles = await glob("dist/**/*.{cjs,mjs,jsx,css}", {
   ignore: "**/_*", // internal としてマークされたファイルは除外
 })
 
