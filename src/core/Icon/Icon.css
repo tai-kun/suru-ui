@@ -1,0 +1,63 @@
+@layer sui.enabled {
+  @scope (.SuiIcon) {
+    :scope {
+      /*
+       * design-system-assets のアイコンは height, width ともに 24。
+       * ただし、実際のアイコンのサイズは 18.4。
+       * material-design-icons は height, width ともに 24。
+       * ただし、実際のアイコンのサイズは 14。
+       *
+       * Root
+       * --SuiIcon-color
+       * --SuiIcon-dsaSize
+       * --SuiIcon-mdiSize
+       */
+      --SuiIcon-dsaSize: 18.4;
+      --SuiIcon-mdiSize: 14;
+
+      width: 1.125em;
+      height: 1.125em;
+      display: inline-block;
+      vertical-align: calc(-100% * 0.125);
+
+      &.dsa {
+        color: var(--SuiIcon-color, inherit);
+      }
+
+      &.mdi {
+        fill: var(--SuiIcon-color, currentColor);
+        scale: calc(var(--SuiIcon-dsaSize) / var(--SuiIcon-mdiSize));
+      }
+
+      &.Sui-contrast-low {
+        &.Sui-color-grey      { --SuiIcon-color: var(--sui-color-grey-text-lc);      }
+        &.Sui-color-blue      { --SuiIcon-color: var(--sui-color-blue-text-lc);      }
+        &.Sui-color-lightBlue { --SuiIcon-color: var(--sui-color-lightBlue-text-lc); }
+        &.Sui-color-green     { --SuiIcon-color: var(--sui-color-green-text-lc);     }
+        &.Sui-color-yellow    { --SuiIcon-color: var(--sui-color-yellow-text-lc);    }
+        &.Sui-color-red       { --SuiIcon-color: var(--sui-color-red-text-lc);       }
+        &.Sui-color-brand     { --SuiIcon-color: var(--sui-color-brand-text-lc);     }
+        &.Sui-color-neutral   { --SuiIcon-color: var(--sui-color-neutral-text-lc);   }
+        &.Sui-color-info      { --SuiIcon-color: var(--sui-color-info-text-lc);      }
+        &.Sui-color-error     { --SuiIcon-color: var(--sui-color-error-text-lc);     }
+        &.Sui-color-warning   { --SuiIcon-color: var(--sui-color-warning-text-lc);   }
+        &.Sui-color-success   { --SuiIcon-color: var(--sui-color-success-text-lc);   }
+      }
+
+      &.Sui-contrast-high {
+        &.Sui-color-grey      { --SuiIcon-color: var(--sui-color-grey-text-hc);      }
+        &.Sui-color-blue      { --SuiIcon-color: var(--sui-color-blue-text-hc);      }
+        &.Sui-color-lightBlue { --SuiIcon-color: var(--sui-color-lightBlue-text-hc); }
+        &.Sui-color-green     { --SuiIcon-color: var(--sui-color-green-text-hc);     }
+        &.Sui-color-yellow    { --SuiIcon-color: var(--sui-color-yellow-text-hc);    }
+        &.Sui-color-red       { --SuiIcon-color: var(--sui-color-red-text-hc);       }
+        &.Sui-color-brand     { --SuiIcon-color: var(--sui-color-brand-text-hc);     }
+        &.Sui-color-neutral   { --SuiIcon-color: var(--sui-color-neutral-text-hc);   }
+        &.Sui-color-info      { --SuiIcon-color: var(--sui-color-info-text-hc);      }
+        &.Sui-color-error     { --SuiIcon-color: var(--sui-color-error-text-hc);     }
+        &.Sui-color-warning   { --SuiIcon-color: var(--sui-color-warning-text-hc);   }
+        &.Sui-color-success   { --SuiIcon-color: var(--sui-color-success-text-hc);   }
+      }
+    }
+  }
+}
