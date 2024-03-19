@@ -42,12 +42,22 @@ export type ColorVariant = ConditionalKeys<
 /**
  * テキストの色。
  */
-export type TextColor = keyof Dict["color"]["brand"]["text"]
+export type TextColorVariant = keyof Dict["color"]["brand"]["text"]
 
 /**
  * 枠線の色。
  */
-export type RingColor = keyof Dict["color"]["brand"]["ring"]
+export type RingColorVariant = keyof Dict["color"]["brand"]["ring"]
+
+/**
+ * テキストの色。
+ */
+export type TextColor = keyof Dict["color"]["text"]
+
+/**
+ * キャンバスの色。
+ */
+export type CanvasColor = keyof Dict["color"]["canvas"]
 
 /**
  * テキストの大きさ。
@@ -162,9 +172,27 @@ export const COLOR_VARIANT_LIST = [
   "liquid",
 ] as const satisfies ColorVariant[]
 
-export const TEXT_COLOR_LIST = ["lc", "hc"] as const satisfies TextColor[]
+export const TEXT_COLOR_VARIANT_LIST = [
+  "lc",
+  "hc",
+] as const satisfies TextColorVariant[]
 
-export const RING_COLOR_LIST = ["lc", "hc"] as const satisfies RingColor[]
+export const RING_COLOR_VARIANT_LIST = [
+  "lc",
+  "hc",
+] as const satisfies RingColorVariant[]
+
+export const TEXT_COLOR_LIST = [
+  "body",
+  "disabled",
+  "description",
+] as const satisfies TextColor[]
+
+export const CANVAS_COLOR_LIST = [
+  "main",
+  "paper",
+  "disabled",
+] as const satisfies CanvasColor[]
 
 export const TEXT_SIZE_LIST = ["sm", "md"] as const satisfies TextSize[]
 
@@ -246,9 +274,13 @@ export const colorShadeSet = new Set(COLOR_SHADE_LIST)
 
 export const colorVariantSet = new Set(COLOR_VARIANT_LIST)
 
-export const textColorSet = new Set(TEXT_COLOR_LIST)
+export const textColorSet = new Set(TEXT_COLOR_VARIANT_LIST)
 
-export const ringColorSet = new Set(RING_COLOR_LIST)
+export const ringColorSet = new Set(RING_COLOR_VARIANT_LIST)
+
+export const textColorVariantSet = new Set(TEXT_COLOR_LIST)
+
+export const canvasColorSet = new Set(CANVAS_COLOR_LIST)
 
 export const textSizeSet = new Set(TEXT_SIZE_LIST)
 
@@ -294,12 +326,26 @@ export function isColorVariant(
   return colorVariantSet.has(colorVariant)
 }
 
-export function isTextColor(textColor: unknown): textColor is TextColor {
+export function isTextColorVariant(
+  textColor: unknown,
+): textColor is TextColorVariant {
   return textColorSet.has(textColor)
 }
 
-export function isRingColor(ringColor: unknown): ringColor is RingColor {
+export function isRingColorVariant(
+  ringColor: unknown,
+): ringColor is RingColorVariant {
   return ringColorSet.has(ringColor)
+}
+
+export function isTextColor(textColor: unknown): textColor is TextColor {
+  return textColorVariantSet.has(textColor)
+}
+
+export function isCanvasColor(
+  canvasColor: unknown,
+): canvasColor is CanvasColor {
+  return canvasColorSet.has(canvasColor)
 }
 
 export function isTextSize(textSize: unknown): textSize is TextSize {
