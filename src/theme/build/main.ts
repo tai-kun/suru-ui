@@ -18,19 +18,15 @@ const BANNER = `/**
  */
 `
 
-// const TEMPLATE = `${BANNER}
-// @import "{{ base }}.css";
+const TEMPLATE_WITH_MEDIA = `${BANNER}
+@import "{{ base }}.css";
 
-// @layer sui.tokens {
-// @media {{ media }} {
-// @scope {{ scope }} {
-//   :scope,
-//   :scope::backdrop,
-//   :scope ::backdrop {
-// {{ css }}
-//   }
-// }}}
-// `
+@layer sui.tokens {
+@media {{ media }} {
+{{ scope }} {
+{{ css }}
+}}}
+`
 const TEMPLATE = `${BANNER}
 @import "{{ base }}.css";
 
@@ -49,7 +45,7 @@ async function writeTheme(
   prams: {
     readonly base?: Theme
     readonly theme: Theme
-    readonly media: string
+    readonly media?: string
     readonly scope: string | {
       readonly from: string
       readonly to: string
@@ -58,9 +54,9 @@ async function writeTheme(
 ) {
   const { theme, media, scope, base = theme } = prams
   const filename = path.resolve(`src/theme/${theme.name}.css`)
-  const template = TEMPLATE
+  const template = (media ? TEMPLATE_WITH_MEDIA : TEMPLATE)
     .replace("{{ base }}", theme === base ? "./base" : `./${base.name}`)
-    .replace("{{ media }}", media)
+    .replace("{{ media }}", media || "")
     .replace(
       "{{ scope }}",
       typeof scope === "string"
@@ -173,7 +169,7 @@ async function main() {
   await Promise.all([
     writeTheme({
       theme: lightDesktop,
-      media: "(screen)",
+      // media: "(screen)",
       // scope: "(:root, .sui-light)",
       scope: ":root, .light, .light-theme, [data-theme=light]",
     }),
@@ -187,7 +183,7 @@ async function main() {
     writeTheme({
       base: lightDesktop,
       theme: darkDesktop,
-      media: "(screen)",
+      // media: "(screen)",
       // scope: {
       //   from: "(.sui-dark)",
       //   to: "(.sui-light)",
