@@ -35,7 +35,7 @@ TYPE='(docs|style|refactor|perf|test|chore|revert|feat|fix)'
 
 src_scope="$(listup src)"
 config_scope="$(listup config -m 1 -a)"
-scope="(ci|@types|config|$config_scope|scripts|src|$src_scope)"
+scope="(ci|types|config|$config_scope|scripts|src|$src_scope)"
 
 regex "^$TYPE(\(${scope//$/\\$}\))?: .+$" && exit 0
 regex "^build(\((deps|deps-dev)\))?: .+$" && exit 0
