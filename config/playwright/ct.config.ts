@@ -18,7 +18,10 @@ export default defineConfig({
   ...(
     process.env.CI
       ? {
-        reporter: "github",
+        reporter: [
+          ["github"],
+          ["html", { outputFolder: path.join(tempDir, "report") }],
+        ],
         workers: 1,
         retries: 2,
         forbidOnly: true, // 誤って test.only を残した場合、CI でのビルドは失敗する。
