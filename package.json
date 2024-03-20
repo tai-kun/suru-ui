@@ -35,6 +35,12 @@
       "import": "./dist/icons/index.mjs",
       "require": "./dist/icons/index.cjs"
     },
+    "./base/ButtonBase": {
+      "types": "./dist/base/ButtonBase/ButtonBase.d.ts",
+      "import": "./dist/base/ButtonBase/ButtonBase.jsx",
+      "require": "./dist/base/ButtonBase/ButtonBase.cjs"
+    },
+    "./base/ButtonBase.css": "./dist/base/ButtonBase/ButtonBase.css",
     "./icons/digital.go.jp/filled": {
       "types": "./dist/icons/digital.go.jp/filled.d.ts",
       "import": "./dist/icons/digital.go.jp/filled.jsx",
