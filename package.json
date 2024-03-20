@@ -12,18 +12,24 @@
     "dist"
   ],
   "exports": {
-    "./Text": {
-      "types": "./dist/core/Text/Text.d.ts",
-      "import": "./dist/core/Text/Text.jsx",
-      "require": "./dist/core/Text/Text.cjs"
-    },
-    "./Text.css": "./dist/core/Text/Text.css",
     "./Icon": {
       "types": "./dist/core/Icon/Icon.d.ts",
       "import": "./dist/core/Icon/Icon.jsx",
       "require": "./dist/core/Icon/Icon.cjs"
     },
     "./Icon.css": "./dist/core/Icon/Icon.css",
+    "./Text": {
+      "types": "./dist/core/Text/Text.d.ts",
+      "import": "./dist/core/Text/Text.jsx",
+      "require": "./dist/core/Text/Text.cjs"
+    },
+    "./Text.css": "./dist/core/Text/Text.css",
+    "./TextField": {
+      "types": "./dist/core/TextField/TextField.d.ts",
+      "import": "./dist/core/TextField/TextField.jsx",
+      "require": "./dist/core/TextField/TextField.cjs"
+    },
+    "./TextField.css": "./dist/core/TextField/TextField.css",
     "./icons": {
       "types": "./dist/icons/index.d.ts",
       "import": "./dist/icons/index.mjs",
