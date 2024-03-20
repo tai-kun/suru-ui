@@ -91,11 +91,6 @@
     "./theme/mobile.css": "./dist/theme/mobile.css",
     "./theme/light.css": "./dist/theme/light.css",
     "./theme/dark.css": "./dist/theme/dark.css",
-    "./utils/atom": {
-      "types": "./dist/utils/atom.d.ts",
-      "import": "./dist/utils/atom.mjs",
-      "require": "./dist/utils/atom.cjs"
-    },
     "./utils/clsx": {
       "types": "./dist/utils/clsx.d.ts",
       "import": "./dist/utils/clsx.mjs",
@@ -105,11 +100,6 @@
       "types": "./dist/utils/composeRefs.d.ts",
       "import": "./dist/utils/composeRefs.mjs",
       "require": "./dist/utils/composeRefs.cjs"
-    },
-    "./utils/createCssRenderer": {
-      "types": "./dist/utils/createCssRenderer.d.ts",
-      "import": "./dist/utils/createCssRenderer.mjs",
-      "require": "./dist/utils/createCssRenderer.cjs"
     },
     "./utils/forwardRef": {
       "types": "./dist/utils/forwardRef.d.ts",
@@ -121,16 +111,6 @@
       "import": "./dist/utils/isPlainObject.mjs",
       "require": "./dist/utils/isPlainObject.cjs"
     },
-    "./utils/isRefObject": {
-      "types": "./dist/utils/isRefObject.d.ts",
-      "import": "./dist/utils/isRefObject.mjs",
-      "require": "./dist/utils/isRefObject.cjs"
-    },
-    "./utils/singleton": {
-      "types": "./dist/utils/singleton.d.ts",
-      "import": "./dist/utils/singleton.mjs",
-      "require": "./dist/utils/singleton.cjs"
-    },
     "./utils/Slot": {
       "types": "./dist/utils/Slot.d.ts",
       "import": "./dist/utils/Slot.jsx",
@@ -141,55 +121,10 @@
       "import": "./dist/utils/Slottable.jsx",
       "require": "./dist/utils/Slottable.cjs"
     },
-    "./utils/toHash": {
-      "types": "./dist/utils/toHash.d.ts",
-      "import": "./dist/utils/toHash.mjs",
-      "require": "./dist/utils/toHash.cjs"
-    },
-    "./utils/useAtom": {
-      "types": "./dist/utils/useAtom.d.ts",
-      "import": "./dist/utils/useAtom.mjs",
-      "require": "./dist/utils/useAtom.cjs"
-    },
-    "./utils/useComposedRefs": {
-      "types": "./dist/utils/useComposedRefs.d.ts",
-      "import": "./dist/utils/useComposedRefs.mjs",
-      "require": "./dist/utils/useComposedRefs.cjs"
-    },
     "./utils/useConstantValue": {
       "types": "./dist/utils/useConstantValue.d.ts",
       "import": "./dist/utils/useConstantValue.mjs",
       "require": "./dist/utils/useConstantValue.cjs"
-    },
-    "./utils/useCss": {
-      "types": "./dist/utils/useCss.d.ts",
-      "import": "./dist/utils/useCss.mjs",
-      "require": "./dist/utils/useCss.cjs"
-    },
-    "./utils/useEventListener": {
-      "types": "./dist/utils/useEventListener.d.ts",
-      "import": "./dist/utils/useEventListener.mjs",
-      "require": "./dist/utils/useEventListener.cjs"
-    },
-    "./utils/useInspectableRef.dev": {
-      "types": "./dist/utils/useInspectableRef.dev.d.ts",
-      "import": "./dist/utils/useInspectableRef.dev.mjs",
-      "require": "./dist/utils/useInspectableRef.dev.cjs"
-    },
-    "./utils/useIsMounted": {
-      "types": "./dist/utils/useIsMounted.d.ts",
-      "import": "./dist/utils/useIsMounted.mjs",
-      "require": "./dist/utils/useIsMounted.cjs"
-    },
-    "./utils/useKeyboardEvent": {
-      "types": "./dist/utils/useKeyboardEvent.d.ts",
-      "import": "./dist/utils/useKeyboardEvent.mjs",
-      "require": "./dist/utils/useKeyboardEvent.cjs"
-    },
-    "./utils/useSubscribeMutations": {
-      "types": "./dist/utils/useSubscribeMutations.d.ts",
-      "import": "./dist/utils/useSubscribeMutations.mjs",
-      "require": "./dist/utils/useSubscribeMutations.cjs"
     }
   },
   "dependencies": {
