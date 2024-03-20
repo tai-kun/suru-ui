@@ -39,7 +39,10 @@ const exportFiles = exports
     return e
   })
 const distFiles = await glob("dist/**/*.{cjs,mjs,jsx,css}", {
-  ignore: "**/_*", // internal としてマークされたファイルは除外
+  ignore: [
+    "**/_*", // internal としてマークされたファイルは除外
+    "**/*.machine.{cjs,mjs}", // ステートマシンの定義ファイルは除外
+  ],
 })
 
 const missingExports = distFiles.filter(f => !exportFiles.includes(f))
