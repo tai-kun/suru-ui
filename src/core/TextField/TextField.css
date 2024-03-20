@@ -17,7 +17,7 @@
       outline:
         var(--SuiTextField-ringColor, var(--sui-color-brand-ring-lc))
         solid
-        var(--SuiTextField-ringWidth, var(--sui-ring-component));
+        var(--SuiTextField-ringWidth, var(--sui-ring-input));
       background: var(--SuiTextField-canvas, var(--sui-color-canvas-main));
       align-items: center;
       border-radius: var(--sui-radius-md);

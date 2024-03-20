@@ -15,8 +15,9 @@ ring:
   focus:
     active:  md
     visible: md
-  disabled:  sm
-  component: md
+  input:    md
+  button:   sm
+  disabled: sm
 
 $build:
   imports:
@@ -39,8 +40,9 @@ $build:
       matrix:
         path:
           - focus/$[[ active, visible ]]
+          - input
+          - button
           - disabled
-          - component
       operations:
         - mode: replace
           path: /ring/${{ matrix.path }}
