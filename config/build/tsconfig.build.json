@@ -9,6 +9,7 @@
     "src/**/*.stories.tsx"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
     "rootDir": "src",
     "noEmit": false,
     "declaration": true,
