@@ -7,6 +7,7 @@ import path from "node:path"
 
 const buildIgnore = [
   "**/build/**",
+  "**/__tests__/**",
   "**/*.stories.tsx",
 ]
 

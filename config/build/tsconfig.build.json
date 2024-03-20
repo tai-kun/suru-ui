@@ -5,7 +5,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/**/*.spec.tsx",
+    "**/__tests__",
     "src/**/*.stories.tsx"
   ],
   "compilerOptions": {
