@@ -15,7 +15,7 @@
       height: var(--SuiTextField-size);
       display: inline-flex;
       outline:
-        var(--SuiTextField-ringColor, var(--sui-color-brand-ring-lc))
+        var(--SuiTextField-ringColor)
         solid
         var(--SuiTextField-ringWidth, var(--sui-ring-input));
       background: var(--SuiTextField-canvas, var(--sui-color-canvas-main));
@@ -23,12 +23,15 @@
       border-radius: var(--sui-radius-md);
       outline-offset: calc(var(--SuiTextField-ringWidth) * -1);
 
+      &.Sui-color-brand   { --SuiTextField-ringColor: var(--sui-color-brand-ring-lc);   }
+      &.Sui-color-neutral { --SuiTextField-ringColor: var(--sui-color-neutral-ring-lc); }
+
       &:has(.SuiTextFieldInput:focus) {
         --SuiTextField-ringColor: var(--sui-ring-focus-color);
         --SuiTextField-ringWidth: var(--sui-ring-focus-active);
       }
 
-      &:has(.SuiTextFieldInput:not(:focus):user-invalid) {
+      &:has(.SuiTextFieldInput:not(:focus):is([aria-invalid=true], :user-invalid)) {
         --SuiTextField-ringColor: var(--sui-color-error-ring-lc);
       }
 

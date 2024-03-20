@@ -1,6 +1,6 @@
 import * as React from "react"
 import { transfer, useSyncedMachine } from "use-machine-ts"
-import type { TextSize } from "../../theme"
+import type { ColorName, TextSize } from "../../theme"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
 import Slot from "../../utils/Slot"
@@ -171,6 +171,8 @@ export const Input = forwardRef(function Input(
  * Root
  * ---------------------------------------------------------------------------*/
 
+export type Color = Extract<ColorName, "brand" | "neutral">
+
 export type Size = TextSize
 
 export interface RootProps {
@@ -180,6 +182,12 @@ export interface RootProps {
    * @default false
    */
   asChild?: boolean | undefined
+  /**
+   * テキストフィールドの色。
+   *
+   * @default "neutral"
+   */
+  color?: Color | undefined
   /**
    * テキストフィールドの幅を親要素に合わせるかどうか。
    *
@@ -199,6 +207,7 @@ export const Root = forwardRef(function Root(
 ) {
   const {
     size = "md",
+    color = "neutral",
     asChild = false,
     className,
     fullWidth = false,
@@ -209,7 +218,7 @@ export const Root = forwardRef(function Root(
   return (
     <Comp
       {...other}
-      className={clsx(className, "SuiTextField", { size, fullWidth })}
+      className={clsx(className, "SuiTextField", { color, size, fullWidth })}
     />
   )
 })
