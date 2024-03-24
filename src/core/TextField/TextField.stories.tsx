@@ -1,9 +1,9 @@
 import type { Story, StoryDefault } from "@ladle/react"
+import * as IconButton from "../../core/IconButton/IconButton"
+import { dsaHelp } from "../../icons/digital.go.jp/outlined"
 import { TEXT_SIZE_LIST } from "../../theme"
+import * as Icon from "../Icon/Icon"
 import * as TextField from "./TextField"
-// import { dsaHelp } from "../../icons/digital.go.jp/outlined"
-// import * as IconButton from "../../lab/IconButton/IconButton"
-// import * as Icon from "../Icon/Icon"
 
 export default { title: "TextField" } satisfies StoryDefault
 
@@ -53,70 +53,70 @@ export const Size: Story = () => (
   </div>
 )
 
-// export const WithAdornment: Story = () => (
-//   <div style={flexColStyle}>
-//     <TextField.Root>
-//       <TextField.Adornment>¥</TextField.Adornment>
-//       <TextField.Input
-//         type="number"
-//         defaultValue={10}
-//       />
-//       <TextField.Adornment disableFocusSteal>
-//         <IconButton.Root
-//           size="sm"
-//           color="neutral"
-//           variant="light"
-//           onClick={() => {
-//             // eslint-disable-next-line no-alert
-//             alert("clicked")
-//           }}
-//         >
-//           <Icon.Root icon={dsaHelp} />
-//         </IconButton.Root>
-//       </TextField.Adornment>
-//       <TextField.Adornment>万円</TextField.Adornment>
-//     </TextField.Root>
+export const WithAdornment: Story = () => (
+  <div style={flexColStyle}>
+    <TextField.Root>
+      <TextField.Adornment>¥</TextField.Adornment>
+      <TextField.Input
+        type="number"
+        defaultValue={10}
+      />
+      <TextField.Adornment disableFocusSteal>
+        <IconButton.Root
+          size="sm"
+          color="neutral"
+          variant="liquid"
+          onClick={() => {
+            // eslint-disable-next-line no-alert
+            alert("clicked")
+          }}
+        >
+          <Icon.Root icon={dsaHelp} />
+        </IconButton.Root>
+      </TextField.Adornment>
+      <TextField.Adornment>万円</TextField.Adornment>
+    </TextField.Root>
 
-//     <TextField.Root>
-//       <TextField.Input
-//         type="number"
-//         defaultValue={10}
-//       />
-//       <TextField.Adornment>万円</TextField.Adornment>
-//       <TextField.Adornment disableFocusSteal>
-//         <IconButton.Root
-//           size="sm"
-//           color="neutral"
-//           variant="light"
-//           onClick={() => {
-//             // eslint-disable-next-line no-alert
-//             alert("clicked")
-//           }}
-//         >
-//           <Icon.Root icon={dsaHelp} />
-//         </IconButton.Root>
-//       </TextField.Adornment>
-//       <TextField.Adornment disableFocusSteal>
-//         <IconButton.Root
-//           size="sm"
-//           color="neutral"
-//           variant="light"
-//           onClick={() => {
-//             // eslint-disable-next-line no-alert
-//             alert("clicked")
-//           }}
-//         >
-//           <Icon.Root icon={dsaHelp} />
-//         </IconButton.Root>
-//       </TextField.Adornment>
-//     </TextField.Root>
+    <TextField.Root>
+      <TextField.Input
+        type="number"
+        defaultValue={10}
+      />
+      <TextField.Adornment>万円</TextField.Adornment>
+      <TextField.Adornment disableFocusSteal>
+        <IconButton.Root
+          size="sm"
+          color="neutral"
+          variant="liquid"
+          onClick={() => {
+            // eslint-disable-next-line no-alert
+            alert("clicked")
+          }}
+        >
+          <Icon.Root icon={dsaHelp} />
+        </IconButton.Root>
+      </TextField.Adornment>
+      <TextField.Adornment disableFocusSteal>
+        <IconButton.Root
+          size="sm"
+          color="neutral"
+          variant="liquid"
+          onClick={() => {
+            // eslint-disable-next-line no-alert
+            alert("clicked")
+          }}
+        >
+          <Icon.Root icon={dsaHelp} />
+        </IconButton.Root>
+      </TextField.Adornment>
+    </TextField.Root>
 
-//     <TextField.Root>
-//       <TextField.Input
-//         type="number"
-//         defaultValue={10}
-//       />
-//       <TextField.Adornment>万円</TextField.Adornment>
-//     </TextField.Root>
-//   </div>
-// )
+    <TextField.Root>
+      <TextField.Input
+        type="number"
+        defaultValue={10}
+      />
+      <TextField.Adornment>万円</TextField.Adornment>
+    </TextField.Root>
+  </div>
+)
