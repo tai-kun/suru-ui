@@ -18,6 +18,24 @@
       "require": "./dist/core/Icon/Icon.cjs"
     },
     "./Icon.css": "./dist/core/Icon/Icon.css",
+    "./IconButton": {
+      "types": "./dist/core/IconButton/IconButton.d.ts",
+      "import": "./dist/core/IconButton/IconButton.jsx",
+      "require": "./dist/core/IconButton/IconButton.cjs"
+    },
+    "./IconButton.css": "./dist/core/IconButton/IconButton.css",
+    "./Link": {
+      "types": "./dist/core/Link/Link.d.ts",
+      "import": "./dist/core/Link/Link.jsx",
+      "require": "./dist/core/Link/Link.cjs"
+    },
+    "./Link.css": "./dist/core/Link/Link.css",
+    "./Loader": {
+      "types": "./dist/core/Loader/Loader.d.ts",
+      "import": "./dist/core/Loader/Loader.jsx",
+      "require": "./dist/core/Loader/Loader.cjs"
+    },
+    "./Loader.css": "./dist/core/Loader/Loader.css",
     "./Text": {
       "types": "./dist/core/Text/Text.d.ts",
       "import": "./dist/core/Text/Text.jsx",
