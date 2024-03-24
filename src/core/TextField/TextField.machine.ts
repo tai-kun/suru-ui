@@ -1,4 +1,4 @@
-import { and, createMachine, not, type Transfer } from "use-machine-ts"
+import { and, createMachine, not } from "use-machine-ts"
 
 type PointerType = "mouse" | "touch" | "pen"
 
@@ -13,7 +13,7 @@ export interface ClickMachineProps {
   onClick: () => void
 }
 
-export function clickMachine(props: Transfer<ClickMachineProps>) {
+export function clickMachine(props: () => ClickMachineProps) {
   return createMachine(
     {
       $schema: {} as {
@@ -56,7 +56,7 @@ export function clickMachine(props: Transfer<ClickMachineProps>) {
     },
     {
       guards: {
-        isDisabled: () => props.current.disabled,
+        isDisabled: () => props().disabled,
         isLeftClick: ({ event }) => event.button === 0,
         isTargetPointer: ({ context, event }) => (
           !!context
@@ -71,7 +71,8 @@ export function clickMachine(props: Transfer<ClickMachineProps>) {
           }
 
           if (event.type === "POINTER_UP") {
-            props.current.onClick()
+            const { onClick } = props()
+            onClick()
           }
         },
         setCtx: ({ setContext, event }) => {

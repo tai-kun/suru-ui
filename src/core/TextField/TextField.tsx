@@ -1,5 +1,5 @@
 import * as React from "react"
-import { transfer, useSyncedMachine } from "use-machine-ts"
+import { useSyncedMachine } from "use-machine-ts"
 import type { ColorName, TextSize } from "../../theme"
 import clsx from "../../utils/clsx"
 import forwardRef, { type HTMLPropsWithRef } from "../../utils/forwardRef"
@@ -22,7 +22,7 @@ const FocusSteal = forwardRef(function FocusSteal(props: FocusStealProps) {
     children,
     ...machineProps
   } = props
-  const [, send] = useSyncedMachine(clickMachine, [transfer(machineProps)])
+  const [, send] = useSyncedMachine(clickMachine, machineProps)
   const handlers = React.useMemo<
     Record<
       "onPointerUp" | "onPointerDown" | "onPointerLeave" | "onPointerCancel",
