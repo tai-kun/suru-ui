@@ -129,25 +129,25 @@
   },
   "dependencies": {
     "@floating-ui/dom": "~1.6.3",
-    "use-machine-ts": "^0.2.0-canary.20240319T082700"
+    "use-machine-ts": "^0.2.0-canary.20240324T004142"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "~14.0.0",
+    "@happy-dom/global-registrator": "~14.3.3",
     "@ladle/react": "~4.0.3",
     "@playwright/experimental-ct-react": "~1.42.1",
     "@svgr/core": "~8.1.0",
     "@swc-node/register": "~1.9.0",
     "@testing-library/react": "~14.2.2",
-    "@tsconfig/node21": "~21.0.1",
-    "@tsconfig/strictest": "~2.0.3",
+    "@tsconfig/node21": "~21.0.2",
+    "@tsconfig/strictest": "~2.0.4",
     "@types/css-tree": "~2.3.7",
     "@types/mock-fs": "~4.13.4",
     "@types/node": "~20.11.30",
-    "@types/react": "^18.2.67",
+    "@types/react": "^18.2.69",
     "@types/react-dom": "^18.2.22",
     "@types/react-is": "^18.2.4",
     "@types/unzipper": "~0.10.9",
@@ -166,7 +166,7 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "tsd": "~0.30.7",
-    "typescript": "~5.4.2",
+    "typescript": "~5.4.3",
     "unzipper": "~0.10.14",
     "valibot": "~0.30.0",
     "visit-json": "~0.2.2",
