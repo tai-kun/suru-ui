@@ -1,0 +1,86 @@
+@layer sui.enabled {
+  @scope (.SuiLink) {
+    :scope {
+      /*
+       * Root
+       */
+
+      &:not(.SuiButtonBase) {
+        cursor: pointer;
+        border-radius: var(--sui-radius-sm);
+
+        &:link,
+        &:link .SuiLinkExternalIcon {
+          color: var(--sui-color-link-normal);
+        }
+
+        &:visited,
+        &:visited .SuiLinkExternalIcon {
+          color: var(--sui-color-link-visited);
+        }
+
+        @media (any-hover: hover) {
+          &:hover,
+          &:hover .SuiLinkExternalIcon {
+            color: var(--sui-color-link-hover);
+          }
+        }
+
+        &:active,
+        &:active .SuiLinkExternalIcon {
+          color: var(--sui-color-link-active);
+        }
+
+        &:focus-visible {
+          outline:
+            solid
+            var(--sui-ring-focus-color)
+            var(--sui-ring-focus-visible);
+          outline-offset: var(--sui-ring-focus-visible);
+        }
+      }
+
+      &.Sui-underline-always {
+        text-decoration: underline;
+      }
+
+      &.Sui-underline-never {
+        text-decoration: none;
+      }
+
+      &.Sui-underline-hover {
+        text-decoration: none;
+
+        @media (any-hover: hover) {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+@layer sui.disabled {
+  @scope (.SuiLink) {
+    :scope[aria-disabled=true] {
+      cursor: not-allowed !important;
+
+      &.Sui-underline-never,
+      &.Sui-underline-hover {
+        text-decoration: none;
+      }
+
+      &.Sui-underline-always {
+        text-decoration-line: underline !important;
+        text-decoration-color: currentColor !important;
+        text-decoration-style: dashed !important;
+        text-decoration-thickness: var(--sui-ring-disabled) !important;
+      }
+
+      &:not(.SuiButtonBase) {
+        color: var(--sui-color-text-disabled) !important;
+      }
+    }
+  }
+}
