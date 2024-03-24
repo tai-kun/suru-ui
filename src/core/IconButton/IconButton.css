@@ -1,0 +1,91 @@
+@layer sui.enabled {
+  @scope (.SuiIconButton) {
+    :scope {
+      /*
+       * Root
+       * --SuiIconButton-size
+       * --SuiIconButton-align
+       * --SuiIconButton-radius
+       * --SuiIconButton-fontSize
+       * --SuiIconButton-fontWeight
+       */
+
+      --SuiIconButton-fontSize: var(--sui-button-size);
+
+      width: var(--SuiIconButton-size);
+      height: var(--SuiIconButton-size);
+      display: inline-flex;
+      font-size: var(--SuiIconButton-fontSize);
+      list-style: none;
+      align-items: center;
+      font-weight: var(--SuiIconButton-fontWeight);
+      border-radius: var(--SuiIconButton-radius);
+      vertical-align: baseline;
+      justify-content: var(--SuiIconButton-align);
+      text-decoration: none;
+
+      &.Sui-align-center {
+        --SuiIconButton-align: center;
+      }
+
+      &.Sui-align-start {
+        --SuiIconButton-align: flex-start;
+      }
+
+      &.Sui-align-end {
+        --SuiIconButton-align: flex-end;
+      }
+
+      &.Sui-size-sm {
+        --SuiIconButton-size: var(--sui-size-sm);
+        --SuiIconButton-radius: var(--sui-radius-md);
+      }
+
+      &.Sui-size-md {
+        --SuiIconButton-size: var(--sui-size-md);
+        --SuiIconButton-radius: var(--sui-radius-md);
+      }
+
+      &.Sui-size-lg {
+        --SuiIconButton-size: var(--sui-size-lg);
+        --SuiIconButton-radius: var(--sui-radius-lg);
+      }
+
+      &.Sui-size-xl {
+        --SuiIconButton-size: var(--sui-size-xl);
+        --SuiIconButton-radius: var(--sui-radius-lg);
+        /* TODO: ボタンのサイズに合わせたテキストの情報をデザイントークンに入れるか検討 */
+        --SuiIconButton-fontSize: calc(var(--sui-button-size) * 1.25);
+      }
+
+      /* variant="menuitem" */
+
+      &.Sui-menuitem.Sui-variant-naked {
+        --SuiIconButton-fontWeight: var(--sui-font-normal);
+      }
+
+      &.Sui-menuitem.Sui-variant-solid {
+        --SuiIconButton-fontWeight: var(--sui-font-bold);
+      }
+
+      /* fullWidth={true} */
+
+      &.Sui-fullWidth {
+        width: 100%;
+      }
+
+      /* loading={true} */
+
+      &.Sui-loading {
+        & > :not(.SuiIconButtonLoader) {
+          height: 0;
+          opacity: 0;
+        }
+
+        .SuiIconButtonLoader {
+          position: absolute;
+        }
+      }
+    }
+  }
+}
