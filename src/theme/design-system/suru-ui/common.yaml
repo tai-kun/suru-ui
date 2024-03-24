@@ -16,7 +16,7 @@ ring:
     active:  md
     visible: md
   input:    md
-  button:   sm
+  button:   md
   disabled: sm
 
 $build:
