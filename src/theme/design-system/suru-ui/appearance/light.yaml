@@ -308,10 +308,15 @@ $build:
       matrix:
         state: [ normal, hover, active, visited ]
       operations:
-        - name: リンクテキストの色をコピーする
+        - name: リンクテキストの色を color に割り当てる
           mode: copy
+          path: /color/${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }}
+          from: /color2.0/${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }}
+
+        - name: CSS 変数を設定する
+          mode: add
           path: /color/link/${{ matrix.state }}
-          from: /color2.0/${{ /linktext/${{ matrix.state }} }}
+          value: "var(--sui-color-${{ /linktext/${{ matrix.state }}/color }}-${{ /linktext/${{ matrix.state }}/scale }})"
 
   exports:
     include:

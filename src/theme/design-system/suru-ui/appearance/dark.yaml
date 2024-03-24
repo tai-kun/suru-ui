@@ -330,10 +330,20 @@ $build:
       matrix:
         state: [ normal, hover, active, visited ]
       operations:
-        - name: リンクテキストの色をコピーする
+        - name: スケールを反転させたカラーマップを用意しておく
           mode: copy
+          path: /color2.0/_${{ /linktext/${{ matrix.state }}/color }}/$[[ 1200, 1100, 1000, 900, 800, 700, 600, 500, 400, 300,  200,  100,   50 ]]
+          from: /color2.0/${{ /linktext/${{ matrix.state }}/color }}/$[[    50,  100,  200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200 ]]
+
+        - name: リンクテキストの色を color に割り当てる
+          mode: copy
+          path: /color/${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }}
+          from: /color2.0/_${{ /linktext/${{ matrix.state }}/color }}/${{ /linktext/${{ matrix.state }}/scale }}
+
+        - name: CSS 変数を設定する
+          mode: add
           path: /color/link/${{ matrix.state }}
-          from: /color2.0/${{ /linktext/${{ matrix.state }} }}
+          value: "var(--sui-color-${{ /linktext/${{ matrix.state }}/color }}-${{ /linktext/${{ matrix.state }}/scale }})"
 
   exports:
     include:
