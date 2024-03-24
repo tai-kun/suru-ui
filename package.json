@@ -12,6 +12,12 @@
     "dist"
   ],
   "exports": {
+    "./Button": {
+      "types": "./dist/core/Button/Button.d.ts",
+      "import": "./dist/core/Button/Button.jsx",
+      "require": "./dist/core/Button/Button.cjs"
+    },
+    "./Button.css": "./dist/core/Button/Button.css",
     "./Icon": {
       "types": "./dist/core/Icon/Icon.d.ts",
       "import": "./dist/core/Icon/Icon.jsx",
