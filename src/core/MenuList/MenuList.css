@@ -1,0 +1,21 @@
+@layer sui.enabled {
+  @scope (.SuiMenuList) to (.SuiMenuList) {
+    :scope {
+      /*
+       * Root
+       */
+
+      list-style: none;
+
+      .SuiMenuListIndent {
+        /*
+         * Indent
+         * --SuiMenuListIndent-size
+         */
+
+        width: var(--SuiMenuListIndent-size, 0);
+        display: inline-flex;
+      }
+    }
+  }
+}

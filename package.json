@@ -153,7 +153,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "~1.6.3",
-    "use-machine-ts": "^0.2.0-canary.20240324T004142"
+    "use-machine-ts": "^0.2.0-canary.20240325T025620"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -1,0 +1,264 @@
+@layer sui.enabled {
+  .SuiCheckbox {
+    /*
+     * Root
+     * --SuiCheckbox-size
+     * --SuiCheckbox-hover
+     * --SuiCheckbox-active
+     * --SuiCheckbox-normal
+     * --SuiCheckbox-radius
+     * --SuiCheckbox-iconSize
+     * --SuiCheckbox-iconHover
+     * --SuiCheckbox-iconNormal
+     * --SuiCheckbox-iconActive
+     */
+
+    display: inline-block;
+    z-index: 0;
+    position: relative;
+
+    &.Sui-size-sm {
+      --SuiCheckbox-size:     var(--sui-size-sm);
+      --SuiCheckbox-radius:   var(--sui-radius-md);
+      --SuiCheckbox-iconSize: calc(var(--SuiCheckbox-size) * 0.6);
+    }
+
+    &.Sui-size-md {
+      --SuiCheckbox-size:     var(--sui-size-md);
+      --SuiCheckbox-radius:   var(--sui-radius-md);
+      --SuiCheckbox-iconSize: calc(var(--SuiCheckbox-size) * 0.5);
+    }
+
+    &.Sui-size-lg {
+      --SuiCheckbox-size:     var(--sui-size-lg);
+      --SuiCheckbox-radius:   var(--sui-radius-md);
+      --SuiCheckbox-iconSize: calc(var(--SuiCheckbox-size) * 0.5);
+    }
+
+    &.Sui-size-xl {
+      --SuiCheckbox-size:     var(--sui-size-xl);
+      --SuiCheckbox-radius:   var(--sui-radius-lg);
+      --SuiCheckbox-iconSize: calc(var(--SuiCheckbox-size) * 0.5);
+    }
+
+    &:not(.Sui-inline) {
+      width: var(--SuiCheckbox-size);
+      height: var(--SuiCheckbox-size);
+    }
+
+    &.Sui-inline {
+      width: var(--SuiCheckbox-iconSize);
+      height: var(--SuiCheckbox-iconSize);
+    }
+
+    &.Sui-color-grey {
+      --SuiCheckbox-normal: var(--sui-color-grey-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-grey-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-grey-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-grey-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-grey-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-grey-solid-active);
+    }
+
+    &.Sui-color-blue {
+      --SuiCheckbox-normal: var(--sui-color-blue-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-blue-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-blue-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-blue-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-blue-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-blue-solid-active);
+    }
+
+    &.Sui-color-lightBlue {
+      --SuiCheckbox-normal: var(--sui-color-lightBlue-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-lightBlue-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-lightBlue-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-lightBlue-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-lightBlue-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-lightBlue-solid-active);
+    }
+
+    &.Sui-color-green {
+      --SuiCheckbox-normal: var(--sui-color-green-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-green-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-green-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-green-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-green-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-green-solid-active);
+    }
+
+    &.Sui-color-yellow {
+      --SuiCheckbox-normal: var(--sui-color-yellow-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-yellow-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-yellow-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-yellow-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-yellow-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-yellow-solid-active);
+    }
+
+    &.Sui-color-red {
+      --SuiCheckbox-normal: var(--sui-color-red-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-red-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-red-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-red-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-red-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-red-solid-active);
+    }
+
+    &.Sui-color-brand {
+      --SuiCheckbox-normal: var(--sui-color-brand-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-brand-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-brand-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-brand-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-brand-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-brand-solid-active);
+    }
+
+    &.Sui-color-neutral {
+      --SuiCheckbox-normal: var(--sui-color-neutral-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-neutral-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-neutral-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-neutral-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-neutral-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-neutral-solid-active);
+    }
+
+    &.Sui-color-info {
+      --SuiCheckbox-normal: var(--sui-color-info-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-info-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-info-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-info-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-info-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-info-solid-active);
+    }
+
+    &.Sui-color-error {
+      --SuiCheckbox-normal: var(--sui-color-info-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-info-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-info-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-error-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-error-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-error-solid-active);
+    }
+
+    &.Sui-color-warning {
+      --SuiCheckbox-normal: var(--sui-color-warning-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-warning-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-warning-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-warning-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-warning-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-warning-solid-active);
+    }
+
+    &.Sui-color-success {
+      --SuiCheckbox-normal: var(--sui-color-success-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-success-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-success-naked-active);
+      --SuiCheckbox-iconNormal: var(--sui-color-success-solid-normal);
+      --SuiCheckbox-iconHover:  var(--sui-color-success-solid-hover);
+      --SuiCheckbox-iconActive: var(--sui-color-success-solid-active);
+    }
+
+    &:has(.SuiCheckboxInput:not(:checked)) {
+      --SuiCheckbox-normal: var(--sui-color-grey-naked-normal);
+      --SuiCheckbox-hover:  var(--sui-color-grey-naked-hover);
+      --SuiCheckbox-active: var(--sui-color-grey-naked-active);
+    }
+
+    &::before {
+      top: 50%;
+      left: 50%;
+      width: var(--SuiCheckbox-iconSize);
+      height: var(--SuiCheckbox-iconSize);
+      content: "";
+      display: block;
+      position: absolute;
+      transform: translateY(-50%) translateX(-50%);
+      border-radius: calc(var(--SuiCheckbox-radius) / 2);
+      pointer-events: none;
+    }
+
+    &:has(.SuiCheckboxInput:not(:checked))::before {
+      outline: solid var(--sui-color-grey-ring-lc) var(--sui-ring-md);
+      outline-offset: calc(-1 * var(--sui-ring-md));
+    }
+
+    &:has(.SuiCheckboxInput:checked)::before {
+      background: var(--SuiCheckbox-iconNormal);
+    }
+
+    @media (any-hover: hover) {
+      &:has(.SuiCheckboxInput:checked:hover)::before {
+        background: var(--SuiCheckbox-iconHover);
+      }
+    }
+
+    &:has(.SuiCheckboxInput:checked:active)::before {
+      background: var(--SuiCheckbox-iconActive);
+    }
+
+    &:has(.SuiCheckboxInput:checked)::after {
+      top: 50%;
+      left: 50%;
+      width: calc(var(--SuiCheckbox-iconSize) * 0.4);
+      height: calc(var(--SuiCheckbox-iconSize) * 0.7);
+      content: "";
+      display: block;
+      position: absolute;
+      transform: translateY(-55%) translateX(-50%) rotate(45deg);
+      border-right: solid var(--sui-color-canvas-main) calc(var(--SuiCheckbox-iconSize) * 0.15);
+      border-bottom: solid var(--sui-color-canvas-main) calc(var(--SuiCheckbox-iconSize) * 0.15);
+      pointer-events: none;
+    }
+
+    /*
+     * Input
+     */
+
+    .SuiCheckboxInput {
+      top: 50%;
+      left: 50%;
+      width: var(--SuiCheckbox-size);
+      cursor: pointer;
+      height: var(--SuiCheckbox-size);
+      z-index: -1;
+      position: absolute;
+      transform: translateY(-50%) translateX(-50%);
+      background: var(--SuiCheckbox-normal);
+      border-radius: var(--SuiCheckbox-radius);
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--SuiCheckbox-hover);
+        }
+      }
+
+      &:active {
+        background: var(--SuiCheckbox-active);
+      }
+
+      &:focus-visible {
+        outline: solid var(--sui-ring-focus-color) var(--sui-ring-focus-visible);
+        outline-offset: var(--sui-ring-focus-visible);
+      }
+    }
+  }
+}
+
+@layer sui.disabled {
+  .SuiCheckbox:has(.SuiCheckboxInput:is(:disabled, [disabled])) {
+    &:has(.SuiCheckboxInput:not(:checked))::before {
+      outline: solid var(--sui-color-text-disabled) var(--sui-ring-md) !important;
+      outline-offset: calc(-1 * var(--sui-ring-md)) !important;
+    }
+
+    &:has(.SuiCheckboxInput:checked)::before {
+      background: var(--sui-color-canvas-disabled) !important;
+    }
+
+    .SuiCheckboxInput {
+      cursor: not-allowed !important;
+      background: transparent !important;
+    }
+  }
+}
