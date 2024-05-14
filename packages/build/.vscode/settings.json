@@ -1,0 +1,38 @@
+{
+  "editor.rulers": [80],
+  "rust-analyzer.showUnlinkedFileNotification": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[toml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "[shellscript]": {
+    "editor.indentSize": 4,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check build
+check "$(listup . -p build/)"
+check "$(listup src -p build/)"
