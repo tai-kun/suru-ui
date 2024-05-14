@@ -1,0 +1,19 @@
+@import "./desktop.css";
+
+@layer sui.tokens {
+  @media (max-width: 767px) {
+    :root {
+      --sui-h1-size:    var(--sui-font-2xl);
+      --sui-h1-weight:  var(--sui-font-medium);
+      --sui-h1-leading: var(--sui-leading-md);
+      --sui-h2-size:    var(--sui-font-xl);
+      --sui-h2-weight:  var(--sui-font-medium);
+      --sui-h3-size:    var(--sui-font-lg);
+      --sui-h3-weight:  var(--sui-font-medium);
+      --sui-h4-size:    var(--sui-font-md);
+      --sui-h4-weight:  var(--sui-font-medium);
+      --sui-h5-size:    var(--sui-font-sm);
+      --sui-h5-leading: var(--sui-leading-lg);
+    }
+  }
+}

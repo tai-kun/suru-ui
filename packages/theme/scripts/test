@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+node scripts/generate.js
+node --enable-source-maps --import cfg-test --test 'src/**/*.ts'
