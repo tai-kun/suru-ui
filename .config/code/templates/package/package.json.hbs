@@ -1,18 +1,27 @@
 {
   "name": "@sui/{{name}}",
   "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
+  "peerDependencies": {},
+  "devDependencies": {
+    "@sui/build": "*"
+  },
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": {
+    "url": "https://github.com/tai-kun/suru-ui.git",
+    "type": "git",
+    "directory": "packages/{{name}}"
+  },
   "scripts": {
     "add": "plop --plopfile .config/code/plopfile.js",
     "test": "scripts/test",
     "check": "scripts/check",
     "build": "scripts/build"
-  },
-  "devDependencies": {
-    "@sui/build": "~0.1.0"
   },
   "volta": {
     "extends": "../../package.json"
