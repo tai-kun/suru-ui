@@ -1,0 +1,9 @@
+export function __basename_outpath__() {}
+
+if (cfgTest && cfgTest.url === import.meta.url) {
+  const { describe, test } = cfgTest;
+
+  describe("__dirname_outpath__/__basename_outpath__", () => {
+    test.todo("no tests");
+  });
+}

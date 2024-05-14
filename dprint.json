@@ -1,0 +1,24 @@
+{
+  "excludes": [
+    "**/.cache",
+    "**/.history",
+    "**/.temp",
+    "**/.tmp",
+    "**/dist",
+    "**/node_modules",
+    "**/temp",
+    "**/tmp",
+    "**/*-lock.json"
+  ],
+  "lineWidth": 80,
+  "typescript": {
+    "trailingCommas": "onlyMultiLine",
+    "singleBodyPosition": "nextLine",
+    "arrowFunction.useParentheses": "preferNone"
+  },
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.90.5.wasm",
+    "https://plugins.dprint.dev/json-0.19.2.wasm",
+    "https://plugins.dprint.dev/toml-0.6.1.wasm"
+  ]
+}

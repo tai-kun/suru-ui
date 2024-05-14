@@ -1,0 +1,20 @@
+{
+  "name": "@sui/{{name}}",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js",
+    "test": "scripts/test",
+    "check": "scripts/check",
+    "build": "scripts/build"
+  },
+  "devDependencies": {
+    "@sui/build": "~0.1.0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

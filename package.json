@@ -1,0 +1,33 @@
+{
+  "name": "suru-ui",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": "https://github.com/tai-kun/suru-ui.git",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js"
+  },
+  "devDependencies": {
+    "@swc-node/register": "1.9.0",
+    "@tsconfig/node22": "~22.0.0",
+    "@tsconfig/strictest": "~2.0.5",
+    "@types/node": "~20.12.11",
+    "cfg-test": "~0.6.1",
+    "dprint": "~0.45.1",
+    "esbuild": "~0.21.2",
+    "plop": "~4.0.1",
+    "tsd": "~0.31.0",
+    "typescript": "~5.4.5"
+  },
+  "volta": {
+    "node": "22.1.0"
+  }
+}

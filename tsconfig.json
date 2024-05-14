@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@tsconfig/node22/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json"
+  ],
+  "include": [
+    "./.config/**/*"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "sourceMap": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  }
+}
