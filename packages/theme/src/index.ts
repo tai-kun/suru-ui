@@ -62,7 +62,7 @@ export {
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("@sui/theme/src/index", () => {
+  describe("@suru-ui/theme/src/index", () => {
     test.todo("テスト");
   });
 }

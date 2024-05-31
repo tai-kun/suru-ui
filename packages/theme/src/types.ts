@@ -58,7 +58,7 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("@sui/theme/src/types", () => {
+  describe("@suru-ui/theme/src/types", () => {
     test.todo("テスト");
   });
 }

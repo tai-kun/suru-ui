@@ -1,5 +1,5 @@
 {
-  "name": "@sui/theme",
+  "name": "@suru-ui/theme",
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
@@ -20,7 +20,7 @@
   ],
   "peerDependencies": {},
   "devDependencies": {
-    "@sui/build": "*"
+    "@suru-ui/build": "*"
   },
   "author": "tai-kun <taikun.dev@gmail.com>",
   "repository": {

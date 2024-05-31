@@ -132,7 +132,7 @@ export const BUTTON_SIZES = [
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("@sui/theme/src/constants", () => {
+  describe("@suru-ui/theme/src/constants", () => {
     test.todo("テスト");
   });
 }

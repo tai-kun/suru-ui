@@ -194,7 +194,7 @@ export const $ = /* @__PURE__ */ createRecursiveProxy(
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { assert, describe, test } = cfgTest;
 
-  describe("@sui/theme/src/utils", () => {
+  describe("@suru-ui/theme/src/utils", () => {
     test("CSS カスタムプロパティを取得できる", () => {
       assert.equal(`${$.color.blue[50]}`, "var(--sui-color-blue-50)");
       assert.deepEqual($.color.blue[50].parts(), ["color", "blue", "50"]);

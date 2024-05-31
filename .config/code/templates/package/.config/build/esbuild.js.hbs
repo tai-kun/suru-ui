@@ -1,5 +1,5 @@
 // @ts-check
 
-import { build } from "@sui/build";
+import { build } from "@suru-ui/build";
 
 await build();
