@@ -21,13 +21,13 @@ for (const cssFile of fs.readdirSync(srcDir)) {
 
   for (const [, match] of cssContent.matchAll(CSS_CUSTOM_PROPERTIES_REGEX)) {
     let properties = cssCustomProperties;
-    const parts = match.split("-");
+    const keys = match.split("-");
 
-    for (let i = 0, len = parts.length; i < len; i++) {
+    for (let i = 0, len = keys.length; i < len; i++) {
       if (i !== len - 1) {
-        properties = properties[parts[i]] ||= {};
+        properties = properties[keys[i]] ||= {};
       } else {
-        properties[parts[i]] = 1;
+        properties[keys[i]] = 1;
       }
     }
   }
@@ -49,14 +49,14 @@ ${
         str += `${indent}};\n`;
       } else {
         const name = [...stack, key].join("-");
-        const parts = `[${
+        const keys = `[${
           [...stack.slice(1), key]
             .map(part => JSON.stringify(part))
             .join(", ")
         }]`;
         str += `${indent}readonly ${property}: {\n`;
-        str += `${indent}  readonly name: () => "${name}";\n`;
-        str += `${indent}  readonly parts: () => ${parts};\n`;
+        str += `${indent}  readonly $name: "${name}";\n`;
+        str += `${indent}  readonly $keys: ${keys};\n`;
         str += `${indent}  readonly toString: () => "var(${name})";\n`;
         str += `${indent}};\n`;
       }

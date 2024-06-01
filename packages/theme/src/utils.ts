@@ -149,29 +149,39 @@ export function isButtonSize(value: unknown): value is ButtonSize {
 }
 
 function createRecursiveProxy(
-  get: (method: "toString" | "name" | "parts", path: string[]) => any,
+  get: (method: "toString" | "name" | "keys", path: string[]) => any,
   stack: string[] = [],
 ): any {
   return new Proxy(() => {}, {
     get(target, prop, receiver) {
-      if (typeof prop !== "string") {
-        return Reflect.get(target, prop, receiver);
-      }
+      switch (prop) {
+        case "toString":
+          return createRecursiveProxy(get, [...stack, prop]);
 
-      return createRecursiveProxy(get, [...stack, prop]);
+        case "$name":
+          return get("name", stack);
+
+        case "$keys":
+          return get("keys", stack);
+
+        default:
+          return typeof prop === "string"
+            ? createRecursiveProxy(get, [...stack, prop])
+            : Reflect.get(target, prop, receiver);
+      }
     },
     apply() {
-      const method = stack.pop() || "toString";
+      const method = stack.pop();
 
       if (__DEV__) {
-        if (!["toString", "name", "parts"].includes(method)) {
+        if (method !== "toString") {
           console.error("SUI: .toString() 以外を呼び出すことはできません。");
 
           return "";
         }
       }
 
-      return get(method as any, stack);
+      return get(method as "toString", stack);
     },
   });
 }
@@ -179,13 +189,13 @@ function createRecursiveProxy(
 export const $ = /* @__PURE__ */ createRecursiveProxy(
   function toReturnValue(method, path): any {
     switch (method) {
-      case "name":
-        return `--sui-${path.join("-")}`;
-
       case "toString":
         return `var(${toReturnValue("name", path)})`;
 
-      case "parts":
+      case "name":
+        return `--sui-${path.join("-")}`;
+
+      case "keys":
         return path;
     }
   },
@@ -197,7 +207,7 @@ if (cfgTest && cfgTest.url === import.meta.url) {
   describe("@suru-ui/theme/src/utils", () => {
     test("CSS カスタムプロパティを取得できる", () => {
       assert.equal(`${$.color.blue[50]}`, "var(--sui-color-blue-50)");
-      assert.deepEqual($.color.blue[50].parts(), ["color", "blue", "50"]);
+      assert.deepEqual($.color.blue[50].$keys, ["color", "blue", "50"]);
     });
   });
 }
