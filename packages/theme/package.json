@@ -32,7 +32,8 @@
     "add": "plop --plopfile .config/code/plopfile.js",
     "test": "scripts/test",
     "check": "scripts/check",
-    "build": "scripts/build"
+    "build": "scripts/build",
+    "setup": "scripts/setup"
   },
   "volta": {
     "extends": "../../package.json"
