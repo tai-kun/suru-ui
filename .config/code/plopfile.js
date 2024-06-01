@@ -19,6 +19,16 @@ export default plop => {
     actions: [
       {
         type: "add",
+        path: "../../.github/workflows/canary-release-{{name}}.yml",
+        templateFile: "./templates/workflows/canary-release.yml.hbs",
+      },
+      {
+        type: "add",
+        path: "../../.github/workflows/release-{{name}}.yml",
+        templateFile: "./templates/workflows/release.yml.hbs",
+      },
+      {
+        type: "add",
         path: "../../packages/{{name}}/package.json",
         templateFile: "./templates/package/package.json.hbs",
       },
