@@ -3,7 +3,6 @@ import { buildDefine } from "cfg-test/define";
 import esbuild from "esbuild";
 import fs from "node:fs/promises";
 import { resolve } from "./plugins/resolve.js";
-import { setup } from "./setup.js";
 
 export interface BuildOptions {
   /**
@@ -21,7 +20,6 @@ export async function build(options: BuildOptions | undefined = {}) {
     jsx = false,
     platform = "browser",
   } = options;
-  await setup();
   await esbuild.build({
     // General
 
