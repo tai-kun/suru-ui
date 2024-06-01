@@ -56,7 +56,7 @@ export async function setup(): Promise<void> {
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("@suru-ui/setup", () => {
+  describe("@suru-ui/build/setup", () => {
     test.todo("テスト");
   });
 }

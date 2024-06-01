@@ -86,7 +86,7 @@ export async function build(options: BuildOptions | undefined = {}) {
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("@suru-ui/build", () => {
+  describe("@suru-ui/build/build", () => {
     test.todo("テスト");
   });
 }
