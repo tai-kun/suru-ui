@@ -45,13 +45,13 @@ jobs:
 
       - name: Pin version
         run: |
-          pkg_name="$(npm pkg get name | jq -r)"
+          pkg_name="$(cat package.json | jq -r .name)"
           pkg_version="$(curl -s https://registry.npmjs.org/${pkg_name}/latest | jq -r .version)"
 
           npm --no-git-tag-version version "$pkg_version"
           npm --no-git-tag-version version minor
 
-          pkg_version="$(npm pkg get version | jq -r)"
+          pkg_version="$(cat package.json | jq -r .version)"
 
           npm --no-git-tag-version version "${pkg_version}-canary.$(date --utc +'%Y%m%dT%H%M%S')"
 
