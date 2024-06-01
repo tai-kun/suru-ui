@@ -53,6 +53,7 @@ jobs:
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          package: packages/build
           access: public
+          token: ${{ secrets.NPM_TOKEN }}
           tag: ${{ steps.params.outputs.releaseTag }}

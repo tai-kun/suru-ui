@@ -25,6 +25,8 @@ jobs:
         run: |
           cd ../..
           npm ci
+          cd packages/build
+          npm run build
 
       - name: Setup
         run: |
@@ -53,6 +55,7 @@ jobs:
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          package: packages/theme
           access: public
+          token: ${{ secrets.NPM_TOKEN }}
           tag: ${{ steps.params.outputs.releaseTag }}
