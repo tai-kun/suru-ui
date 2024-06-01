@@ -39,6 +39,11 @@ export default plop => {
       },
       {
         type: "add",
+        path: "../../packages/{{name}}/.config/build/setup.js",
+        templateFile: "./templates/package/.config/build/setup.js.hbs",
+      },
+      {
+        type: "add",
         path: "../../packages/{{name}}/.config/build/tsconfig.build.json",
         templateFile:
           "./templates/package/.config/build/tsconfig.build.json.hbs",
@@ -49,8 +54,7 @@ export default plop => {
         templateFile: "./templates/package/.config/code/plopfile.js.hbs",
         transform: template =>
           template
-            .replaceAll("__dirname_outpath__", "{{dirname outpath}}")
-            .replaceAll("__basename_outpath__", "{{basename outpath}}"),
+            .replaceAll("__normalize_outpath__", "{{normalize outpath}}"),
       },
       {
         type: "add",
@@ -60,13 +64,7 @@ export default plop => {
           "./templates/package/.config/code/templates/function/$name.ts.hbs",
         transform: template =>
           template
-            .replaceAll("__dirname_outpath__", "{{dirname outpath}}")
-            .replaceAll("__basename_outpath__", "{{basename outpath}}"),
-      },
-      {
-        type: "add",
-        path: "../../packages/{{name}}/scripts/test",
-        templateFile: "./templates/package/scripts/test.hbs",
+            .replaceAll("__normalize_outpath__", "{{normalize outpath}}"),
       },
       {
         type: "add",
@@ -82,6 +80,16 @@ export default plop => {
         type: "add",
         path: "../../packages/{{name}}/scripts/commit-msg",
         templateFile: "./templates/package/scripts/commit-msg.hbs",
+      },
+      {
+        type: "add",
+        path: "../../packages/{{name}}/scripts/setup",
+        templateFile: "./templates/package/scripts/setup.hbs",
+      },
+      {
+        type: "add",
+        path: "../../packages/{{name}}/scripts/test",
+        templateFile: "./templates/package/scripts/test.hbs",
       },
       {
         type: "add",
