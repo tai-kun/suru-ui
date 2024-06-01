@@ -9,9 +9,13 @@
     "add": "plop --plopfile .config/code/plopfile.js",
     "test": "scripts/test",
     "check": "scripts/check",
-    "build": "scripts/build"
+    "build": "scripts/build",
+    "setup": "exit 0"
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "dependencies": {
+    "zx": "^8.1.2"
   }
 }

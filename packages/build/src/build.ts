@@ -3,6 +3,7 @@ import { buildDefine } from "cfg-test/define";
 import esbuild from "esbuild";
 import fs from "node:fs/promises";
 import { resolve } from "./plugins/resolve.js";
+import { setup } from "./setup.js";
 
 export interface BuildOptions {
   /**
@@ -20,7 +21,7 @@ export async function build(options: BuildOptions | undefined = {}) {
     jsx = false,
     platform = "browser",
   } = options;
-
+  await setup();
   await esbuild.build({
     // General
 
@@ -28,7 +29,7 @@ export async function build(options: BuildOptions | undefined = {}) {
     platform: "node",
     target: {
       neutral: "esnext",
-      browser: "chrome122",
+      browser: "chrome125",
       node: "node22",
     }[platform],
 
@@ -85,7 +86,7 @@ export async function build(options: BuildOptions | undefined = {}) {
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;
 
-  describe("src/build", () => {
-    test.todo("no tests");
+  describe("@suru-ui/build", () => {
+    test.todo("テスト");
   });
 }

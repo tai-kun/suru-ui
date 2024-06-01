@@ -9,8 +9,8 @@ export default plop => {
   // Helpers
 
   plop.setHelper("basename", arg => path.basename(arg));
-  plop.setHelper("dirname", arg =>
-    path.normalize(path.dirname(arg))
+  plop.setHelper("normalize", arg =>
+    path.normalize(arg)
       .replace(new RegExp(`${path.sep}{2,}`, "g"), "/")
       .replace(new RegExp(`${path.sep}*$`, "g"), ""));
 
@@ -28,7 +28,7 @@ export default plop => {
     actions: [
       {
         type: "add",
-        path: "../../{{dirname outpath}}/{{basename outpath}}.ts",
+        path: "../../src/{{normalize outpath}}.ts",
         templateFile: "./templates/function/$name.ts.hbs",
       },
     ],
