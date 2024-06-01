@@ -1,6 +1,6 @@
 export {
   BORDER_SIZES,
-  BUTTON_SIZES,
+  BUTTON_TEXT_SIZES,
   CAPTION_SIZES,
   COLOR_SCALES,
   COLOR_VARIANTS,
@@ -41,7 +41,7 @@ export type {
 export {
   $,
   isBorderSize,
-  isButtonSize,
+  isButtonTextSize,
   isCaptionSize,
   isColor,
   isColorScale,

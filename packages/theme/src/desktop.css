@@ -95,13 +95,13 @@
     --sui-caption-sm-leading:  var(--sui-leading-lg);
     --sui-caption-sm-tracking: var(--sui-tracking-sm);
 
-    --sui-button-lg-sizing:   var(--sui-font-lg);
-    --sui-button-lg-weight:   var(--sui-font-bold);
-    --sui-button-lg-leading:  var(--sui-leading-md);
-    --sui-button-lg-tracking: var(--sui-tracking-md);
-    --sui-button-md-sizing:   var(--sui-font-md);
-    --sui-button-md-weight:   var(--sui-font-bold);
-    --sui-button-md-leading:  var(--sui-leading-md);
-    --sui-button-md-tracking: var(--sui-tracking-md);
+    --sui-buttonText-lg-sizing:   var(--sui-font-lg);
+    --sui-buttonText-lg-weight:   var(--sui-font-bold);
+    --sui-buttonText-lg-leading:  var(--sui-leading-md);
+    --sui-buttonText-lg-tracking: var(--sui-tracking-md);
+    --sui-buttonText-md-sizing:   var(--sui-font-md);
+    --sui-buttonText-md-weight:   var(--sui-font-bold);
+    --sui-buttonText-md-leading:  var(--sui-leading-md);
+    --sui-buttonText-md-tracking: var(--sui-tracking-md);
   }
 }

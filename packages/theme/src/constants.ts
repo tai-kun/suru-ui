@@ -124,7 +124,7 @@ export const CAPTION_SIZES = [
   "md",
 ] as const;
 
-export const BUTTON_SIZES = [
+export const BUTTON_TEXT_SIZES = [
   "md",
   "lg",
 ] as const;

@@ -1,6 +1,6 @@
 import type {
   BORDER_SIZES,
-  BUTTON_SIZES,
+  BUTTON_TEXT_SIZES,
   CAPTION_SIZES,
   COLOR_SCALES,
   COLOR_VARIANTS,
@@ -53,7 +53,7 @@ export type LabelSize = (typeof LABEL_SIZES)[number];
 
 export type CaptionSize = (typeof CAPTION_SIZES)[number];
 
-export type ButtonSize = (typeof BUTTON_SIZES)[number];
+export type ButtonSize = (typeof BUTTON_TEXT_SIZES)[number];
 
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;

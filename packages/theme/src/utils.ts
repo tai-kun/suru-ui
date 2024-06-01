@@ -1,6 +1,6 @@
 import {
   BORDER_SIZES,
-  BUTTON_SIZES,
+  BUTTON_TEXT_SIZES,
   CAPTION_SIZES,
   COLOR_SCALES,
   COLOR_VARIANTS,
@@ -74,7 +74,7 @@ const labelSizeSet = /* @__PURE__ */ new Set<any>(LABEL_SIZES);
 
 const captionSizeSet = /* @__PURE__ */ new Set<any>(CAPTION_SIZES);
 
-const buttonSizeSet = /* @__PURE__ */ new Set<any>(BUTTON_SIZES);
+const buttonTextSizeSet = /* @__PURE__ */ new Set<any>(BUTTON_TEXT_SIZES);
 
 export function isColor(value: unknown): value is Color {
   return colorSet.has(value);
@@ -144,8 +144,8 @@ export function isCaptionSize(value: unknown): value is CaptionSize {
   return captionSizeSet.has(value);
 }
 
-export function isButtonSize(value: unknown): value is ButtonSize {
-  return buttonSizeSet.has(value);
+export function isButtonTextSize(value: unknown): value is ButtonSize {
+  return buttonTextSizeSet.has(value);
 }
 
 function createRecursiveProxy(
