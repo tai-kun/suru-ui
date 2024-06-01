@@ -18,6 +18,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {},
   "devDependencies": {
     "@suru-ui/build": "*"

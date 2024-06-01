@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "add": "plop --plopfile .config/code/plopfile.js",
     "test": "scripts/test",
