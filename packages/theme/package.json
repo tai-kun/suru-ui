@@ -1,0 +1,41 @@
+{
+  "name": "@suru-ui/theme",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./layers.css": "./dist/layers.css",
+    "./reset.css": "./dist/reset.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./light.css": "./dist/light.css",
+    "./dark.css": "./dist/dark.css",
+    "./desktop.css": "./dist/desktop.css",
+    "./mobile.css": "./dist/mobile.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "peerDependencies": {},
+  "devDependencies": {
+    "@suru-ui/build": "*"
+  },
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": {
+    "url": "https://github.com/tai-kun/suru-ui.git",
+    "type": "git",
+    "directory": "packages/theme"
+  },
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js",
+    "test": "scripts/test",
+    "check": "scripts/check",
+    "build": "scripts/build",
+    "setup": "scripts/setup"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

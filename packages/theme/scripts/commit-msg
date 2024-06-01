@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check theme
+check "$(listup . -p theme/)"
+check "$(listup src -p theme/)"

@@ -1,75 +1,90 @@
 #!/usr/bin/env bash
 
-KIND='(chore|docs|feat|fix|perf|refactor|revert|style|test)'
-EXCLUDES=('.*' 'build' 'debug' 'dist' 'node_modules' 'out' 'src' 'target')
+KIND='(chore|docs|feat|fix|perf|refactor|release|revert|style|test)'
+EXCLUDES=(
+    'cache' '.cache'
+    'temp' '.temp'
+    'tmp' '.tmp'
+    '.git' '.history'
+    '.Trash'
+    'node_modules'
+    'packages'
+    'dist'
+    'src'
+)
+base_dir=''
 
 function listup() {
-    local dir="$1"
+    local dir="$base_dir$1"
     local pfx=''
     local max=4
-    local abs=false
+    local EXD
     local OPT
-    local find_opt
+    local OPTARG
+    local OPTIND=1
+    local find_opts
 
     shift
 
-    while getopts "p:m:a" OPT; do
+    while getopts p:m: OPT; do
         case "$OPT" in
         p) pfx="$OPTARG" ;;
         m) max="$OPTARG" ;;
-        a) abs=true ;;
         *) exit 1 ;;
         esac
     done
 
-    find_opt="-mindepth 1 -maxdepth $max -type d"
+    find_opts="-mindepth 1 -maxdepth $max -type d"
 
     for EXD in "${EXCLUDES[@]}"; do
-        find_opt+=" ! \\( -name '$EXD' -o -path '*/$EXD/*' \\)"
+        find_opts+=" ! \\( -name '$EXD' -o -path '*/$EXD/*' \\)"
     done
 
-    if [ $abs = true ]; then
-        eval find "$dir" "$find_opt" | sed 's|[@#]||g' | paste -sd '|'
-    else
-        (cd "$dir" && eval find . "$find_opt" | sed 's|[@#]||g' | sed "s|^./|$pfx|" | paste -sd '|')
-    fi
-}
-
-function joint() {
-    local str=''
-    local i
-
-    for i in "$@"; do
-        if [ "$i" != '' ]; then
-            if [ "$str" = '' ]; then
-                str="$i"
-            else
-                str="$str|$i"
-            fi
-        fi
-    done
-
-    if [ "$str" = '' ]; then
-        echo ''
-    else
-        echo "($str)"
-    fi
+    (cd "$dir" && eval find . "$find_opts" | sed "s|^./|$pfx|" | sed 's|^[@#]||g' | paste -sd '|')
 }
 
 MSG="$1"
 
-function regex() {
-    [[ "$(echo -n "$MSG" | grep -oP "$1")" != '' ]]
+function match() {
+    if [ "$(echo -n "$MSG" | grep -oP "$1")" != '' ]; then
+        exit 0
+    fi
 }
 
 function check() {
-    [ "$1" != '' ] && regex "^$KIND(\(${1//$/\\$}\)): .+$" && exit 0
+    local scope=''
+    local i
+
+    for i in "$@"; do
+        if [ "$i" != '' ]; then
+            if [ "$scope" = '' ]; then
+                scope="$i"
+            else
+                scope="$scope|$i"
+            fi
+        fi
+    done
+
+    if [ "$scope" != '' ]; then
+        match "^$KIND\((${scope//$/\\$})\): ."
+    fi
 }
 
-check "$(joint "$(listup . -m 1)")"
-check "$(joint "$(listup src)")"
-regex "^$KIND: .+$" && exit 0
-regex "^chore\((deps|deps-dev)\): .+$" && exit 0
+while IFS= read -r -d '' dir; do
+    commit_msg="$dir/scripts/commit-msg"
+
+    if [ -f "$commit_msg" ]; then
+        base_dir="$dir/"
+        source "$commit_msg"
+    fi
+done < <(find packages -mindepth 1 -maxdepth 1 -type d -print0)
+
+match "^$KIND: ."
+match "^$KIND\(ci\): ."
+match '^chore\(deps\): .'
+match '^chore\(deps-dev\): .'
+check "$(listup . -m 1)"
+match '^init$'
 
 echo 'Invalid commit message format.'
 exit 1

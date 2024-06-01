@@ -1,0 +1,79 @@
+@layer sui.tokens {
+  :root {
+    ---color-white: #FFFFFF;
+    ---color-black: #000000;
+
+    ---color-grey-50:  #F2F2F2;
+    ---color-grey-100: #E6E6E6;
+    ---color-grey-200: #CCCCCC;
+    ---color-grey-300: #B3B3B3;
+    ---color-grey-400: #999999;
+    ---color-grey-420: #949494; /* 3:1 (light) */
+    ---color-grey-500: #7F7F7F;
+    ---color-grey-536: #767676; /* 4.5:1 (light) */ /* 4.5:1 (dark) */
+    ---color-grey-600: #666666; /* 3:1 (dark) */
+    ---color-grey-700: #4D4D4D;
+    ---color-grey-800: #333333;
+    ---color-grey-900: #1A1A1A;
+
+    ---color-blue-50:   #E8F1FE;
+    ---color-blue-100:  #D9E6FF;
+    ---color-blue-200:  #C5D7FB;
+    ---color-blue-300:  #9DB7F9;
+    ---color-blue-400:  #7096F8;
+    ---color-blue-500:  #4979F5; /* 3:1 (light) */ /* 4.5:1 (dark) */
+    ---color-blue-600:  #3460FB; /* 4.5:1 (light) */
+    ---color-blue-700:  #264AF4; /* 3:1 (dark) */
+    ---color-blue-800:  #0031D8;
+    ---color-blue-900:  #0017C1;
+    ---color-blue-1000: #00118F;
+    ---color-blue-1100: #000071;
+    ---color-blue-1200: #000060;
+
+    ---color-green-50:   #E6F5EC;
+    ---color-green-100:  #C2E5D1;
+    ---color-green-200:  #9BD4B5;
+    ---color-green-300:  #71C598;
+    ---color-green-400:  #51B883;
+    ---color-green-500:  #2CAC6E;
+    ---color-green-600:  #259D63; /* 3:1 (light) */
+    ---color-green-700:  #1D8B56; /* 4.5:1 (dark) */
+    ---color-green-800:  #197A4B; /* 4.5:1 (light) */ /* 3:1 (dark) */
+    ---color-green-900:  #115A36;
+    ---color-green-1000: #0C472A;
+    ---color-green-1100: #08351F;
+    ---color-green-1200: #032213;
+
+    ---color-yellow-50:   #FBF5E0;
+    ---color-yellow-100:  #FFF0B3;
+    ---color-yellow-200:  #FFE380;
+    ---color-yellow-300:  #FFD43D;
+    ---color-yellow-400:  #FFC700;
+    ---color-yellow-500:  #EBB700;
+    ---color-yellow-600:  #D2A400;
+    ---color-yellow-700:  #B78F00; /* 3:1 (light) */ /* 4.5:1 (dark) */
+    ---color-yellow-800:  #A58000;
+    ---color-yellow-900:  #927200; /* 4.5:1 (light) */ /* 3:1 (dark) */
+    ---color-yellow-1000: #806300;
+    ---color-yellow-1100: #6E5600;
+    ---color-yellow-1200: #604B00;
+
+    ---color-red-50:   #FDEEEE;
+    ---color-red-100:  #FFDADA;
+    ---color-red-200:  #FFBBBB;
+    ---color-red-300:  #FF9696;
+    ---color-red-400:  #FF7171;
+    ---color-red-500:  #FF5454; /* 3:1 (light) */
+    ---color-red-600:  #FE3939; /* 4.5:1 (light) */
+    ---color-red-700:  #FA0000;
+    ---color-red-800:  #EC0000; /* 4.5:1 (light) */ /* 3:1 (dark) */
+    ---color-red-900:  #CE0000;
+    ---color-red-1000: #A90000;
+    ---color-red-1100: #850000;
+    ---color-red-1200: #620000;
+
+    ---color-orange-700: #E25100;
+
+    ---color-magenta-900: #8B008B;
+  }
+}

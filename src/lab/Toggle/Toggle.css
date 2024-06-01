@@ -1,8 +1,0 @@
-@layer sui.enabled {
-  @scope (.SuiToggle) {
-    :scope {
-      display: inline-grid;
-      place-items: center;
-    }
-  }
-}

@@ -1,23 +1,24 @@
 {
+  "excludes": [
+    "**/.cache",
+    "**/.history",
+    "**/.temp",
+    "**/.tmp",
+    "**/dist",
+    "**/node_modules",
+    "**/temp",
+    "**/tmp",
+    "**/*-lock.json"
+  ],
   "lineWidth": 80,
   "typescript": {
-    "semiColons": "asi",
     "trailingCommas": "onlyMultiLine",
     "singleBodyPosition": "nextLine",
     "arrowFunction.useParentheses": "preferNone"
   },
-  "includes": [
-    ".vscode/**/*",
-    "@types/**/*",
-    "config/**/*",
-    "scripts/**/*",
-    "src/**/*",
-    "dprint.json",
-    "package.json",
-    "tsconfig.json"
-  ],
   "plugins": [
-    "https://plugins.dprint.dev/typescript-0.89.0.wasm",
-    "https://plugins.dprint.dev/json-0.19.1.wasm"
+    "https://plugins.dprint.dev/typescript-0.90.5.wasm",
+    "https://plugins.dprint.dev/json-0.19.2.wasm",
+    "https://plugins.dprint.dev/toml-0.6.1.wasm"
   ]
 }

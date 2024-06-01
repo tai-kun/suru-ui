@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+npx dprint check '*' 'src/**/*'
+npx tsc --noEmit

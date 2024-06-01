@@ -1,0 +1,21 @@
+{
+  "name": "@suru-ui/build",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js",
+    "test": "scripts/test",
+    "check": "scripts/check",
+    "build": "scripts/build",
+    "setup": "exit 0"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "dependencies": {
+    "zx": "^8.1.2"
+  }
+}

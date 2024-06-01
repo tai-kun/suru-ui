@@ -1,221 +1,33 @@
 {
   "name": "suru-ui",
-  "type": "module",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
-  "sideEffects": false,
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    "./Button": {
-      "types": "./dist/core/Button/Button.d.ts",
-      "import": "./dist/core/Button/Button.jsx",
-      "require": "./dist/core/Button/Button.cjs"
-    },
-    "./Button.css": "./dist/core/Button/Button.css",
-    "./Icon": {
-      "types": "./dist/core/Icon/Icon.d.ts",
-      "import": "./dist/core/Icon/Icon.jsx",
-      "require": "./dist/core/Icon/Icon.cjs"
-    },
-    "./Icon.css": "./dist/core/Icon/Icon.css",
-    "./IconButton": {
-      "types": "./dist/core/IconButton/IconButton.d.ts",
-      "import": "./dist/core/IconButton/IconButton.jsx",
-      "require": "./dist/core/IconButton/IconButton.cjs"
-    },
-    "./IconButton.css": "./dist/core/IconButton/IconButton.css",
-    "./Link": {
-      "types": "./dist/core/Link/Link.d.ts",
-      "import": "./dist/core/Link/Link.jsx",
-      "require": "./dist/core/Link/Link.cjs"
-    },
-    "./Link.css": "./dist/core/Link/Link.css",
-    "./Loader": {
-      "types": "./dist/core/Loader/Loader.d.ts",
-      "import": "./dist/core/Loader/Loader.jsx",
-      "require": "./dist/core/Loader/Loader.cjs"
-    },
-    "./Loader.css": "./dist/core/Loader/Loader.css",
-    "./Text": {
-      "types": "./dist/core/Text/Text.d.ts",
-      "import": "./dist/core/Text/Text.jsx",
-      "require": "./dist/core/Text/Text.cjs"
-    },
-    "./Text.css": "./dist/core/Text/Text.css",
-    "./TextField": {
-      "types": "./dist/core/TextField/TextField.d.ts",
-      "import": "./dist/core/TextField/TextField.jsx",
-      "require": "./dist/core/TextField/TextField.cjs"
-    },
-    "./TextField.css": "./dist/core/TextField/TextField.css",
-    "./icons": {
-      "types": "./dist/icons/index.d.ts",
-      "import": "./dist/icons/index.mjs",
-      "require": "./dist/icons/index.cjs"
-    },
-    "./base/ButtonBase": {
-      "types": "./dist/base/ButtonBase/ButtonBase.d.ts",
-      "import": "./dist/base/ButtonBase/ButtonBase.jsx",
-      "require": "./dist/base/ButtonBase/ButtonBase.cjs"
-    },
-    "./base/ButtonBase.css": "./dist/base/ButtonBase/ButtonBase.css",
-    "./icons/digital.go.jp/filled": {
-      "types": "./dist/icons/digital.go.jp/filled.d.ts",
-      "import": "./dist/icons/digital.go.jp/filled.jsx",
-      "require": "./dist/icons/digital.go.jp/filled.cjs"
-    },
-    "./icons/digital.go.jp/outlined": {
-      "types": "./dist/icons/digital.go.jp/outlined.d.ts",
-      "import": "./dist/icons/digital.go.jp/outlined.jsx",
-      "require": "./dist/icons/digital.go.jp/outlined.cjs"
-    },
-    "./icons/m3.material.io/filled": {
-      "types": "./dist/icons/m3.material.io/filled.d.ts",
-      "import": "./dist/icons/m3.material.io/filled.jsx",
-      "require": "./dist/icons/m3.material.io/filled.cjs"
-    },
-    "./icons/m3.material.io/outlined": {
-      "types": "./dist/icons/m3.material.io/outlined.d.ts",
-      "import": "./dist/icons/m3.material.io/outlined.jsx",
-      "require": "./dist/icons/m3.material.io/outlined.cjs"
-    },
-    "./icons/m3.material.io/round": {
-      "types": "./dist/icons/m3.material.io/round.d.ts",
-      "import": "./dist/icons/m3.material.io/round.jsx",
-      "require": "./dist/icons/m3.material.io/round.cjs"
-    },
-    "./icons/m3.material.io/sharp": {
-      "types": "./dist/icons/m3.material.io/sharp.d.ts",
-      "import": "./dist/icons/m3.material.io/sharp.jsx",
-      "require": "./dist/icons/m3.material.io/sharp.cjs"
-    },
-    "./icons/m3.material.io/two-tone": {
-      "types": "./dist/icons/m3.material.io/two-tone.d.ts",
-      "import": "./dist/icons/m3.material.io/two-tone.jsx",
-      "require": "./dist/icons/m3.material.io/two-tone.cjs"
-    },
-    "./theme": {
-      "types": "./dist/theme/index.d.ts",
-      "import": "./dist/theme/index.mjs",
-      "require": "./dist/theme/index.cjs"
-    },
-    "./theme/all.css": "./dist/theme/all.css",
-    "./theme/base.css": "./dist/theme/base.css",
-    "./theme/light-desktop.css": "./dist/theme/light-desktop.css",
-    "./theme/light-mobile.css": "./dist/theme/light-mobile.css",
-    "./theme/dark-desktop.css": "./dist/theme/dark-desktop.css",
-    "./theme/dark-mobile.css": "./dist/theme/dark-mobile.css",
-    "./theme/desktop.css": "./dist/theme/desktop.css",
-    "./theme/mobile.css": "./dist/theme/mobile.css",
-    "./theme/light.css": "./dist/theme/light.css",
-    "./theme/dark.css": "./dist/theme/dark.css",
-    "./utils/clsx": {
-      "types": "./dist/utils/clsx.d.ts",
-      "import": "./dist/utils/clsx.mjs",
-      "require": "./dist/utils/clsx.cjs"
-    },
-    "./utils/composeRefs": {
-      "types": "./dist/utils/composeRefs.d.ts",
-      "import": "./dist/utils/composeRefs.mjs",
-      "require": "./dist/utils/composeRefs.cjs"
-    },
-    "./utils/forwardRef": {
-      "types": "./dist/utils/forwardRef.d.ts",
-      "import": "./dist/utils/forwardRef.jsx",
-      "require": "./dist/utils/forwardRef.cjs"
-    },
-    "./utils/isPlainObject": {
-      "types": "./dist/utils/isPlainObject.d.ts",
-      "import": "./dist/utils/isPlainObject.mjs",
-      "require": "./dist/utils/isPlainObject.cjs"
-    },
-    "./utils/Slot": {
-      "types": "./dist/utils/Slot.d.ts",
-      "import": "./dist/utils/Slot.jsx",
-      "require": "./dist/utils/Slot.cjs"
-    },
-    "./utils/Slottable": {
-      "types": "./dist/utils/Slottable.d.ts",
-      "import": "./dist/utils/Slottable.jsx",
-      "require": "./dist/utils/Slottable.cjs"
-    },
-    "./utils/useConstantValue": {
-      "types": "./dist/utils/useConstantValue.d.ts",
-      "import": "./dist/utils/useConstantValue.mjs",
-      "require": "./dist/utils/useConstantValue.cjs"
-    }
-  },
-  "dependencies": {
-    "@floating-ui/dom": "~1.6.3",
-    "use-machine-ts": "^0.2.0-canary.20240325T025620"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@happy-dom/global-registrator": "~14.3.3",
-    "@ladle/react": "~4.0.3",
-    "@playwright/experimental-ct-react": "~1.42.1",
-    "@svgr/core": "~8.1.0",
-    "@swc-node/register": "~1.9.0",
-    "@testing-library/react": "~14.2.2",
-    "@tsconfig/node21": "~21.0.2",
-    "@tsconfig/strictest": "~2.0.4",
-    "@types/css-tree": "~2.3.7",
-    "@types/mock-fs": "~4.13.4",
-    "@types/node": "~20.11.30",
-    "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
-    "@types/react-is": "^18.2.4",
-    "@types/unzipper": "~0.10.9",
-    "@typescript-eslint/typescript-estree": "~7.3.1",
-    "cfg-test": "~0.5.0",
-    "css-tree": "~2.3.1",
-    "deep-object-diff": "~1.1.9",
-    "deepmerge": "~4.3.1",
-    "dprint": "~0.45.0",
-    "esbuild": "~0.20.2",
-    "glob": "~10.3.10",
-    "minimatch": "~9.0.3",
-    "mock-fs": "~5.2.0",
-    "plop": "~4.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
-    "tsd": "~0.30.7",
-    "typescript": "~5.4.3",
-    "unzipper": "~0.10.14",
-    "valibot": "~0.30.0",
-    "visit-json": "~0.2.2",
-    "yaml": "~2.4.1"
-  },
-  "repository": "git+https://github.com/tai-kun/suru-ui.git",
-  "author": {
-    "name": "tai-kun",
-    "url": "https://github.com/tai-kun/"
+  "private": true,
+  "type": "module",
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": "https://github.com/tai-kun/suru-ui.git",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "scripts": {
-    "add": "plop --plopfile config/code/plopfile.js",
-    "tsc": "tsc --noEmit && tsd -f '@types/**/*.d.ts' -f 'src/**/*.{ts,tsx}'",
-    "fmt": "dprint fmt",
-    "lint": "exit 0",
-    "test": "node --enable-source-maps --import cfg-test --test 'src/**/*.ts' --test 'src/utils/**/*.tsx'",
-    "test:ct": "scripts/test-ct.sh",
-    "story": "ladle dev --config config/ladle",
-    "build": "scripts/build.sh",
-    "build:theme": "scripts/build-theme.sh",
-    "build:icons": "scripts/build-icons.sh",
-    "check:exports": "node scripts/check-exports.js",
-    "check:external-deps": "node scripts/check-external-deps.js"
+    "add": "plop --plopfile .config/code/plopfile.js"
+  },
+  "devDependencies": {
+    "@swc-node/register": "1.9.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/node": "^20.13.0",
+    "cfg-test": "^0.6.1",
+    "dprint": "^0.46.1",
+    "esbuild": "^0.21.4",
+    "plop": "^4.0.1",
+    "tsd": "^0.31.0",
+    "typescript": "^5.4.5"
   },
   "volta": {
-    "node": "21.6.2"
+    "node": "22.2.0"
   }
 }

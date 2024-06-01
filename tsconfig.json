@@ -1,24 +1,16 @@
 {
   "extends": [
-    "./node_modules/@tsconfig/node21/tsconfig.json",
-    "./node_modules/@tsconfig/strictest/tsconfig.json"
+    "@tsconfig/node22/tsconfig.json",
+    "@tsconfig/strictest/tsconfig.json"
   ],
   "include": [
-    "@types/**/*",
-    "config/**/*",
-    "scripts/**/*",
-    "src/**/*"
+    "./.config/**/*"
   ],
   "compilerOptions": {
-    "jsx": "preserve",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
     "noEmit": true,
     "sourceMap": true,
-    "module": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "moduleResolution": "Bundler"
   }
 }

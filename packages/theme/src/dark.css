@@ -1,0 +1,249 @@
+@layer sui.tokens {
+  [data-theme=dark] {
+    --sui-color-grey-50:   var(---color-grey-900);
+    --sui-color-grey-100:  var(---color-grey-800);
+    --sui-color-grey-200:  var(---color-grey-700);
+    --sui-color-grey-300:  var(---color-grey-600);
+    --sui-color-grey-400:  var(---color-grey-536);
+    --sui-color-grey-700:  var(---color-grey-400);
+    --sui-color-grey-500:  var(---color-grey-500);
+    --sui-color-grey-600:  var(---color-grey-420);
+    --sui-color-grey-800:  var(---color-grey-300);
+    --sui-color-grey-900:  var(---color-grey-200);
+    --sui-color-grey-1000: var(---color-grey-100);
+    --sui-color-grey-1100: var(---color-grey-50);
+    --sui-color-grey-1200: var(---color-white);
+
+    --sui-color-grey-alpha-50:   hsl(0 0% 0% / 1);
+    --sui-color-grey-alpha-100:  hsl(0 0% 93% / 0.11);
+    --sui-color-grey-alpha-200:  hsl(0 0% 100% / 0.2);
+    --sui-color-grey-alpha-300:  hsl(0 0% 97% / 0.31);
+    --sui-color-grey-alpha-400:  hsl(0 0% 100% / 0.4);
+    --sui-color-grey-alpha-700:  hsl(0 0% 98% / 0.47);
+    --sui-color-grey-alpha-500:  hsl(0 0% 100% / 0.5);
+    --sui-color-grey-alpha-600:  hsl(0 0% 99% / 0.59);
+    --sui-color-grey-alpha-800:  hsl(0 0% 100% / 0.6);
+    --sui-color-grey-alpha-900:  hsl(0 0% 99% / 0.71);
+    --sui-color-grey-alpha-1000: hsl(0 0% 100% / 0.8);
+    --sui-color-grey-alpha-1100: hsl(0 0% 99% / 0.91);
+    --sui-color-grey-alpha-1200: var(---color-white);
+
+    --sui-color-grey-naked-canvas:     transparent;
+    --sui-color-grey-naked-subtle:     var(---color-grey-alpha-100);
+    --sui-color-grey-naked-action:     var(---color-grey-alpha-200);
+    --sui-color-grey-naked-canvasText: var(---color-grey-900);
+
+    --sui-color-grey-solid-canvas:     var(---color-grey-1200);
+    --sui-color-grey-solid-subtle:     var(---color-grey-1000);
+    --sui-color-grey-solid-action:     var(---color-grey-800);
+    --sui-color-grey-solid-canvasText: var(---color-grey-50);
+
+    --sui-color-grey-liquid-canvas:     var(---color-grey-alpha-100);
+    --sui-color-grey-liquid-subtle:     var(---color-grey-alpha-200);
+    --sui-color-grey-liquid-action:     var(---color-grey-alpha-300);
+    --sui-color-grey-liquid-canvasText: var(---color-grey-1200);
+
+    --sui-color-blue-50:   var(---color-blue-1200);
+    --sui-color-blue-100:  var(---color-blue-1100);
+    --sui-color-blue-200:  var(---color-blue-1000);
+    --sui-color-blue-300:  var(---color-blue-900);
+    --sui-color-blue-400:  var(---color-blue-800);
+    --sui-color-blue-500:  var(---color-blue-700);
+    --sui-color-blue-600:  var(---color-blue-600);
+    --sui-color-blue-700:  var(---color-blue-500);
+    --sui-color-blue-800:  var(---color-blue-400);
+    --sui-color-blue-900:  var(---color-blue-300);
+    --sui-color-blue-1000: var(---color-blue-200);
+    --sui-color-blue-1100: var(---color-blue-100);
+    --sui-color-blue-1200: var(---color-blue-50);
+
+    --sui-color-blue-alpha-1200: hsl(240 100% 50% / 0.38);
+    --sui-color-blue-alpha-1100: hsl(240 100% 49% / 0.45);
+    --sui-color-blue-alpha-1000: hsl(233 100% 49% / 0.57);
+    --sui-color-blue-alpha-900:  hsl(233 100% 50% / 0.76);
+    --sui-color-blue-alpha-800:  hsl(226 100% 50% / 0.85);
+    --sui-color-blue-alpha-700:  hsl(230 99% 58% / 0.96);
+    --sui-color-blue-alpha-600:  hsl(227 99% 60% / 0.99);
+    --sui-color-blue-alpha-500:  hsl(223 98% 64% / 0.97);
+    --sui-color-blue-alpha-400:  hsl(223 97% 72% / 0.98);
+    --sui-color-blue-alpha-300:  hsl(223 98% 81% / 0.98);
+    --sui-color-blue-alpha-200:  hsl(220 97% 89% / 0.99);
+    --sui-color-blue-alpha-100:  hsl(219 100% 93% / 1);
+    --sui-color-blue-alpha-50:   hsl(215 92% 95% / 1);
+
+    --sui-color-blue-naked-canvas:     transparent;
+    --sui-color-blue-naked-subtle:     var(---color-blue-alpha-100);
+    --sui-color-blue-naked-action:     var(---color-blue-alpha-200);
+    --sui-color-blue-naked-canvasText: var(---color-blue-800);
+
+    --sui-color-blue-solid-canvas:     var(---color-blue-800);
+    --sui-color-blue-solid-subtle:     var(---color-blue-900);
+    --sui-color-blue-solid-action:     var(---color-blue-1100);
+    --sui-color-blue-solid-canvasText: var(---color-blue-50);
+
+    --sui-color-blue-liquid-canvas:     var(---color-blue-alpha-100);
+    --sui-color-blue-liquid-subtle:     var(---color-blue-alpha-200);
+    --sui-color-blue-liquid-action:     var(---color-blue-alpha-300);
+    --sui-color-blue-liquid-canvasText: var(---color-blue-1000);
+
+    --sui-color-green-50:   var(---color-green-1200);
+    --sui-color-green-100:  var(---color-green-1100);
+    --sui-color-green-200:  var(---color-green-1000);
+    --sui-color-green-300:  var(---color-green-900);
+    --sui-color-green-400:  var(---color-green-800);
+    --sui-color-green-500:  var(---color-green-700);
+    --sui-color-green-600:  var(---color-green-600);
+    --sui-color-green-700:  var(---color-green-500);
+    --sui-color-green-800:  var(---color-green-400);
+    --sui-color-green-900:  var(---color-green-300);
+    --sui-color-green-1000: var(---color-green-200);
+    --sui-color-green-1100: var(---color-green-100);
+    --sui-color-green-1200: var(---color-green-50);
+
+    --sui-color-green-alpha-1200: hsl(151 90% 52% / 0.14);
+    --sui-color-green-alpha-1100: hsl(151 97% 57% / 0.21);
+    --sui-color-green-alpha-1000: hsl(150 99% 58% / 0.28);
+    --sui-color-green-alpha-900:  hsl(150 95% 58% / 0.36);
+    --sui-color-green-alpha-800:  hsl(151 99% 60% / 0.48);
+    --sui-color-green-alpha-500:  hsl(151 98% 62% / 0.68);
+    --sui-color-green-alpha-700:  hsl(151 98% 60% / 0.55);
+    --sui-color-green-alpha-600:  hsl(151 98% 61% / 0.62);
+    --sui-color-green-alpha-400:  hsl(149 96% 71% / 0.73);
+    --sui-color-green-alpha-300:  hsl(148 96% 78% / 0.78);
+    --sui-color-green-alpha-200:  hsl(147 92% 86% / 0.84);
+    --sui-color-green-alpha-100:  hsl(145 95% 92% / 0.9);
+    --sui-color-green-alpha-50:   hsl(142 80% 96% / 0.97);
+
+    --sui-color-green-naked-canvas:     transparent;
+    --sui-color-green-naked-subtle:     var(---color-green-alpha-100);
+    --sui-color-green-naked-action:     var(---color-green-alpha-200);
+    --sui-color-green-naked-canvasText: var(---color-green-900);
+
+    --sui-color-green-solid-canvas:     var(---color-green-900);
+    --sui-color-green-solid-subtle:     var(---color-green-1000);
+    --sui-color-green-solid-action:     var(---color-green-1200);
+    --sui-color-green-solid-canvasText: var(---color-green-50);
+
+    --sui-color-green-liquid-canvas:     var(---color-green-alpha-100);
+    --sui-color-green-liquid-subtle:     var(---color-green-alpha-200);
+    --sui-color-green-liquid-action:     var(---color-green-alpha-300);
+    --sui-color-green-liquid-canvasText: var(---color-green-1100);
+
+    --sui-color-yellow-50:   var(---color-yellow-1200);
+    --sui-color-yellow-100:  var(---color-yellow-1100);
+    --sui-color-yellow-200:  var(---color-yellow-1000);
+    --sui-color-yellow-300:  var(---color-yellow-900);
+    --sui-color-yellow-400:  var(---color-yellow-800);
+    --sui-color-yellow-500:  var(---color-yellow-700);
+    --sui-color-yellow-600:  var(---color-yellow-600);
+    --sui-color-yellow-700:  var(---color-yellow-500);
+    --sui-color-yellow-800:  var(---color-yellow-400);
+    --sui-color-yellow-900:  var(---color-yellow-300);
+    --sui-color-yellow-1000: var(---color-yellow-200);
+    --sui-color-yellow-1100: var(---color-yellow-100);
+    --sui-color-yellow-1200: var(---color-yellow-50);
+
+    --sui-color-yellow-alpha-1200: hsl(47 100% 50% / 0.38);
+    --sui-color-yellow-alpha-1100: hsl(47 100% 49% / 0.44);
+    --sui-color-yellow-alpha-1000: hsl(46 100% 49% / 0.51);
+    --sui-color-yellow-alpha-900:  hsl(47 100% 49% / 0.58);
+    --sui-color-yellow-alpha-800:  hsl(47 100% 50% / 0.65);
+    --sui-color-yellow-alpha-700:  hsl(47 100% 50% / 0.72);
+    --sui-color-yellow-alpha-600:  hsl(47 100% 50% / 0.83);
+    --sui-color-yellow-alpha-500:  hsl(47 100% 50% / 0.93);
+    --sui-color-yellow-alpha-400:  hsl(47 100% 50% / 1);
+    --sui-color-yellow-alpha-300:  hsl(47 100% 62% / 1);
+    --sui-color-yellow-alpha-200:  hsl(47 100% 75% / 1);
+    --sui-color-yellow-alpha-100:  hsl(48 100% 85% / 1);
+    --sui-color-yellow-alpha-50:   hsl(45 93% 94% / 0.99);
+
+    --sui-color-yellow-naked-canvas:     transparent;
+    --sui-color-yellow-naked-subtle:     var(---color-yellow-alpha-100);
+    --sui-color-yellow-naked-action:     var(---color-yellow-alpha-200);
+    --sui-color-yellow-naked-canvasText: var(---color-yellow-900);
+
+    --sui-color-yellow-solid-canvas:     var(---color-yellow-900);
+    --sui-color-yellow-solid-subtle:     var(---color-yellow-1000);
+    --sui-color-yellow-solid-action:     var(---color-yellow-1200);
+    --sui-color-yellow-solid-canvasText: var(---color-yellow-50);
+
+    --sui-color-yellow-liquid-canvas:     var(---color-yellow-alpha-100);
+    --sui-color-yellow-liquid-subtle:     var(---color-yellow-alpha-200);
+    --sui-color-yellow-liquid-action:     var(---color-yellow-alpha-300);
+    --sui-color-yellow-liquid-canvasText: var(---color-yellow-1100);
+
+    --sui-color-red-50:   var(---color-red-1200);
+    --sui-color-red-100:  var(---color-red-1100);
+    --sui-color-red-200:  var(---color-red-1000);
+    --sui-color-red-300:  var(---color-red-900);
+    --sui-color-red-400:  var(---color-red-800);
+    --sui-color-red-500:  var(---color-red-700);
+    --sui-color-red-600:  var(---color-red-600);
+    --sui-color-red-700:  var(---color-red-500);
+    --sui-color-red-800:  var(---color-red-400);
+    --sui-color-red-900:  var(---color-red-300);
+    --sui-color-red-1000: var(---color-red-200);
+    --sui-color-red-1100: var(---color-red-100);
+    --sui-color-red-1200: var(---color-red-50);
+
+    --sui-color-red-alpha-1200: hsl(0 100% 49% / 0.39);
+    --sui-color-red-alpha-1100: hsl(0 100% 49% / 0.53);
+    --sui-color-red-alpha-1000: hsl(0 100% 49% / 0.67);
+    --sui-color-red-alpha-900:  hsl(0 100% 50% / 0.81);
+    --sui-color-red-alpha-800:  hsl(0 100% 50% / 0.93);
+    --sui-color-red-alpha-700:  hsl(0 100% 50% / 0.99);
+    --sui-color-red-alpha-600:  hsl(0 99% 61% / 1);
+    --sui-color-red-alpha-500:  hsl(0 100% 67% / 1);
+    --sui-color-red-alpha-400:  hsl(0 100% 79% / 1);
+    --sui-color-red-alpha-300:  hsl(0 100% 79% / 1);
+    --sui-color-red-alpha-200:  hsl(0 100% 87% / 1);
+    --sui-color-red-alpha-100:  hsl(0 100% 93% / 1);
+    --sui-color-red-alpha-50:   hsl(0 79% 96% / 1);
+
+    --sui-color-red-naked-canvas:     transparent;
+    --sui-color-red-naked-subtle:     var(---color-red-alpha-100);
+    --sui-color-red-naked-action:     var(---color-red-alpha-200);
+    --sui-color-red-naked-canvasText: var(---color-red-900);
+
+    --sui-color-red-solid-canvas:     var(---color-red-900);
+    --sui-color-red-solid-subtle:     var(---color-red-1000);
+    --sui-color-red-solid-action:     var(---color-red-1200);
+    --sui-color-red-solid-canvasText: var(---color-red-50);
+
+    --sui-color-red-liquid-canvas:     var(---color-red-alpha-100);
+    --sui-color-red-liquid-subtle:     var(---color-red-alpha-200);
+    --sui-color-red-liquid-action:     var(---color-red-alpha-300);
+    --sui-color-red-liquid-canvasText: var(---color-red-1100);
+
+    --sui-color-orange-700: var(---color-orange-700);
+
+    --sui-color-magenta-900: var(---color-magenta-900);
+
+    --sui-body-canvas:     var(---color-white);
+    --sui-body-canvasText: var(---color-black);
+
+    --sui-paper-canvasText: var(--sui-body-canvas);
+
+    --sui-disabled-canvas:     var(--sui-color-grey-600);
+    --sui-disabled-canvasText: var(--sui-color-grey-400);
+
+    --sui-description-canvasText: var(--sui-color-grey-700);
+
+    --sui-linkText-normal:  var(--sui-color-blue-1000);
+    --sui-linkText-hover:   var(--sui-color-blue-900);
+    --sui-linkText-active:  var(--sui-color-orange-700);
+    --sui-linkText-visited: var(--sui-color-magenta-900);
+
+    --sui-focusRing-color: var(--sui-color-yellow-700);
+    --sui-focusRing-width: var(--sui-border-md);
+
+    --sui-shadow-xs: 0 1px  5px 0 rgb(0 0 0 / .30), 0  2px 8px  0   rgb(0 0 0 /.10);
+    --sui-shadow-sm: 0 1px  6px 0 rgb(0 0 0 / .30), 0  2px 12px 2px rgb(0 0 0 /.10);
+    --sui-shadow-md: 0 2px  6px 0 rgb(0 0 0 / .30), 0  6px 20px 4px rgb(0 0 0 /.10);
+    --sui-shadow-lg: 0 3px 12px 0 rgb(0 0 0 / .30), 0 10px 30px 6px rgb(0 0 0 /.10);
+    --sui-shadow-xl: 0 3px 16px 0 rgb(0 0 0 / .30), 0 14px 40px 7px rgb(0 0 0 /.10);
+
+    --sui-overlay-shade: #22222280;
+    --sui-overlay-blur:  10px;
+  }
+}

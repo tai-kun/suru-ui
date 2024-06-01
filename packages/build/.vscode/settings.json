@@ -26,6 +26,10 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "dprint.dprint"
   },
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
   "[shellscript]": {
     "editor.indentSize": 4,
     "editor.formatOnSave": true,
