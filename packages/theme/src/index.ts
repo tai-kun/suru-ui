@@ -39,6 +39,7 @@ export type {
   Tracking,
 } from "./types";
 export {
+  $,
   isBorderSize,
   isButtonSize,
   isCaptionSize,
