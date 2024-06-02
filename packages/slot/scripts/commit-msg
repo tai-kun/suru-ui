@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check slot
+check "$(listup . -p slot/)"
+check "$(listup src -p slot/)"

@@ -16,7 +16,9 @@
     "add": "plop --plopfile .config/code/plopfile.js"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^14.12.0",
     "@swc-node/register": "1.9.0",
+    "@testing-library/react": "^15.0.7",
     "@tsconfig/node22": "^22.0.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/node": "^20.13.0",
@@ -26,6 +28,12 @@
     "plop": "^4.0.1",
     "tsd": "^0.31.0",
     "typescript": "^5.4.5"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "react": "npm:react@rc",
+    "react-dom": "npm:react-dom@rc"
   },
   "volta": {
     "node": "22.2.0"

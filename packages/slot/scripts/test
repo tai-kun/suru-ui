@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+node --enable-source-maps --import cfg-test \
+    --test 'src/**/*.ts' \
+    --test 'src/**/*.tsx'

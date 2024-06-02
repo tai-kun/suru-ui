@@ -237,3 +237,6 @@ $RECYCLE.BIN/
 .Trash/
 temp/
 tmp/
+packages/*/LICENSE
+
+*storybook.log
