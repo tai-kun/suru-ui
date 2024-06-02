@@ -23,15 +23,15 @@
     --sui-font-mono: "Noto Sans Mono" monospace;
     --sui-font-serif: sans-serif;
 
-    --sui-font-normal: 400;
-    --sui-font-medium: 500;
-    --sui-font-bold:   700;
+    --sui-font-normal: 400; /* 太さレベル N */
+    --sui-font-medium: 500; /* 太さレベル M */
+    --sui-font-bold:   700; /* 太さレベル B */
 
-    --sui-font-xs: 13px;
-    --sui-font-sm: 15px;
-    --sui-font-md: 17px;
-    --sui-font-lg: 21px;
-    --sui-font-xl: 27px;
+    --sui-font-xs:  13px;
+    --sui-font-sm:  15px;
+    --sui-font-md:  17px;
+    --sui-font-lg:  21px;
+    --sui-font-xl:  27px;
     --sui-font-2xl: 31px;
     --sui-font-3xl: 35px;
 
@@ -40,9 +40,10 @@
     --sui-sizing-lg: 43px;
     --sui-sizing-xl: 55px;
 
-    --sui-leading-sm: 1.4;
-    --sui-leading-md: 1.5;
-    --sui-leading-lg: 1.7;
+    --sui-leading-xs: 1.2; /* 行間レベル 2: 限られた画面領域での表示情報量を最優先 */
+    --sui-leading-sm: 1.4; /* 行間レベル 4: 見出しなど、やや大きな文字 */
+    --sui-leading-md: 1.5; /* 行間レベル 5: 本文や見出し */
+    --sui-leading-lg: 1.7; /* 行間レベル 7: 心理的負荷の軽減を考慮 */
 
     --sui-tracking-sm: 0.02em;
     --sui-tracking-md: 0.04em;

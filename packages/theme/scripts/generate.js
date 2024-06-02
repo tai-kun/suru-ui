@@ -2,12 +2,10 @@
 "use strict";
 
 import fs from "node:fs";
-import path from "node:path";
 
 const CSS_CUSTOM_PROPERTIES_REGEX = /--sui-([0-9A-Za-z-]+)/g;
 const CSS_CUSTOM_PROPERTY_PREFIX = "--sui";
-const outFile = "src/css.ts";
-const srcDir = "src";
+const OUT_FILE = "src/css.ts";
 
 const cssCustomProperties = {};
 
@@ -19,7 +17,7 @@ for (
     "src/layout/mobile.css",
   ]
 ) {
-  const cssContent = fs.readFileSync(path.join(srcDir, cssFile), "utf-8");
+  const cssContent = fs.readFileSync(cssFile, "utf-8");
 
   for (const [, match] of cssContent.matchAll(CSS_CUSTOM_PROPERTIES_REGEX)) {
     let properties = cssCustomProperties;
@@ -69,4 +67,4 @@ ${
 }};
 `;
 
-fs.writeFileSync(outFile, typeDefinition);
+fs.writeFileSync(OUT_FILE, typeDefinition);
