@@ -16,3 +16,5 @@ fi
 
 cp .config/build/tsconfig.build.json tsconfig.build.json
 npx tsc -p tsconfig.build.json
+
+cp ../../LICENSE .
