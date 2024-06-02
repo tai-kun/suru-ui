@@ -21,11 +21,22 @@ export default plop => {
         type: "add",
         path: "../../.github/workflows/canary-release-{{name}}.yml",
         templateFile: "./templates/workflows/canary-release.yml.hbs",
+        transform: template =>
+          template
+            .replaceAll("__secrets_NPM_TOKEN__", "${{ secrets.NPM_TOKEN }}"),
       },
       {
         type: "add",
         path: "../../.github/workflows/release-{{name}}.yml",
         templateFile: "./templates/workflows/release.yml.hbs",
+        transform: template =>
+          template
+            .replaceAll("__github_ref_name__", "${{ github.ref_name }}")
+            .replaceAll("__secrets_NPM_TOKEN__", "${{ secrets.NPM_TOKEN }}")
+            .replaceAll(
+              "__steps_params_outputs_releaseTag__",
+              "${{ steps.params.outputs.releaseTag }}",
+            ),
       },
       {
         type: "add",

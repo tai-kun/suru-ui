@@ -38,13 +38,13 @@ jobs:
 
       - name: Pin version
         run: |
-          ver="$"
+          ver="${{ github.ref_name }}"
           npm --no-git-tag-version version "${ver#*-}"
 
       - name: Set parameters
         id: params
         run: |
-          ver="$"
+          ver="${{ github.ref_name }}"
           ver="${ver#*-}"
           suf="${ver#*-}"
           pre=$([[ "$suf" == "$ver" ]] && echo false || echo true)
@@ -57,5 +57,5 @@ jobs:
         with:
           package: packages/slot
           access: public
-          token: $
-          tag: $
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: ${{ steps.params.outputs.releaseTag }}

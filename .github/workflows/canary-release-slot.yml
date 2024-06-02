@@ -62,5 +62,5 @@ jobs:
         with:
           package: packages/slot
           access: public
-          token: $
+          token: ${{ secrets.NPM_TOKEN }}
           tag: canary
