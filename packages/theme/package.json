@@ -7,11 +7,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "./layers.css": "./dist/layers.css",
-    "./reset.css": "./dist/reset.css",
-    "./tokens.css": "./dist/tokens.css",
-    "./light.css": "./dist/light.css",
+    "./base.css": "./dist/base.css",
     "./dark.css": "./dist/dark.css",
+    "./light.css": "./dist/light.css",
     "./desktop.css": "./dist/desktop.css",
     "./mobile.css": "./dist/mobile.css"
   },

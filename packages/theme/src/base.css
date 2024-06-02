@@ -1,3 +1,21 @@
+@layer sui;
+
+@layer sui.reset {
+  .sui-reset,
+  [class^="Sui"],
+  [class*=" Sui"] {
+    &,
+    &::after,
+    &::before {
+      all: unset;
+      margin: 0;
+      display: revert;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  }
+}
+
 @layer sui.tokens {
   :root {
     ---color-white: #FFFFFF;
@@ -77,3 +95,5 @@
     ---color-magenta-900: #8B008B;
   }
 }
+
+@layer sui.components;

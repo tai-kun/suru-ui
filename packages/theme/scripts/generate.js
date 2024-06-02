@@ -6,18 +6,20 @@ import path from "node:path";
 
 const CSS_CUSTOM_PROPERTIES_REGEX = /--sui-([0-9A-Za-z-]+)/g;
 const CSS_CUSTOM_PROPERTY_PREFIX = "--sui";
-const excludeFiles = new Set(["tokens.css"]);
 const outFile = "src/css.ts";
 const srcDir = "src";
 
 const cssCustomProperties = {};
 
-for (const cssFile of fs.readdirSync(srcDir)) {
-  if (!cssFile.endsWith(".css") || excludeFiles.has(cssFile)) {
-    continue;
-  }
-
-  const cssContent = fs.readFileSync(path.join(srcDir, cssFile), "utf8");
+for (
+  const cssFile of [
+    "src/appearance/dark.css",
+    "src/appearance/light.css",
+    "src/layout/desktop.css",
+    "src/layout/mobile.css",
+  ]
+) {
+  const cssContent = fs.readFileSync(path.join(srcDir, cssFile), "utf-8");
 
   for (const [, match] of cssContent.matchAll(CSS_CUSTOM_PROPERTIES_REGEX)) {
     let properties = cssCustomProperties;
