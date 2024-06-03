@@ -131,7 +131,7 @@ export function resolve(): Plugin {
           case pkg.startsWith("@suru-ui/"): {
             const pkgName = pkg.split("/")[1]!;
             const pkgPath = [".", ...pkg.split("/").slice(2)].join("/");
-            const pkgRoot = path.join(monorepoRoot, "code", pkgName);
+            const pkgRoot = path.join(monorepoRoot, "packages", pkgName);
             const pkgJsonPath = path.join(pkgRoot, "package.json");
             const pkgJson = await readJson(pkgJsonPath);
             let builtPath: string | null = null;

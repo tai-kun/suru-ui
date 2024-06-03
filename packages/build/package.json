@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "zx": "^8.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
