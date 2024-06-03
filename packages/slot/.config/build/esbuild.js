@@ -2,4 +2,7 @@
 
 import { build } from "@suru-ui/build";
 
-await build();
+await Promise.all([
+  build(),
+  build({ jsx: true }),
+]);
