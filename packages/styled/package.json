@@ -1,0 +1,37 @@
+{
+  "name": "@suru-ui/styled",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@suru-ui/slot": "*",
+    "react": "*"
+  },
+  "devDependencies": {
+    "@suru-ui/build": "*",
+    "tsx": "^4.11.0"
+  },
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": {
+    "url": "https://github.com/tai-kun/suru-ui.git",
+    "type": "git",
+    "directory": "packages/styled"
+  },
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js",
+    "test": "scripts/test",
+    "check": "scripts/check",
+    "build": "scripts/build",
+    "setup": "scripts/setup"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

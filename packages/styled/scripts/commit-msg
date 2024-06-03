@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check styled
+check "$(listup . -p styled/)"
+check "$(listup src -p styled/)"

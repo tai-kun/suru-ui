@@ -1,0 +1,61 @@
+name: Release @suru-ui/styled on NPM
+
+on:
+  push:
+    tags:
+      - "styled-v*.*.*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: packages/styled
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install dependencies
+        run: |
+          cd ../..
+          npm ci
+          cd packages/build
+          npm run build
+
+      - name: Setup
+        run: |
+          npm run setup
+          npm i
+
+      - name: Build
+        run: npm run build
+
+      - name: Pin version
+        run: |
+          ver="${{ github.ref_name }}"
+          npm --no-git-tag-version version "${ver#*-}"
+
+      - name: Set parameters
+        id: params
+        run: |
+          ver="${{ github.ref_name }}"
+          ver="${ver#*-}"
+          suf="${ver#*-}"
+          pre=$([[ "$suf" == "$ver" ]] && echo false || echo true)
+          echo "releaseTag=$($pre && echo "${suf%%.*}" || echo latest)" >>$GITHUB_OUTPUT
+          echo "prerelease=$pre" >>$GITHUB_OUTPUT
+          echo "makeLatest=$($pre && echo legacy || echo latest)" >>$GITHUB_OUTPUT
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          package: packages/styled
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: ${{ steps.params.outputs.releaseTag }}

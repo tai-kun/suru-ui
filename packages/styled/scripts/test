@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+npx tsx --import cfg-test/manual --test 'src/**/*.ts' --test 'src/**/*.tsx'

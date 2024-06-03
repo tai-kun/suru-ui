@@ -1,0 +1,9 @@
+export function {{normalize outpath}}() {}
+
+if (cfgTest && cfgTest.url === import.meta.url) {
+  const { describe, test } = cfgTest;
+
+  describe("@suru-ui/styled/{{normalize outpath}}", () => {
+    test.todo("テスト");
+  });
+}

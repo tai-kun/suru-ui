@@ -63,6 +63,37 @@ jobs:
       - name: Test
         run: npm run test
 
+  styled:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: packages/styled
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install dependencies
+        run: |
+          cd ../..
+          npm ci
+          cd packages/build
+          npm run build
+
+      - name: Setup
+        run: npm run setup
+
+      - name: Check
+        run: npm run check
+
+      - name: Test
+        run: npm run test
+
   theme:
     runs-on: ubuntu-22.04
     timeout-minutes: 5
@@ -97,6 +128,8 @@ jobs:
   action-timeline:
     needs:
       - build
+      - slot
+      - styled
       - theme
     permissions:
       actions: read
