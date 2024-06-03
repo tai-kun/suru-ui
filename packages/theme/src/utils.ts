@@ -148,11 +148,19 @@ export function isButtonTextSize(value: unknown): value is ButtonSize {
   return buttonTextSizeSet.has(value);
 }
 
+const ownKeys = ["toString", "$name", "$keys"];
+const proxy = () => {};
+
+for (const key of ownKeys) {
+  // @ts-expect-error
+  proxy[key] = null;
+}
+
 function createRecursiveProxy(
   get: (method: "toString" | "name" | "keys", path: string[]) => any,
   stack: string[] = [],
 ): any {
-  return new Proxy(() => {}, {
+  return new Proxy(proxy, {
     get(target, prop, receiver) {
       switch (prop) {
         case "toString":
@@ -208,6 +216,12 @@ if (cfgTest && cfgTest.url === import.meta.url) {
     test("CSS カスタムプロパティを取得できる", () => {
       assert.equal(`${$.color.blue[50]}`, "var(--sui-color-blue-50)");
       assert.deepEqual($.color.blue[50].$keys, ["color", "blue", "50"]);
+    });
+
+    test("Object.hasOwn でプロパティの有無を確認できる", () => {
+      assert(Object.hasOwn($.color.blue[100], "toString"));
+      assert(Object.hasOwn($.color.blue[100], "$name"));
+      assert(Object.hasOwn($.color.blue[100], "$keys"));
     });
   });
 }
