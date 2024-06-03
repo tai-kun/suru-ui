@@ -7,6 +7,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
     "./base.css": "./dist/base.css",
     "./dark.css": "./dist/dark.css",
     "./light.css": "./dist/light.css",
