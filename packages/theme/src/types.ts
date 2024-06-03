@@ -1,21 +1,21 @@
 import type {
-  BORDER_SIZES,
-  BUTTON_TEXT_SIZES,
-  CAPTION_SIZES,
+  BORDER_SIZINGS,
+  BUTTON_TEXT_SIZINGS,
+  CAPTION_SIZINGS,
   COLOR_SCALES,
   COLOR_VARIANTS,
   COLORS,
-  FONR_SIZES,
+  FONR_SIZINGS,
   FONR_WEIGHTS,
   FONT_FAMILIES,
   HEADING_LEVELS,
-  LABEL_SIZES,
+  LABEL_SIZINGS,
   LEADINGS,
-  RADIUS_SIZES,
+  RADIUS_SIZINGS,
   SHADOW_LEVELS,
   SIZINGS,
   SPACINGS,
-  TEXT_SIZES,
+  TEXT_SIZINGS,
   TRACKINGS,
 } from "./constants";
 
@@ -29,15 +29,15 @@ export type ShadowLevel = (typeof SHADOW_LEVELS)[number];
 
 export type Spacing = (typeof SPACINGS)[number];
 
-export type Radius = (typeof RADIUS_SIZES)[number];
+export type RadiusSizing = (typeof RADIUS_SIZINGS)[number];
 
-export type BorderSize = (typeof BORDER_SIZES)[number];
+export type BorderSizing = (typeof BORDER_SIZINGS)[number];
 
 export type FontFamily = (typeof FONT_FAMILIES)[number];
 
 export type FontWeight = (typeof FONR_WEIGHTS)[number];
 
-export type FontSize = (typeof FONR_SIZES)[number];
+export type FontSizing = (typeof FONR_SIZINGS)[number];
 
 export type Sizing = (typeof SIZINGS)[number];
 
@@ -47,13 +47,13 @@ export type Tracking = (typeof TRACKINGS)[number];
 
 export type HeadingLevel = (typeof HEADING_LEVELS)[number];
 
-export type TextSize = (typeof TEXT_SIZES)[number];
+export type TextSizing = (typeof TEXT_SIZINGS)[number];
 
-export type LabelSize = (typeof LABEL_SIZES)[number];
+export type LabelSizing = (typeof LABEL_SIZINGS)[number];
 
-export type CaptionSize = (typeof CAPTION_SIZES)[number];
+export type CaptionSizing = (typeof CAPTION_SIZINGS)[number];
 
-export type ButtonSize = (typeof BUTTON_TEXT_SIZES)[number];
+export type ButtonSizing = (typeof BUTTON_TEXT_SIZINGS)[number];
 
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;

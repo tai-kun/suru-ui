@@ -46,7 +46,7 @@ export const SPACINGS = [
   "3xl",
 ] as const;
 
-export const RADIUS_SIZES = [
+export const RADIUS_SIZINGS = [
   "xs",
   "sm",
   "md",
@@ -54,7 +54,7 @@ export const RADIUS_SIZES = [
   "full",
 ] as const;
 
-export const BORDER_SIZES = [
+export const BORDER_SIZINGS = [
   "xs",
   "sm",
   "md",
@@ -73,7 +73,7 @@ export const FONR_WEIGHTS = [
   "bold",
 ] as const;
 
-export const FONR_SIZES = [
+export const FONR_SIZINGS = [
   "xs",
   "sm",
   "md",
@@ -109,22 +109,22 @@ export const HEADING_LEVELS = [
   5,
 ] as const;
 
-export const TEXT_SIZES = [
+export const TEXT_SIZINGS = [
   "sm",
   "md",
 ] as const;
 
-export const LABEL_SIZES = [
+export const LABEL_SIZINGS = [
   "sm",
   "md",
 ] as const;
 
-export const CAPTION_SIZES = [
+export const CAPTION_SIZINGS = [
   "sm",
   "md",
 ] as const;
 
-export const BUTTON_TEXT_SIZES = [
+export const BUTTON_TEXT_SIZINGS = [
   "md",
   "lg",
 ] as const;

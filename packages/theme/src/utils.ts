@@ -1,42 +1,42 @@
 import {
-  BORDER_SIZES,
-  BUTTON_TEXT_SIZES,
-  CAPTION_SIZES,
+  BORDER_SIZINGS,
+  BUTTON_TEXT_SIZINGS,
+  CAPTION_SIZINGS,
   COLOR_SCALES,
   COLOR_VARIANTS,
   COLORS,
-  FONR_SIZES,
+  FONR_SIZINGS,
   FONR_WEIGHTS,
   FONT_FAMILIES,
   HEADING_LEVELS,
-  LABEL_SIZES,
+  LABEL_SIZINGS,
   LEADINGS,
-  RADIUS_SIZES,
+  RADIUS_SIZINGS,
   SHADOW_LEVELS,
   SIZINGS,
   SPACINGS,
-  TEXT_SIZES,
+  TEXT_SIZINGS,
   TRACKINGS,
 } from "./constants";
 import type { CssCustomProperties } from "./css";
 import type {
-  BorderSize,
-  ButtonSize,
-  CaptionSize,
+  BorderSizing,
+  ButtonSizing,
+  CaptionSizing,
   Color,
   ColorScale,
   ColorVariant,
   FontFamily,
-  FontSize,
+  FontSizing,
   FontWeight,
   HeadingLevel,
-  LabelSize,
+  LabelSizing,
   Leading,
-  Radius,
+  RadiusSizing,
   ShadowLevel,
   Sizing,
   Spacing,
-  TextSize,
+  TextSizing,
   Tracking,
 } from "./types";
 
@@ -50,15 +50,15 @@ const shadowLevelSet = /* @__PURE__ */ new Set<any>(SHADOW_LEVELS);
 
 const spacingSet = /* @__PURE__ */ new Set<any>(SPACINGS);
 
-const radiusSet = /* @__PURE__ */ new Set<any>(RADIUS_SIZES);
+const radiusSizingSet = /* @__PURE__ */ new Set<any>(RADIUS_SIZINGS);
 
-const borderSizeSet = /* @__PURE__ */ new Set<any>(BORDER_SIZES);
+const borderSizingSet = /* @__PURE__ */ new Set<any>(BORDER_SIZINGS);
 
 const fontFamilySet = /* @__PURE__ */ new Set<any>(FONT_FAMILIES);
 
 const fontWeightSet = /* @__PURE__ */ new Set<any>(FONR_WEIGHTS);
 
-const fontSizeSet = /* @__PURE__ */ new Set<any>(FONR_SIZES);
+const fontSizingSet = /* @__PURE__ */ new Set<any>(FONR_SIZINGS);
 
 const sizingSet = /* @__PURE__ */ new Set<any>(SIZINGS);
 
@@ -68,13 +68,13 @@ const trackingSet = /* @__PURE__ */ new Set<any>(TRACKINGS);
 
 const headingLevelSet = /* @__PURE__ */ new Set<any>(HEADING_LEVELS);
 
-const textSizeSet = /* @__PURE__ */ new Set<any>(TEXT_SIZES);
+const textSizingSet = /* @__PURE__ */ new Set<any>(TEXT_SIZINGS);
 
-const labelSizeSet = /* @__PURE__ */ new Set<any>(LABEL_SIZES);
+const labelSizingSet = /* @__PURE__ */ new Set<any>(LABEL_SIZINGS);
 
-const captionSizeSet = /* @__PURE__ */ new Set<any>(CAPTION_SIZES);
+const captionSizingSet = /* @__PURE__ */ new Set<any>(CAPTION_SIZINGS);
 
-const buttonTextSizeSet = /* @__PURE__ */ new Set<any>(BUTTON_TEXT_SIZES);
+const buttonTextSizingSet = /* @__PURE__ */ new Set<any>(BUTTON_TEXT_SIZINGS);
 
 export function isColor(value: unknown): value is Color {
   return colorSet.has(value);
@@ -96,12 +96,12 @@ export function isSpacing(value: unknown): value is Spacing {
   return spacingSet.has(value);
 }
 
-export function isRadius(value: unknown): value is Radius {
-  return radiusSet.has(value);
+export function isRadiusSizing(value: unknown): value is RadiusSizing {
+  return radiusSizingSet.has(value);
 }
 
-export function isBorderSize(value: unknown): value is BorderSize {
-  return borderSizeSet.has(value);
+export function isBorderSizing(value: unknown): value is BorderSizing {
+  return borderSizingSet.has(value);
 }
 
 export function isFontFamily(value: unknown): value is FontFamily {
@@ -112,8 +112,8 @@ export function isFontWeight(value: unknown): value is FontWeight {
   return fontWeightSet.has(value);
 }
 
-export function isFontSize(value: unknown): value is FontSize {
-  return fontSizeSet.has(value);
+export function isFontSizing(value: unknown): value is FontSizing {
+  return fontSizingSet.has(value);
 }
 
 export function isSizing(value: unknown): value is Sizing {
@@ -132,23 +132,23 @@ export function isHeadingLevel(value: unknown): value is HeadingLevel {
   return headingLevelSet.has(value);
 }
 
-export function isTextSize(value: unknown): value is TextSize {
-  return textSizeSet.has(value);
+export function isTextSizing(value: unknown): value is TextSizing {
+  return textSizingSet.has(value);
 }
 
-export function isLabelSize(value: unknown): value is LabelSize {
-  return labelSizeSet.has(value);
+export function isLabelSizing(value: unknown): value is LabelSizing {
+  return labelSizingSet.has(value);
 }
 
-export function isCaptionSize(value: unknown): value is CaptionSize {
-  return captionSizeSet.has(value);
+export function isCaptionSizing(value: unknown): value is CaptionSizing {
+  return captionSizingSet.has(value);
 }
 
-export function isButtonTextSize(value: unknown): value is ButtonSize {
-  return buttonTextSizeSet.has(value);
+export function isButtonTextSizing(value: unknown): value is ButtonSizing {
+  return buttonTextSizingSet.has(value);
 }
 
-const ownKeys = ["toString", "$name", "$keys"];
+const ownKeys = ["toString", "valueOf", "$name", "$keys"];
 const proxy = () => {};
 
 for (const key of ownKeys) {
@@ -157,13 +157,14 @@ for (const key of ownKeys) {
 }
 
 function createRecursiveProxy(
-  get: (method: "toString" | "name" | "keys", path: string[]) => any,
+  get: (method: (typeof ownKeys)[number], path: string[]) => any,
   stack: string[] = [],
 ): any {
   return new Proxy(proxy, {
     get(target, prop, receiver) {
       switch (prop) {
         case "toString":
+        case "valueOf":
           return createRecursiveProxy(get, [...stack, prop]);
 
         case "$name":
@@ -182,8 +183,11 @@ function createRecursiveProxy(
       const method = stack.pop();
 
       if (__DEV__) {
-        if (method !== "toString") {
-          console.error("SUI: .toString() 以外を呼び出すことはできません。");
+        if (method !== "toString" && method !== "valueOf") {
+          console.error(
+            "SUI: .toString() と .valueOf() 以外を呼び出すことはできません:",
+            stack,
+          );
 
           return "";
         }
@@ -198,6 +202,7 @@ export const $ = /* @__PURE__ */ createRecursiveProxy(
   function toReturnValue(method, path): any {
     switch (method) {
       case "toString":
+      case "valueOf":
         return `var(${toReturnValue("name", path)})`;
 
       case "name":
