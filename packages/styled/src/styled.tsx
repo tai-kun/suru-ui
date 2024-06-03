@@ -1,4 +1,5 @@
 import { Slot, Slottable } from "@suru-ui/slot";
+import clsx, { type ClassValue } from "clsx";
 import React from "react";
 import {
   type SerializableArray,
@@ -14,8 +15,9 @@ import {
  */
 export interface StyledComponentProps<
   T extends keyof React.JSX.IntrinsicElements,
-> extends React.HTMLProps<T> {
+> extends Omit<React.HTMLProps<T>, "className"> {
   asChild?: boolean | undefined;
+  className?: ClassValue;
 }
 
 /**
@@ -262,16 +264,16 @@ export const styled = /* @__PURE__ */ new Proxy(
             cssText += toString(functions[i - 1]!(cssFunc)) + template[i]!;
           }
 
-          const valuesHash = vhash(cssText),
-            className = "sui-C" + (key as string)
-              + " sui-T" + templateHash
-              + " sui-V" + valuesHash;
+          const valuesHash = vhash(cssText);
 
           return (
             <Component
-              className={classNameProp
-                ? classNameProp + " " + className
-                : className}
+              className={clsx(
+                classNameProp,
+                "sui-C" + (key as string)
+                  + " sui-T" + templateHash
+                  + " sui-V" + valuesHash,
+              )}
               {...otherProps}
             >
               <style

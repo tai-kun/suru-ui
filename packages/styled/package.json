@@ -10,6 +10,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
   "peerDependencies": {
     "@suru-ui/slot": "*",
     "react": "*"
