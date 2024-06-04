@@ -8,6 +8,12 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "zx": "^8.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
   "scripts": {
     "add": "plop --plopfile .config/code/plopfile.js",
     "test": "scripts/test",
@@ -17,11 +23,5 @@
   },
   "volta": {
     "extends": "../../package.json"
-  },
-  "dependencies": {
-    "zx": "^8.1.2"
-  },
-  "devDependencies": {
-    "typescript": "^5.4.5"
   }
 }

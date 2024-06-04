@@ -18,8 +18,7 @@
     "react": "*"
   },
   "devDependencies": {
-    "@suru-ui/build": "*",
-    "tsx": "^4.11.0"
+    "@suru-ui/build": "*"
   },
   "author": "tai-kun <taikun.dev@gmail.com>",
   "repository": {

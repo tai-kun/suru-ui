@@ -2,4 +2,4 @@
 
 set -e
 
-npx tsx --import cfg-test/manual --test 'src/**/*.ts' --test 'src/**/*.tsx'
+npx tsx --import cfg-test --test 'src/**/*.ts' --test 'src/**/*.tsx'

@@ -17,7 +17,8 @@
   "peerDependencies": {
     "@suru-ui/slot": "*",
     "@suru-ui/styled": "*",
-    "@suru-ui/theme": "*"
+    "@suru-ui/theme": "*",
+    "react": "*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
