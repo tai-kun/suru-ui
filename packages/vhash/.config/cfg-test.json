@@ -1,0 +1,6 @@
+{
+  "$schema": "https://tai-kun.github.io/cfg-test.js/schema.json",
+  "globals": {
+    "__DEV__": true
+  }
+}

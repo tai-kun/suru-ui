@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check vhash
+check "$(listup . -p vhash/)"
+check "$(listup src -p vhash/)"
