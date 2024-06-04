@@ -1,0 +1,66 @@
+name: Canary Release @suru-ui/components on NPM
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/canary-release-components.yml"
+      - "packages/components/.config/build/**"
+      - "packages/components/scripts/**"
+      - "packages/components/src/**"
+      - "packages/components/*.json"
+      - "package-lock.json"
+      - "package.json"
+      - "tsconfig.json"
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: packages/components
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install dependencies
+        run: |
+          cd ../..
+          npm ci
+          cd packages/build
+          npm run build
+
+      - name: Setup
+        run: |
+          npm run setup
+          npm i
+
+      - name: Build
+        run: npm run build
+
+      - name: Pin version
+        run: |
+          pkg_name="$(cat package.json | jq -r .name)"
+          pkg_version="$(curl -s https://registry.npmjs.org/${pkg_name}/latest | jq -r .version)"
+
+          npm --no-git-tag-version version "$pkg_version"
+          npm --no-git-tag-version version minor
+
+          pkg_version="$(cat package.json | jq -r .version)"
+
+          npm --no-git-tag-version version "${pkg_version}-canary.$(date --utc +'%Y%m%dT%H%M%S')"
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          package: packages/components
+          access: public
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: canary

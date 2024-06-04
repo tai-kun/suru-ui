@@ -159,6 +159,7 @@ jobs:
   action-timeline:
     needs:
       - build
+      - components
       - slot
       - styled
       - theme
