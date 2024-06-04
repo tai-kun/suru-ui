@@ -15,6 +15,7 @@
   },
   "peerDependencies": {
     "@suru-ui/slot": "*",
+    "@suru-ui/vhash": "*",
     "react": "*"
   },
   "devDependencies": {

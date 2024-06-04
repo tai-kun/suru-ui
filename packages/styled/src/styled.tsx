@@ -1,12 +1,12 @@
 import { Slot, Slottable } from "@suru-ui/slot";
-import clsx, { type ClassValue } from "clsx";
-import React from "react";
 import {
   type SerializableArray,
   type SerializablePrimitive,
   type SerializablePrimitiveObject,
   vhash,
-} from "./vhash";
+} from "@suru-ui/vhash";
+import clsx, { type ClassValue } from "clsx";
+import React from "react";
 
 /**
  * スタイル付きのコンポーネントのプロパティ。
