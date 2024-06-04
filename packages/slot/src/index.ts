@@ -1,4 +1,8 @@
-export type { SlotProps } from "./Slot";
-export { Slot } from "./Slot";
-export type { SlottableProps } from "./Slottable";
-export { isSlottable, Slottable } from "./Slottable";
+export { default as isSlottable } from "./isSlottable";
+
+export type { SlotProps } from "./mergeProps";
+
+export { default as Slot } from "./Slot";
+
+export type * from "./Slottable";
+export { default as Slottable } from "./Slottable";
