@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+npx dprint check '*' 'src/**/*'
+npx tsc --noEmit
+
+# [ ! -f dist/index.d.ts ] && mkdir -p dist && touch dist/index.d.ts
+# npx tsd --files 'src/**/*'

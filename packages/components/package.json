@@ -1,0 +1,54 @@
+{
+  "name": "@suru-ui/components",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./Text": {
+      "default": "./dist/Text/index.js",
+      "types": "./dist/Text/index.d.ts"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@suru-ui/slot": "*",
+    "@suru-ui/styled": "*",
+    "@suru-ui/theme": "*"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.5.0",
+    "@storybook/addon-essentials": "^8.1.5",
+    "@storybook/addon-interactions": "^8.1.5",
+    "@storybook/addon-links": "^8.1.5",
+    "@storybook/blocks": "^8.1.5",
+    "@storybook/react": "^8.1.5",
+    "@storybook/react-vite": "^8.1.5",
+    "@storybook/test": "^8.1.5",
+    "@suru-ui/build": "*",
+    "storybook": "^8.1.5"
+  },
+  "author": "tai-kun <taikun.dev@gmail.com>",
+  "repository": {
+    "url": "https://github.com/tai-kun/suru-ui.git",
+    "type": "git",
+    "directory": "packages/components"
+  },
+  "scripts": {
+    "add": "plop --plopfile .config/code/plopfile.js",
+    "test": "scripts/test",
+    "check": "scripts/check",
+    "build": "scripts/build",
+    "setup": "scripts/setup",
+    "story": "storybook dev --config-dir .config/storybook --port 6006 --disable-telemetry"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  }
+}

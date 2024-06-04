@@ -1,0 +1,78 @@
+@layer sui.components {
+  .SuiText {
+    color: var(--SuiText-color);
+    display: block;
+    font-size: var(--SuiText-sizing);
+    font-family: var(--SuiText-font);
+    font-weight: var(--SuiText-weight);
+    line-height: var(--SuiText-leading);
+    letter-spacing: var(--SuiText-tracking);
+
+    &.SuiText-size-sm {
+      --SuiText-sizing: var(--sui-text-sm-sizing);
+      --SuiText-weight: var(--sui-text-sm-weight);
+      --SuiText-leading: var(--sui-text-sm-leading);
+      --SuiText-tracking: var(--sui-text-sm-tracking);
+    }
+    &.SuiText-size-md {
+      --SuiText-sizing: var(--sui-text-md-sizing);
+      --SuiText-weight: var(--sui-text-md-weight);
+      --SuiText-leading: var(--sui-text-md-leading);
+      --SuiText-tracking: var(--sui-text-md-tracking);
+    }
+
+    &.SuiText-weight-normal { --SuiText-weight: var(--sui-font-normal) }
+    &.SuiText-weight-medium { --SuiText-weight: var(--sui-font-medium) }
+    &.SuiText-weight-bold   { --SuiText-weight: var(--sui-font-bold)   }
+
+    &.SuiText-leading-sm { --SuiText-leading: var(--sui-leading-sm) }
+    &.SuiText-leading-md { --SuiText-leading: var(--sui-leading-md) }
+    &.SuiText-leading-lg { --SuiText-leading: var(--sui-leading-lg) }
+
+    &.SuiText-tracking-sm { --SuiText-tracking: var(--sui-tracking-sm) }
+    &.SuiText-tracking-md { --SuiText-tracking: var(--sui-tracking-md) }
+
+    &.SuiText-align-left {
+      text-align: left;
+      justify-content: start;
+    }
+
+    &.SuiText-align-right {
+      text-align: right;
+      justify-content: end;
+    }
+
+    &.SuiText-align-center {
+      text-align: center;
+      justify-content: center;
+    }
+
+    &.SuiText-align-justify {
+      text-align-last: justify;
+      justify-content: justify;
+    }
+
+    &.SuiText-font-sans  { --SuiText-font: var(--sui-font-sans)  }
+    &.SuiText-font-mono  { --SuiText-font: var(--sui-font-mono)  }
+    &.SuiText-font-serif { --SuiText-font: var(--sui-font-serif) }
+
+    &.SuiText-inline {
+      display: inline-block;
+    }
+
+    &.SuiText-truncate {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.SuiText-lineClamp {
+      -webkit-line-clamp: var(--SuiText-lineClamp);
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+    }
+  }
+}

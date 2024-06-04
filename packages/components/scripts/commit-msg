@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+check components
+check "$(listup . -p components/)"
+check "$(listup src -p components/)"
