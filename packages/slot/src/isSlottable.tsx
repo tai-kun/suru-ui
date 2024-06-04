@@ -1,6 +1,11 @@
 import React from "react";
 
-import Slottable from "./Slottable";
+import Slottable, { type SlottableProps } from "./Slottable";
+
+export type SlottableElement = React.ReactElement<
+  SlottableProps,
+  typeof Slottable
+>;
 
 /**
  * `Slottable` かどうかを判定する。
@@ -10,7 +15,7 @@ import Slottable from "./Slottable";
  */
 export default function isSlottable(
   node: React.ReactNode,
-): node is React.ReactElement<any> {
+): node is SlottableElement {
   return React.isValidElement(node) && node.type === Slottable;
 }
 

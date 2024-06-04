@@ -1,36 +1,42 @@
 import React from "react";
-import isSlottable from "./isSlottable";
+
+import isSlottable, { type SlottableElement } from "./isSlottable";
 import mergeProps, { type SlotProps } from "./mergeProps";
+import Slottable from "./Slottable";
 import useCacheManager from "./useCacheManager";
 
 function SlotClone(props: SlotProps) {
   const { children, ...slotProps } = props;
-  const cacheManager = useCacheManager();
 
-  if (React.isValidElement(children)) {
-    const cache = cacheManager.create();
-
-    try {
-      return React.cloneElement(
-        children,
-        mergeProps(cache, slotProps, children.props as SlotProps),
-      );
-    } finally {
-      cache.dispose();
-    }
+  if (!React.isValidElement(children)) {
+    return React.Children.only(children), null;
   }
 
-  return React.Children.count(children) > 1
-    ? React.Children.only(null)
-    : null;
+  const cacheManager = useCacheManager();
+  const cache = cacheManager.create();
+
+  try {
+    return React.cloneElement(
+      children,
+      mergeProps(cache, slotProps, children.props as SlotProps),
+    );
+  } finally {
+    cache.dispose();
+  }
+}
+
+function isValidElementOnly<P>(
+  children: React.ReactNode,
+): children is React.ReactElement<P> {
+  return React.isValidElement<P>(React.Children.only(children));
 }
 
 export default function Slot(props: SlotProps) {
   const { children, ...slotProps } = props;
-  const childrenArray = React.Children.toArray(children);
-  const slottable = childrenArray.find(isSlottable);
+  const newChildren: React.ReactNode[] = React.Children.toArray(children);
+  const slottableIndex = newChildren.findIndex(isSlottable);
 
-  if (!slottable) {
+  if (slottableIndex === -1) {
     return (
       <SlotClone {...slotProps}>
         {children}
@@ -38,16 +44,27 @@ export default function Slot(props: SlotProps) {
     );
   }
 
+  let slottable = newChildren[slottableIndex] as SlottableElement;
+
+  // 子要素が Slottable でなくなるまで探索する。
+  while (isSlottable(slottable.props.children)) {
+    slottable = slottable.props.children;
+  }
+
   const newElement = slottable.props.children;
-  const newChildren = childrenArray.map(child =>
-    child !== slottable
-      ? child
-      : React.Children.count(newElement) > 1
-      ? React.Children.only(newElement)
-      : React.isValidElement<React.PropsWithChildren<{}>>(newElement)
+
+  newChildren[slottableIndex] =
+    !isValidElementOnly<React.PropsWithChildren<{}>>(newElement)
+      ? null // TODO(tai-kun): 警告を出す？
+      : newElement.type !== Slot
       ? newElement.props.children
-      : null // TODO(tai-kun): 警告を出す？
-  );
+      // Slottable の子要素が Slot の場合、Slottable の前後の要素を
+      // その Slot の子要素内に展開する。
+      : React.Children.toArray(newElement.props.children).find(isSlottable)
+      // Slot 内にすでに Slottable がある場合、その Slottable を使う。
+      ? newElement.props.children
+      // Slot 内に Slottable がない場合、新たに Slottable を作成する。
+      : <Slottable>{newElement.props.children}</Slottable>;
 
   return (
     <SlotClone {...slotProps}>
@@ -162,6 +179,96 @@ if (cfgTest && cfgTest.url === import.meta.url) {
         assert.equal(
           markup,
           `<a href="https://github.com/tai-kun/suru-ui"><span>LEFT</span><i>Suru</i> UI<span>RIGHT</span></a>`,
+        );
+      });
+    });
+
+    describe("ネスト", () => {
+      test("Slot はネストされた Slot の子要素を展開する", () => {
+        const markup = renderToStaticMarkup(
+          <Slot data-1>
+            <Slot>
+              <Slot data-2>
+                <Slot>
+                  <div data-3>
+                    Suru UI
+                  </div>
+                </Slot>
+              </Slot>
+            </Slot>
+          </Slot>,
+        );
+
+        assert.equal(
+          markup,
+          renderToStaticMarkup(
+            <div
+              data-3
+              data-2
+              data-1
+            >
+              Suru UI
+            </div>,
+          ),
+        );
+      });
+
+      test("Slot はネストされた Slottable の子要素を展開する", () => {
+        const markup = renderToStaticMarkup(
+          <Slot data-1>
+            <Slottable>
+              <Slottable>
+                <Slottable>
+                  <div data-2>
+                    Suru UI
+                  </div>
+                </Slottable>
+              </Slottable>
+            </Slottable>
+          </Slot>,
+        );
+
+        assert.equal(
+          markup,
+          renderToStaticMarkup(
+            <div
+              data-2
+              data-1
+            >
+              Suru UI
+            </div>,
+          ),
+        );
+      });
+
+      test("Slot は Slottable を介してネストされた Slot の子要素を展開する", () => {
+        const markup = renderToStaticMarkup(
+          <Slot data-1>
+            <span>1</span>
+            <Slottable>
+              <Slot data-2>
+                <span>2</span>
+                <Slottable>
+                  <div data-3>Suru UI</div>
+                </Slottable>
+              </Slot>
+            </Slottable>
+          </Slot>,
+        );
+
+        assert.equal(
+          markup,
+          renderToStaticMarkup(
+            <div
+              data-3
+              data-2
+              data-1
+            >
+              <span>1</span>
+              <span>2</span>
+              Suru UI
+            </div>,
+          ),
         );
       });
     });

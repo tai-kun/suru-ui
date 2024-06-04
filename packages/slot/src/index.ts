@@ -1,3 +1,4 @@
+export type * from "./isSlottable";
 export { default as isSlottable } from "./isSlottable";
 
 export type { SlotProps } from "./mergeProps";

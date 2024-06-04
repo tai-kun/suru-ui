@@ -24,6 +24,9 @@ interface CacheManager {
    * Cache を作成する。
    */
   create(): Cache & {
+    /**
+     * 不要なキャッシュを削除する。
+     */
     // TODO(tai-kun): [Sumbol.dispose || Symbol.for("Symbol.dispose")] を使う。
     dispose(): void;
   };
