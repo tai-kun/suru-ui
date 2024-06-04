@@ -59,18 +59,6 @@ export function resolve(): Plugin {
     };
   }
 
-  const jsonFileCache: Record<string, any> = {};
-
-  async function readJson(file: string): Promise<any> {
-    if (file in jsonFileCache) {
-      return jsonFileCache[file];
-    }
-
-    return (jsonFileCache[file] = JSON.parse(
-      await fs.promises.readFile(file, "utf-8"),
-    ));
-  }
-
   return {
     name: "esbuild-plugin-resolve",
     setup(build) {
@@ -111,40 +99,6 @@ export function resolve(): Plugin {
 
           case pkg.startsWith("."): {
             const builtPath = getBuiltPath(resolveDir, pkg);
-
-            if (builtPath) {
-              return {
-                path: toOutFilePath(builtPath),
-                external: true,
-              };
-            }
-
-            return {
-              errors: [
-                {
-                  text: `パッケージを解決できませんでした: ${pkg}`,
-                },
-              ],
-            };
-          }
-
-          case pkg.startsWith("@suru-ui/"): {
-            const pkgName = pkg.split("/")[1]!;
-            const pkgPath = [".", ...pkg.split("/").slice(2)].join("/");
-            const pkgRoot = path.join(monorepoRoot, "packages", pkgName);
-            const pkgJsonPath = path.join(pkgRoot, "package.json");
-            const pkgJson = await readJson(pkgJsonPath);
-            let builtPath: string | null = null;
-
-            switch (true) {
-              case pkgPath === "." && "main" in pkgJson:
-                builtPath = path.join(pkgRoot, pkgJson.main);
-                break;
-
-              case "default" in ((pkgJson.exports || {})[pkgPath] || {}):
-                builtPath = path.join(pkgRoot, pkgJson.exports[pkgPath].import);
-                break;
-            }
 
             if (builtPath) {
               return {
