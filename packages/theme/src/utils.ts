@@ -185,7 +185,7 @@ function createRecursiveProxy(
       if (__DEV__) {
         if (method !== "toString" && method !== "valueOf") {
           console.error(
-            "SUI: .toString() と .valueOf() 以外を呼び出すことはできません:",
+            "SUI(theme): .toString() と .valueOf() 以外を呼び出すことはできません:",
             stack,
           );
 

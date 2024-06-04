@@ -158,7 +158,7 @@ function toString(value: CssValue): string | CssValueFunction {
 
   if (__DEV__) {
     console.error(
-      `[SUI] CSS の値に変換できない値が含まれています: `,
+      `SUI(styled): CSS の値に変換できない値が含まれています: `,
       value,
     );
   }
@@ -235,7 +235,7 @@ export const styled = /* @__PURE__ */ new Proxy(
 
             if (keys.length) {
               console.error(
-                `[SUI] CSS の値に関数のプロパティが含まれています: `,
+                `SUI(styled): CSS の値に関数のプロパティが含まれています: `,
                 keys,
               );
 
