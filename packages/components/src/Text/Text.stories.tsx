@@ -18,10 +18,11 @@ export const Basic: Story = () => <Text.Root>テキスト</Text.Root>;
 
 export const Alignment: Story = () => (
   <>
-    <Text.Root align="left">左寄せ</Text.Root>
-    <Text.Root align="center">中央寄せ</Text.Root>
-    <Text.Root align="right">右寄せ</Text.Root>
+    <Text.Root align="start">始端揃え</Text.Root>
+    <Text.Root align="end">終端揃え</Text.Root>
     <Text.Root align="justify">両端揃え</Text.Root>
+    <Text.Root align="center">{"中央揃え ".repeat(15)}</Text.Root>
+    <Text.Root align="middle">{"中央寄せ ".repeat(15)}</Text.Root>
   </>
 );
 

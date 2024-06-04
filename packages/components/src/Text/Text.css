@@ -32,13 +32,13 @@
     &.SuiText-tracking-sm { --SuiText-tracking: var(--sui-tracking-sm) }
     &.SuiText-tracking-md { --SuiText-tracking: var(--sui-tracking-md) }
 
-    &.SuiText-align-left {
-      text-align: left;
+    &.SuiText-align-start {
+      text-align: start;
       justify-content: start;
     }
 
-    &.SuiText-align-right {
-      text-align: right;
+    &.SuiText-align-end {
+      text-align: end;
       justify-content: end;
     }
 
@@ -50,6 +50,11 @@
     &.SuiText-align-justify {
       text-align-last: justify;
       justify-content: justify;
+    }
+
+    &.SuiText-align-middle {
+      inline-size: fit-content;
+      margin-inline: auto;
     }
 
     &.SuiText-font-sans  { --SuiText-font: var(--sui-font-sans)  }

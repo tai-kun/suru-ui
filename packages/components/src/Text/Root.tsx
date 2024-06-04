@@ -69,7 +69,7 @@ ${({ weight }) => (
 interface RootProps
   extends Omit<React.ComponentProps<typeof Paragraph>, "color" | "css" | "size">
 {
-  align?: "left" | "center" | "right" | "justify" | undefined;
+  align?: "start" | "center" | "end" | "justify" | "middle" | undefined;
   color?: string | { readonly toString: () => string } | undefined;
   font?: ParagraphCss["font"];
   inline?: boolean | undefined;
