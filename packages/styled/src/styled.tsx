@@ -11,12 +11,12 @@ import type { CssValue } from "./types";
  *
  * @template T - HTML 要素のタグ名。
  */
-export interface StyledComponentProps<
+export type StyledComponentProps<
   T extends keyof React.JSX.IntrinsicElements,
-> extends Omit<React.HTMLProps<T>, "className"> {
+> = Omit<React.JSX.IntrinsicElements[T], "className"> & {
   asChild?: boolean | undefined;
   className?: ClassValue;
-}
+};
 
 /**
  * スタイル付きのコンポーネントのプロパティ。
@@ -24,12 +24,12 @@ export interface StyledComponentProps<
  * @template T - HTML 要素のタグ名。
  * @template P - CSS プロパティ。
  */
-export interface StyledComponentPropsWithCss<
+export type StyledComponentPropsWithCss<
   T extends keyof React.JSX.IntrinsicElements,
   P,
-> extends StyledComponentProps<T> {
+> = StyledComponentProps<T> & {
   css: P;
-}
+};
 
 /**
  * スタイル付きのコンポーネント。
