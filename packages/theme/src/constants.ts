@@ -67,13 +67,13 @@ export const FONT_FAMILIES = [
   "serif",
 ] as const;
 
-export const FONR_WEIGHTS = [
+export const FONT_WEIGHTS = [
   "normal",
   "medium",
   "bold",
 ] as const;
 
-export const FONR_SIZINGS = [
+export const FONT_SIZINGS = [
   "xs",
   "sm",
   "md",

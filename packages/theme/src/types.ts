@@ -5,9 +5,9 @@ import type {
   COLOR_SCALES,
   COLOR_VARIANTS,
   COLORS,
-  FONR_SIZINGS,
-  FONR_WEIGHTS,
   FONT_FAMILIES,
+  FONT_SIZINGS,
+  FONT_WEIGHTS,
   HEADING_LEVELS,
   LABEL_SIZINGS,
   LEADINGS,
@@ -35,9 +35,9 @@ export type BorderSizing = (typeof BORDER_SIZINGS)[number];
 
 export type FontFamily = (typeof FONT_FAMILIES)[number];
 
-export type FontWeight = (typeof FONR_WEIGHTS)[number];
+export type FontWeight = (typeof FONT_WEIGHTS)[number];
 
-export type FontSizing = (typeof FONR_SIZINGS)[number];
+export type FontSizing = (typeof FONT_SIZINGS)[number];
 
 export type Sizing = (typeof SIZINGS)[number];
 

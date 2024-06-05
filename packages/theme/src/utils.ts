@@ -5,9 +5,9 @@ import {
   COLOR_SCALES,
   COLOR_VARIANTS,
   COLORS,
-  FONR_SIZINGS,
-  FONR_WEIGHTS,
   FONT_FAMILIES,
+  FONT_SIZINGS,
+  FONT_WEIGHTS,
   HEADING_LEVELS,
   LABEL_SIZINGS,
   LEADINGS,
@@ -56,9 +56,9 @@ const borderSizingSet = /* @__PURE__ */ new Set<any>(BORDER_SIZINGS);
 
 const fontFamilySet = /* @__PURE__ */ new Set<any>(FONT_FAMILIES);
 
-const fontWeightSet = /* @__PURE__ */ new Set<any>(FONR_WEIGHTS);
+const fontWeightSet = /* @__PURE__ */ new Set<any>(FONT_WEIGHTS);
 
-const fontSizingSet = /* @__PURE__ */ new Set<any>(FONR_SIZINGS);
+const fontSizingSet = /* @__PURE__ */ new Set<any>(FONT_SIZINGS);
 
 const sizingSet = /* @__PURE__ */ new Set<any>(SIZINGS);
 
