@@ -205,5 +205,31 @@ if (cfgTest && cfgTest.url === import.meta.url) {
         ),
       );
     });
+
+    test("ネストできる", () => {
+      const StyledDiv = styled.div``;
+      const StyledSpan = styled.span``;
+      const markup = renderToString(
+        <StyledDiv asChild>
+          <StyledSpan asChild>
+            <p>CONTENT</p>
+          </StyledSpan>
+        </StyledDiv>,
+      );
+
+      assert.equal(
+        markup,
+        renderToString(
+          <>
+            <style data-precedence="sui-styled" data-href="sui-0-0">
+              {".sui-T0.sui-V0{}"}
+            </style>
+            <p className="sui-Cdiv sui-T0 sui-V0 sui-Cspan sui-T0 sui-V0">
+              CONTENT
+            </p>
+          </>,
+        ),
+      );
+    });
   });
 }
