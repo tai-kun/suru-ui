@@ -1,0 +1,69 @@
+@layer sui.components {
+  .SuiTypography {
+    color: var(--SuiTypography-color);
+    display: block;
+    font-family: var(--SuiTypography-font);
+    font-weight: var(--SuiTypography-weight);
+    line-height: var(--SuiTypography-leading);
+    letter-spacing: var(--SuiTypography-tracking);
+
+    &.SuiTypography-weight-normal { --SuiTypography-weight: var(--sui-font-normal) }
+    &.SuiTypography-weight-medium { --SuiTypography-weight: var(--sui-font-medium) }
+    &.SuiTypography-weight-bold   { --SuiTypography-weight: var(--sui-font-bold)   }
+
+    &.SuiTypography-leading-sm { --SuiTypography-leading: var(--sui-leading-sm) }
+    &.SuiTypography-leading-md { --SuiTypography-leading: var(--sui-leading-md) }
+    &.SuiTypography-leading-lg { --SuiTypography-leading: var(--sui-leading-lg) }
+
+    &.SuiTypography-tracking-sm { --SuiTypography-tracking: var(--sui-tracking-sm) }
+    &.SuiTypography-tracking-md { --SuiTypography-tracking: var(--sui-tracking-md) }
+
+    &.SuiTypography-align-start {
+      text-align: start;
+      justify-content: start;
+    }
+
+    &.SuiTypography-align-end {
+      text-align: end;
+      justify-content: end;
+    }
+
+    &.SuiTypography-align-center {
+      text-align: center;
+      justify-content: center;
+    }
+
+    &.SuiTypography-align-justify {
+      text-align-last: justify;
+      justify-content: justify;
+    }
+
+    &.SuiTypography-align-middle {
+      inline-size: fit-content;
+      margin-inline: auto;
+    }
+
+    &.SuiTypography-font-sans  { --SuiTypography-font: var(--sui-font-sans)  }
+    &.SuiTypography-font-mono  { --SuiTypography-font: var(--sui-font-mono)  }
+    &.SuiTypography-font-serif { --SuiTypography-font: var(--sui-font-serif) }
+
+    &.SuiTypography-inline {
+      display: inline-block;
+    }
+
+    &.SuiTypography-truncate {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.SuiTypography-lineClamp {
+      -webkit-line-clamp: var(--SuiTypography-lineClamp);
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+    }
+  }
+}

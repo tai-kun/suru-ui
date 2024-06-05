@@ -7,7 +7,7 @@ import { $, COLORS } from "@suru-ui/theme";
 import * as Text from ".";
 
 export default {
-  title: "Text",
+  title: "typography/Text",
   component: Text.Root,
   tags: ["autodocs"],
 } satisfies Meta<typeof Text.Root>;
