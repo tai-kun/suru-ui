@@ -30,19 +30,19 @@
     --sui-color-grey-alpha-1200: var(---color-black);
 
     --sui-color-grey-naked-canvas:     transparent;
-    --sui-color-grey-naked-subtle:     var(---color-grey-alpha-100);
-    --sui-color-grey-naked-action:     var(---color-grey-alpha-200);
-    --sui-color-grey-naked-canvasText: var(---color-grey-900);
+    --sui-color-grey-naked-subtle:     var(--sui-color-grey-alpha-100);
+    --sui-color-grey-naked-action:     var(--sui-color-grey-alpha-200);
+    --sui-color-grey-naked-canvasText: var(--sui-color-grey-900);
 
-    --sui-color-grey-solid-canvas:     var(---color-grey-1200);
-    --sui-color-grey-solid-subtle:     var(---color-grey-1000);
-    --sui-color-grey-solid-action:     var(---color-grey-800);
-    --sui-color-grey-solid-canvasText: var(---color-grey-50);
+    --sui-color-grey-solid-canvas:     var(--sui-color-grey-1200);
+    --sui-color-grey-solid-subtle:     var(--sui-color-grey-1000);
+    --sui-color-grey-solid-action:     var(--sui-color-grey-800);
+    --sui-color-grey-solid-canvasText: var(--sui-color-grey-50);
 
-    --sui-color-grey-liquid-canvas:     var(---color-grey-alpha-100);
-    --sui-color-grey-liquid-subtle:     var(---color-grey-alpha-200);
-    --sui-color-grey-liquid-action:     var(---color-grey-alpha-300);
-    --sui-color-grey-liquid-canvasText: var(---color-grey-1200);
+    --sui-color-grey-liquid-canvas:     var(--sui-color-grey-alpha-100);
+    --sui-color-grey-liquid-subtle:     var(--sui-color-grey-alpha-200);
+    --sui-color-grey-liquid-action:     var(--sui-color-grey-alpha-300);
+    --sui-color-grey-liquid-canvasText: var(--sui-color-grey-1200);
 
     --sui-color-blue-50:   var(---color-blue-50);
     --sui-color-blue-100:  var(---color-blue-100);
@@ -73,19 +73,19 @@
     --sui-color-blue-alpha-1200: hsl(240 100% 19% / 1);
 
     --sui-color-blue-naked-canvas:     transparent;
-    --sui-color-blue-naked-subtle:     var(---color-blue-alpha-100);
-    --sui-color-blue-naked-action:     var(---color-blue-alpha-200);
-    --sui-color-blue-naked-canvasText: var(---color-blue-800);
+    --sui-color-blue-naked-subtle:     var(--sui-color-blue-alpha-100);
+    --sui-color-blue-naked-action:     var(--sui-color-blue-alpha-200);
+    --sui-color-blue-naked-canvasText: var(--sui-color-blue-800);
 
-    --sui-color-blue-solid-canvas:     var(---color-blue-800);
-    --sui-color-blue-solid-subtle:     var(---color-blue-900);
-    --sui-color-blue-solid-action:     var(---color-blue-1100);
-    --sui-color-blue-solid-canvasText: var(---color-blue-50);
+    --sui-color-blue-solid-canvas:     var(--sui-color-blue-800);
+    --sui-color-blue-solid-subtle:     var(--sui-color-blue-900);
+    --sui-color-blue-solid-action:     var(--sui-color-blue-1100);
+    --sui-color-blue-solid-canvasText: var(--sui-color-blue-50);
 
-    --sui-color-blue-liquid-canvas:     var(---color-blue-alpha-100);
-    --sui-color-blue-liquid-subtle:     var(---color-blue-alpha-200);
-    --sui-color-blue-liquid-action:     var(---color-blue-alpha-300);
-    --sui-color-blue-liquid-canvasText: var(---color-blue-1000);
+    --sui-color-blue-liquid-canvas:     var(--sui-color-blue-alpha-100);
+    --sui-color-blue-liquid-subtle:     var(--sui-color-blue-alpha-200);
+    --sui-color-blue-liquid-action:     var(--sui-color-blue-alpha-300);
+    --sui-color-blue-liquid-canvasText: var(--sui-color-blue-1000);
 
     --sui-color-green-50:   var(---color-green-50);
     --sui-color-green-100:  var(---color-green-100);
@@ -116,19 +116,19 @@
     --sui-color-green-alpha-1200: hsl(152 100% 6% / 0.99);
 
     --sui-color-green-naked-canvas:     transparent;
-    --sui-color-green-naked-subtle:     var(---color-green-alpha-100);
-    --sui-color-green-naked-action:     var(---color-green-alpha-200);
-    --sui-color-green-naked-canvasText: var(---color-green-900);
+    --sui-color-green-naked-subtle:     var(--sui-color-green-alpha-100);
+    --sui-color-green-naked-action:     var(--sui-color-green-alpha-200);
+    --sui-color-green-naked-canvasText: var(--sui-color-green-900);
 
-    --sui-color-green-solid-canvas:     var(---color-green-900);
-    --sui-color-green-solid-subtle:     var(---color-green-1000);
-    --sui-color-green-solid-action:     var(---color-green-1200);
-    --sui-color-green-solid-canvasText: var(---color-green-50);
+    --sui-color-green-solid-canvas:     var(--sui-color-green-900);
+    --sui-color-green-solid-subtle:     var(--sui-color-green-1000);
+    --sui-color-green-solid-action:     var(--sui-color-green-1200);
+    --sui-color-green-solid-canvasText: var(--sui-color-green-50);
 
-    --sui-color-green-liquid-canvas:     var(---color-green-alpha-100);
-    --sui-color-green-liquid-subtle:     var(---color-green-alpha-200);
-    --sui-color-green-liquid-action:     var(---color-green-alpha-300);
-    --sui-color-green-liquid-canvasText: var(---color-green-1100);
+    --sui-color-green-liquid-canvas:     var(--sui-color-green-alpha-100);
+    --sui-color-green-liquid-subtle:     var(--sui-color-green-alpha-200);
+    --sui-color-green-liquid-action:     var(--sui-color-green-alpha-300);
+    --sui-color-green-liquid-canvasText: var(--sui-color-green-1100);
 
     --sui-color-yellow-50:   var(---color-yellow-50);
     --sui-color-yellow-100:  var(---color-yellow-100);
@@ -159,19 +159,19 @@
     --sui-color-yellow-alpha-1200: hsl(47 100% 19% / 1);
 
     --sui-color-yellow-naked-canvas:     transparent;
-    --sui-color-yellow-naked-subtle:     var(---color-yellow-alpha-100);
-    --sui-color-yellow-naked-action:     var(---color-yellow-alpha-200);
-    --sui-color-yellow-naked-canvasText: var(---color-yellow-900);
+    --sui-color-yellow-naked-subtle:     var(--sui-color-yellow-alpha-100);
+    --sui-color-yellow-naked-action:     var(--sui-color-yellow-alpha-200);
+    --sui-color-yellow-naked-canvasText: var(--sui-color-yellow-900);
 
-    --sui-color-yellow-solid-canvas:     var(---color-yellow-900);
-    --sui-color-yellow-solid-subtle:     var(---color-yellow-1000);
-    --sui-color-yellow-solid-action:     var(---color-yellow-1200);
-    --sui-color-yellow-solid-canvasText: var(---color-yellow-50);
+    --sui-color-yellow-solid-canvas:     var(--sui-color-yellow-900);
+    --sui-color-yellow-solid-subtle:     var(--sui-color-yellow-1000);
+    --sui-color-yellow-solid-action:     var(--sui-color-yellow-1200);
+    --sui-color-yellow-solid-canvasText: var(--sui-color-yellow-50);
 
-    --sui-color-yellow-liquid-canvas:     var(---color-yellow-alpha-100);
-    --sui-color-yellow-liquid-subtle:     var(---color-yellow-alpha-200);
-    --sui-color-yellow-liquid-action:     var(---color-yellow-alpha-300);
-    --sui-color-yellow-liquid-canvasText: var(---color-yellow-1100);
+    --sui-color-yellow-liquid-canvas:     var(--sui-color-yellow-alpha-100);
+    --sui-color-yellow-liquid-subtle:     var(--sui-color-yellow-alpha-200);
+    --sui-color-yellow-liquid-action:     var(--sui-color-yellow-alpha-300);
+    --sui-color-yellow-liquid-canvasText: var(--sui-color-yellow-1100);
 
     --sui-color-red-50:   var(---color-red-50);
     --sui-color-red-100:  var(---color-red-100);
@@ -202,19 +202,19 @@
     --sui-color-red-alpha-1200: hsl(0 100% 19% / 1);
 
     --sui-color-red-naked-canvas:     transparent;
-    --sui-color-red-naked-subtle:     var(---color-red-alpha-100);
-    --sui-color-red-naked-action:     var(---color-red-alpha-200);
-    --sui-color-red-naked-canvasText: var(---color-red-900);
+    --sui-color-red-naked-subtle:     var(--sui-color-red-alpha-100);
+    --sui-color-red-naked-action:     var(--sui-color-red-alpha-200);
+    --sui-color-red-naked-canvasText: var(--sui-color-red-900);
 
-    --sui-color-red-solid-canvas:     var(---color-red-900);
-    --sui-color-red-solid-subtle:     var(---color-red-1000);
-    --sui-color-red-solid-action:     var(---color-red-1200);
-    --sui-color-red-solid-canvasText: var(---color-red-50);
+    --sui-color-red-solid-canvas:     var(--sui-color-red-900);
+    --sui-color-red-solid-subtle:     var(--sui-color-red-1000);
+    --sui-color-red-solid-action:     var(--sui-color-red-1200);
+    --sui-color-red-solid-canvasText: var(--sui-color-red-50);
 
-    --sui-color-red-liquid-canvas:     var(---color-red-alpha-100);
-    --sui-color-red-liquid-subtle:     var(---color-red-alpha-200);
-    --sui-color-red-liquid-action:     var(---color-red-alpha-300);
-    --sui-color-red-liquid-canvasText: var(---color-red-1100);
+    --sui-color-red-liquid-canvas:     var(--sui-color-red-alpha-100);
+    --sui-color-red-liquid-subtle:     var(--sui-color-red-alpha-200);
+    --sui-color-red-liquid-action:     var(--sui-color-red-alpha-300);
+    --sui-color-red-liquid-canvasText: var(--sui-color-red-1100);
 
     --sui-color-orange-700: var(---color-orange-700);
 
