@@ -25,7 +25,7 @@ function SlotClone(props: SlotProps) {
   }
 }
 
-function isValidElementOnly<P>(
+function isValidElOnly<P>(
   children: React.ReactNode,
 ): children is React.ReactElement<P> {
   return React.isValidElement<P>(React.Children.only(children));
@@ -34,7 +34,7 @@ function isValidElementOnly<P>(
 export default function Slot(props: SlotProps) {
   const { children, ...slotProps } = props;
   const newChildren: React.ReactNode[] = React.Children.toArray(children);
-  const slottableIndex = newChildren.findIndex(isSlottable);
+  let slottableIndex = newChildren.findIndex(isSlottable);
 
   if (slottableIndex === -1) {
     return (
@@ -45,18 +45,29 @@ export default function Slot(props: SlotProps) {
   }
 
   let slottable = newChildren[slottableIndex] as SlottableElement;
+  let slottableChildren: React.ReactNode[];
+  let slottableChildIndex: number;
 
-  // 子要素が Slottable でなくなるまで探索する。
-  while (isSlottable(slottable.props.children)) {
-    slottable = slottable.props.children;
+  // 子要素に Slottable がある限り、その Slottable を展開する。
+  while (
+    (
+      slottableChildIndex =
+        (slottableChildren = React.Children.toArray(slottable.props.children))
+          .findIndex(isSlottable)
+    ) !== -1
+  ) {
+    newChildren.push(...slottableChildren.slice(slottableChildIndex + 1));
+    newChildren.unshift(...slottableChildren.slice(0, slottableChildIndex));
+    slottable = slottableChildren[slottableChildIndex] as SlottableElement;
+    // newChildren の slottable の場所が変更されているので、それを更新する。
+    slottableIndex += slottableChildIndex;
   }
 
   const newElement = slottable.props.children;
-
   newChildren[slottableIndex] =
-    !isValidElementOnly<React.PropsWithChildren<{}>>(newElement)
+    !isValidElOnly<React.PropsWithChildren<{ asChild?: unknown }>>(newElement)
       ? null // TODO(tai-kun): 警告を出す？
-      : newElement.type !== Slot
+      : newElement.type !== Slot && !newElement.props.asChild
       ? newElement.props.children
       // Slottable の子要素が Slot の場合、Slottable の前後の要素を
       // その Slot の子要素内に展開する。
@@ -267,6 +278,58 @@ if (cfgTest && cfgTest.url === import.meta.url) {
               <span>1</span>
               <span>2</span>
               Suru UI
+            </div>,
+          ),
+        );
+      });
+
+      test("asChild プロパティを真値と判定できるなら、それを Slot として扱う", () => {
+        function ProxyComponent(
+          props: React.PropsWithChildren<{
+            asChild: true;
+            value: number;
+          }>,
+        ) {
+          const {
+            value,
+            asChild: _,
+            children,
+          } = props;
+
+          return (
+            <Slot>
+              <span>{value}</span>
+              <Slottable>
+                {children}
+              </Slottable>
+              <span>{value}</span>
+            </Slot>
+          );
+        }
+
+        const markup = renderToStaticMarkup(
+          <ProxyComponent
+            asChild
+            value={1}
+          >
+            <ProxyComponent
+              asChild
+              value={2}
+            >
+              <div>Suru UI</div>
+            </ProxyComponent>
+          </ProxyComponent>,
+        );
+
+        assert.equal(
+          markup,
+          renderToStaticMarkup(
+            <div>
+              <span>1</span>
+              <span>2</span>
+              Suru UI
+              <span>2</span>
+              <span>1</span>
             </div>,
           ),
         );
