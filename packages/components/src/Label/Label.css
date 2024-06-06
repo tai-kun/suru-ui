@@ -1,0 +1,23 @@
+@layer sui.components {
+  .SuiLabel {
+    --SuiTypography-sizing: var(--SuiLabel-sizing);
+    --SuiTypography-weight: var(--SuiLabel-weight);
+    --SuiTypography-leading: var(--SuiLabel-leading);
+    --SuiTypography-tracking: var(--SuiLabel-tracking);
+
+    font-size: var(--SuiLabel-sizing);
+
+    &.SuiLabel-size-sm {
+      --SuiLabel-sizing: var(--sui-label-sm-sizing);
+      --SuiLabel-weight: var(--sui-label-sm-weight);
+      --SuiLabel-leading: var(--sui-label-sm-leading);
+      --SuiLabel-tracking: var(--sui-label-sm-tracking);
+    }
+    &.SuiLabel-size-md {
+      --SuiLabel-sizing: var(--sui-label-md-sizing);
+      --SuiLabel-weight: var(--sui-label-md-weight);
+      --SuiLabel-leading: var(--sui-label-md-leading);
+      --SuiLabel-tracking: var(--sui-label-md-tracking);
+    }
+  }
+}
