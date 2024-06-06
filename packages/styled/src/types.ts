@@ -1,3 +1,5 @@
+import type React from "react";
+
 import type {
   SerializableArray,
   SerializablePrimitive,
@@ -66,6 +68,69 @@ export type CssValue<P = {}> =
   | CssValueArray
   | CssValuePrimitive
   | CssValuePrimitiveObject;
+
+export type SvgTag =
+  | "svg"
+  | "animate"
+  | "animateMotion"
+  | "animateTransform"
+  | "circle"
+  | "clipPath"
+  | "defs"
+  | "desc"
+  | "ellipse"
+  | "feBlend"
+  | "feColorMatrix"
+  | "feComponentTransfer"
+  | "feComposite"
+  | "feConvolveMatrix"
+  | "feDiffuseLighting"
+  | "feDisplacementMap"
+  | "feDistantLight"
+  | "feDropShadow"
+  | "feFlood"
+  | "feFuncA"
+  | "feFuncB"
+  | "feFuncG"
+  | "feFuncR"
+  | "feGaussianBlur"
+  | "feImage"
+  | "feMerge"
+  | "feMergeNode"
+  | "feMorphology"
+  | "feOffset"
+  | "fePointLight"
+  | "feSpecularLighting"
+  | "feSpotLight"
+  | "feTile"
+  | "feTurbulence"
+  | "filter"
+  | "foreignObject"
+  | "g"
+  | "image"
+  | "line"
+  | "linearGradient"
+  | "marker"
+  | "mask"
+  | "metadata"
+  | "mpath"
+  | "path"
+  | "pattern"
+  | "polygon"
+  | "polyline"
+  | "radialGradient"
+  | "rect"
+  | "set"
+  | "stop"
+  | "switch"
+  | "symbol"
+  | "text"
+  | "textPath"
+  | "tspan"
+  | "use"
+  | "view";
+
+export type HtmlTag = Exclude<keyof React.JSX.IntrinsicElements, SvgTag>;
 
 if (cfgTest && cfgTest.url === import.meta.url) {
   const { describe, test } = cfgTest;

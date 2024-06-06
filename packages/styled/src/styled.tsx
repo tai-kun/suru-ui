@@ -4,7 +4,7 @@ import { Slot, Slottable } from "@suru-ui/slot";
 import clsx, { type ClassValue } from "clsx";
 import build from "./build";
 import compile from "./compile";
-import type { CssValue } from "./types";
+import type { CssValue, HtmlTag } from "./types";
 
 /**
  * スタイル付きのコンポーネントのプロパティ。
@@ -12,7 +12,7 @@ import type { CssValue } from "./types";
  * @template T - HTML 要素のタグ名。
  */
 export type StyledComponentProps<
-  T extends keyof React.JSX.IntrinsicElements,
+  T extends HtmlTag,
 > = Omit<React.JSX.IntrinsicElements[T], "className"> & {
   asChild?: boolean | undefined;
   className?: ClassValue;
@@ -25,7 +25,7 @@ export type StyledComponentProps<
  * @template P - CSS プロパティ。
  */
 export type StyledComponentPropsWithCss<
-  T extends keyof React.JSX.IntrinsicElements,
+  T extends HtmlTag,
   P,
 > = StyledComponentProps<T> & {
   css: P;
@@ -37,7 +37,7 @@ export type StyledComponentPropsWithCss<
  * @template T - HTML 要素のタグ名。
  */
 export interface StyledComponent<
-  T extends keyof React.JSX.IntrinsicElements,
+  T extends HtmlTag,
 > extends React.FunctionComponent<StyledComponentProps<T>> {
   toString(): `.sui-C${T}.sui-T${string}`;
 }
@@ -49,13 +49,16 @@ export interface StyledComponent<
  * @template P - CSS プロパティ。
  */
 export interface StyledComponentWithCss<
-  T extends keyof React.JSX.IntrinsicElements,
+  T extends HtmlTag,
   P,
 > extends React.FunctionComponent<StyledComponentPropsWithCss<T, P>> {}
 
 const styled = /* @__PURE__ */ new Proxy(
   (() => ({})) as unknown as {
-    readonly [T in keyof React.JSX.IntrinsicElements]: {
+    readonly [
+      // SVG 関連の要素には React の style の巻き上げが効かないので、HTML 要素のみを対象にする。
+      T in HtmlTag
+    ]: {
       /**
        * スタイル付きのコンポーネントを作成する。
        *
@@ -81,7 +84,7 @@ const styled = /* @__PURE__ */ new Proxy(
     get:
       (_, key) =>
       (pieces: TemplateStringsArray, ...values: readonly CssValue[]) => {
-        const htmlTag = key as keyof React.JSX.IntrinsicElements;
+        const htmlTag = key as HtmlTag;
         const {
           hash: id,
           template,
