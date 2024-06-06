@@ -1,0 +1,23 @@
+@layer sui.components {
+  .SuiCaption {
+    --SuiTypography-sizing: var(--SuiCaption-sizing);
+    --SuiTypography-weight: var(--SuiCaption-weight);
+    --SuiTypography-leading: var(--SuiCaption-leading);
+    --SuiTypography-tracking: var(--SuiCaption-tracking);
+
+    font-size: var(--SuiCaption-sizing);
+
+    &.SuiCaption-size-sm {
+      --SuiCaption-sizing: var(--sui-caption-sm-sizing);
+      --SuiCaption-weight: var(--sui-caption-sm-weight);
+      --SuiCaption-leading: var(--sui-caption-sm-leading);
+      --SuiCaption-tracking: var(--sui-caption-sm-tracking);
+    }
+    &.SuiCaption-size-md {
+      --SuiCaption-sizing: var(--sui-caption-md-sizing);
+      --SuiCaption-weight: var(--sui-caption-md-weight);
+      --SuiCaption-leading: var(--sui-caption-md-leading);
+      --SuiCaption-tracking: var(--sui-caption-md-tracking);
+    }
+  }
+}
