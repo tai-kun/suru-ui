@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Slot, Slottable } from "@suru-ui/slot";
+import { Slot } from "@suru-ui/slot";
 import clsx, { type ClassValue } from "clsx";
 import build from "./build";
 import compile from "./compile";
@@ -103,18 +103,13 @@ const styled = /* @__PURE__ */ new Proxy(
           const { hash, cssText } = compile(css, template, functions);
 
           return (
-            <Component
-              className={clsx(
-                classNameProp,
-                // HTML 要素のタグ名 (asChild で変わることがあるので、クラス名で管理する)
-                "sui-C" + htmlTag,
-                // スタイル付きコンポーネントの ID
-                "sui-T" + id,
-                // このコンポーネントの css プロパティのハッシュ
-                "sui-V" + hash,
-              )}
-              {...otherProps}
-            >
+            <>
+              {
+                /**
+                 * 親要素のスタイルより、子要素のスタイルの方が後ろに来るようにするために、
+                 * コンポーネントよりも先にスタイルを追加する。
+                 */
+              }
               <style
                 // @ts-expect-error: React19 の属性
                 href={"sui-" + id + "-" + hash}
@@ -122,10 +117,21 @@ const styled = /* @__PURE__ */ new Proxy(
               >
                 {".sui-T" + id + ".sui-V" + hash + "{" + cssText + "}"}
               </style>
-              <Slottable>
+              <Component
+                {...otherProps}
+                className={clsx(
+                  classNameProp,
+                  // HTML 要素のタグ名 (asChild で変わることがあるので、クラス名で管理する)
+                  "sui-C" + htmlTag,
+                  // スタイル付きコンポーネントの ID
+                  "sui-T" + id,
+                  // このコンポーネントの css プロパティのハッシュ
+                  "sui-V" + hash,
+                )}
+              >
                 {children}
-              </Slottable>
-            </Component>
+              </Component>
+            </>
           );
         }
 
