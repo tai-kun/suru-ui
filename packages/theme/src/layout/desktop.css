@@ -8,10 +8,10 @@
     --sui-spacing-2xl: 64px;
     --sui-spacing-3xl: 104px;
 
-    --sui-radius-xs:   var(--sui-spacing-xs);
-    --sui-radius-sm:   var(--sui-spacing-sm);
-    --sui-radius-md:   var(--sui-spacing-md);
-    --sui-radius-lg:   var(--sui-spacing-lg);
+    --sui-radius-xs:   calc(var(--sui-sizing-sm) * .175);
+    --sui-radius-sm:   calc(var(--sui-sizing-md) * .2);
+    --sui-radius-md:   calc(var(--sui-sizing-lg) * .2);
+    --sui-radius-lg:   calc(var(--sui-sizing-xl) * .2);
     --sui-radius-full: calc(infinity * 1px);
 
     --sui-border-xs: 1px;
@@ -98,11 +98,11 @@
 
     --sui-buttonText-lg-sizing:   var(--sui-font-lg);
     --sui-buttonText-lg-weight:   var(--sui-font-bold);
-    --sui-buttonText-lg-leading:  var(--sui-leading-md);
+    --sui-buttonText-lg-leading:  1;
     --sui-buttonText-lg-tracking: var(--sui-tracking-md);
     --sui-buttonText-md-sizing:   var(--sui-font-md);
     --sui-buttonText-md-weight:   var(--sui-font-bold);
-    --sui-buttonText-md-leading:  var(--sui-leading-md);
+    --sui-buttonText-md-leading:  1;
     --sui-buttonText-md-tracking: var(--sui-tracking-md);
   }
 }

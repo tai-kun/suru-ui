@@ -32,7 +32,7 @@
     --sui-color-grey-naked-canvas:     transparent;
     --sui-color-grey-naked-subtle:     var(--sui-color-grey-alpha-100);
     --sui-color-grey-naked-action:     var(--sui-color-grey-alpha-200);
-    --sui-color-grey-naked-canvasText: var(--sui-color-grey-900);
+    --sui-color-grey-naked-canvasText: var(--sui-color-grey-1200);
 
     --sui-color-grey-solid-canvas:     var(--sui-color-grey-1200);
     --sui-color-grey-solid-subtle:     var(--sui-color-grey-1000);
