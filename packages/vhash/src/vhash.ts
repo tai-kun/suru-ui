@@ -292,33 +292,42 @@ if (cfgTest && cfgTest.url === import.meta.url) {
     });
 
     test("ハッシュが衝突しない", () => {
-      const hashList = [
-        vhash(""),
-        vhash("abc"),
-        vhash("a\"b\\c"),
-        vhash("a\nb"),
+      const values = [
+        "",
+        "abc",
+        "a\"b\\c",
+        "a\nb",
 
-        vhash(NaN),
-        vhash(Infinity),
-        vhash(-Infinity),
-        vhash(true),
-        vhash(false),
-        vhash(null),
-        vhash(undefined),
+        NaN,
+        Infinity,
+        -Infinity,
+        true,
+        false,
+        null,
+        undefined,
 
-        vhash("NaN"),
-        vhash("Infinity"),
-        vhash("-Infinity"),
-        vhash("true"),
-        vhash("false"),
-        vhash("null"),
-        vhash("undefined"),
+        "NaN",
+        "Infinity",
+        "-Infinity",
+        "true",
+        "false",
+        "null",
+        "undefined",
 
-        vhash([]),
-        vhash([1, "a", true, null, undefined]),
-        vhash({}),
-        vhash({ a: 1, b: "a", c: true, d: null, e: undefined }),
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "2xl",
+        "3xl",
+
+        [],
+        [1, "a", true, null, undefined],
+        {},
+        { a: 1, b: "a", c: true, d: null, e: undefined },
       ];
+      const hashList = values.map(value => vhash(value));
 
       assert.deepEqual([...new Set(hashList)], hashList);
     });
