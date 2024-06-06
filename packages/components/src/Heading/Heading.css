@@ -1,0 +1,41 @@
+@layer sui.components {
+  .SuiHeading {
+    --SuiTypography-sizing: var(--SuiHeading-sizing);
+    --SuiTypography-weight: var(--SuiHeading-weight);
+    --SuiTypography-leading: var(--SuiHeading-leading);
+    --SuiTypography-tracking: var(--SuiHeading-tracking);
+
+    font-size: var(--SuiHeading-sizing);
+
+    &.SuiHeading-level-1 {
+      --SuiHeading-sizing: var(--sui-h1-sizing);
+      --SuiHeading-weight: var(--sui-h1-weight);
+      --SuiHeading-leading: var(--sui-h1-leading);
+      --SuiHeading-tracking: var(--sui-h1-tracking);
+    }
+    &.SuiHeading-level-2 {
+      --SuiHeading-sizing: var(--sui-h2-sizing);
+      --SuiHeading-weight: var(--sui-h2-weight);
+      --SuiHeading-leading: var(--sui-h2-leading);
+      --SuiHeading-tracking: var(--sui-h2-tracking);
+    }
+    &.SuiHeading-level-3 {
+      --SuiHeading-sizing: var(--sui-h3-sizing);
+      --SuiHeading-weight: var(--sui-h3-weight);
+      --SuiHeading-leading: var(--sui-h3-leading);
+      --SuiHeading-tracking: var(--sui-h3-tracking);
+    }
+    &.SuiHeading-level-4 {
+      --SuiHeading-sizing: var(--sui-h4-sizing);
+      --SuiHeading-weight: var(--sui-h4-weight);
+      --SuiHeading-leading: var(--sui-h4-leading);
+      --SuiHeading-tracking: var(--sui-h4-tracking);
+    }
+    &.SuiHeading-level-5 {
+      --SuiHeading-sizing: var(--sui-h5-sizing);
+      --SuiHeading-weight: var(--sui-h5-weight);
+      --SuiHeading-leading: var(--sui-h5-leading);
+      --SuiHeading-tracking: var(--sui-h5-tracking);
+    }
+  }
+}
