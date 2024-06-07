@@ -1,0 +1,110 @@
+@layer sui.components {
+  .SuiSwitch {
+    --_SuiSwitch-width: calc(var(--SuiSwitch-sizing) * 1.6);
+    --_SuiSwitch-padding: calc(var(--SuiSwitch-sizing) * .15);
+    --_SuiSwitch_Thumb-size: calc(var(--SuiSwitch-sizing) - var(--_SuiSwitch-padding) * 2);
+    --_SuiSwitch_Thumb-move: calc(var(--_SuiSwitch-width) - var(--SuiSwitch-sizing) - var(--_SuiSwitch-padding) * 2);
+
+    width: var(--_SuiSwitch-width);
+    cursor: pointer;
+    height: var(--SuiSwitch-sizing);
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    background: var(--SuiSwitch-canvas);
+    border-radius: var(--sui-radius-full);
+
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: var(--_SuiSwitch_Thumb-size);
+      height: var(--_SuiSwitch_Thumb-size);
+      content: "";
+      display: inline-block;
+      position: absolute;
+      transform: translate(calc(-50% - var(--_SuiSwitch_Thumb-move)), -50%);
+      background: var(--sui-body-canvas);
+      aspect-ratio: 1 / 1;
+      border-radius: var(--sui-radius-full);
+    }
+
+    &:not(:checked) {
+      --SuiSwitch-canvas: var(--sui-color-grey-500);
+      --SuiSwitch-subtle: var(--sui-color-grey-700);
+      --SuiSwitch-action: var(--sui-color-grey-900);
+    }
+
+    &:checked::after {
+      transform: translate(calc(-50% + var(--_SuiSwitch_Thumb-move)), -50%);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--SuiSwitch-subtle);
+      }
+    }
+
+    &:active {
+      background: var(--SuiSwitch-action);
+    }
+
+    &:focus-visible {
+      outline: solid var(--sui-focusRing-color) var(--sui-focusRing-width);
+      outline-offset: var(--sui-border-xs);
+    }
+  }
+
+  .SuiSwitch-size-sm,
+  .SuiSwitch-size-md {
+    --SuiSwitch-sizing: calc(var(--sui-buttonText-md-sizing) * 1.25);
+  }
+  .SuiSwitch-size-lg,
+  .SuiSwitch-size-xl {
+    --SuiSwitch-sizing: calc(var(--sui-buttonText-lg-sizing) * 1.25);
+  }
+
+  .SuiSwitch-color-grey:checked {
+    --SuiSwitch-canvas: var(--sui-color-grey-solid-canvas);
+    --SuiSwitch-subtle: var(--sui-color-grey-solid-subtle);
+    --SuiSwitch-action: var(--sui-color-grey-solid-action);
+  }
+  .SuiSwitch-color-blue:checked {
+    --SuiSwitch-canvas: var(--sui-color-blue-solid-canvas);
+    --SuiSwitch-subtle: var(--sui-color-blue-solid-subtle);
+    --SuiSwitch-action: var(--sui-color-blue-solid-action);
+  }
+  .SuiSwitch-color-green:checked {
+    --SuiSwitch-canvas: var(--sui-color-green-solid-canvas);
+    --SuiSwitch-subtle: var(--sui-color-green-solid-subtle);
+    --SuiSwitch-action: var(--sui-color-green-solid-action);
+  }
+  .SuiSwitch-color-yellow:checked {
+    --SuiSwitch-canvas: var(--sui-color-yellow-solid-canvas);
+    --SuiSwitch-subtle: var(--sui-color-yellow-solid-subtle);
+    --SuiSwitch-action: var(--sui-color-yellow-solid-action);
+  }
+  .SuiSwitch-color-red:checked {
+    --SuiSwitch-canvas: var(--sui-color-red-solid-canvas);
+    --SuiSwitch-subtle: var(--sui-color-red-solid-subtle);
+    --SuiSwitch-action: var(--sui-color-red-solid-action);
+  }
+
+  .SuiSwitch.Sui-loading {
+    cursor: not-allowed !important;
+    background: var(--SuiSwitch-canvas) !important;
+  }
+
+  .SuiSwitch:not(.Sui-loading):is(.Sui-disabled, :disabled, [disabled]) {
+    cursor: not-allowed !important;
+    outline: none !important;
+    background: var(--sui-disabled-canvasText) !important;
+
+    &:not(:checked) {
+      opacity: .7;
+    }
+
+    &::after {
+      background: var(--sui-body-canvas) !important;
+    }
+  }
+}
