@@ -28,17 +28,19 @@
       justify-content: end;
     }
 
+    &.SuiTypography-align-justify {
+      justify-content: justify;
+      text-align-last: justify;
+    }
+
     &.SuiTypography-align-center {
+      text-wrap:balance;
       text-align: center;
       justify-content: center;
     }
 
-    &.SuiTypography-align-justify {
-      text-align-last: justify;
-      justify-content: justify;
-    }
-
     &.SuiTypography-align-middle {
+      text-wrap:balance;
       inline-size: fit-content;
       margin-inline: auto;
     }
