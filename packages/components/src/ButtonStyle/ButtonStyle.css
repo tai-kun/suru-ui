@@ -1,0 +1,171 @@
+@layer sui.components {
+  .SuiButtonStyle {
+    color: var(--SuiButtonStyle-canvasText);
+    cursor: pointer;
+    display: inline-block;
+    background: var(--SuiButtonStyle-canvas);
+    user-select: none;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--SuiButtonStyle-subtle);
+      }
+    }
+
+    &:active {
+      background: var(--SuiButtonStyle-action);
+    }
+
+    &:focus-visible {
+      outline: solid var(--sui-focusRing-color) var(--sui-focusRing-width);
+      outline-offset: var(--sui-border-xs);
+    }
+  }
+
+  .SuiButtonStyle-variant-solid {
+    &.SuiButtonStyle-color-grey {
+      --SuiButtonStyle-canvas:     var(--sui-color-grey-solid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-grey-solid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-grey-solid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-grey-solid-canvasText);
+    }
+    &.SuiButtonStyle-color-blue {
+      --SuiButtonStyle-canvas:     var(--sui-color-blue-solid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-blue-solid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-blue-solid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-blue-solid-canvasText);
+    }
+    &.SuiButtonStyle-color-green {
+      --SuiButtonStyle-canvas:     var(--sui-color-green-solid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-green-solid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-green-solid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-green-solid-canvasText);
+    }
+    &.SuiButtonStyle-color-yellow {
+      --SuiButtonStyle-canvas:     var(--sui-color-yellow-solid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-yellow-solid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-yellow-solid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-yellow-solid-canvasText);
+    }
+    &.SuiButtonStyle-color-red {
+      --SuiButtonStyle-canvas:     var(--sui-color-red-solid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-red-solid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-red-solid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-red-solid-canvasText);
+    }
+  }
+
+  .SuiButtonStyle-variant-naked {
+    &.SuiButtonStyle-color-grey {
+      --SuiButtonStyle-canvas:     var(--sui-color-grey-naked-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-grey-naked-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-grey-naked-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-grey-naked-canvasText);
+    }
+    &.SuiButtonStyle-color-blue {
+      --SuiButtonStyle-canvas:     var(--sui-color-blue-naked-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-blue-naked-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-blue-naked-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-blue-naked-canvasText);
+    }
+    &.SuiButtonStyle-color-green {
+      --SuiButtonStyle-canvas:     var(--sui-color-green-naked-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-green-naked-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-green-naked-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-green-naked-canvasText);
+    }
+    &.SuiButtonStyle-color-yellow {
+      --SuiButtonStyle-canvas:     var(--sui-color-yellow-naked-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-yellow-naked-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-yellow-naked-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-yellow-naked-canvasText);
+    }
+    &.SuiButtonStyle-color-red {
+      --SuiButtonStyle-canvas:     var(--sui-color-red-naked-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-red-naked-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-red-naked-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-red-naked-canvasText);
+    }
+  }
+
+  .SuiButtonStyle-variant-liquid {
+    &.SuiButtonStyle-color-grey {
+      --SuiButtonStyle-canvas:     var(--sui-color-grey-liquid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-grey-liquid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-grey-liquid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-grey-liquid-canvasText);
+    }
+    &.SuiButtonStyle-color-blue {
+      --SuiButtonStyle-canvas:     var(--sui-color-blue-liquid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-blue-liquid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-blue-liquid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-blue-liquid-canvasText);
+    }
+    &.SuiButtonStyle-color-green {
+      --SuiButtonStyle-canvas:     var(--sui-color-green-liquid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-green-liquid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-green-liquid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-green-liquid-canvasText);
+    }
+    &.SuiButtonStyle-color-yellow {
+      --SuiButtonStyle-canvas:     var(--sui-color-yellow-liquid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-yellow-liquid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-yellow-liquid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-yellow-liquid-canvasText);
+    }
+    &.SuiButtonStyle-color-red {
+      --SuiButtonStyle-canvas:     var(--sui-color-red-liquid-canvas);
+      --SuiButtonStyle-subtle:     var(--sui-color-red-liquid-subtle);
+      --SuiButtonStyle-action:     var(--sui-color-red-liquid-action);
+      --SuiButtonStyle-canvasText: var(--sui-color-red-liquid-canvasText);
+    }
+  }
+
+  .SuiButtonStyle-outlined {
+    border: solid var(--SuiButtonStyle-ring) var(--sui-border-sm);
+
+    &.SuiButtonStyle-variant-solid {
+      &.SuiButtonStyle-color-grey   { --SuiButtonStyle-ring: var(--sui-color-grey-liquid-canvasText)   }
+      &.SuiButtonStyle-color-blue   { --SuiButtonStyle-ring: var(--sui-color-blue-liquid-canvasText)   }
+      &.SuiButtonStyle-color-green  { --SuiButtonStyle-ring: var(--sui-color-green-liquid-canvasText)  }
+      &.SuiButtonStyle-color-yellow { --SuiButtonStyle-ring: var(--sui-color-yellow-liquid-canvasText) }
+      &.SuiButtonStyle-color-red    { --SuiButtonStyle-ring: var(--sui-color-red-liquid-canvasText)    }
+    }
+    &.SuiButtonStyle-variant-naked,
+    &.SuiButtonStyle-variant-liquid {
+      &.SuiButtonStyle-color-grey   { --SuiButtonStyle-ring: var(--sui-color-grey-solid-canvas)   }
+      &.SuiButtonStyle-color-blue   { --SuiButtonStyle-ring: var(--sui-color-blue-solid-canvas)   }
+      &.SuiButtonStyle-color-green  { --SuiButtonStyle-ring: var(--sui-color-green-solid-canvas)  }
+      &.SuiButtonStyle-color-yellow { --SuiButtonStyle-ring: var(--sui-color-yellow-solid-canvas) }
+      &.SuiButtonStyle-color-red    { --SuiButtonStyle-ring: var(--sui-color-red-solid-canvas)    }
+    }
+  }
+
+  .SuiButtonStyle.Sui-loading {
+    color: var(--SuiButtonStyle-canvasText) !important;
+    cursor: not-allowed !important;
+    background: var(--SuiButtonStyle-canvas) !important;
+  }
+
+  .SuiButtonStyle:not(.Sui-loading):is(.Sui-disabled, :disabled, [disabled]) {
+    cursor: not-allowed !important;
+    outline: none !important;
+
+    &.SuiButtonStyle-variant-solid {
+      color: var(--sui-body-canvas) !important;
+      background: var(--sui-disabled-canvas) !important;
+    }
+    &.SuiButtonStyle-variant-naked {
+      color: var(--sui-disabled-canvasText) !important;
+      background: transparent !important;
+    }
+    &.SuiButtonStyle-variant-liquid {
+      color: var(--sui-disabled-canvasText) !important;
+      background: var(--sui-color-grey-100) !important;
+    }
+
+    &.SuiButtonStyle-outlined {
+      border: solid var(--sui-disabled-canvasText) var(--sui-border-xs) !important;
+    }
+  }
+}

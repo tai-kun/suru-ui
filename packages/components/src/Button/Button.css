@@ -1,0 +1,147 @@
+@layer sui.components {
+  .SuiButton {
+    gap: var(--SuiButton-gapSize);
+    width: fit-content;
+    height: var(--SuiButton-sizing);
+    display: inline-flex;
+    overflow: hidden;
+    position: relative;
+    list-style: none;
+    align-items: center;
+    border-radius: var(--SuiButton-radius);
+    padding-inline: var(--SuiButton-spacing);
+    vertical-align: baseline;
+    justify-content: var(--SuiButton-justify);
+    text-decoration: none;
+  }
+
+  .SuiButton-align-center {
+    --SuiButton-justify: center;
+  }
+  .SuiButton-align-start {
+    --SuiButton-justify: flex-start;
+  }
+  .SuiButton-align-end {
+    --SuiButton-justify: flex-end;
+  }
+
+  .SuiButton-size-sm {
+    --SuiButton-radius:  var(--sui-radius-sm);
+    --SuiButton-sizing:  var(--sui-sizing-sm);
+    --SuiButton-gapSize: var(--sui-spacing-sm);
+    --SuiButton-spacing: var(--sui-spacing-sm);
+  }
+  .SuiButton-size-md {
+    --SuiButton-radius:  var(--sui-radius-md);
+    --SuiButton-sizing:  var(--sui-sizing-md);
+    --SuiButton-gapSize: var(--sui-spacing-sm);
+    --SuiButton-spacing: var(--sui-spacing-md);
+  }
+  .SuiButton-size-lg {
+    --SuiButton-radius:  var(--sui-radius-lg);
+    --SuiButton-sizing:  var(--sui-sizing-lg);
+    --SuiButton-gapSize: var(--sui-spacing-md);
+    --SuiButton-spacing: var(--sui-spacing-lg);
+  }
+  .SuiButton-size-xl {
+    --SuiButton-radius:  var(--sui-radius-lg);
+    --SuiButton-sizing:  var(--sui-sizing-xl);
+    --SuiButton-gapSize: var(--sui-spacing-lg);
+    --SuiButton-spacing: var(--sui-spacing-xl);
+  }
+
+  .SuiButton-fullWidth {
+    width: 100%;
+  }
+
+  .SuiButton_Text {
+    width: auto;
+    display: inline-grid;
+    font-size: var(--SuiButton_Text-sizing);
+    align-items: center;
+    font-weight: var(--SuiButton_Text-weight);
+    line-height: var(--SuiButton_Text-leading);
+    white-space: nowrap;
+    letter-spacing: var(--SuiButton_Text-tracking);
+    justify-content: var(--SuiButton_Text-justify);
+
+    &.SuiButton_Text-align-center {
+      --SuiButton_Text-justify: center;
+    }
+    &.SuiButton_Text-align-start {
+      --SuiButton_Text-justify: flex-start;
+    }
+    &.SuiButton_Text-align-end {
+      --SuiButton_Text-justify: flex-end;
+    }
+
+    &.SuiButton_Text-fullWidth {
+      flex: 1;
+    }
+  }
+
+  .SuiButton-size-sm .SuiButton_Text,
+  .SuiButton-size-md .SuiButton_Text {
+    --SuiButton_Text-sizing:   var(--sui-buttonText-md-sizing);
+    --SuiButton_Text-weight:   var(--sui-buttonText-md-weight);
+    --SuiButton_Text-leading:  var(--sui-buttonText-md-leading);
+    --SuiButton_Text-tracking: var(--sui-buttonText-md-tracking);
+  }
+  .SuiButton-size-lg .SuiButton_Text,
+  .SuiButton-size-xl .SuiButton_Text {
+    --SuiButton_Text-sizing:   var(--sui-buttonText-lg-sizing);
+    --SuiButton_Text-weight:   var(--sui-buttonText-lg-weight);
+    --SuiButton_Text-leading:  var(--sui-buttonText-lg-leading);
+    --SuiButton_Text-tracking: var(--sui-buttonText-lg-tracking);
+  }
+
+  .SuiButton:any-link .SuiButton_Text {
+    text-decoration: underline;
+  }
+
+  .SuiButton_Adornment {
+    width: auto;
+    display: inline-grid;
+    font-size: var(--SuiButton_Adornment-sizing);
+    transform: translateY(0.05em);
+    font-weight: var(--SuiButton_Adornment-weight);
+    place-items: center;
+
+    /* 余分な gap を消す */
+    &:empty {
+      display: none;
+    }
+  }
+
+  .SuiButton-size-sm .SuiButton_Adornment,
+  .SuiButton-size-md .SuiButton_Adornment {
+    --SuiButton_Adornment-sizing: var(--sui-buttonText-md-sizing);
+    --SuiButton_Adornment-weight: var(--sui-buttonText-md-weight);
+  }
+  .SuiButton-size-lg .SuiButton_Adornment,
+  .SuiButton-size-xl .SuiButton_Adornment {
+    --SuiButton_Adornment-sizing: var(--sui-buttonText-lg-sizing);
+    --SuiButton_Adornment-weight: var(--sui-buttonText-lg-weight);
+  }
+
+  .SuiButton-variant-menuitem.SuiButtonStyle-variant-naked :is(.SuiButton_Text, .SuiButton_Adornment) {
+    --SuiButton_Text-weight:      var(--sui-font-normal);
+    --SuiButton_Adornment-weight: var(--sui-font-normal);
+  }
+  .SuiButton-variant-menuitem.SuiButtonStyle-variant-solid :is(.SuiButton_Text, .SuiButton_Adornment) {
+    --SuiButton_Text-weight:      var(--sui-font-bold);
+    --SuiButton_Adornment-weight: var(--sui-font-bold);
+  }
+
+  .SuiButton.Sui-loading {
+    opacity: 0.75;
+
+    & > :not(.SuiIconButton_LoadingIcon) {
+      opacity: 0;
+    }
+
+    .SuiButton_LoadingIcon {
+      position: absolute;
+    }
+  }
+}

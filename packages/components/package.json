@@ -30,6 +30,7 @@
     "@storybook/react-vite": "^8.1.5",
     "@storybook/test": "^8.1.5",
     "@suru-ui/build": "*",
+    "react-icons": "^5.2.1",
     "storybook": "^8.1.5"
   },
   "author": "tai-kun <taikun.dev@gmail.com>",
