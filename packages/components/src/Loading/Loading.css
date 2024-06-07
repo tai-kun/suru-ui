@@ -1,0 +1,52 @@
+@layer sui.components {
+  @keyframes sui-loading-ring {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes sui-loading-dots {
+    0%,
+    100% {
+      r: 1px;
+    }
+
+    50% {
+      r: 3px;
+    }
+  }
+
+  .SuiLoading {
+    color: var(--SuiLoading-color, currentColor);
+    width: var(--SuiLoading-sizing, 1em);
+    height: var(--SuiLoading-sizing, 1em);
+  }
+
+  .SuiLoading-variant-ring :nth-child(2) {
+    animation: sui-loading-ring .75s infinite linear;
+    transform-origin: center;
+  }
+  .SuiLoading-variant-dots {
+    circle {
+      animation: sui-loading-dots .75s linear infinite;
+
+      &:nth-child(2) {
+        animation-delay: -.375s
+      }
+    }
+  }
+
+  .SuiLoading-size-xs  { --SuiLoading-sizing: var(--sui-font-xs)  }
+  .SuiLoading-size-sm  { --SuiLoading-sizing: var(--sui-font-sm)  }
+  .SuiLoading-size-md  { --SuiLoading-sizing: var(--sui-font-md)  }
+  .SuiLoading-size-lg  { --SuiLoading-sizing: var(--sui-font-lg)  }
+  .SuiLoading-size-xl  { --SuiLoading-sizing: var(--sui-font-xl)  }
+  .SuiLoading-size-2xl { --SuiLoading-sizing: var(--sui-font-2xl) }
+  .SuiLoading-size-3xl { --SuiLoading-sizing: var(--sui-font-3xl) }
+
+  .SuiLoading-color-red    { --SuiLoading-color: var(--sui-color-red-naked-canvasText)    }
+  .SuiLoading-color-grey   { --SuiLoading-color: var(--sui-color-grey-naked-canvasText)   }
+  .SuiLoading-color-blue   { --SuiLoading-color: var(--sui-color-blue-naked-canvasText)   }
+  .SuiLoading-color-green  { --SuiLoading-color: var(--sui-color-green-naked-canvasText)  }
+  .SuiLoading-color-yellow { --SuiLoading-color: var(--sui-color-yellow-naked-canvasText) }
+}
