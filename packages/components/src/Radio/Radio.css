@@ -1,0 +1,173 @@
+@layer sui.components {
+  .SuiRadio {
+    width: var(--SuiRadio-sizing);
+    cursor: pointer;
+    height: var(--SuiRadio-sizing);
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    background: var(--SuiRadio-canvas);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--SuiRadio-radius);
+
+    &::before {
+      top: 50%;
+      left: 50%;
+      width: var(--SuiRadio_Icon-sizing);
+      height: var(--SuiRadio_Icon-sizing);
+      content: "";
+      display: inline-block;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: var(--SuiRadio_Icon-canvas);
+      border-radius: var(--sui-radius-full);
+    }
+
+    &:not(:checked) {
+      --SuiRadio-canvas:          var(--sui-color-grey-naked-canvas);
+      --SuiRadio-subtle:          var(--sui-color-grey-naked-subtle);
+      --SuiRadio-action:          var(--sui-color-grey-naked-action);
+      --SuiRadio_Icon-canvas:     var(--sui-color-grey-naked-canvas);
+      --SuiRadio_Icon-subtle:     var(--sui-color-grey-naked-subtle);
+      --SuiRadio_Icon-action:     var(--sui-color-grey-naked-action);
+      --SuiRadio_Icon-canvasText: var(--sui-color-grey-naked-canvasText);
+
+      &::before {
+        border: solid var(--SuiRadio_Icon-canvasText) var(--sui-border-sm);
+      }
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--SuiRadio-subtle);
+
+        &::before {
+          background: var(--SuiRadio_Icon-subtle);
+        }
+      }
+    }
+
+    &:active {
+      background: var(--SuiRadio-action);
+
+      &::before {
+        background: var(--SuiRadio_Icon-action);
+      }
+    }
+
+    &:focus-visible {
+      outline: solid var(--sui-focusRing-color) var(--sui-focusRing-width);
+      outline-offset: var(--sui-border-xs);
+    }
+  }
+
+  .SuiRadio:checked::after {
+    top: 50%;
+    left: 50%;
+    width: calc(var(--SuiRadio_Icon-sizing) * .4);
+    height: calc(var(--SuiRadio_Icon-sizing) * .4);
+    content: "";
+    display: inline-block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: var(--SuiRadio_Icon-canvasText);
+    border-radius: var(--sui-radius-full);
+  }
+
+  .SuiRadio-size-sm {
+    --SuiRadio-sizing: var(--sui-sizing-sm);
+    --SuiRadio-radius: var(--sui-radius-sm);
+  }
+  .SuiRadio-size-md {
+    --SuiRadio-sizing: var(--sui-sizing-md);
+    --SuiRadio-radius: var(--sui-radius-md);
+  }
+  .SuiRadio-size-lg {
+    --SuiRadio-sizing: var(--sui-sizing-lg);
+    --SuiRadio-radius: var(--sui-radius-lg);
+  }
+  .SuiRadio-size-xl {
+    --SuiRadio-sizing: var(--sui-sizing-xl);
+    --SuiRadio-radius: var(--sui-radius-lg);
+  }
+
+  .SuiRadio-size-sm,
+  .SuiRadio-size-md {
+    --SuiRadio_Icon-sizing: calc(var(--sui-buttonText-md-sizing) * 1.125);
+  }
+  .SuiRadio-size-lg,
+  .SuiRadio-size-xl {
+    --SuiRadio_Icon-sizing: calc(var(--sui-buttonText-lg-sizing) * 1.125);
+  }
+
+  .SuiRadio-color-grey:checked {
+    --SuiRadio-canvas:          var(--sui-color-grey-naked-canvas);
+    --SuiRadio-subtle:          var(--sui-color-grey-naked-subtle);
+    --SuiRadio-action:          var(--sui-color-grey-naked-action);
+    --SuiRadio_Icon-canvas:     var(--sui-color-grey-solid-canvas);
+    --SuiRadio_Icon-subtle:     var(--sui-color-grey-solid-subtle);
+    --SuiRadio_Icon-action:     var(--sui-color-grey-solid-action);
+    --SuiRadio_Icon-canvasText: var(--sui-color-grey-solid-canvasText);
+  }
+  .SuiRadio-color-blue:checked {
+    --SuiRadio-canvas:          var(--sui-color-blue-naked-canvas);
+    --SuiRadio-subtle:          var(--sui-color-blue-naked-subtle);
+    --SuiRadio-action:          var(--sui-color-blue-naked-action);
+    --SuiRadio_Icon-canvas:     var(--sui-color-blue-solid-canvas);
+    --SuiRadio_Icon-subtle:     var(--sui-color-blue-solid-subtle);
+    --SuiRadio_Icon-action:     var(--sui-color-blue-solid-action);
+    --SuiRadio_Icon-canvasText: var(--sui-color-blue-solid-canvasText);
+  }
+  .SuiRadio-color-green:checked {
+    --SuiRadio-canvas:          var(--sui-color-green-naked-canvas);
+    --SuiRadio-subtle:          var(--sui-color-green-naked-subtle);
+    --SuiRadio-action:          var(--sui-color-green-naked-action);
+    --SuiRadio_Icon-canvas:     var(--sui-color-green-solid-canvas);
+    --SuiRadio_Icon-subtle:     var(--sui-color-green-solid-subtle);
+    --SuiRadio_Icon-action:     var(--sui-color-green-solid-action);
+    --SuiRadio_Icon-canvasText: var(--sui-color-green-solid-canvasText);
+  }
+  .SuiRadio-color-yellow:checked {
+    --SuiRadio-canvas:          var(--sui-color-yellow-naked-canvas);
+    --SuiRadio-subtle:          var(--sui-color-yellow-naked-subtle);
+    --SuiRadio-action:          var(--sui-color-yellow-naked-action);
+    --SuiRadio_Icon-canvas:     var(--sui-color-yellow-solid-canvas);
+    --SuiRadio_Icon-subtle:     var(--sui-color-yellow-solid-subtle);
+    --SuiRadio_Icon-action:     var(--sui-color-yellow-solid-action);
+    --SuiRadio_Icon-canvasText: var(--sui-color-yellow-solid-canvasText);
+  }
+  .SuiRadio-color-red:checked {
+    --SuiRadio-canvas:          var(--sui-color-red-naked-canvas);
+    --SuiRadio-subtle:          var(--sui-color-red-naked-subtle);
+    --SuiRadio-action:          var(--sui-color-red-naked-action);
+    --SuiRadio_Icon-canvas:     var(--sui-color-red-solid-canvas);
+    --SuiRadio_Icon-subtle:     var(--sui-color-red-solid-subtle);
+    --SuiRadio_Icon-action:     var(--sui-color-red-solid-action);
+    --SuiRadio_Icon-canvasText: var(--sui-color-red-solid-canvasText);
+  }
+
+  .SuiRadio:is(.Sui-disabled, :disabled, [disabled]) {
+    cursor: not-allowed !important;
+    outline: none !important;
+    background: transparent !important;
+    
+    &:not(:checked) {
+      background: transparent !important;
+
+      &::before {
+        background: var(--sui-color-grey-100) !important;
+        border-color: var(--sui-disabled-canvasText) !important;
+      }
+    }
+
+    &:checked {
+      &::before {
+        background: var(--sui-disabled-canvas) !important;
+      }
+
+      &::after {
+        border-color: var(--sui-body-canvas) !important;
+      }
+    }
+  }
+}
