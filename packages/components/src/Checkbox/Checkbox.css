@@ -1,0 +1,187 @@
+@layer sui.components {
+  .SuiCheckbox {
+    width: var(--SuiCheckbox-sizing);
+    cursor: pointer;
+    height: var(--SuiCheckbox-sizing);
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    background: var(--SuiCheckbox-canvas);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--SuiCheckbox-radius);
+
+    &::before {
+      top: 50%;
+      left: 50%;
+      width: var(--SuiCheckbox_Icon-sizing);
+      height: var(--SuiCheckbox_Icon-sizing);
+      content: "";
+      display: inline-block;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background: var(--SuiCheckbox_Icon-canvas);
+      border-radius: calc(var(--SuiCheckbox_Icon-sizing) * .2);
+    }
+
+    &:not(:checked) {
+      --SuiCheckbox-canvas:          var(--sui-color-grey-naked-canvas);
+      --SuiCheckbox-subtle:          var(--sui-color-grey-naked-subtle);
+      --SuiCheckbox-action:          var(--sui-color-grey-naked-action);
+      --SuiCheckbox_Icon-canvas:     var(--sui-color-grey-naked-canvas);
+      --SuiCheckbox_Icon-subtle:     var(--sui-color-grey-naked-subtle);
+      --SuiCheckbox_Icon-action:     var(--sui-color-grey-naked-action);
+      --SuiCheckbox_Icon-canvasText: var(--sui-color-grey-naked-canvasText);
+
+      &::before {
+        border: solid var(--SuiCheckbox_Icon-canvasText) var(--sui-border-sm);
+      }
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--SuiCheckbox-subtle);
+
+        &::before {
+          background: var(--SuiCheckbox_Icon-subtle);
+        }
+      }
+    }
+
+    &:active {
+      background: var(--SuiCheckbox-action);
+
+      &::before {
+        background: var(--SuiCheckbox_Icon-action);
+      }
+    }
+
+    &:focus-visible {
+      outline: solid var(--sui-focusRing-color) var(--sui-focusRing-width);
+      outline-offset: var(--sui-border-xs);
+    }
+  }
+
+  .SuiCheckbox:checked {
+    &::after {
+      left: 50%;
+      content: "";
+      display: inline-block;
+      position: absolute;
+    }
+
+    &:not(.SuiCheckbox-indeterminate)::after {
+      top: 45%;
+      width: calc(var(--SuiCheckbox_Icon-sizing) * 0.65);
+      border: solid var(--SuiCheckbox_Icon-canvasText) var(--sui-border-md);
+      height: calc(var(--SuiCheckbox_Icon-sizing) * 0.35);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      border-top: none;
+      border-right: none;
+    }
+  }
+
+  .SuiCheckbox-indeterminate::after {
+    top: 50%;
+    width: calc(var(--SuiCheckbox_Icon-sizing) * 0.65);
+    height: calc(var(--SuiCheckbox_Icon-sizing) * 0.25);
+    transform: translate(-50%, -50%);
+    background: var(--SuiCheckbox_Icon-canvasText);
+  }
+
+  .SuiCheckbox-size-sm {
+    --SuiCheckbox-sizing: var(--sui-sizing-sm);
+    --SuiCheckbox-radius: var(--sui-radius-sm);
+  }
+  .SuiCheckbox-size-md {
+    --SuiCheckbox-sizing: var(--sui-sizing-md);
+    --SuiCheckbox-radius: var(--sui-radius-md);
+  }
+  .SuiCheckbox-size-lg {
+    --SuiCheckbox-sizing: var(--sui-sizing-lg);
+    --SuiCheckbox-radius: var(--sui-radius-lg);
+  }
+  .SuiCheckbox-size-xl {
+    --SuiCheckbox-sizing: var(--sui-sizing-xl);
+    --SuiCheckbox-radius: var(--sui-radius-lg);
+  }
+
+  .SuiCheckbox-size-sm,
+  .SuiCheckbox-size-md {
+    --SuiCheckbox_Icon-sizing: calc(var(--sui-buttonText-md-sizing) * 1.125);
+  }
+  .SuiCheckbox-size-lg,
+  .SuiCheckbox-size-xl {
+    --SuiCheckbox_Icon-sizing: calc(var(--sui-buttonText-lg-sizing) * 1.125);
+  }
+
+  .SuiCheckbox-color-grey:checked {
+    --SuiCheckbox-canvas:          var(--sui-color-grey-naked-canvas);
+    --SuiCheckbox-subtle:          var(--sui-color-grey-naked-subtle);
+    --SuiCheckbox-action:          var(--sui-color-grey-naked-action);
+    --SuiCheckbox_Icon-canvas:     var(--sui-color-grey-solid-canvas);
+    --SuiCheckbox_Icon-subtle:     var(--sui-color-grey-solid-subtle);
+    --SuiCheckbox_Icon-action:     var(--sui-color-grey-solid-action);
+    --SuiCheckbox_Icon-canvasText: var(--sui-color-grey-solid-canvasText);
+  }
+  .SuiCheckbox-color-blue:checked {
+    --SuiCheckbox-canvas:          var(--sui-color-blue-naked-canvas);
+    --SuiCheckbox-subtle:          var(--sui-color-blue-naked-subtle);
+    --SuiCheckbox-action:          var(--sui-color-blue-naked-action);
+    --SuiCheckbox_Icon-canvas:     var(--sui-color-blue-solid-canvas);
+    --SuiCheckbox_Icon-subtle:     var(--sui-color-blue-solid-subtle);
+    --SuiCheckbox_Icon-action:     var(--sui-color-blue-solid-action);
+    --SuiCheckbox_Icon-canvasText: var(--sui-color-blue-solid-canvasText);
+  }
+  .SuiCheckbox-color-green:checked {
+    --SuiCheckbox-canvas:          var(--sui-color-green-naked-canvas);
+    --SuiCheckbox-subtle:          var(--sui-color-green-naked-subtle);
+    --SuiCheckbox-action:          var(--sui-color-green-naked-action);
+    --SuiCheckbox_Icon-canvas:     var(--sui-color-green-solid-canvas);
+    --SuiCheckbox_Icon-subtle:     var(--sui-color-green-solid-subtle);
+    --SuiCheckbox_Icon-action:     var(--sui-color-green-solid-action);
+    --SuiCheckbox_Icon-canvasText: var(--sui-color-green-solid-canvasText);
+  }
+  .SuiCheckbox-color-yellow:checked {
+    --SuiCheckbox-canvas:          var(--sui-color-yellow-naked-canvas);
+    --SuiCheckbox-subtle:          var(--sui-color-yellow-naked-subtle);
+    --SuiCheckbox-action:          var(--sui-color-yellow-naked-action);
+    --SuiCheckbox_Icon-canvas:     var(--sui-color-yellow-solid-canvas);
+    --SuiCheckbox_Icon-subtle:     var(--sui-color-yellow-solid-subtle);
+    --SuiCheckbox_Icon-action:     var(--sui-color-yellow-solid-action);
+    --SuiCheckbox_Icon-canvasText: var(--sui-color-yellow-solid-canvasText);
+  }
+  .SuiCheckbox-color-red:checked {
+    --SuiCheckbox-canvas:          var(--sui-color-red-naked-canvas);
+    --SuiCheckbox-subtle:          var(--sui-color-red-naked-subtle);
+    --SuiCheckbox-action:          var(--sui-color-red-naked-action);
+    --SuiCheckbox_Icon-canvas:     var(--sui-color-red-solid-canvas);
+    --SuiCheckbox_Icon-subtle:     var(--sui-color-red-solid-subtle);
+    --SuiCheckbox_Icon-action:     var(--sui-color-red-solid-action);
+    --SuiCheckbox_Icon-canvasText: var(--sui-color-red-solid-canvasText);
+  }
+
+  .SuiCheckbox:is(.Sui-disabled, :disabled, [disabled]) {
+    cursor: not-allowed !important;
+    outline: none !important;
+    background: transparent !important;
+    
+    &:not(:checked) {
+      background: transparent !important;
+
+      &::before {
+        background: var(--sui-color-grey-100) !important;
+        border-color: var(--sui-disabled-canvasText) !important;
+      }
+    }
+
+    &:checked {
+      &::before {
+        background: var(--sui-disabled-canvas) !important;
+      }
+
+      &::after {
+        border-color: var(--sui-body-canvas) !important;
+      }
+    }
+  }
+}
