@@ -19,7 +19,7 @@ export interface RootProps
   asChild?: boolean | undefined;
 }
 
-export default function Root(props: RootProps) {
+export default function SuiSwitch(props: RootProps) {
   const {
     size = "md",
     type: typeProp = "checkbox",

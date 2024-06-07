@@ -93,7 +93,7 @@ export interface LoadingProps extends
   LoadingParams
 {}
 
-export default function Root(props: LoadingProps) {
+export default function SuiLoading(props: LoadingProps) {
   const {
     size: sizing,
     color,

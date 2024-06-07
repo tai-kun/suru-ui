@@ -31,7 +31,7 @@ export interface RootProps
     RootParams
 {}
 
-export default function Root(props: RootProps) {
+export default function SuiHeading(props: RootProps) {
   const {
     size: sizing,
     level = 1,

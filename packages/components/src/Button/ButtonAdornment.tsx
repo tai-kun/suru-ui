@@ -15,7 +15,7 @@ export interface AdornmentProps
   asChild?: boolean | undefined;
 }
 
-export default function Adornment(props: AdornmentProps) {
+export default function SuiButtonAdornment(props: AdornmentProps) {
   const {
     asChild,
     className,

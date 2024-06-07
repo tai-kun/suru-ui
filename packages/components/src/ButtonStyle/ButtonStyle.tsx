@@ -16,7 +16,7 @@ export interface RootProps extends RootParams {
   children: React.ReactElement;
 }
 
-export default function Root(props: RootProps) {
+export default function SuiButtonStyle(props: RootProps) {
   const {
     color = "blue",
     variant = "solid",

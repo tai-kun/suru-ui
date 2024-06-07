@@ -16,7 +16,7 @@ export interface TextProps
   asChild?: boolean | undefined;
 }
 
-export default function Text(props: TextProps) {
+export default function SuiButtonText(props: TextProps) {
   const {
     align = "center",
     asChild,

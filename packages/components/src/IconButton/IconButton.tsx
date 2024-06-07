@@ -30,7 +30,7 @@ export interface IconButtonProps
   asChild?: boolean | undefined;
 }
 
-export default function Root(props: IconButtonProps) {
+export default function SuiIconButton(props: IconButtonProps) {
   const {
     size = "md",
     type: typeProp = "button",

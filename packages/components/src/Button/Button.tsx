@@ -29,7 +29,7 @@ export interface ButtonProps
   asChild?: boolean | undefined;
 }
 
-export default function Root(props: ButtonProps) {
+export default function SuiButton(props: ButtonProps) {
   const {
     size = "md",
     type: typeProp = "button",

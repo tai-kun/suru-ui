@@ -29,7 +29,7 @@ export interface RootProps
     RootParams
 {}
 
-export default function Root(props: RootProps) {
+export default function SuiText(props: RootProps) {
   const {
     size: sizing = "md",
     asChild,

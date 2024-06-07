@@ -77,7 +77,7 @@ export interface RootProps
     RootParams
 {}
 
-export default function Root(props: RootProps) {
+export default function SuiTypography(props: RootProps) {
   const {
     font,
     align,
