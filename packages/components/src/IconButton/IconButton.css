@@ -1,0 +1,68 @@
+@layer sui.components {
+  .SuiIconButton {
+    width: var(--SuiIconButton-sizing);
+    height: var(--SuiIconButton-sizing);
+    display: inline-grid;
+    overflow: hidden;
+    position: relative;
+    font-size: var(--SuiIconButton-sizing);
+    list-style: none;
+    font-weight: var(--SuiIconButton-weight);
+    line-height: var(--SuiIconButton-leading);
+    place-items: center;
+    white-space: nowrap;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--SuiIconButton-radius);
+    letter-spacing: var(--SuiIconButton-tracking);
+    vertical-align: baseline;
+    text-decoration: none;
+  }
+
+  .SuiIconButton-size-sm {
+    --SuiIconButton-sizing: var(--sui-sizing-sm);
+    --SuiIconButton-radius: var(--sui-radius-sm);
+  }
+  .SuiIconButton-size-md {
+    --SuiIconButton-sizing: var(--sui-sizing-md);
+    --SuiIconButton-radius: var(--sui-radius-md);
+  }
+  .SuiIconButton-size-lg {
+    --SuiIconButton-sizing: var(--sui-sizing-lg);
+    --SuiIconButton-radius: var(--sui-radius-lg);
+  }
+  .SuiIconButton-size-xl {
+    --SuiIconButton-sizing: var(--sui-sizing-xl);
+    --SuiIconButton-radius: var(--sui-radius-lg);
+  }
+
+  .SuiIconButton-size-sm,
+  .SuiIconButton-size-md {
+    --SuiIconButton-sizing:   calc(var(--sui-buttonText-md-sizing) * 1.25);
+    --SuiIconButton-weight:   var(--sui-buttonText-md-weight);
+    --SuiIconButton-leading:  var(--sui-buttonText-md-leading);
+    --SuiIconButton-tracking: var(--sui-buttonText-md-tracking);
+  }
+  .SuiIconButton-size-lg,
+  .SuiIconButton-size-xl {
+    --SuiIconButton-sizing:   calc(var(--sui-buttonText-lg-sizing) * 1.25);
+    --SuiIconButton-weight:   var(--sui-buttonText-lg-weight);
+    --SuiIconButton-leading:  var(--sui-buttonText-lg-leading);
+    --SuiIconButton-tracking: var(--sui-buttonText-lg-tracking);
+  }
+
+  .SuiIconButton-fullWidth {
+    width: 100%;
+  }
+
+  .SuiIconButton.Sui-loading {
+    opacity: 0.75;
+
+    & > :not(.SuiIconButton_LoadingIcon) {
+      opacity: 0;
+    }
+
+    .SuiIconButton_LoadingIcon {
+      position: absolute;
+    }
+  }
+}
